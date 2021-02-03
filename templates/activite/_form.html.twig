@@ -1,0 +1,66 @@
+{{ form_start(form) }}
+
+<div class="row d-flex justify-content-center">
+    <div class="col">
+        <table class="table table-borderless d-flex justify-content-center bg-light border">
+            <tbody class="mb-3">
+            <tr>
+                <th scope='col'>Type d'activité</th>
+                <td>{{ form_widget(form.nom) }}</td>
+            </tr>
+            <tr>
+                <th scope='col'>Date de l'activité</th>
+                <td>{{ form_widget(form.date_activite) }}</td>
+            </tr>
+            <tr>
+                <th scope='col'>durée en mn</th>
+                <td>{{ form_widget(form.duree) }} </td>
+            </tr>
+            <tr>
+                <th scope='col'>distance en km</th>
+                <td>{{ form_widget(form.distance) }} </td>
+            </tr>
+            <tr>
+                <th scope='col'>dénivelé en m</th>
+                <td>{{ form_widget(form.denivele) }} </td>
+            </tr>
+            <tr>
+                <th scope='col'>difficulté (de 1 à 3)</th>
+                <td>{{ form_widget(form.difficulte) }}</td>
+            </tr>
+            <tr>
+                <th scope='col'>infos activité</th>
+                <td>{{ form_widget(form.infos_activite) }}</td>
+            </tr>
+            <tr>
+                <th scope='col'>état</th>
+                 <td>{{ form_widget(form.etat) }}</td>
+            </tr>
+            <tr class="table table-bordered">
+
+                <th scope='col'>Lieu de RDV</th>
+                <td>{{ form_widget(form.lieu) }}</td>
+            </tr>
+
+            {#  <tr>
+        <th scope='col'>ville</th>
+        <td>{{ form_widget(form.lieu)}}</td>
+    </tr>#}
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+
+
+
+<div class="row d-flex justify-content-center">
+
+
+    <button class="m-2 btn btn-primary btn btn-lg">{{ button_label|default('Enregistrer') }}</button>
+    <a href="{{ path('activite_index') }}" class="m-2 btn btn-outline-primary btn btn-lg">retour à la liste</a>
+
+
+</div>
+{{ form_end(form) }}

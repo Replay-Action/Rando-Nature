@@ -1,0 +1,67 @@
+{{ form_start(form) }}
+{# {{ form_widget(form) }} #}
+
+ <div class="col-auto d-flex justify-content-center">
+
+</div>
+
+
+
+{{ form_start(form) }}
+<div class="row d-flex justify-content-center">
+
+    <div class="col">
+        <table class="table table-borderless d-flex justify-content-center bg-light border">
+            <tbody>
+            <tr>
+                <th scope="col">Role :</th>
+                <td>{{ form_widget(form.roles) }}</td>
+            </tr>
+            <tr>
+                <th scope="col">Prénom :</th>
+                <td>{{ form_widget(form.prenom) }}</td>
+            </tr>
+            <tr>
+                <th scope="col">Nom :</th>
+                <td>{{ form_widget(form.nom) }}</td>
+            </tr>
+            <tr>
+                <th scope="col">Pseudo :</th>
+                <td>{{ form_widget(form.username) }}</td>
+            </tr>
+            <tr>
+                <th scope="col">Mail :</th>
+                <td>{{ form_widget(form.email) }}</td>
+            </tr>
+            <tr>
+                <th scope="col">Téléphone :</th>
+                <td>{{ form_widget(form.telephone) }}</td>
+            </tr>
+
+            <tr>
+                <th scope="col">Mot de passe :</th>
+                <td>{{ form_widget(form.password) }}</td>
+            </tr>
+            <tr>
+                <th scope="col">Date de naissance :</th>
+                <td>{{ form_widget(form.date_naissance) }}</td>
+            </tr>
+             <tr>
+               <th scope="col">Photo du profil :</th>
+                <td>{{ form_widget(form.photos) }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row d-flex justify-content-center">
+
+
+    <button class="mb-5 mt-2 btn btn-primary btn btn-lg">{{ button_label|default('Enregistrer') }}</button>
+    <a href="{{ path('user_index') }}" class="mb-5 mt-2 btn btn-outline-primary btn btn-lg">retour à la liste</a>
+
+
+</div>
+{{ form_end(form) }}
+
+

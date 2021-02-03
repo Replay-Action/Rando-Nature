@@ -1,0 +1,132 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} |Présentation endblock %}{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper {
+            text-align: center;
+            margin: 1em auto;
+            max-width: 800px;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+        }
+
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+    </style>
+
+    <div class="container-fluid">
+
+
+    </div>
+
+    <div class="container-fluid">
+        <img src="{{ asset ('/content/velo-pont resize.jpg') }}" class="img-fluid" width="100%">
+    </div>
+
+
+
+    <div class="example-wrapper"><br>
+        <H1 class="font-weight-bold">Présentation de notre association</H1>
+        <hr>
+        <h2>Charte de l'association « Vélo Rando Nature Bruz »</h2>
+        <h3>Version du 6 septembre 2020</h3>
+    </div>
+    <div class="example-wrapper">
+
+
+        <p>
+            <img src="{{ asset('/content/logo velo.png') }}"></p>
+
+        <hr>
+        <p class="font-weight-bold text-success lead">Les piliers de l'adhérent :</p>
+        <p>
+
+            Pour qu'une association comme la notre fonctionne, il est nécessaire que chacun observe des règles librement
+            acceptées – mais appliquées - par tous lors de l'entrée dans l'Association. Vos observations seront toujours
+            les bienvenues pour améliorer cette charte.<br>
+
+            Chaque membre de l'association doit adhérer aux valeurs qui constituent ses fondations :</p><br>
+        <p class="font-weight-bold text-success lead">Pour pouvoir fonctionner collectivement et faciliter la
+            participation de chacun il est important de respecter les valeurs ci-dessous :</p>
+        <ul class=" text-left">
+            <li>
+                Le respect et la tolérance
+            </li>
+
+            <li>Le partage et la solidarité</li>
+
+        </ul>
+
+        <p> Chaque membre de l'association participera à la vie et au dynamisme de Rando Nature Bruz en faisant des
+            propositions et en prenant des initiatives. RNB se construira grâce à la mise en commun des compétences, de
+            la participation et la motivation de chacun.</p>
+
+        <hr>
+        <p class="font-weight-bold text-success lead">Code de bonne conduite du randonneur à vélo :</p>
+        <ul class="text-left">
+            <li> Tenez toujours la droite lors de vos déplacements, cela permet d'éviter la plupart des conflits ;</li>
+
+            <li>Ne stationnez pas au milieu de la voie, utilisez les bas-côtés ou les espaces de repos ;</li>
+
+            <li> Ralentissez à l'approche des piétons et enfants ou lorsqu'il y a affluence. Avertissez si besoin en
+                utilisant votre sonnette (obligatoire pour les cyclistes) ;
+            </li>
+
+            <li>Tenez compte des chevaux et des chiens en évitant de les effrayer ;</li>
+
+            <li>Respectez le code de la route, qui considère le vélo comme un véhicule ;</li>
+
+            <li>Pour les cyclistes et les piétons en groupe ne pas prendre toute la largeur de la piste ;</li>
+
+            <li>Respectez le mobilier et les aménagements mis à disposition de tous (tables, bancs, fontaines, panneaux
+                d'information...) ainsi que les plantations ;
+            </li>
+
+            <li>Conservez l'état de propreté de la voie et de son environnement en utilisant les toilettes et les
+                poubelles ou en emportant avec vous vos détritus ;
+            </li>
+
+            <li>Restez sur la voie et ses abords ;</li>
+
+            <li>Respectez les propriétés ;</li>
+
+            <li>Laissez passer les véhicules motorisés (riverains, véhicules de service, engins agricoles...) autorisés
+                à emprunter votre itinéraire ;
+            </li>
+
+            <li>Respectez la tranquillité des pêcheurs le long des canaux ;</li>
+
+            <li>Enfin, il n'est pas interdit de manifester sa bonne humeur par un sourire et un bonjour lorsque l'on
+                croise des personnes.
+            </li>
+
+
+        </ul>
+        <hr>
+        <p class="font-weight-bold text-success lead"> Quelques conseils :</p>
+        <ul class="text-left">
+
+            <li>Vérifier son vélo avant de partir (pneus, freins et chaîne) ;</li>
+
+            <li>Porter un casque (il n'est obligatoire que jusqu'à 12 ans) ;</li>
+
+            <li>Apporter le matériel nécessaire : une chambre à air, une pompe et des démonte pneus ;</li>
+            <li>Prévoir de l'eau et une barre de céréales ;
+
+            <li>Équiper son vélo d'une sonnette et d'un rétroviseur.</li>
+
+        </ul>
+        <hr>
+        <p class="font-weight-bold lead">« Nous partons tous ensemble, nous roulons tous ensemble et nous rentrons tous
+            ensemble» </p>
+
+        <div>
+            <p>
+                <img src="{{ asset('/content/velo et enfant.png') }}"></p>
+        </div>
+    </div>
+{% endblock %}

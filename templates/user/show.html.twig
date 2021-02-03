@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid">
+        <img src="{{ asset ('/content/user ban pages user.jpg') }}" class="img-fluid" width="100%">
+    </div>
+
+
+    <div class="row m-5 d-flex justify-content-center bg-light border">
+
+        <h1>Détail du profil</h1>
+
+    </div>
+
+
+<div class="bg-light border">
+    <div class="row m-3 d-flex justify-content-center ">
+    {% for photo in user.photos %}
+
+        <img src="{{ asset ('/photo-profil/'~ photo.name) }}" class="img-fluid" width="500rem">
+
+    {% endfor %}
+    </div>
+    <table class="table table-borderless d-flex justify-content-center">
+        <tbody>
+
+
+            <tr>
+                <th>Pseudo</th>
+                <td>{{ user.username }}</td>
+            </tr>
+            <tr>
+                <th>Roles</th>
+                <td> {% if (user.roles|json_encode) =='["ROLE_USER"]'%}
+                        Adhérent
+                    {%  elseif (user.roles|json_encode) =='["ROLE_ADMIN","ROLE_USER"]'%} Administrateur
+                    {% else %}
+                    {% endif %}
+
+                </td>
+            </tr>
+            {#   <tr>
+                <th>Mot de passe</th>
+                <td>{{ user.password }}</td>
+            </tr>  #}
+            <tr>
+                <th>Nom</th>
+                <td>{{ user.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ user.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ user.telephone }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+                <th>Date de naissance</th>
+                <td>{{ user.dateNaissance ? user.dateNaissance|date('d-m-Y') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="mt-3 mb-5 text-center">
+
+    {% if user.username == user1 %}
+        <a href="{{ path('home1') }}" class="btn btn-outline-primary btn btn-lg">Retour à l'accueil</a>
+        <a href="{{ path('app_reset_password', { 'id': app.user.id}) }}" class="btn btn-warning btn btn-lg">modifier mot de passe</a>
+        <a href="{{ path('profiledit',{ 'id': app.user.id}) }}"class="btn btn-primary btn btn-lg">modifier profil</a>
+    {% elseif userrole == ["ROLE_ADMIN","ROLE_USER"] %}
+        <a href="{{ path('user_index') }}" class="btn btn-outline-primary btn btn-lg">Retour à la liste</a>
+    {% else%}
+        <a href="{{ path('home1') }}" class="btn btn-outline-primary btn btn-lg">Retour à l'accueil</a>
+
+    {% endif %}
+
+  {# <a href="{{ path('user_edit', {'id': user.id}) }} "class="btn btn-primary btn btn-lg">edit</a> #}
+    </div>
+    {#   {{ include('user/_delete_form.html.twig') }} #}
+{% endblock %}
+
+

@@ -1,0 +1,176 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Activite index{% endblock %}
+
+{% block body %}
+
+    <style>
+        .example-wrapper {
+            text-align: center;
+            margin: 1em auto;
+            max-width: 800px;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+        }
+
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+    </style>
+    <div class="container-fluid">
+        <img src="{{ asset ('/content/ban page menu footer.jpg') }}" class="img-fluid" width="100%">
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="example-wrapper pb-2"><br>
+                <H1 class="font-weight-bold">Programme des Activités</H1>
+                <hr>
+
+
+                <p><img src="{{ asset('/content/logo velo.png') }}"></p>
+                <hr>
+                <div class="p-3">
+                   <h3> Inscrivez-vous aux activités proposées (colonne 'Actions')</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="row m-6 d-flex justify-content-center">
+
+
+        <div class="col-auto">
+            <table class="table-hover table-striped table table-bordered table-responsive">
+
+   {#  <div class="col col-lg-10 col col-xs-12 ">
+        <table class="table table-bordered bg-light border "> #}
+            <thead class="text-center">
+            <tr class="thead-light">
+                <th>Nom</th>
+                <th>Date de l'activité</th>
+                <th>Durée</th>
+                <th>Distance</th>
+               {#   <th>Informations</th> #}
+                <th>Dénivelé</th>
+                <th>Difficulté</th>
+                <th>Lieu</th>
+                <th>Etat</th>
+                <th>Incrit</th>
+                <th>Organisateur</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody class="text-center">
+        {% for activite in activites %}
+
+            <tr>
+                <td>{{ activite.nom }}</td>
+                <td>{{ activite.dateActivite ? activite.dateActivite|date('d-m-Y') : '' }}</td>
+                <td>{{ activite.duree }}  mn</td>
+                <td>{{ activite.distance }}  km</td>
+              {#   <td>{{ activite.infosActivite|slice(0,40)~"..."  }}</td> #}
+                <td>{{ activite.denivele }}  m</td>
+                <td>{{ activite.difficulte }}/3</td>
+                <td>{{ activite.lieu.nomVille|slice(0,20) }}</td>
+            <td>{{ activite.etat.libelle }}</td>
+
+                {% if activite.users.contains(user) %}
+                    <td>X</td>
+                {% else %}
+                    <td></td>
+                {% endif %}
+
+                <td><a href="{{ path('user_show', {'id': activite.organisateur.id}) }}"> {{ activite.organisateur.prenom }} {{ activite.organisateur.nom }}</a></td>
+
+
+                <td >
+
+
+                    {% if  (activite.organisateur == user) %}
+                        {% if (activite.getDateActivite() > date) %}
+                            {% if (activite.etat.libelle=='ouverte')or (activite.etat.libelle=='modifiée') %}
+                                {%if (activite.users.contains(user))%}
+                                    <a href="{{ path('activite_show', {'id': activite.id}) }}"class="btn btn-outline-primary btn-sm">détails</a>
+                                    <a href="{{ path('activite_sedesister', {'id': activite.id}) }}"class="btn btn-info btn-sm">se désister</a>
+                                    <a href="{{ path('activite_edit', {'id': activite.id}) }}"class="btn btn-outline-warning btn-sm">modifier</a>
+                                    <a href="{{ path('activite_annuler', {'id': activite.id}) }}"class="btn btn-outline-danger btn-sm">annuler</a>
+
+
+                                {% else %}
+
+                                    <a href="{{ path('activite_show', {'id': activite.id}) }}"class="btn btn-outline-primary btn-sm">détails</a>
+                                    <a href="{{ path('activite_sinscrire', {'id': activite.id}) }}"class="btn btn-info btn-sm">s'inscrire</a>
+                                    <a href="{{ path('activite_edit', {'id': activite.id}) }}"class="btn btn-outline-warning btn-sm">modifier</a>
+                                    <a href="{{ path('activite_annuler', {'id': activite.id}) }}"class="btn btn-outline-danger btn-sm">annuler</a>
+
+
+                                {% endif %}
+
+
+                            {% elseif (activite.etat.libelle=='finie')or (activite.etat.libelle=='annulée')%}
+                                <a href="{{ path('activite_show', {'id': activite.id}) }}"class="btn btn-outline-primary btn-sm">détails</a>
+                                <a href="{{ path('activite_edit', {'id': activite.id}) }}"class="btn btn-outline-warning btn-sm">modifier</a>
+
+                            {% endif %}
+
+
+                        {% elseif (activite.getDateActivite() < date)%}
+                            <a href="{{ path('activite_show', {'id': activite.id}) }}"class="btn btn-outline-primary btn-sm">détails</a>
+                            <a href="{{ path('activite_edit', {'id': activite.id}) }}"class="btn btn-outline-warning btn-sm">modifier</a>
+
+                        {% endif %}
+
+
+
+
+                    {% elseif (activite.getDateActivite() > date) %}
+
+                        {% if (activite.etat.libelle=='ouverte')or (activite.etat.libelle=='modifiée') %}
+                            {%if (activite.users.contains(user))%}
+                                <a href="{{ path('activite_show', {'id': activite.id}) }}"class="btn btn-outline-primary btn-sm">détails</a>
+                                <a href="{{ path('activite_sedesister', {'id': activite.id}) }}"class="btn btn-info btn-sm">se désister</a>
+
+                            {% else %}
+                                <a href="{{ path('activite_show', {'id': activite.id}) }}"class="btn btn-outline-primary btn-sm">détails</a>
+                                <a href="{{ path('activite_sinscrire', {'id': activite.id}) }}"class="btn btn-info btn-sm">s'inscrire</a>
+
+                            {% endif %}
+
+                        {% elseif (activite.etat.libelle=='finie')or (activite.etat.libelle=='annulée') %}
+
+                            <a href="{{ path('activite_show', {'id': activite.id}) }}"class="btn btn-outline-primary btn-sm">détails</a>
+
+                        {% endif %}
+
+                    {% elseif (activite.getDateActivite() < date)%}
+                        <a href="{{ path('activite_show', {'id': activite.id}) }}"class="btn btn-outline-primary btn-sm">détails</a>
+
+
+
+                    {% endif%}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+     </table>
+    </div>
+
+    </div>
+{% if  is_granted("ROLE_ADMIN")%}
+
+    <div class="row mb-4 pb-5 d-flex justify-content-center">
+        <div class="col-5">
+            <a href="{{ path('activite_new') }}" class="btn btn-outline-warning btn-lg btn-block">Créer une activité</a>
+
+        </div>
+    </div>
+{% else %}
+{% endif %}
+{% endblock %}
+
+

@@ -1,0 +1,9 @@
+<h1>Nouvel Adherent</h1>
+<p>Nom : {{ adhesion.nom }}</p>
+<p>Prenom : {{ adhesion.prenom }}</p>
+<p>pseudo {{ adhesion.pseudo }}</p>
+<p>Telephone : {{ adhesion.telephone }}</p>
+<p>Date de naissance : {{adhesion.date_de_naissance ? adhesion.date_de_naissance|date('d-m-Y') : '' }}
+<p>Email : {{ adhesion.email }}</p>
+<p> Vous devez maintenant verifier que {{ adhesion.prenom }} {{ adhesion.nom }} paiera bien sa cotisation
+avant de l'inscrire sur le site</p>

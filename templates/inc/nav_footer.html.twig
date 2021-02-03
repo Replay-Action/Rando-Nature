@@ -1,0 +1,55 @@
+
+<footer id="footer">
+{# Espace partenaire qui sera toujours au meme endroit dans la page au dessus du menu footer #}
+
+    <div class="container-fluid class bg-light border border-primary mb-5">
+      <div class="text-center p-3">
+            <h3>
+                Espace Partenaires
+            </h3>
+          <hr>
+      </div>
+        <div class="d-inline p-4 "><a href="https://le-cercle-des-voyageurs.fr/ "><img src="{{ asset('/logos/logo_LCV6-blanc.png') }}" ></a></div>
+        <div class="d-inline p-4 "><a href="http://marcheaquatiquebrehec.over-blog.com/ "><img src="{{ asset('/logos/logo velo bleu.png') }}"width="10%" > Marche aquatique Brehec</a>
+            </div>
+        <div class="d-inline p-4 "><a href="https://valleedelavilaine.fr/"><img src="{{ asset('/logos/logo velo bleu.png') }}"width="10%" >La vallée de la Villaine : </a></div>
+
+
+    </div>
+
+    {# Création d'une navbar en bas de la page, le menu footer #}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-3">
+        <a class="navbar-brand " href="{{path('home1')}}">Vélo Rando Nature Bruz</a>
+
+        {# pour le responsive on crée le menu burger qui s'affichera sur petit écran #}
+        <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarText"
+                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        {# on déclare les éléments qui seront dans la navbar #}
+        <div class="  collapse navbar-collapse" id="navbarText"  >
+            <ul class="navbar-nav ">
+                <li class="nav-item ">
+                    <a class="nav-link" href="{{path('quisommesnous')}}">Qui sommes-nous ? <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{path('mentionslegales')}}">Mentions légales</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{path('contact')}}">Contact</a>
+                </li>
+            </ul>
+        </div>
+
+
+        {# copyright #}
+        <div class="bg-dark ">
+            <p class="text-white ; text-center">&copy;{{ "now"|date("Y") }} VRNB @ED</p>
+
+        </div>
+    </nav>
+
+
+
+</footer>

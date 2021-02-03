@@ -1,0 +1,107 @@
+
+{# Création d'une navbar en haut de la page #}
+<nav class="navbar navbar-expand-lg navbar-light " style="background-color: lightgrey;">
+    <div class="pt-3">
+    <a class="navbar-brand" href="{{path('home1')}}">Vélo Rando Nature Bruz</a>
+    </div>
+
+    {# pour le responsive on crée le menu burger qui s'affichera sur petit écran #}
+    <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarTexto"
+            aria-controls="navbarTexto" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+{# on déclare les éléments qui seront dans la navbar #}
+    <div class="collapse navbar-collapse" id="navbarTexto">
+        <ul class="navbar-nav pt-3">
+            <li class="nav-item active ">
+                <a class="nav-link" href="{{path('home1')}}">Accueil <span class="sr-only">(current)</span></a>
+            </li>
+
+            {# éléments a menu déroulant #}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Association
+                </a>
+
+                {# éléments dans le menu déroulant #}
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{path('presentation')}}">Présentation</a>
+                    <a class="dropdown-item" href="{{path('organisation')}}">Organisation bureau</a>
+                </div>
+            </li>
+
+            {# éléments a menu déroulant #}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Activités
+                </a>
+
+                {# éléments dans le menu déroulant #}
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{path('randosvelo')}}">Randos vélos</a>
+                    <a class="dropdown-item" href="{{path('formations')}}">formations </a>
+                    <a class="dropdown-item" href="{{path('projections')}}">projection de film </a>
+                    <a class="dropdown-item" href="{{path('ecocitoyennete')}}">écocitoyenneté </a>
+
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{path('pleinair')}}">Autres activités de plein-air </a>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('adhesion') }}">Adhésion</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{path('activite_index')}}">Programme</a>
+            </li>
+
+            {# éléments a menu déroulant #}
+            {% if is_granted ("ROLE_USER")%}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Espace adhérent
+                    </a>
+
+                    {# éléments dans le menu déroulant #}
+
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Trombinoscope</a>
+                        <a class="dropdown-item" href="#">Récap Sorties</a>
+                        <a class="dropdown-item" href="#">Trucs & Astuces</a>
+                        <a class="dropdown-item" href="#">Livres & documents</a>
+                    </div>
+                </li>
+            {%else%}
+            {% endif %}
+
+
+            <li class="nav-item">
+                {% if app.user %}
+                <a class="nav-link" href="{{ path('user_show', { 'id': app.user.id}) }}">Profil</a>
+                    {% else %}
+
+                {% endif %}
+            </li>
+
+            {% if is_granted ('IS_AUTHENTICATED_REMEMBERED')%}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+                </li>
+            {% endif %}
+            {% if is_granted ("ROLE_ADMIN")%}
+            <li class="nav-item">
+                <a class="nav-link" href="{{path('user_index')}}">Admin</a>
+            </li>
+            {% else %}
+            {% endif %}
+        </ul>
+    </div>
+</nav>

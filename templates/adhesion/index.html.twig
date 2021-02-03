@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdhesionController!{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <img src="{{ asset ('/content/velo-pont resize.jpg') }}" class="img-fluid" width="100%">
+    </div>
+<div class="container-fluid justify-content-center pt-3 ">
+<div class="row col-auto bg-light border justify-content-center m-5">
+    <h1 class="mt-3">Buletin d'adhésion</h1>
+    <div class="table d-flex justify-content-center mt-3">
+        <div class="m-5 col-3">
+        <h4>Remplissez le formulaire en choisissant un pseudo</h4>
+        </div>
+
+    {{ form(adhesionForm) }}
+    </div>
+    </div>
+</div>
+
+    <div class="container-fluid">
+<div class="row justify-content-center m-3" >
+   <div class="col-6 ">
+    <h2 class="text-align-center">Je reconnais : </h2>
+    <p><uk>
+            <li>
+                Connaître et accepter le règlement intérieur et la charte de l'association RNB ;
+            </li>
+        <li>
+            Avoir souscrit un contrat d’assurance individuel accident, ou une garantie complémentaire ;
+        </li>
+            <li>
+                Acquitter la cotisation annuelle : 15 €, à l'ordre Rando Nature Bruz
+            </li>
+        </uk></p>
+   </div>
+            <div class="bg-light border p-3 col-4 align-self-center">
+            <h4>
+                Chacun roule sous sa propre responsabilité. <p>En aucun cas, l'association Rando Nature Bruz- qui n’est affiliée à aucune fédération sportive - n'assure les dommages occasionnés ou subis par un de ses adhérents.</p>
+
+            </h4>
+            </div>
+</div>
+</div>
+
+    <div class="text-center"><pre>
+
+Contacts : Loïc Touchard (06.17.22.86.95) loick.touchard@laposte.net
+
+Pascal Decan (06.23.13.56.48) decanps@wanadoo.fr
+
+</pre>
+    </div>
+
+
+<div class="container-fluid justify-content-center mt-3 ">
+    <div class="row col-auto justify-content-center m-5">
+        <img src="{{ asset('/content/velo et enfant.png') }}">
+    </div>
+</div>
+{% endblock %}

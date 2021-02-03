@@ -1,0 +1,103 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier profil{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <img src="{{ asset ('/content/user ban pages user.jpg') }}" class="img-fluid" width="100%">
+</div>
+<div class="row m-5 d-flex justify-content-center bg-light border">
+
+    <h1>Modifiez votre profil</h1>
+</div>
+    {% if user.username == user1%}
+
+<div class="bg-light border">
+    <div class="row m-5 d-flex justify-content-center ">
+        {% for photo in user.photos %}
+
+            <img src="{{ asset ('/photo-profil/'~ photo.name) }}" class="img-fluid" width="500em">
+
+            {# On ajoute un lien permettant de supprimer une image (sera géré en Ajax) #}
+            <a href="{{ path('user_delete_photo', {id: photo.id})}}" data-delete data-token="{{ csrf_token('delete' ~ photo.id )}}">Supprimer</a>
+
+        {% endfor %}
+    </div>
+
+</div>
+
+    {{ form_start(form) }}
+
+    <div class="row d-flex justify-content-center">
+
+        <div class="col">
+            <table class="table table-borderless d-flex justify-content-center bg-light border">
+                <tbody>
+
+                <tr>
+                    <th hidden scope="col">role :</th>
+                    <td hidden>{{form_widget(form.roles)}} </td>
+                </tr>
+
+                <tr>
+                    <th scope="col">Prénom :</th>
+                    <td>{{ form_widget(form.prenom) }}</td>
+                </tr>
+                <tr>
+                    <th scope="col">Nom :</th>
+                    <td>{{ form_widget(form.nom) }}</td>
+                </tr>
+                <tr>
+                    <th scope="col">Pseudo :</th>
+                    <td>{{ form_widget(form.username) }}</td>
+                </tr>
+                <tr>
+                    <th scope="col">Mail :</th>
+                    <td>{{ form_widget(form.email) }}</td>
+                </tr>
+                <tr>
+                    <th scope="col">Téléphone :</th>
+                    <td>{{ form_widget(form.telephone) }}</td>
+                </tr>
+
+                <tr>
+                    <th scope="col">Mot de passe :</th>
+                    <td>{{ form_widget(form.password) }}</td>
+                </tr>
+                <tr>
+                    <th scope="col">Date de naissance :</th>
+                    <td>{{ form_widget(form.date_naissance) }}</td>
+                </tr>
+                <tr>
+                    <th scope="col">Photo du profil :</th>
+                    <td>{{ form_widget(form.photos) }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row d-flex justify-content-center">
+
+
+
+        <button class="mb-5 mt-2 btn btn-primary btn btn-lg">{{ button_label|default('Enregistrer') }}</button>
+
+
+        <a href="{{ path('user_show', { 'id': app.user.id}) }}" class="mb-5 mt-2 btn btn-outline-primary btn btn-lg">retour au profil</a>
+        {{ form_end(form) }}
+
+    </div>
+    {% else %}
+        <div class="row d-flex justify-content-center m-3">
+        <a href="{{ path('home1') }}" class=" btn btn-lg btn-danger ">  vous n'avez pas les droits pour modifier le mot de passe</a>
+        </div>
+    {% endif %}
+
+
+
+
+{% endblock %}
+{# on appelle la fonction javascript dans le dossier js de public #}
+{% block javascripts %}
+    <script src="{{ asset('js/images.js') }}"></script>
+{% endblock %}
