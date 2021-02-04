@@ -7,8 +7,8 @@
         <img src="{{ asset ('/content/user ban pages user.jpg') }}" class="img-fluid" width="100%">
     </div>
     <div class="row m-5 d-flex justify-content-center bg-light border">
-    {% if (user1 == user.username) %}
-        {% elseif is_granted("ROLE_ADMIN") %}
+    {% if (user1 == user.username) or is_granted("ROLE_ADMIN")%}
+
         <h1>Modifier le profil</h1>
     </div>
 

@@ -21,126 +21,20 @@
         <img src="{{ asset ('/content/ban page menu footer.jpg') }}" class="img-fluid" width="100%">
     </div>
     <div class="container-fluid">
+        <div class="example-wrapper bg-warning">
+            <h1>Aministration</h1>
+        </div>
         <div class="row">
-
-            <div class="example-wrapper"><br>
-                <H1 class="font-weight-bold">Programme des Activités</H1>
-                <hr>
-
-
-                <p><img src="{{ asset('/content/logo velo.png') }}"></p>
-                <hr>
+            <div class="row m-5 d-flex justify-content-center bg-light border">
+              <a href="{{ path('user_index') }}" class="btn btn-lg btn-success" >Gestion des adhérents</a>
             </div>
+            <div class="row m-5 d-flex justify-content-center bg-light border">
+                <a href="{{ path('activite_index') }}" class="btn btn-lg btn-success">Gestion des activités</a>
 
+
+            </div>
         </div>
+
     </div>
-    <div class="row m-6 d-flex justify-content-center">
-        <div class="col col-lg-10 col col-xs-12">
-            <table class="table table-bordered">
-                <thead class="text-center">
-                <tr class="thead-light">
-                    <th scope="col">Nom de la sortie</th>
-                    <th scope="col">Date sortie</th>
-                    <th scope="col">Durée sortie</th>
-                    <th scope="col">Nb Inscrits</th>
-                    <th scope="col">Distance</th>
-                    <th scope="col">Dénivelé</th>
-                    <th scope="col">Etat</th>
-                    <th scope="col">Inscrit</th>
-                    <th scope="col">Organisateur</th>
-                    <th scope="col">Action</th>
-                </tr>
-                </thead>
 
-                <tbody class="text-center">
-                    {% for acti in activite %}
-                      <tr>
-                         <td>{{ acti.nom }}</td>
-                          <td>{{ acti.dateActivite ? acti.dateActivite|date('d-m-Y') : '' }}</td>
-                          <td>{{ acti.duree }} mn</td>
-                          <td>{{ acti.users.count}}</td>
-                          <td>{{ acti.distance }} km</td>
-                          <td>{{ acti.denivele }} m</td>
-                          <td>{{ acti.etat.libelle }}</td>
-                          <td>vide</td>
-                          <td>{{ acti.organisateur.username }}</td>
-                          <td>vide</td>
-                      </tr>
-                    {% endfor %}
-                </tbody>
-             {#   <tbody class="text-center">
-                {% for sortie in sorties %}
-                    <tr>
-                        <td>{{ sortie.nomSortie }}</td>
-                        <td>{{ sortie.dateDebut ? sortie.dateDebut|date('d-m-Y H:i:s') : '' }}</td>
-                        <td>{{ sortie.dateCloture ? sortie.dateCloture|date('d-m-Y') : '' }}</td>
-                        <td>{{ sortie.participants.count }}/{{ sortie.nbInscriptionsMax }}</td>
-
-
-                        <td>{{ sortie.etatNoEtat.libelle }}</td>
-
-
-
-                        {% if sortie.participants.contains(user) %}
-                            <td>X</td>
-                        {% else %}
-                            <td></td>
-                        {% endif %}
-
-                        <td><a href="{{ path('user_show',{'id': sortie.organisateur.id }) }}">{{ sortie.organisateur.prenom }} {{ sortie.organisateur.nom }}</a></td>
-
-                        <td> #}
-        {#        {% if (date < sortie.dateDebut|date_modify("+30 day")) %}
-                                {# ci-dessous pour afficher 'publier' ou 'annuler' selon l'etat #}
-                           {#     {% if (sortie.organisateur == user) and (sortie.etatNoEtat.libelle == 'Ouverte')
-                                    and (sortie.dateDebut > date)%}
-                                    <a href="{{ path('sortie_annuler', {'id': sortie.id}) }}" class="text-info">Annuler</a>/
-                                {% elseif  sortie.organisateur == user %}
-                                    <a href="{{ path('sortie_publier', {'id': sortie.id}) }}" class="text-info">publier</a> /
-                                    <a href="{{ path('sortie_edit', {'id': sortie.id}) }}" class="text-info">modifier</a>
-
-                                {% endif %}
-
-
-                                {% if (sortie.participants.contains(user)) %}
-
-                                    {% if (sortie.dateDebut < date) %}
-                                        <a href="{{ path('sortie_show', {'id': sortie.id}) }}" class="text-info">Afficher</a>
-                                        {#  <a href="{{ path('sortie_seDesister', {'id': sortie.id}) }}" class="text-danger">Se désister</a> #}
-          {#      {% else %}
-                                        <a href="{{ path('sortie_show', {'id': sortie.id}) }}" class="text-info">Afficher</a> /
-                                        <a href="{{ path('sortie_seDesister', {'id': sortie.id}) }}" class="text-danger">Se désister</a>
-
-                                    {% endif %}
-                                {% else %}
-                                    {% if (sortie.participants.count == sortie.nbInscriptionsMax) or
-                                        (sortie.etatNoEtat.libelle != 'Ouverte') or
-                                        (sortie.dateCloture < date) %}
-
-                                        <a href="{{ path('sortie_show', {'id': sortie.id}) }}" class="text-info">Afficher</a>
-                                    {% else %}
-                                        <a href="{{ path('sortie_show', {'id': sortie.id}) }}" class="text-info">Afficher</a> /
-                                        <a href="{{ path('sortie_sinscrire', {'id': sortie.id}) }}" class="text-success">S'incrire</a>
-                                    {% endif %}
-                                {% endif %}
-                                {#  <a href="{{ path('sortie_edit', {'id': sortie.id}) }}">Modifier</a> #}
-         {#      {% else %}
-                                <a>Sortie non consultable</a>
-                            {% endif %}
-                        </td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="8">Aucun élément trouvé</td>
-                    </tr>
-                {% endfor %}
-                </tbody>    #}
-            </table>
-        </div>
-    </div>
-    <div class="row m-4 d-flex justify-content-center">
-        <div class="col-5">
-            <a href="#" class="btn btn-outline-warning btn-lg btn-block">Créer une sortie</a>
-        </div>
-    </div>
 {% endblock %}

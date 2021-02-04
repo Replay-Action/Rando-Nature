@@ -10,17 +10,13 @@ use App\Entity\Activite;
 class ProgramController extends AbstractController
 { #ce controlleur gere la page des programmes#
     /**
-     * @Route("/program", name="program")
+     * @Route("/administrateur", name="administrateur")
      */
     public function programIndex(): Response
     {
-        #affiche la liste complète des sorties#
-        $activiteRepo = $this->getDoctrine()->getRepository(Activite::class);
-        $activite=$activiteRepo->findAll();
+        $this->denyAccessUnlessGranted("ROLE_ADMIN");
 
-        return $this->render('program/programList.twig', [
-            "activite"=>$activite,
-            'controller_name' => 'ProgramController',
-        ]);
+
+        return $this->render('program/programList.twig');
     }
 }

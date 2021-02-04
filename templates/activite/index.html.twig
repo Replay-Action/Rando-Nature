@@ -32,7 +32,13 @@
                 <p><img src="{{ asset('/content/logo velo.png') }}"></p>
                 <hr>
                 <div class="p-3">
-                   <h3> Inscrivez-vous aux activités proposées (colonne 'Actions')</h3>
+                    {% if is_granted(["ROLE_ADMIN"])%}
+                        <h3> Gérez les activités sur la colonne 'Actions'</h3>
+                        <p>Pour effacer une activité, allez sur le bouton 'modifier'</p>
+                    {% else %}
+                        <h3> Inscrivez-vous aux activités proposées (colonne 'Actions')</h3>
+                    {% endif %}
+
                 </div>
             </div>
         </div>
@@ -41,7 +47,7 @@
 
 
         <div class="col-auto">
-            <table class="table-hover table-striped table table-bordered table-responsive">
+            <table class="table-hover table-striped table-sm table-bordered table-responsive">
 
    {#  <div class="col col-lg-10 col col-xs-12 ">
         <table class="table table-bordered bg-light border "> #}
@@ -91,7 +97,7 @@
                         {% if (activite.getDateActivite() > date) %}
                             {% if (activite.etat.libelle=='ouverte')or (activite.etat.libelle=='modifiée') %}
                                 {%if (activite.users.contains(user))%}
-                                    <a href="{{ path('activite_show', {'id': activite.id}) }}"class="btn btn-outline-primary btn-sm">détails</a>
+                                    <a href="{{ path('activite_show', {'id': activite.id}) }}"class="btn btn-primary btn-sm">détails</a>
                                     <a href="{{ path('activite_sedesister', {'id': activite.id}) }}"class="btn btn-info btn-sm">se désister</a>
                                     <a href="{{ path('activite_edit', {'id': activite.id}) }}"class="btn btn-outline-warning btn-sm">modifier</a>
                                     <a href="{{ path('activite_annuler', {'id': activite.id}) }}"class="btn btn-outline-danger btn-sm">annuler</a>
@@ -99,7 +105,7 @@
 
                                 {% else %}
 
-                                    <a href="{{ path('activite_show', {'id': activite.id}) }}"class="btn btn-outline-primary btn-sm">détails</a>
+                                    <a href="{{ path('activite_show', {'id': activite.id}) }}"class="btn btn-primary btn-sm">détails</a>
                                     <a href="{{ path('activite_sinscrire', {'id': activite.id}) }}"class="btn btn-info btn-sm">s'inscrire</a>
                                     <a href="{{ path('activite_edit', {'id': activite.id}) }}"class="btn btn-outline-warning btn-sm">modifier</a>
                                     <a href="{{ path('activite_annuler', {'id': activite.id}) }}"class="btn btn-outline-danger btn-sm">annuler</a>
@@ -109,14 +115,14 @@
 
 
                             {% elseif (activite.etat.libelle=='finie')or (activite.etat.libelle=='annulée')%}
-                                <a href="{{ path('activite_show', {'id': activite.id}) }}"class="btn btn-outline-primary btn-sm">détails</a>
+                                <a href="{{ path('activite_show', {'id': activite.id}) }}"class="btn btn-primary btn-sm">détails</a>
                                 <a href="{{ path('activite_edit', {'id': activite.id}) }}"class="btn btn-outline-warning btn-sm">modifier</a>
 
                             {% endif %}
 
 
                         {% elseif (activite.getDateActivite() < date)%}
-                            <a href="{{ path('activite_show', {'id': activite.id}) }}"class="btn btn-outline-primary btn-sm">détails</a>
+                            <a href="{{ path('activite_show', {'id': activite.id}) }}"class="btn btn-primary btn-sm">détails</a>
                             <a href="{{ path('activite_edit', {'id': activite.id}) }}"class="btn btn-outline-warning btn-sm">modifier</a>
 
                         {% endif %}
@@ -128,23 +134,23 @@
 
                         {% if (activite.etat.libelle=='ouverte')or (activite.etat.libelle=='modifiée') %}
                             {%if (activite.users.contains(user))%}
-                                <a href="{{ path('activite_show', {'id': activite.id}) }}"class="btn btn-outline-primary btn-sm">détails</a>
+                                <a href="{{ path('activite_show', {'id': activite.id}) }}"class="btn btn-primary btn-sm">détails</a>
                                 <a href="{{ path('activite_sedesister', {'id': activite.id}) }}"class="btn btn-info btn-sm">se désister</a>
 
                             {% else %}
-                                <a href="{{ path('activite_show', {'id': activite.id}) }}"class="btn btn-outline-primary btn-sm">détails</a>
+                                <a href="{{ path('activite_show', {'id': activite.id}) }}"class="btn btn-primary btn-sm">détails</a>
                                 <a href="{{ path('activite_sinscrire', {'id': activite.id}) }}"class="btn btn-info btn-sm">s'inscrire</a>
 
                             {% endif %}
 
                         {% elseif (activite.etat.libelle=='finie')or (activite.etat.libelle=='annulée') %}
 
-                            <a href="{{ path('activite_show', {'id': activite.id}) }}"class="btn btn-outline-primary btn-sm">détails</a>
+                            <a href="{{ path('activite_show', {'id': activite.id}) }}"class="btn btn-primary btn-sm">détails</a>
 
                         {% endif %}
 
                     {% elseif (activite.getDateActivite() < date)%}
-                        <a href="{{ path('activite_show', {'id': activite.id}) }}"class="btn btn-outline-primary btn-sm">détails</a>
+                        <a href="{{ path('activite_show', {'id': activite.id}) }}"class="btn btn-primary btn-sm">détails</a>
 
 
 
@@ -164,7 +170,7 @@
 {% if  is_granted("ROLE_ADMIN")%}
 
     <div class="row mb-4 pb-5 d-flex justify-content-center">
-        <div class="col-5">
+        <div class="col-5 mt-3">
             <a href="{{ path('activite_new') }}" class="btn btn-outline-warning btn-lg btn-block">Créer une activité</a>
 
         </div>
