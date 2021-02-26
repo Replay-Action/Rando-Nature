@@ -81,7 +81,8 @@ class Activite
     private $organisateur;
 
     /**
-     * @ORM\OneToMany(targetEntity=DocPdf::class, mappedBy="pdfactivite")
+     * @ORM\OneToMany(targetEntity=DocPdf::class, mappedBy="pdfactivite",
+     *     cascade={"persist","remove"})
      */
     private $docPdfs;
 

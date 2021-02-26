@@ -1,9 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ parent() }} | ecocitoyenneté{% endblock %}
-
+{# twig d'affichage de la page ecocitoyennete #}
 {% block body %}
+    {# le style bootstrap par defaut #}
     <style>
+        .centrer{
+            display: flex;
+            align-items: center;
+        }
         .example-wrapper {
             text-align: center;
             margin: 1em auto;
@@ -19,7 +24,7 @@
     </style>
 
 
-
+{# la banniere et le titre #}
     <div class="container-fluid">
         <img src="{{ asset ('/content/2velos resize.jpg') }}" class="img-fluid" width="100%">
     </div>
@@ -34,23 +39,32 @@
 
             </div>
         </div>
-     </div>
-    <div class="m-5 p-5 bg-light border">
-     <div class="row"align="center">
+    </div>
 
-        <div class="col-lg-4 col-xs-12">
-            <a href="{{path('activite_index')}}">  <h3>Ecocitoyenneté</h3></a>
-        </div>
-        <div class="col-lg-4 col-xs-12"><br>
+    <div class="container-fluid">
 
-            <p>Praesent rutrum eu orci id placerat. Morbi fermentum tellus quam,
-                ac tempus ipsum viverra fermentum. Ut quis lectus ac odio ultricies interdum at semper massa.
-                Sed porttitor nibh et maximus iaculis. Aenean dignissim nunc in sapien ullamcorper feugiat.
-                Phasellus scelerisque quis augue eu fermentum. Proin consequat mattis libero,
-                quis sodales ipsum posuere sit amet. Suspendisse sollicitudin ut dui id aliquam.</p>
+    {# le corps de la page #}
+    <div class="m-md-5 bg-light border ">
+    <div class="row  " align="center">
+
+        <a class="centrer btn btn-primary col-lg-3 col-12" href="{{ path('activite_index') }}">
+        <div >
+          <span> <h3>Ecocitoyenneté</h3></span>
         </div>
-        <div class="col-lg-4 col-xs-12">
-            <img src="{{ asset('/content/ecocitoyenete resize.jpg') }}" class="img-fluid" width="80%">
+        </a>
+        <div class="col-lg-5 col-xs-12 centrer"><br>
+
+            <p>l'association participe au comité « piétons-vélos » de la ville de Bruz.
+                Ce comité consultatif a pour mission d'éclairer les élus afin d'établir
+                un plan d'itinéraires sécurisés pour les piétions et les vélos...
+                Le comité se réunira au moins 4 fois par an.
+                Il est constitué d'un quinzaine de personnes :
+                8 bruzois représentatifs de la population, 5 élus et des représentants d'associations.</p>
         </div>
+        <div class="centrer col-lg-4 col-xs-12 text-right ">
+         <p class="">  <img src="{{ asset('/content/ecocitoyenete resize.jpg') }}" class="img-fluid " width="100%"></p>
+        </div>
+    </div>
+    </div>
     </div>
 {% endblock %}

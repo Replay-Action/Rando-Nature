@@ -22,49 +22,70 @@ class ActiviteRepository extends ServiceEntityRepository
     }
 
     #pour lister toutes les activités en une seule requete
-    public function findActivites(){
-        $qb=$this->createQueryBuilder('a');
-        $qb->innerJoin('a.organisateur','o')
+    public function findActivites()
+    {
+        $qb = $this->createQueryBuilder('a');
+        $qb->innerJoin('a.organisateur', 'o')
             ->addSelect('o')
-            ->innerJoin('a.etat','e')
+            ->innerJoin('a.etat', 'e')
             ->addSelect('e')
-            ->innerJoin('a.lieu','l')
+            ->innerJoin('a.lieu', 'l')
             ->addSelect('l')
-            ->leftJoin('a.users','u')
+            ->leftJoin('a.users', 'u')
             ->addSelect('u')
-            ->orderBy('a.date_activite','DESC');
+            ->orderBy('a.date_activite', 'DESC');
 
-        $query=$qb->getQuery();
+        $query = $qb->getQuery();
         return new Paginator($query);
 
     }
 
-# pour recupere les activités dont la date est dépassée et pour changer leur 'etat' en 'finie'
-    public function miseajouretat(){
+# pour recuperer les activités dont la date est dépassée et pour changer leur 'etat' en 'finie'
+    public function miseajouretat()
+    {
 
-        $em=$this->getEntityManager();
-        $datejour= new\DateTime();
-        $query =$em->createQuery(
+        $em = $this->getEntityManager();
+        $datejour = new\DateTime();
+        $query = $em->createQuery(
             'UPDATE App\Entity\Activite as a
              SET a.etat =2
              WHERE a.date_activite < :date')
-
-            ->setParameter('date',$datejour)
-        ;
+            ->setParameter('date', $datejour);
 
         return $query->getResult();
     }
 
-        public function affichepastille(){
-            $em=$this->getEntityManager();
-            $datejour= new\DateTime();
-            $query =$em->createQuery(
-               'SELECT a
+
+
+    public function affichepastille()
+    {
+        #pour l'affichage de la pastille clignotante dans l'acceuil, on filtre sur les activités ouvertes ou modifiees
+        $em = $this->getEntityManager();
+
+        $query = $em->createQuery(
+            'SELECT a
                 FROM App\Entity\Activite a
                 WHERE a.etat = 1 OR a.etat= 4');
 
-            return $query->getResult();
-        }
+        return $query->getResult();
+    }
+
+
+
+    public function affichefinie()
+    {
+        #pour l'affichage de la pastille clignotante dans l'acceuil, on filtre sur les activités ouvertes ou modifiees
+        $em = $this->getEntityManager();
+
+        $query = $em->createQuery(
+            'SELECT a
+                FROM App\Entity\Activite a
+                WHERE a.etat = 2
+                ORDER BY a.date_activite');
+
+        return $query->getResult();
+    }
+
 
     // /**
     //  * @return Activite[] Returns an array of Activite objects

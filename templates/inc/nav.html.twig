@@ -42,9 +42,9 @@
                 {# éléments dans le menu déroulant #}
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{{path('randosvelo')}}">Randos vélos</a>
-                    <a class="dropdown-item" href="{{path('formations')}}">formations </a>
-                    <a class="dropdown-item" href="{{path('projections')}}">projection de film </a>
-                    <a class="dropdown-item" href="{{path('ecocitoyennete')}}">écocitoyenneté </a>
+                    <a class="dropdown-item" href="{{path('formations')}}">Formations </a>
+                    <a class="dropdown-item" href="{{path('projections')}}">Projection de film </a>
+                    <a class="dropdown-item" href="{{path('ecocitoyennete')}}">Ecocitoyenneté </a>
 
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{path('pleinair')}}">Autres activités de plein-air </a>
@@ -69,10 +69,10 @@
                     {# éléments dans le menu déroulant #}
 
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Trombinoscope</a>
-                        <a class="dropdown-item" href="#">Récap Sorties</a>
-                        <a class="dropdown-item" href="#">Trucs & Astuces</a>
-                        <a class="dropdown-item" href="#">Livres & documents</a>
+                        <a class="dropdown-item" href="{{path('trombi') }}">Trombinoscope</a>
+                        <a class="dropdown-item" href="{{ path('recap') }}">Récap Sorties</a>
+                     {#   <a class="dropdown-item" href="#">Trucs & Astuces</a>
+                        <a class="dropdown-item" href="#">Livres & documents</a>#}
                     </div>
                 </li>
             {%else%}

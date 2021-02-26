@@ -1,7 +1,7 @@
 window.onload = () => {
     // Gestion des boutons "Supprimer"
     let links = document.querySelectorAll("[data-delete]")
-
+console.log(links)
     // On boucle sur links
     for(link of links){
         // On écoute le clic

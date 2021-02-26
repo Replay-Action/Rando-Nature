@@ -1,43 +1,48 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Modifier adhérent{% endblock %}
+{% block title %}Modifier adhérent | {{ parent() }}{% endblock %}
+{# la page de modification de user #}
 
 {% block body %}
+
     <div class="container-fluid">
         <img src="{{ asset ('/content/user ban pages user.jpg') }}" class="img-fluid" width="100%">
     </div>
     <div class="row m-5 d-flex justify-content-center bg-light border">
-    {% if (user1 == user.username) or is_granted("ROLE_ADMIN")%}
+    {% if (user1 == user.username) or is_granted("ROLE_ADMIN") %}
 
         <h1>Modifier le profil</h1>
-    </div>
+        </div>
 
+        {# on boucle sur les photos #}
         <div class="bg-light border">
             <div class="row m-5 d-flex justify-content-center ">
                 {% for photo in user.photos %}
 
+                    {# on affiche la photo #}
                     <img src="{{ asset ('/photo-profil/'~ photo.name) }}" class="img-fluid" width="500em">
 
                     {# On ajoute un lien permettant de supprimer une image (sera géré en Ajax) #}
-                    <a href="{{ path('user_delete_photo', {id: photo.id})}}" data-delete data-token="{{ csrf_token('delete' ~ photo.id )}}">Supprimer</a>
+                    <a href="{{ path('user_delete_photo', {id: photo.id}) }}" data-delete
+                       data-token="{{ csrf_token('delete' ~ photo.id ) }}">Supprimer</a>
 
                 {% endfor %}
             </div>
+        </div>
 
+        {# on inclue le formulaire #}
+        {{ include('user/_form.html.twig', {'button_label': 'modifier'}) }}
 
-    </div>
-
-    {{ include('user/_form.html.twig', {'button_label': 'modifier'}) }}
-
-    <div class="row d-flex justify-content-center">
-    {{ include('user/_delete_form.html.twig') }}
-    </div>
-    {% else%}
+        {# on inclue le formulaire d'effacement #}
+        <div class="row d-flex justify-content-center">
+            {{ include('user/_delete_form.html.twig') }}
+        </div>
+    {% else %}
         <a href="{{ path('home1') }}" class="btn btn-lg btn-danger">Vous n'avez pas accès à ces droits</a>
     {% endif %}
 
 {% endblock %}
 {# on appelle la fonction javascript dans le dossier js de public #}
 {% block javascripts %}
-<script src="{{ asset('js/images.js') }}"></script>
+    <script src="{{ asset('js/images.js') }}"></script>
 {% endblock %}

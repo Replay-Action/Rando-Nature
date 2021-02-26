@@ -6,6 +6,7 @@ use App\Entity\Activite;
 use App\Entity\Lieu;
 use App\Form\ActiviteType;
 use App\Repository\ActiviteRepository;
+use App\Repository\DocPdfRepository;
 use App\Repository\EtatRepository;
 use App\Repository\LieuRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -25,25 +26,25 @@ class ActiviteController extends AbstractController
     public function index(ActiviteRepository $activiteRepository,
                           EtatRepository $etatRepository, Request $request): Response
     {
-        $user=$this->getUser();
-        $date=new \DateTime('now');
+        $user = $this->getUser();
+        $date = new \DateTime('now');
 
-         $datecrit=$date->getTimestamp();
+        $datecrit = $date->getTimestamp();
 
-         #on liste toutes les activités comme le findall mais en une requete
-        $acti=$activiteRepository->findActivites();
+        #on liste toutes les activités comme le findall mais en une requete
+        $acti = $activiteRepository->findActivites();
 
         # on cherche les activités dont la date est dépassée et on change leur état en 'finie'
-        $acti2=$activiteRepository->miseajouretat();
+        $acti2 = $activiteRepository->miseajouretat();
 
-       # on met à jour l'etat qd on va sur la page de liste des activités
-       $acti2;
+        # on met à jour l'etat qd on va sur la page de liste des activités
+        $acti2;
 
 
         return $this->render('activite/index.html.twig', [
-            'user'=>$user,
+            'user' => $user,
             'activites' => $acti,
-            'date'=>$date,
+            'date' => $date,
         ]);
     }
 
@@ -51,7 +52,7 @@ class ActiviteController extends AbstractController
      * @Route("/new", name="activite_new", methods={"GET","POST"})
      */
     public function new(Request $request, LieuRepository $lieuRepository,
-                        EtatRepository  $etatRepository,
+                        EtatRepository $etatRepository,
                         EntityManagerInterface $entityManager): Response
     {
 
@@ -76,6 +77,7 @@ class ActiviteController extends AbstractController
             $etat = $etatRepository->findOneBy(['libelle' => 'ouverte']);
             $activite->setEtat($etat);
 
+
             $entityManager->persist($activite);
 
             $entityManager->flush();
@@ -88,9 +90,7 @@ class ActiviteController extends AbstractController
         return $this->render('activite/new.html.twig', [
             'activite' => $activite,
             'form' => $form->createView(),
-            'user'=>$user
-
-
+            'user' => $user
 
 
         ]);
@@ -109,7 +109,7 @@ class ActiviteController extends AbstractController
     /**
      * @Route("/{id}/edit", name="activite_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Activite $activite,EtatRepository $etatRepository): Response
+    public function edit(Request $request, Activite $activite, EtatRepository $etatRepository): Response
     {
         $this->denyAccessUnlessGranted("ROLE_ADMIN");
 
@@ -117,6 +117,8 @@ class ActiviteController extends AbstractController
         $user = $this->getUser();
         #on hydrate l'activite avec l'organisateur
         $activite->setOrganisateur($user);
+
+
 
         #on met l'etat de l'activité à 'modifiée' qd on modifie
         $etat = $etatRepository->findOneBy(['libelle' => 'modifiée']);
@@ -131,7 +133,7 @@ class ActiviteController extends AbstractController
 
             return $this->redirectToRoute('activite_index');
         }
-        dump($activite->getLieu());
+
         return $this->render('activite/edit.html.twig', [
             'activite' => $activite,
             'form' => $form->createView(),
@@ -141,12 +143,28 @@ class ActiviteController extends AbstractController
     /**
      * @Route("/{id}", name="activite_delete", methods={"DELETE"})
      */
-    public function delete(Request $request, Activite $activite): Response
+    public function delete(Request $request, Activite $activite, DocPdfRepository $docPdfRepository): Response
     {
         $this->denyAccessUnlessGranted("ROLE_ADMIN");
 
-        if ($this->isCsrfTokenValid('delete'.$activite->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $activite->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
+
+            $activite1=$activite->getId();
+            $pdf=$docPdfRepository->findOneBy(['pdfactivite' => $activite1]);
+
+            if ($pdf != null) {
+                $nompdf = $pdf->getNompdf();
+                $pdfexist = $this->getParameter('upload_recap_directory') . '/' . $nompdf;
+
+                #si le pdf existe dans le dossier public alors on l'efface
+                if ($pdfexist) {
+                    unlink($pdfexist);
+                } else {
+                }
+            }
+
+
             $entityManager->remove($activite);
             $entityManager->flush();
         }
@@ -159,18 +177,21 @@ class ActiviteController extends AbstractController
      * @Route("/{id}/sinscrire", name="activite_sinscrire", methods={"GET","POST"})
      */
 
-    public function sinscrire(Activite $activite):Response{
+    public function sinscrire(Activite $activite): Response
+    {
+        #fonction s'inscrire dans le tableau des activites
+
         $this->denyAccessUnlessGranted("ROLE_USER");
 
-         $user=$this->getUser();
-         $entityManager=$this->getDoctrine()->getManager();
-         $activite->addUser($user);
+        $user = $this->getUser();
+        $entityManager = $this->getDoctrine()->getManager();
+        $activite->addUser($user);
 
-         $entityManager->persist($activite);
-         $entityManager->flush();
+        $entityManager->persist($activite);
+        $entityManager->flush();
         $this->addFlash('success', 'Vous êtes bien inscrit a une activité');
 
-        return  $this->redirectToRoute('activite_index');
+        return $this->redirectToRoute('activite_index');
     }
 
 
@@ -178,30 +199,36 @@ class ActiviteController extends AbstractController
      * @Route("/{id}/sedesister", name="activite_sedesister", methods={"GET","POST"})
      */
 
-    public function sedesister(Activite $activite):Response{
+    public function sedesister(Activite $activite): Response
+    {
+        #fonction se désister dans le tableau des activites
 
         $this->denyAccessUnlessGranted("ROLE_USER");
-        $user=$this->getUser();
-        $entityManager=$this->getDoctrine()->getManager();
+        $user = $this->getUser();
+        $entityManager = $this->getDoctrine()->getManager();
         $activite->removeUser($user);
 
         $entityManager->persist($activite);
         $entityManager->flush();
         $this->addFlash('success', 'Vous êtes désinscrit d une activité');
 
-        return  $this->redirectToRoute('activite_index');
+        return $this->redirectToRoute('activite_index');
     }
 
     /**
      * @Route ("/{id}/annuler", name="activite_annuler",methods={"GET","POST"})
      */
 
-    public function annuler(Activite $activite, EtatRepository $etatRepository):Response{
+    public function annuler(Activite $activite, EtatRepository $etatRepository): Response
+    {
+        #fonction annuler une activité dans le tableau des activites
 
         $this->denyAccessUnlessGranted("ROLE_ADMIN");
 
-        $entityManager=$this->getDoctrine()->getManager();
-        $etat=$etatRepository->findOneBy(['libelle'=>'annulée']);
+        $entityManager = $this->getDoctrine()->getManager();
+
+        #on met l'état en tant que annulée dans la bdd
+        $etat = $etatRepository->findOneBy(['libelle' => 'annulée']);
         $activite->setEtat($etat);
 
         $entityManager->persist($activite);

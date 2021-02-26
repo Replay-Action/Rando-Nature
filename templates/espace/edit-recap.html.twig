@@ -1,0 +1,174 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} | edit recap Activite{% endblock %}
+{# twig d'affichage de la page modifier activite #}
+{% block body %}
+    {% if is_granted("ROLE_ADMIN") %}
+        {# le style bootstrap par defaut #}
+        <style>
+            .example-wrapper {
+                text-align: center;
+                margin: 1em auto;
+                max-width: 800px;
+                width: 95%;
+                font: 18px/1.5 sans-serif;
+            }
+
+            .example-wrapper code {
+                background: #F5F5F5;
+                padding: 2px 6px;
+            }
+        </style>
+        {# la baniiere et le titre #}
+        <div class="container-fluid">
+            <img src="{{ asset ('/content/ban page menu footer.jpg') }}" class="img-fluid" width="100%">
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="example-wrapper"><br>
+                    <H1 class="font-weight-bold">editer le recap de l'activité</H1>
+                    <hr>
+
+
+                    <p><img src="{{ asset('/content/logo velo.png') }}"></p>
+                    <hr>
+
+
+
+                        <div class="example-wrapper">
+                            {% for pdf in activite.docPdfs %}
+
+                                {#    <button class="btn btn-primary m-3" >Afficher le pdf</button>#}
+
+                                <div>
+                                    <embed class="embed-responsive" src="{{ asset('/recap/'~ pdf.nompdf) }}" width=800 height=1000
+                                           type='application/pdf'/>
+
+                                    <a class=" btn btn-danger mb-3" href="{{ path('removerecap', {'id': pdf.id}) }}" data-delete2
+                                       data-token="{{ csrf_token('delete' ~ pdf.id ) }}">Supprimer le pdf</a>
+
+
+                                </div>
+                            {% endfor %}
+                        </div>
+                    <div class="bg-light border">
+                        {# on fait un tableau pour présenter les champs issus de la bdd #}
+                        <table class="table d-flex justify-content-center">
+                            <tbody>
+                            <tr>
+                                <th>Activité</th>
+                                <td>{{ activite.nom }}</td>
+                            </tr>
+                            <tr>
+                                <th>Date de l'activité</th>
+                                <td>le {{ activite.dateActivite ? activite.dateActivite|date('d-m-Y') : '' }} à
+                                    {{ activite.dateActivite ? activite.dateActivite|date('h-i ') : '' }}</td>
+                            </tr>
+                            <tr>
+                                <th>Durée</th>
+                                <td>{{ activite.duree }} mn</td>
+                            </tr>
+                            <tr>
+                                <th>Distance</th>
+                                <td>{{ activite.distance }} km</td>
+                            </tr>
+                            <tr>
+                                <th>Les infos sur l'activité</th>
+                                <td>{{ activite.infosActivite }}</td>
+                            </tr>
+                            <tr>
+                                <th>Dénivelé</th>
+                                <td>{{ activite.denivele }} m</td>
+                            </tr>
+                            <tr>
+                                <th>Difficulte</th>
+                                <td>{{ activite.difficulte }}/3</td>
+                            </tr>
+                            <tr>
+                                <th>Lieu de rassemblement</th>
+                                <td>{{ activite.lieu.nomRue }} à {{ activite.lieu.nomVille }} </td>
+                            </tr>
+                            <tr>
+                                <th>Organisateur</th>
+                                <td>{{ activite.organisateur.prenom }} {{ activite.organisateur.nom }}</td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+<div class="m-3">
+      {#  {{ form_start(form) }}
+        <div class="row d-flex justify-content-center">
+            <div class="col">
+                <table class="table table-borderless d-flex justify-content-center text-white bg-success border">
+                    <tbody>
+                    <tr>
+                        <th scope="col">Pdf</th>
+                        <td>{{ form_widget(form.docPdfs) }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="">   #}
+    {{ form_start(form) }}
+
+
+
+    <div class="invisible"  style="display:none;">>
+        {{ form_widget(form.nom) }}
+
+        {{ form_widget(form.date_activite) }}
+
+      {{ form_widget(form.duree) }}
+
+
+       {{ form_widget(form.distance) }}
+
+
+      {{ form_widget(form.denivele) }}
+
+        {{ form_widget(form.difficulte) }}
+
+
+        {{ form_widget(form.infos_activite) }}
+    {{ form_widget(form.etat) }}
+        {{ form_widget(form.lieu) }}
+    </div>
+<div class=" text-success pt-3">
+<p >inserez votre pdf ci-dessous, puis enregistrez</p>
+</div>
+
+    {{ form_widget(form.docPdfs) }}
+    <button class="m-2 btn btn-primary btn btn-lg">{{ button_label|default('Enregistrer') }}</button>
+{{ form_end(form) }}
+    <a href="{{ path('recap') }}" class="m-2 btn btn-outline-primary btn btn-lg">retour à la liste</a>
+   {# {{ include('activite/_form.html.twig', {'button_label': 'Mettre à jour'}) }} #}
+</div>
+            </div>
+        </div>
+</div>
+                 {#   <button class="mb-5 mt-2 btn btn-primary btn btn-lg">{{ button_label|default('Enregistrer') }}</button> #}
+
+        </div>
+
+            </div>
+        </div>
+
+     {#   {{ include('activite/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+
+        <div class="row d-flex justify-content-center">
+            {{ include('activite/_delete_form.html.twig') }}
+        </div>#}
+
+
+
+
+    {% else %}
+        <div class="row text-center"
+        <h2 class="text-danger">Vous  n'avez pas les droits pour accéder à cette page</h2>
+        </div>
+    {% endif %}
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/pdf.js') }}"></script>
+{% endblock %}

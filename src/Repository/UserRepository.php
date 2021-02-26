@@ -37,6 +37,31 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->_em->flush();
     }
 
+    #pour lister tous les user en une seule requete pour le trombi
+    public function findUsers()
+    {
+        $qb = $this->createQueryBuilder('u');
+        $qb->leftJoin('u.photos', 'p')
+            ->addSelect('p')
+            ->orderBy('u.username', 'ASC');
+
+        $query = $qb->getQuery();
+        return new Paginator($query);
+    }
+
+
+    // public function findUsers2()
+    // {
+    //     $qb = $this->createQueryBuilder('u');
+    //     $qb->leftJoin('u.photos', 'p')
+    //         ->addSelect('p')
+    //         ->orderBy('u.nom', 'ASC');
+
+    //     $query = $qb->getQuery();
+    //     return new Paginator($query);
+    // }
+
+
     // /**
     //  * @return User[] Returns an array of User objects
     //  */
@@ -66,4 +91,4 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     }
     */
 
- }
+}

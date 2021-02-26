@@ -2,18 +2,25 @@
 <footer id="footer">
 {# Espace partenaire qui sera toujours au meme endroit dans la page au dessus du menu footer #}
 
-    <div class="container-fluid class bg-light border border-primary mb-5">
-      <div class="text-center p-3">
-            <h3>
-                Espace Partenaires
-            </h3>
-          <hr>
-      </div>
-        <div class="d-inline p-4 "><a href="https://le-cercle-des-voyageurs.fr/ "><img src="{{ asset('/logos/logo_LCV6-blanc.png') }}" ></a></div>
-        <div class="d-inline p-4 "><a href="http://marcheaquatiquebrehec.over-blog.com/ "><img src="{{ asset('/logos/logo velo bleu.png') }}"width="10%" > Marche aquatique Brehec</a>
-            </div>
-        <div class="d-inline p-4 "><a href="https://valleedelavilaine.fr/"><img src="{{ asset('/logos/logo velo bleu.png') }}"width="10%" >La vallée de la Villaine : </a></div>
+    <div class="container-fluid class  bg-color border border-dark mt-3">
 
+      <div class="text-center bordered text-info p-4">
+            <h2 class="border border-info bg-white">
+                Espace Partenaires
+            </h2>
+
+      </div>
+        <style> .bg-color
+            {background : gainsboro}
+        </style>
+        <div class="row text-center ">
+            <div class="col-lg-3 col-md-6 col-12 responsive d-inline p-4 "><a href="https://le-cercle-des-voyageurs.fr/ "target="_blank"><img src="{{ asset('/logos/logo_LCV6-blanc.png') }}" width="300px" ></a></div>
+            <div class="col-lg-3 col-md-6 col-12 responsive d-inline p-4 "><a href="http://marcheaquatiquebrehec.over-blog.com/ "target="_blank"><img src="{{ asset('/logos/Photo_FIT_OCEAN1.jpg') }}"width="200px" ><br> Marche aquatique Brehec</a></div>
+            <div class="col-lg-3 col-md-6 col-12 responsive d-inline p-4 "><a href="https://www.francevelotourisme.com/" target="_blank"><img  src="{{ asset('/logos/France Vélo Tourisme.jpg') }}" width="170px"> </a></div>
+            <div class="col-lg-3 col-md-6 col-12 responsive d-inline p-4 "><a href="https://valleedelavilaine.fr/"target="_blank"><img src="{{ asset('/logos/20170619_074312_Copy.jpg') }}"width="200px" ><br>La vallée de la Villaine : </a></div>
+            <div class="col-lg-3 col-md-6 col-12 responsive d-inline p-4 "><a href="https://www.komoot.fr/"target="_blank"><img src="{{ asset('/logos/komoot.png') }}"width="200px" ></a></div>
+
+        </div>
 
     </div>
 
@@ -41,7 +48,6 @@
                 </li>
             </ul>
         </div>
-
 
         {# copyright #}
         <div class="bg-dark ">

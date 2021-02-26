@@ -1,8 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ parent() }} | Réinitialiser mon mot de passe{% endblock %}
+{# page de reinitialisation de mdp #}
 
 {% block body %}
+
+
+    {# banniere et titre #}
     <div class="container-fluid">
         <img src="{{ asset ('/content/user ban pages user.jpg') }}" class="img-fluid" width="100%">
     </div>
@@ -11,7 +15,7 @@
              <h1 class="text-center"> Mot de passe oublié ?</h1>
         </div>
 
-
+{# formulaire pour changer le mot de passe #}
     <form method="post">
         <div class="row justify-content-center mt-5">
             <label for="mail"><h4>Adresse mail  &ensp;</h4></label>

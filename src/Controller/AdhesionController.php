@@ -17,25 +17,25 @@ class AdhesionController extends AbstractController
      */
     public function index(Request $request, \Swift_Mailer $mailer): Response
     {
-        $form=$this->createForm(AdhesionType::class);
+        $form = $this->createForm(AdhesionType::class);
         $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
 
-            $adhesion=$form->getData();
+            $adhesion = $form->getData();
             // envoi du mail
             $message = (new\Swift_Message('Nouvel Adherent'))
 
                 // on attribue l'expediteur
-            ->setFrom($adhesion['email'])
+                ->setFrom($adhesion['email'])
 
                 // on attribue le destinataire
-            ->setTo('votre@dresse.fr')
+                ->setTo('vrnb2020@velorandonaturebruz.fr')
 
                 // on créée le message avec le twig
-            ->setBody(
-                $this->renderView(
-                    'emails/buletin_adhesion.html.twig', compact('adhesion')
-                ),
+                ->setBody(
+                    $this->renderView(
+                        'emails/buletin_adhesion.html.twig', compact('adhesion')
+                    ),
                     'text/html'
                 );
             // on envoie le message

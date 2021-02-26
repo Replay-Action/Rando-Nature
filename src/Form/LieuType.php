@@ -13,10 +13,9 @@ class LieuType extends AbstractType
     {
         $builder
             ->add('nom_ville')
-            ->add('cp_ville')
-            ->add('num_rue')
-            ->add('nom_rue')
-        ;
+            //->add('cp_ville')
+            //->add('num_rue')
+            ->add('nom_rue');
     }
 
     public function configureOptions(OptionsResolver $resolver)

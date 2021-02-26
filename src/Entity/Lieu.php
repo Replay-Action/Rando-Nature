@@ -25,7 +25,7 @@ class Lieu
     private $nom_ville;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $cp_ville;
 

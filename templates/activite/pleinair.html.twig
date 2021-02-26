@@ -1,9 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ parent() }} |Plein-air{% endblock %}
-
+{% block title %}{{ parent() }} | Plein-air{% endblock %}
+{# twig d'affichage de la page plein-air #}
 {% block body %}
-    <style>
+    {# le style bootstrap par defaut #}
+    <style>.centrer{
+            display: flex;
+            align-items: center;
+        }
         .example-wrapper {
             text-align: center;
             margin: 1em auto;
@@ -19,48 +23,48 @@
     </style>
 
 
-
+    {# la banniere et le titre #}
     <div class="container-fluid">
         <img src="{{ asset ('/content/2velos resize.jpg') }}" class="img-fluid" width="100%">
     </div>
 
 
-
+    {# le corps de la page #}
     <div class="container-fluid">
     <div class="row">
 
         <div class="example-wrapper"><br>
             <H1 class="font-weight-bold">Nos autres activités de plein-air</H1>
             <hr>
-            <p>Praesent rutrum eu orci id placerat. Morbi fermentum tellus quam,
-                ac tempus ipsum viverra fermentum. Ut quis lectus ac odio ultricies interdum at semper massa.
-                Sed porttitor nibh et maximus iaculis. Aenean dignissim nunc in sapien ullamcorper feugiat.
-                Phasellus scelerisque quis augue eu fermentum. Proin consequat mattis libero,
-                quis sodales ipsum posuere sit amet. Suspendisse sollicitudin ut dui id aliquam.</p>
+            <p><strong> Découverte d'autres activités de plein air </strong></p>
 
             <img src="{{ asset('/content/pleon air resize.jpg') }}" class="img-fluid" width="100%">
 
         </div>
 
-    </div><hr>
+    </div>
+    <hr>
 
 
-    <div class="m-5 p-5 bg-light border">
-    <div class="row"align="center">
+    <div class=" m-md-5 bg-light border">
+    <div class="row col-12" align="center">
 
-        <div class="col-lg-4 col-xs-12">
-            <a href="{{path('activite_index')}}">  <h3>Le longe-côte</h3></a>
+        <a class="btn btn-primary col-lg-3 col-sm-12 centrer" href="{{ path('activite_index') }}">
+        <div>
+            <h3>Le longe-côte</h3>
         </div>
-        <div class="col-lg-4 col-xs-12"><br>
+        </a>
+        <div class="col-lg-5 col-xs-12 centrer"><br>
 
-            <p>Praesent rutrum eu orci id placerat. Morbi fermentum tellus quam,
-                ac tempus ipsum viverra fermentum. Ut quis lectus ac odio ultricies interdum at semper massa.
-                Sed porttitor nibh et maximus iaculis. Aenean dignissim nunc in sapien ullamcorper feugiat.
-                Phasellus scelerisque quis augue eu fermentum. Proin consequat mattis libero,
-                quis sodales ipsum posuere sit amet. Suspendisse sollicitudin ut dui id aliquam.</p>
+            <p>La marche aquatique ou « longe-côte », est une activité sportive pratiquée depuis maintenant près de 8 ans,
+                le long de notre littoral. C'est de la thalasso en plein air, la marche sportive y est associée à de l'aquatonic.
+
+                La séance dans l’eau dure de cinquante minutes à une heure quinze, selon la saison et la température.
+                À la sortie, récipient isotherme de café, tisane et petites douceurs sucrées sont indispensables
+                pour ceux qui se sont sentis comme des poissons, l’espace d’une petite heure.</p>
         </div>
-        <div class="col-lg-4 col-xs-12">
-            <img src="{{ asset('/content/longe cote resize.jpg') }}" class="img-fluid" width="80%">
+        <div class="col-lg-4 col-xs-12 centrer">
+            <img src="{{ asset('/content/Paul.jpg') }}" class="img-fluid" width="100%">
         </div>
     </div>
 {% endblock %}

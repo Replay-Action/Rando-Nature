@@ -16,28 +16,27 @@ class ChangePasswordFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('plainPassword',RepeatedType::class,[
-                'type'=>PasswordType::class,
-                'first_options'=>[
-                    'constraints'=>[
+            ->add('plainPassword', RepeatedType::class, [
+                'type' => PasswordType::class,
+                'first_options' => [
+                    'constraints' => [
                         new NotBlank([
-                            'message'=>'saisissez un nouveau mot de passe',
+                            'message' => 'saisissez un nouveau mot de passe',
                         ]),
                         new Length([
-                            'min'=>4,
-                            'minMessage'=>'votre mot de passe doit contenir au moins 4 caracteres',
-                            'max'=>4096,
+                            'min' => 8,
+                            'minMessage' => 'votre mot de passe doit contenir au moins 8 caracteres',
+                            'max' => 4096,
                         ]),
                     ],
-                    'label'=>'Nouveau mot de passe',
+                    'label' => 'Nouveau mot de passe',
                 ],
-                'second_options'=>[
-                    'label'=>'Confirmation du mot de passe',
+                'second_options' => [
+                    'label' => 'Confirmation du mot de passe',
                 ],
-                'invalid_message'=>'Les mots de passe doivent être identiques.',
-                'mapped'=>false,
-            ])
-        ;
+                'invalid_message' => 'Les mots de passe doivent être identiques.',
+                'mapped' => false,
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

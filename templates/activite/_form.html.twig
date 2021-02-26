@@ -1,5 +1,5 @@
 {{ form_start(form) }}
-
+{# formulaire des activités, on le met sous forme de tableau #}
 <div class="row d-flex justify-content-center">
     <div class="col">
         <table class="table table-borderless d-flex justify-content-center bg-light border">
@@ -34,7 +34,7 @@
             </tr>
             <tr>
                 <th scope='col'>état</th>
-                 <td>{{ form_widget(form.etat) }}</td>
+                <td>{{ form_widget(form.etat) }}</td>
             </tr>
             <tr class="table table-bordered">
 
@@ -42,17 +42,20 @@
                 <td>{{ form_widget(form.lieu) }}</td>
             </tr>
 
-            {#  <tr>
+
+            <tr class="invisible">
+                <th scope='col'>pdf</th>
+                <td>{{ form_widget(form.docPdfs) }}</td>
+            </tr>
+            {# <tr>
         <th scope='col'>ville</th>
         <td>{{ form_widget(form.lieu)}}</td>
-    </tr>#}
+    </tr> #}
             </tbody>
 
         </table>
     </div>
 </div>
-
-
 
 
 <div class="row d-flex justify-content-center">

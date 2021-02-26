@@ -5,6 +5,8 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     photo_directory: '%kernel.project_dir%/public/photo-profil'
+    upload_directory: '%kernel.project_dir%/public/documents'
+    upload_recap_directory: '%kernel.project_dir%/public/recap'
 
 services:
     # default configuration for services in *this* file

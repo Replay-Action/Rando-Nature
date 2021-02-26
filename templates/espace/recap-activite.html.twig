@@ -1,0 +1,156 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}recap des activités |{{ parent() }}{% endblock %}
+{# twig d'affichage de la page liste des activités finie #}
+{% block body %}
+
+
+    {# la banniere, le titre et le logo #}
+    <div class="container-fluid">
+        <img src="{{ asset ('/content/ban page menu footer.jpg') }}" class="img-fluid" width="100%">
+    </div>
+    <div class="container-fluid">
+    <div class="row row d-flex justify-content-center">
+
+    <div class="example-wrapper pb-2 text-center"><br>
+    <H1 class="font-weight-bold">Programme des Activités finies</H1>
+    <hr>
+
+
+    <img class="img-fluid" src="{{ asset('/content/logo velo.png') }}">
+    <hr>
+    <div class="p-3">
+
+
+    {% if is_granted(["ROLE_ADMIN"]) %}
+        <h3> Ajoutez les pdfs sur la colonne 'Actions', vous pourrez également les effacer</h3>
+        <p>Voir les détails de l'activité et son pdf en cliquant sur 'détail'</p>
+        <p >Pour effacer une activité, retournez dans la page de gestion des activités</p>
+
+
+        </div>
+        </div>
+        </div>
+        </div>
+
+        {# la table des activités #}
+        <div class="row m-6 d-flex justify-content-center">
+            <div class="col-auto">
+                <table class="table-hover table-striped table-sm table-bordered table-responsive" data-toggle="table"
+                       data-search="true" data-show-columns="true" data-pagination="true">
+
+                    <thead class="text-center">
+                    <tr class="thead-light">
+                        {# ici on peut filtrer les champs de toutes les colonnes #}
+                        <th data-sortable="true" data-field="nom">Activité</th>
+                        <th data-sortable="true" data-field="date" data-sorter="starsSorter">Date de l'activité</th>
+                        <th data-sortable="true" data-field="duree">Durée</th>
+                        <th data-sortable="true" data-field="distance">Distance</th>
+                        {# <th>Informations</th> #}
+                        <th data-sortable="true" data-field="denivele">Dénivelé</th>
+                        <th data-sortable="true" data-field="difficulte">Difficulté</th>
+                        <th data-sortable="true" data-field="lieu">Lieu</th>
+                        <th data-sortable="true" data-field="organisateur">Organisateur</th>
+                        <th>Actions</th>
+
+                    <tbody class="text-center">
+                    {% for activite in activites %}
+
+                        <tr>
+
+                            <td>{{ activite.nom }}</td>
+
+                            <td>{{ activite.dateActivite ? activite.dateActivite|date('d-m-Y') : '' }}</td>
+                            <td>{{ activite.duree }} mn</td>
+                            <td>{{ activite.distance }} km</td>
+                            {# <td>{{ activite.infosActivite|slice(0,40)~"..."  }}</td> #}
+                            <td>{{ activite.denivele }} m</td>
+                            <td>{{ activite.difficulte }}/3</td>
+                            <td>{{ activite.lieu.nomVille|slice(0,20) }}</td>
+                            <td>
+                                <a href="{{ path('user_show', {'id': activite.organisateur.id}) }}"> {{ activite.organisateur.prenom }} {{ activite.organisateur.nom }}</a>
+                            </td>
+                            <td>
+                                <a href="{{ path('detailrecap', {'id': activite.id}) }}"
+                                   class="btn btn-primary btn-sm">détails</a>
+                                <a href="{{ path('editrecap', {'id': activite.id}) }}"
+                                   class="btn btn-warning btn-sm">ajouter pdf recap</a>
+
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </thead>
+                </table>
+            </div>
+        </div>
+
+
+   {% elseif is_granted("ROLE_USER") %}
+
+        <H3>Voir les détails de l'activité et son pdf en cliquant sur 'détail'</H3>
+        </div>
+        </div>
+        </div>
+        </div>
+
+
+
+        <div class="row m-6 d-flex justify-content-center">
+            <div class="col-auto">
+                <table class="table-hover table-striped table-sm table-bordered table-responsive" data-toggle="table"
+                       data-search="true" data-show-columns="true" data-pagination="true">
+
+                    <thead class="text-center">
+                    <tr class="thead-light">
+                        {# ici on peut filtrer les champs de toutes les colonnes #}
+                        <th data-sortable="true" data-field="nom">Activité</th>
+                        <th data-sortable="true" data-field="date" data-sorter="starsSorter">Date de l'activité</th>
+                        <th data-sortable="true" data-field="duree">Durée</th>
+                        <th data-sortable="true" data-field="distance">Distance</th>
+                        {# <th>Informations</th> #}
+                        <th data-sortable="true" data-field="denivele">Dénivelé</th>
+                        <th data-sortable="true" data-field="difficulte">Difficulté</th>
+                        <th data-sortable="true" data-field="lieu">Lieu</th>
+                        <th data-sortable="true" data-field="organisateur">Organisateur</th>
+                        <th>Actions</th>
+
+                    <tbody class="text-center">
+                    {% for activite in activites %}
+
+                        <tr>
+
+                            <td>{{ activite.nom }}</td>
+
+                            <td>{{ activite.dateActivite ? activite.dateActivite|date('d-m-Y') : '' }}</td>
+                            <td>{{ activite.duree }} mn</td>
+                            <td>{{ activite.distance }} km</td>
+                            {#  <td>{{ activite.infosActivite|slice(0,40)~"..."  }}</td> #}
+                            <td>{{ activite.denivele }} m</td>
+                            <td>{{ activite.difficulte }}/3</td>
+                            <td>{{ activite.lieu.nomVille|slice(0,20) }}</td>
+                            <td>
+                                <a href="{{ path('user_show', {'id': activite.organisateur.id}) }}"> {{ activite.organisateur.prenom }} {{ activite.organisateur.nom }}</a>
+                            </td>
+                            <td>
+                                <a href="{{ path('detailrecap', {'id': activite.id}) }}"
+                                   class="btn btn-primary btn-sm">détails</a>
+
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </thead>
+                </table>
+            </div>
+        </div>
+
+
+        <div class="text-center m-3"> <a href="{{ path('home1') }}"
+                                         class="btn btn-lg btn-primary ">retour à la l'accueil</a>
+        </div>
+        {% else %}
+            <div class="row text-center"
+            <h2 class="text-danger">Vous  n'avez pas les droits pour accéder à cette page</h2>
+            </div>
+    {% endif %}
+
+{% endblock %}

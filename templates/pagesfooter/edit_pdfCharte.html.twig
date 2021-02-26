@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} | pdf charte{% endblock %}
+{# page de l'upload du pdf de la charte #}
+
+{% block body %}
+    {% if is_granted("ROLE_ADMIN") %}{
+    <div class=" row d-flex text-center justify-content-center">
+
+        <div class="col-auto">
+            <H1 class="mb-5 mt-3">Charger le nouveau pdf de la charte</H1>
+            <h5 class="text-danger">Attention,<br> seul un fichier <strong>pdf</strong> peut-être enregistré ici !<br>
+                il effacera le précédent</h5><h5 class="bg-info text-white p-2 mb-5">Le pdf est visible dans la page
+                'Présentation' du menu</h5>
+            {{ form(form) }}
+        </div>
+    </div>
+        }
+    {% else %}
+    {% endif %}
+{% endblock %}

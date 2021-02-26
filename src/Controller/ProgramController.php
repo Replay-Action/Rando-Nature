@@ -8,12 +8,14 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Activite;
 
 class ProgramController extends AbstractController
-{ #ce controlleur gere la page des programmes#
+{
     /**
      * @Route("/administrateur", name="administrateur")
      */
     public function programIndex(): Response
     {
+        #Attention contrairement à son nom, cette fonction affiche la page administrateur
+
         $this->denyAccessUnlessGranted("ROLE_ADMIN");
 
 
