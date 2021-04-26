@@ -33,7 +33,7 @@ class ActiviteController extends AbstractController
 
         #on liste toutes les activités comme le findall mais en une requete
         $acti = $activiteRepository->findActivites();
-
+dump($acti);
         # on cherche les activités dont la date est dépassée et on change leur état en 'finie'
         $acti2 = $activiteRepository->miseajouretat();
 

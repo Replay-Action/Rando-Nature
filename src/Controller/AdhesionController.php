@@ -41,7 +41,7 @@ class AdhesionController extends AbstractController
             // on envoie le message
             $mailer->send($message);
 
-            $this->addFlash('success', 'le buletin a bien été envoyé');
+            $this->addFlash('success', 'le bulletin a bien été envoyé');
             return $this->redirectToRoute('home1');
         }
         return $this->render('adhesion/index.html.twig', [

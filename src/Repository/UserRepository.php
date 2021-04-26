@@ -41,6 +41,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     public function findUsers()
     {
         $qb = $this->createQueryBuilder('u');
+
         $qb->leftJoin('u.photos', 'p')
             ->addSelect('p')
             ->orderBy('u.username', 'ASC');

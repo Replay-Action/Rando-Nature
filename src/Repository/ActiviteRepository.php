@@ -74,7 +74,7 @@ class ActiviteRepository extends ServiceEntityRepository
 
     public function affichefinie()
     {
-        #pour l'affichage de la pastille clignotante dans l'acceuil, on filtre sur les activités ouvertes ou modifiees
+        #pour l'affichage de la page de la liste des recaps
         $em = $this->getEntityManager();
 
         $query = $em->createQuery(
