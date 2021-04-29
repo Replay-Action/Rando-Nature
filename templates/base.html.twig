@@ -20,13 +20,19 @@
 
 
 <body>
-<header>
-    {% include ('inc/nav.html.twig') %}
-    {% if app.user %}
-        <div class="  text-align-right" style="background-color: lightgrey;">
-            Vous êtes connecté en tant que {{ app.user.username }}
+<header class="container-fluid">
+    <div class="col">
+     <div class="row">
+            <div class="header-navbar col-lg-9">{% include ('inc/nav.html.twig') %}</div>
+            <div class="header-hello_user col-lg-3">
+            {% if app.user %}
+                <div class="header-texte-hello-user">
+                    Vous êtes connecté en tant que {{ app.user.username }}
+                </div>
+            {% endif %}
+            </div>
         </div>
-    {% endif %}
+    </div>
 </header>
 
 {# ------ FLASH MESSAGE ------ #}

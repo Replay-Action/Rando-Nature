@@ -100,6 +100,13 @@ class HomeController extends AbstractController
         return $this->render('activite/ecocitoyennete.html.twig');
     }
 
+    /**
+     * @Route ("/adherent" , name="adherent")
+     */
+    public function adherent(): Response
+    {
+        return $this->render('user/index.html.twig');
+    }
 
     /**
      * @Route ("/pleinair", name="pleinair")

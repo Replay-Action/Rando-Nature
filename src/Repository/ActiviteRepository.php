@@ -45,7 +45,7 @@ class ActiviteRepository extends ServiceEntityRepository
     {
 
         $em = $this->getEntityManager();
-        $datejour = new\DateTime();
+        $datejour = new \DateTime();
         $query = $em->createQuery(
             'UPDATE App\Entity\Activite as a
              SET a.etat =2
