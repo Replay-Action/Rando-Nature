@@ -4,6 +4,7 @@
 {# affichage de la page organisation #}
 {% block body %}
     {# le style  css bootstrap par defaut #}
+    {#
     <style>
         .example-wrapper {
             text-align: center;
@@ -18,28 +19,28 @@
             padding: 2px 6px;
         }
     </style>
+    #}
+    {#
     <div class="container-fluid">
     </div>
-
+     #}
 {# banniere et titre #}
+    {#
     <div class="container-fluid">
         <img src="{{ asset ('/content/velo-pont resize.jpg') }}" class="img-fluid" width="100%">
     </div>
-
-
+    #}
+    <div class="bureau-h1 row">
+    <h1 class="col-12">Bureau</h1>
+    <hr>
+    </div>
     <div class="container-fluid">
         <div class="row">
-
-            <div class="example-wrapper"><br>
-                <H1 class="font-weight-bold">Notre Bureau</H1>
-                <hr>
-
-
-                <p><img class="img-fluid" src="{{ asset('/content/Groupe.png') }}" width="80%"></p>
-                <div class="m-5">
-                    <hr>
+            <div class="partie0 example-wrapper row col-12">
+                <div class="partie1 col-5">
+                <p><img id="img-bureau" src="{{ asset('content/Groupe.png') }}"></p>
                 </div>
-                <div class=" bg-light border p-3 ">
+                <div class="partie2 col-5">
 
 {# corps de la page #}
                     <h2>

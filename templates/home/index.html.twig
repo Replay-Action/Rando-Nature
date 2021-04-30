@@ -9,6 +9,8 @@
 
     {# le style original de bootstrap
 et celui de la vignette clignotante #}
+    {# suppression en attente de confirmation ... #}
+    {#
     <style>
         .example-wrapper {
             text-align: center;
@@ -40,8 +42,10 @@ et celui de la vignette clignotante #}
         }
 
     </style>
-
+  #}
     {# le carrousel #}
+    {# Suppression en attente de confirmation.. #}
+    {#
     <div class="container-fluid">
         <div id="demo" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
@@ -60,8 +64,10 @@ et celui de la vignette clignotante #}
             </div>
         </div>
     </div>
-
+    #}
     {# la vignette clignotante #}
+    {# A changer en popue en attente.. TODO #}
+    {#
     {% if (actidispo) %}
         <div class="justify-content-center">
             <div class="row lg-col-4 sm-col-12 m-3">
@@ -72,36 +78,60 @@ et celui de la vignette clignotante #}
         </div>
     {% else %}
     {% endif %}
-
-    {# le texte sous le carrousel #}
-    <div class="example-wrapper ">
-        <div>
-            <H1>Bienvenue sur</H1>
-            <h1 class="font-weight-bold"> Vélo Rando Nature Bruz</h1>
-            <hr>
-            <div class="jumbotron jumbotron ">
-                <div class="container-fluid">
-                    <h2 class="display-6"> Vous aimez les balades à vélo et la nature et avez besoin de vous évader
-                        ?</h2>
-                </div>
-            </div>
-            <p class="lead"> L'association « Vélo Rando Nature Bruz » vous propose des balades le long des canaux, des
-                voies vertes et des chemins.
-            </p>
-            <hr>
-        </div>
-        <h2> Venez nous rejoindre !</h2>
+    #}
+    <div class="box-image Container col-12">
+        <div class="image col-7"><img src="{{ asset('content/velo-pont resize.jpg') }}"></div>
     </div>
 
+    {# le texte sous le carrousel #}
+    {# L'intro du site... #}
+    <div class="box-intro container-fluid" >
 
+        <div class="row">
+            <div class="paragraphe1 col-12">
+                <div class="box3 row col-12">
+                    <div class="logo col-12">
+                    <img src="{{ asset('logos/logo-velo.png') }}">
+                    </div>
+                    <div class="title col-12">
+                    <img src="{{ asset('logos/velorandonaturebruz-maj2.png') }}">
+                    </div>
+                </div>
+            </div>
 
+            <div class="box2 col-12">
+                <hr>
+                <div class="">
+                    <div class="paragraphe2 row">
+                        <p class="lead col-12">
+                            Vous aimez les balades à vélo, la nature et avez besoin de vous évader ?
+                        </p>
 
+                    <div class="pic-ctn col-6">
+                        <img src="{{ asset('content/velo-pont resize.jpg') }}" alt="" class="pic">
+                        <img src="{{ asset('content/velo et enfant.png') }}" alt="" class="pic">
+                        <img src="{{ asset('content/sejour escapade resize.jpg') }}" alt="" class="pic">
+                        <img src="{{ asset('content/photographie et video resize.jpg') }}" alt="" class="pic">
+                        <img src="{{ asset('content/Paul.jpg') }}" alt="" class="pic">
+                    </div>
+                        <p class="lead col-12">
+                            L'association « Vélo Rando Nature Bruz » vous propose des balades le long
+                            des canaux, des voies vertes et des chemins.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <h2 id="h2-accueil"> Venez nous rejoindre !</h2>
 {# les 4 cards de choix, leurs liens, leurs photo, et leurs effets #}
-    <div class=" container-fluid example-wrapper ">
-        <div class="row center-block justify-content-center " align="center">
+    <div class="paragraphe3 container example-wrapper ">
+        <div class="row center-block justify-content-center ">
+
             <div class="card hovereffect col-6 border border-white mb-4">
                 <a href="{{ path('randosvelo') }}">
-                    <img src="{{ asset('/content/velo-pont resize.jpg') }}" class="card-img-top"
+                    <img src="{{ asset('content/velo-pont resize.jpg') }}" class="card-img-top"
                          alt="velo posé sur un pont">
                     <div class="overlay">
                         <h2>L'activité phare de Vélo Rando Nature Bruz</h2>
@@ -114,7 +144,7 @@ et celui de la vignette clignotante #}
 
             <div class="card hovereffect col-6 border border-white mb-4">
                 <a href="{{ path('formations') }}">
-                    <img src="{{ asset('/content/formation-menu-resize.jpg') }}" class="card-img-top" alt="...">
+                    <img src="{{ asset('content/formation-menu-resize.jpg') }}" class="card-img-top" alt="...">
                     <div class="overlay">
                         <h2>liste des formations que nous proposons</h2>
                     </div>
@@ -126,7 +156,7 @@ et celui de la vignette clignotante #}
 
             <div class="card hovereffect col-6 border border-white mb-4">
                 <a href="{{ path('pleinair') }}">
-                    <img src="{{ asset('/content/2velos resize.jpg') }}" class="card-img-top" alt="...">
+                    <img src="{{ asset('content/2velos resize.jpg') }}" class="card-img-top" alt="...">
                     <div class="overlay">
                         <h2>Bientôt nous vous proposerons d'autres activités telles que le longe-côte...</h2>
                     </div>
@@ -138,7 +168,7 @@ et celui de la vignette clignotante #}
 
             <div class="card hovereffect col-6 border border-white mb-4">
                 <a href="{{ path('activite_index') }}">
-                    <img src="{{ asset('/content/pleon air resize.jpg') }}" class="card-img-top " alt="...">
+                    <img src="{{ asset('content/pleon air resize.jpg') }}" class="card-img-top " alt="...">
                     <div class="overlay">
                         <h2>Le programme de nos activités</h2>
                     </div>
@@ -147,115 +177,17 @@ et celui de la vignette clignotante #}
                     </div>
                 </a>
             </div>
-
         </div>
-
+    </div>
+        <hr>
         {# le texte sous les cards #}
-        <div class="example-wrapper">
-            <div class="container-fluid m-3 ">
-                <hr>
+        <div class="paragraphe4 example-wrapper" col-12>
                 <p class="lead">Vous pourrez découvrir la patrimoine naturel et culturel de notre belle région en
                     pratiquant une activité physique au plus près de la nature.
                 </p>
                 <p class="lead">Si vous souhaitez, « Faire du vélo autrement » dans la bonne humeur et partager des
-                    moments de convivialité, </p>
-                <p><img src="{{ asset('/content/logo velo.png') }}" width="50%"></p>
-            </div>
+                    moments de convivialité.
+                </p>
         </div>
-    </div>
-
-
-
-
-{# le style css des effets des cards #}
-    <style>
-        .hovereffect {
-            width: 100%;
-            height: 100%;
-            float: left;
-            overflow: hidden;
-            position: relative;
-            text-align: center;
-            cursor: default;
-        }
-
-        .hovereffect .overlay {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            overflow: hidden;
-            top: 0;
-            left: 0;
-            opacity: 0;
-            background-color: rgba(0, 0, 0, 0.5);
-            -webkit-transition: all .4s ease-in-out;
-            transition: all .4s ease-in-out
-        }
-
-        .hovereffect img {
-            display: block;
-            position: relative;
-            -webkit-transition: all .4s linear;
-            transition: all .4s linear;
-        }
-
-        .hovereffect h2 {
-            text-transform: uppercase;
-            color: #fff;
-            text-align: center;
-            position: relative;
-            font-size: 17px;
-            background: rgba(0, 0, 0, 0.6);
-            -webkit-transform: translatey(-100px);
-            -ms-transform: translatey(-100px);
-            transform: translatey(-100px);
-            -webkit-transition: all .2s ease-in-out;
-            transition: all .2s ease-in-out;
-            padding: 10px;
-        }
-
-        .hovereffect a.info {
-            text-decoration: none;
-            display: inline-block;
-            text-transform: uppercase;
-            color: #fff;
-            border: 1px solid #fff;
-            background-color: transparent;
-            opacity: 0;
-            filter: alpha(opacity=0);
-            -webkit-transition: all .2s ease-in-out;
-            transition: all .2s ease-in-out;
-            margin: 50px 0 0;
-            padding: 7px 14px;
-        }
-
-        .hovereffect a.info:hover {
-            box-shadow: 0 0 5px #fff;
-        }
-
-        .hovereffect:hover img {
-            -ms-transform: scale(1.2);
-            -webkit-transform: scale(1.2);
-            transform: scale(1.2);
-        }
-
-        .hovereffect:hover .overlay {
-            opacity: 1;
-            filter: alpha(opacity=100);
-        }
-
-        .hovereffect:hover h2, .hovereffect:hover a.info {
-            opacity: 1;
-            filter: alpha(opacity=100);
-            -ms-transform: translatey(0);
-            -webkit-transform: translatey(0);
-            transform: translatey(0);
-        }
-
-        .hovereffect:hover a.info {
-            -webkit-transition-delay: .2s;
-            transition-delay: .2s;
-        }
-    </style>
 
 {% endblock %}
