@@ -4,79 +4,89 @@
 
 {% block body %}
     {# banniere et titre #}
-    <div class="container-fluid">
+   {# <div class="container-fluid">
         <img src="{{ asset ('/content/velo-pont resize.jpg') }}" class="img-fluid" width="100%">
-    </div>
-    <div class="container justify-content-center pt-3 ">
-        <div class="row  bg-light border justify-content-center m-5">
-            <h1 class=" col-6 m-3 pt-3 text-center">Bulletin d'adhésion</h1>
+    </div>#}
 
+    <div class=" global-adhesion container-fluid pt-3 ">
+        <div class="row col-12 ">
+            <div class="adhesion-fond-noir m-5 col-lg-5 col-sm-10 ">
+                <div class="gauche row">
+                    <h1 class=" col-6 m-3 pt-3 text-center">Bulletin d'adhésion</h1>
 
-            <div class="pt-3"><h4>Remplissez le formulaire en choisissant un pseudo</h4>
+                    <div class="pt-3"><h4>Remplissez le formulaire en choisissant un pseudo</h4>
 
-                <p class=" bg-info text-white p-1">Si le formulaire n'apparait pas, veuillez désactiver votre bloqueur
-                    de publicité</p>
-                <hr>
-            </div>
+                        <p class="bg-info text-white p-1">Si le formulaire n'apparait pas, veuillez désactiver votre bloqueur
+                        de publicité</p>
+                        <hr>
+                    </div>
 
-            {# on importe le formulaire #}
-            <div class="col-6 pt-4 justify-content-center">
-                {{ form(adhesionForm) }}
-            </div>
+                {# on importe le formulaire #}
+                    <div class="col-6 pt-4">
+                    {{ form(adhesionForm) }}
+                    </div>
 
-            {# simple documentation ecrite #}
-            <p class="lead text-center bg-info text-white mt-3 p-2"> Après avoir envoyé le formulaire,<br> puis payé la
-                cotisation par chèque ou par virement,<br> l'association valide votre adhésion <br>en vous envoyant un
-                mail qui contiendra les identifiants pour vous connecter</p>
+                {# simple documentation ecrite #}
+                <p class="lead text-center bg-info text-white p-2"> Après avoir envoyé le formulaire,<br> puis payé la
+                    cotisation par chèque ou par virement,<br> l'association valide votre adhésion <br>en vous envoyant un
+                    mail qui contiendra les identifiants pour vous connecter</p>
 
-        </div>
-        <div class="container-fluid">
-            <div class="row justify-content-center m-3">
-                <div class=" col-12">
-                    <h2 class="text-align-center">Je reconnais : </h2>
-                    <p>
-                    <ul>
-                        <li>
-                            Connaître et accepter le règlement intérieur et la charte de l'association RNB ;
-                        </li>
-                        <li>
-                            Avoir souscrit un contrat d’assurance individuel accident, ou une garantie complémentaire ;
-                        </li>
-                        <li>
-                            Acquitter la cotisation annuelle : 15 €, à l'ordre Rando Nature Bruz
-                        </li>
-                    </ul>
-                    </p>
                 </div>
-                <div class="bg-warning border p-3 col-12 align-self-center">
+            </div>
+            <div class="adhesion-fond-noir m-5 col-lg-5 col-sm-10">
+            <div class="justify-content-center m-3">
+                <div class="col-12">
+                    <h2 class="text-align-center text-center">Informations complémentaire </h2>
+                    <br>
+                        <p>
+                        <p class="text-center taille-text-adhesion">Je reconnais :</p>
+                            <ul class="text-center taille-text-adhesion">
+                                <li>
+                                    Connaître et accepter le règlement intérieur et la charte de l'association RNB .
+                                </li>
+                                 <li>
+                                    Avoir souscrit un contrat d’assurance individuel accident, ou une garantie complémentaire .
+                                </li>
+                                <li>
+                                    Acquitter la cotisation annuelle : 15 €, à l'ordre Rando Nature Bruz .
+                                </li>
+                            </ul>
+                        </p>
+                </div>
+                <div class="bg-warning border p-2 text-important-adhesion ">
                     <h4>
-                        Chacun roule sous sa propre responsabilité. <p>En aucun cas, l'association Rando Nature Bruz-
-                            qui n’est affiliée à aucune fédération sportive - n'assure les dommages occasionnés ou subis
-                            par un de ses adhérents.</p>
+                        Important Chacun roule sous sa propre responsabilité.<br><br>
+                        En aucun cas, l'association Rando Nature Bruz :
+
+                               <p>- N'est affiliée à une fédération sportive</p>
+                        <p>- N'assure les dommages occasionnés ou subis par un de ses adhérents</p>
 
                     </h4>
                 </div>
             </div>
-        </div>
 
-        {# on importe la carte google #}
-        <div class="text-center justify-content-center m-5">
+
+
+            <div class=" taille-text-adhesion text-center m-5 ">
             <hr>
-            <h4>Où nous trouver ?</h4>
-            <p align="center">
+            <h4 class="">Où nous trouver ?</h4>
+            {# le iframe de la map de google #}
+            <hr>
+                <div class="map-presentation map-ahesion ">
                 <iframe class="display:block" style="border: solid 1px lightgrey;"
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2668.720611233386!2d-1.7574356843551209!3d48.0191073792142!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x480f1ef2cdd24d6f%3A0xc61fe53b8132941d!2s31%20Rue%20des%20Forges%2C%2035170%20Bruz!5e0!3m2!1sfr!2sfr!4v1613063726862!5m2!1sfr!2sfr"
-                        width="400" height="300" frameborder="" style="border:0;" allowfullscreen="" aria-hidden="false"
+                        frameborder="" style="border:0;" allowfullscreen="" aria-hidden="false"
                         tabindex="0"></iframe>
-            </p>
+                </div>
+            </div>
 
-
+        </div>
         </div>
     </div>
 
-    <div class="container-fluid justify-content-center  ">
+    {#  <div class="container-fluid justify-content-center  ">
         <div class="row col-auto justify-content-center m-5 p-5">
             <img class="img-fluid " src="{{ asset('/content/velo et enfant.png') }}">
-        </div>
+        </div> #}
     </div>
 {% endblock %}
