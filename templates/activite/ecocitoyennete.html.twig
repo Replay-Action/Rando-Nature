@@ -4,6 +4,7 @@
 {# twig d'affichage de la page ecocitoyennete #}
 {% block body %}
     {# le style bootstrap par defaut #}
+    {#
     <style>
         .centrer{
             display: flex;
@@ -22,49 +23,44 @@
             padding: 2px 6px;
         }
     </style>
-
+    #}
 
 {# la banniere et le titre #}
+    {#
     <div class="container-fluid">
-        <img src="{{ asset ('/content/2velos resize.jpg') }}" class="img-fluid" width="100%">
+        <img src="{{ asset ('content/2velos resize.jpg') }}" class="img-fluid" width="100%">
     </div>
-
-
+    #}
+    <div class="title-activite row"><br>
+        <h1 class="col-12">Nos rendez-vous écocitoyenneté</h1>
+        <hr>
+    </div>
     <div class="container-fluid">
         <div class="row">
 
-            <div class="example-wrapper"><br>
-                <H1 class="font-weight-bold">Nos rendez-vous écocitoyenneté</H1>
-                <hr>
-
+            {# le corps de la page #}
+            <div class="activite-box m-md-5 bg-light border ">
+                <div class="activite row">
+                    <a class="btn-activite btn btn-primary col-lg-2 col-12" href="{{ path('activite_index') }}">
+                      <h3>Ecocitoyenneté</h3>
+                    </a>
+                    <div class="text-activite col-lg-8 col-xs-12">
+                        <p>
+                            l'association participe au comité « piétons-vélos » de la ville de Bruz.
+                            Ce comité consultatif a pour mission d'éclairer les élus afin d'établir
+                            un plan d'itinéraires sécurisés pour les piétions et les vélos...
+                            
+                            Il est constitué d'un quinzaine de personnes :
+                            8 bruzois représentatifs de la population, 5 élus et des représentants d'associations.
+                            Le comité se réunira au moins 4 fois par an.
+                        </p>
+                    </div>
+                    <div class="image-box col-lg-2 col-xs-12">
+                     <img class="image-activite" src="{{ asset('content/ecocitoyenete resize.jpg') }}">
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
 
-    <div class="container-fluid">
-
-    {# le corps de la page #}
-    <div class="m-md-5 bg-light border ">
-    <div class="row  " align="center">
-
-        <a class="centrer btn btn-primary col-lg-3 col-12" href="{{ path('activite_index') }}">
-        <div >
-          <span> <h3>Ecocitoyenneté</h3></span>
         </div>
-        </a>
-        <div class="col-lg-5 col-xs-12 centrer"><br>
-
-            <p>l'association participe au comité « piétons-vélos » de la ville de Bruz.
-                Ce comité consultatif a pour mission d'éclairer les élus afin d'établir
-                un plan d'itinéraires sécurisés pour les piétions et les vélos...
-                Le comité se réunira au moins 4 fois par an.
-                Il est constitué d'un quinzaine de personnes :
-                8 bruzois représentatifs de la population, 5 élus et des représentants d'associations.</p>
-        </div>
-        <div class="centrer col-lg-4 col-xs-12 text-right ">
-         <p class="">  <img src="{{ asset('/content/ecocitoyenete resize.jpg') }}" class="img-fluid " width="100%"></p>
-        </div>
-    </div>
-    </div>
     </div>
 {% endblock %}
