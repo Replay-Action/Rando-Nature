@@ -5,6 +5,7 @@
 {% block body %}
 
     {# le style css bootstrap par defaut et celui de l'affichange du clignotant en bas de la page #}
+    {#
     <style>
         .example-wrapper {
             text-align: center;
@@ -35,22 +36,27 @@
             }
         }
     </style>
-
+    #}
 
     {# la banniere, le titre et le logo #}
+    {#
     <div class="container-fluid">
-        <img src="{{ asset ('/content/ban page menu footer.jpg') }}" class="img-fluid" width="100%">
+        <img src="{{ asset ('content/ban page menu footer.jpg') }}" class="img-fluid" width="100%">
+    </div>
+    #}
+    <div class="title-activite row">
+        <h1 class="col-12">Programme des Activités</h1>
+        <hr>
     </div>
     <div class="container-fluid">
-        <div class="row">
+        <div class="présentation-programme row">
 
-            <div class="example-wrapper pb-2"><br>
-                <H1 class="font-weight-bold">Programme des Activités</H1>
-                <hr>
-
-
-                <p><img class="img-fluid" src="{{ asset('/content/logo velo.png') }}"></p>
-                <hr>
+            <div class="header pb-2"><br>
+                {#
+                <p>
+                    <img class="img-fluid" src="{{ asset('content/logo velo.png') }}">
+                </p>
+                #}
                 <div class="p-3">
                     {% if is_granted(["ROLE_ADMIN"]) %}
                         <h3> Gérez les activités sur la colonne 'Actions'</h3>
@@ -58,118 +64,165 @@
                     {% else %}
                         <h3> Inscrivez-vous aux activités proposées (colonne 'Actions')</h3>
                     {% endif %}
-
                 </div>
             </div>
+
         </div>
     </div>
+    <div class="container">
+        <div class="row-container row">
 
+            {% for activite in activites %}
+            <div class="activite-container row col-12">
+
+                    <div class="sans-detail-container row col-12">
+
+                        <div class="date-container col-2">
+                            <p>{{ activite.dateActivite()|date('j')}}</p>
+                            <p>{{ activite.dateActivite()|date('F')}}</p>
+                            <p>{{ activite.dateActivite()|date('h:i')}}</p>
+                        </div>
+                        <div class="nom-container col-9">
+                            <h4 id="title-activite">{{ activite.nom }}</h4>
+                            <p>{{ activite.lieu.nomVille|slice(0,20) }}</p>
+                        </div>
+
+                    </div>
+                    <div class="detail-container row col-11">
+
+                        <div class="detail-gauche col-6">
+                            <p>Organisateur:<a href="{{ path('user_show', {'id': activite.organisateur.id}) }}">
+                                {{ activite.organisateur.prenom }} {{ activite.organisateur.nom }}</a>
+                            </p>
+                            <p>Durée: {{ activite.duree }} mn</p>
+                            <p>Distance: {{ activite.distance }} km<</p>
+                            <p></p>
+                        </div>
+                        <div class="detail-droite col-6">
+                            <p>En attente</p>
+                        </div>
+
+                    </div>
+
+            </div>
+            {% endfor %}
+        </div>
+    </div>
     {# la table des activités #}
     <div class="row m-5 d-flex justify-content-center">
         <div class="col-auto ">
             <table class="table-hover table-striped table-sm table-bordered table-responsive " data-toggle="table"
                    data-search="true" data-show-columns="true" data-pagination="true">
-
+                {# Philtre #}
                 <thead class="text-center">
-                <tr class="thead-light">
-                    {# ici on peut filtrer les champs de toutes les colonnes #}
-                    <th data-sortable="true" data-field="nom">Activité</th>
-                    <th data-sortable="true" data-field="date" data-sorter="starsSorter">Date de l'activité</th>
-                    <th data-sortable="true" data-field="duree">Durée</th>
-                    <th data-sortable="true" data-field="distance">Distance</th>
-                    {# <th>Informations</th> #}
-                    {# <th data-sortable="true" data-field="denivele">Dénivelé</th>
-                    <th data-sortable="true" data-field="difficulte">Difficulté</th>#}
-                    <th data-sortable="true" data-field="lieu">Lieu</th>
+                    <tr class="thead-light">
+                        {# ici on peut filtrer les champs de toutes les colonnes #}
+                        <th data-sortable="true" data-field="nom">Activité</th>
+                        <th data-sortable="true" data-field="date" data-sorter="starsSorter">Date de l'activité</th>
+                        <th data-sortable="true" data-field="duree">Durée</th>
+                        <th data-sortable="true" data-field="distance">Distance</th>
+                        {# <th>Informations</th> #}
+                        {# <th data-sortable="true" data-field="denivele">Dénivelé</th>
+                        <th data-sortable="true" data-field="difficulte">Difficulté</th>#}
+                        <th data-sortable="true" data-field="lieu">Lieu</th>
 
-                    {# si l'utilisateur est connecté alors on affiche d'autres actions #}
-                    {% if is_granted(["ROLE_USER"]) %}
-                        <th data-sortable="true" data-field="etat">Etat</th>
-                        <th data-sortable="true" data-field="inscrit">Incrit</th>
-                        <th data-sortable="true" data-field="organisateur">Organisateur</th>
-                        <th>Actions</th>
-                    {% else %}
-                        <th>Actions</th>
+                        {# si l'utilisateur est connecté alors on affiche d'autres actions #}
+                        {% if is_granted(["ROLE_USER"]) %}
+                            <th data-sortable="true" data-field="etat">Etat</th>
+                            <th data-sortable="true" data-field="inscrit">Incrit</th>
+                            <th data-sortable="true" data-field="organisateur">Organisateur</th>
+                            <th>Actions</th>
+                        {% else %}
+                            <th>Actions</th>
 
-                    {% endif %}
-                </tr>
+                        {% endif %}
+                    </tr>
                 </thead>
 
                 {# le corps du tableau, on affiche les valeurs issues de la bdd #}
                 <tbody class="text-center">
-                {% for activite in activites %}
+                    {% for activite in activites %}
 
-                    <tr>
+                        <tr>
 
-                        <td>{{ activite.nom }}</td>
+                            <td>{{ activite.nom }}</td>
+                            <td>{{ activite.dateActivite ? activite.dateActivite|date('d-m-Y') : '' }}</td>
+                            <td>{{ activite.duree }} mn</td>
+                            <td>{{ activite.distance }} km</td>
+                            {# <td>{{ activite.infosActivite|slice(0,40)~"..."  }}</td> #}
+                          {#   <td>{{ activite.denivele }} m</td>
+                            <td>{{ activite.difficulte }}/3</td> #}
+                            <td>{{ activite.lieu.nomVille|slice(0,20) }}</td>
 
-                        <td>{{ activite.dateActivite ? activite.dateActivite|date('d-m-Y') : '' }}</td>
-                        <td>{{ activite.duree }} mn</td>
-                        <td>{{ activite.distance }} km</td>
-                        {# <td>{{ activite.infosActivite|slice(0,40)~"..."  }}</td> #}
-                      {#   <td>{{ activite.denivele }} m</td>
-                        <td>{{ activite.difficulte }}/3</td> #}
-                        <td>{{ activite.lieu.nomVille|slice(0,20) }}</td>
+                            {# si l'utilisateurt est connecté en tant qu'adhérent #}
+                            {% if is_granted(["ROLE_USER"]) %}
+                                {# selon le libelle de l'etat #}
+                                {% if (activite.etat.libelle =="ouverte") or (activite.etat.libelle =="modifiée") %}
+                                    <td class="bg-info text-white">{{ activite.etat.libelle }}</td>
+                                {% elseif (activite.etat.libelle =="annulée") or (activite.etat.libelle =="finie") %}
+                                    <td class="bg-danger text-white">{{ activite.etat.libelle }}</td>
+                                {% endif %}
+                                    {# si en plus l'adhérent est inscrit #}
+                                {% if activite.users.contains(user) %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
 
-                        {# si l'utilisateurt est connecté en tant qu'adhérent #}
-                        {% if is_granted(["ROLE_USER"]) %}
-                            {# selon le libelle de l'etat #}
-                            {% if (activite.etat.libelle =="ouverte") or (activite.etat.libelle =="modifiée") %}
-                                <td class="bg-info text-white">{{ activite.etat.libelle }}</td>
-                            {% elseif (activite.etat.libelle =="annulée") or (activite.etat.libelle =="finie") %}
-                                <td class="bg-danger text-white">{{ activite.etat.libelle }}</td>
-                            {% endif %}
-                                {# si en plus l'adhérent est inscrit #}
-                            {% if activite.users.contains(user) %}
-                                <td>X</td>
-                            {% else %}
-                                <td></td>
-                            {% endif %}
-
-                            <td>
-                                <a href="{{ path('user_show', {'id': activite.organisateur.id}) }}"> {{ activite.organisateur.prenom }} {{ activite.organisateur.nom }}</a>
-                            </td>
+                                <td>
+                                    <a href="{{ path('user_show', {'id': activite.organisateur.id}) }}">
+                                        {{ activite.organisateur.prenom }} {{ activite.organisateur.nom }}</a>
+                                </td>
 
 
-                            <td>
+                                <td>
 
-                                    {# si l'adhérent est l'organisateur #}
-                                {% if  (activite.organisateur == user) %}
+                                        {# si l'adhérent est l'organisateur #}
+                                    {% if  (activite.organisateur == user) %}
 
-                                    {# si la date d'aujourd'hui ne depasse pas la date de l'activite #}
-                                    {% if (activite.getDateActivite() > date) %}
+                                        {# si la date d'aujourd'hui ne depasse pas la date de l'activite #}
+                                        {% if (activite.getDateActivite() > date) %}
 
-                                        {# si l'activité est ouverte ou modfiée #}
-                                        {% if (activite.etat.libelle=='ouverte')or (activite.etat.libelle=='modifiée') %}
+                                            {# si l'activité est ouverte ou modfiée #}
+                                            {% if (activite.etat.libelle=='ouverte')or (activite.etat.libelle=='modifiée') %}
 
-                                           {# si l'adérent est inscrit #}
-                                            {% if (activite.users.contains(user)) %}
+                                               {# si l'adérent est inscrit #}
+                                                {% if (activite.users.contains(user)) %}
+                                                    <a href="{{ path('activite_show', {'id': activite.id}) }}"
+                                                       class="btn btn-primary btn-sm">détails</a>
+                                                    <a href="{{ path('activite_sedesister', {'id': activite.id}) }}"
+                                                       class="btn btn-info btn-sm">se désister</a>
+                                                    <a href="{{ path('activite_edit', {'id': activite.id}) }}"
+                                                       class="btn btn-outline-warning btn-sm">modifier</a>
+                                                    <a href="{{ path('activite_annuler', {'id': activite.id}) }}"
+                                                       class="btn btn-outline-danger btn-sm">annuler</a>
+
+
+                                                {% else %}
+                                                    {# s'il n'est pas inscrit #}
+                                                    <a href="{{ path('activite_show', {'id': activite.id}) }}"
+                                                       class="btn btn-primary btn-sm">détails</a>
+                                                    <a href="{{ path('activite_sinscrire', {'id': activite.id}) }}"
+                                                       class="btn btn-info btn-sm">s'inscrire</a>
+                                                    <a href="{{ path('activite_edit', {'id': activite.id}) }}"
+                                                       class="btn btn-outline-warning btn-sm">modifier</a>
+                                                    <a href="{{ path('activite_annuler', {'id': activite.id}) }}"
+                                                       class="btn btn-outline-danger btn-sm">annuler</a>
+
+
+                                                {% endif %}
+
+                                                {# si l'activite n'est plus dispo #}
+                                            {% elseif (activite.etat.libelle=='finie')or (activite.etat.libelle=='annulée') %}
                                                 <a href="{{ path('activite_show', {'id': activite.id}) }}"
                                                    class="btn btn-primary btn-sm">détails</a>
-                                                <a href="{{ path('activite_sedesister', {'id': activite.id}) }}"
-                                                   class="btn btn-info btn-sm">se désister</a>
                                                 <a href="{{ path('activite_edit', {'id': activite.id}) }}"
                                                    class="btn btn-outline-warning btn-sm">modifier</a>
-                                                <a href="{{ path('activite_annuler', {'id': activite.id}) }}"
-                                                   class="btn btn-outline-danger btn-sm">annuler</a>
-
-
-                                            {% else %}
-                                                {# s'il n'est pas inscrit #}
-                                                <a href="{{ path('activite_show', {'id': activite.id}) }}"
-                                                   class="btn btn-primary btn-sm">détails</a>
-                                                <a href="{{ path('activite_sinscrire', {'id': activite.id}) }}"
-                                                   class="btn btn-info btn-sm">s'inscrire</a>
-                                                <a href="{{ path('activite_edit', {'id': activite.id}) }}"
-                                                   class="btn btn-outline-warning btn-sm">modifier</a>
-                                                <a href="{{ path('activite_annuler', {'id': activite.id}) }}"
-                                                   class="btn btn-outline-danger btn-sm">annuler</a>
-
 
                                             {% endif %}
 
-                                            {# si l'activite n'est plus dispo #}
-                                        {% elseif (activite.etat.libelle=='finie')or (activite.etat.libelle=='annulée') %}
+                                            {# si la date d'activite est depassee #}
+                                        {% elseif (activite.getDateActivite() < date) %}
                                             <a href="{{ path('activite_show', {'id': activite.id}) }}"
                                                class="btn btn-primary btn-sm">détails</a>
                                             <a href="{{ path('activite_edit', {'id': activite.id}) }}"
@@ -177,67 +230,58 @@
 
                                         {% endif %}
 
-                                        {# si la date d'activite est depassee #}
-                                    {% elseif (activite.getDateActivite() < date) %}
-                                        <a href="{{ path('activite_show', {'id': activite.id}) }}"
-                                           class="btn btn-primary btn-sm">détails</a>
-                                        <a href="{{ path('activite_edit', {'id': activite.id}) }}"
-                                           class="btn btn-outline-warning btn-sm">modifier</a>
-
-                                    {% endif %}
 
 
+                                        {# si la date de l'activite n'est pas dépassee ou #}
+                                    {% elseif (activite.getDateActivite() > date) %}
 
-                                    {# si la date de l'activite n'est pas dépassee ou #}
-                                {% elseif (activite.getDateActivite() > date) %}
+                                        {# que le libelle de l'activité est ouverte ou modifiee #}
+                                        {% if (activite.etat.libelle=='ouverte')or (activite.etat.libelle=='modifiée') %}
 
-                                    {# que le libelle de l'activité est ouverte ou modifiee #}
-                                    {% if (activite.etat.libelle=='ouverte')or (activite.etat.libelle=='modifiée') %}
+                                            {# ou que l'adhérent est inscrit #}
+                                            {% if (activite.users.contains(user)) %}
+                                                <a href="{{ path('activite_show', {'id': activite.id}) }}"
+                                                   class="btn btn-primary btn-sm">détails</a>
+                                                <a href="{{ path('activite_sedesister', {'id': activite.id}) }}"
+                                                   class="btn btn-info btn-sm">se désister</a>
 
-                                        {# ou que l'adhérent est inscrit #}
-                                        {% if (activite.users.contains(user)) %}
+                                                {# s'il n'est pas inscrit #}
+                                            {% else %}
+                                                <a href="{{ path('activite_show', {'id': activite.id}) }}"
+                                                   class="btn btn-primary btn-sm">détails</a>
+                                                <a href="{{ path('activite_sinscrire', {'id': activite.id}) }}"
+                                                   class="btn btn-info btn-sm">s'inscrire</a>
+
+                                            {% endif %}
+
+                                            {# si l'activite n'est plus dispo #}
+                                        {% elseif (activite.etat.libelle=='finie')or (activite.etat.libelle=='annulée') %}
+
                                             <a href="{{ path('activite_show', {'id': activite.id}) }}"
                                                class="btn btn-primary btn-sm">détails</a>
-                                            <a href="{{ path('activite_sedesister', {'id': activite.id}) }}"
-                                               class="btn btn-info btn-sm">se désister</a>
-
-                                            {# s'il n'est pas inscrit #}
-                                        {% else %}
-                                            <a href="{{ path('activite_show', {'id': activite.id}) }}"
-                                               class="btn btn-primary btn-sm">détails</a>
-                                            <a href="{{ path('activite_sinscrire', {'id': activite.id}) }}"
-                                               class="btn btn-info btn-sm">s'inscrire</a>
 
                                         {% endif %}
 
-                                        {# si l'activite n'est plus dispo #}
-                                    {% elseif (activite.etat.libelle=='finie')or (activite.etat.libelle=='annulée') %}
-
+                                        {# si la date de l'activité est depassee #}
+                                    {% elseif (activite.getDateActivite() < date) %}
                                         <a href="{{ path('activite_show', {'id': activite.id}) }}"
                                            class="btn btn-primary btn-sm">détails</a>
 
                                     {% endif %}
+                                </td>
 
-                                    {# si la date de l'activité est depassee #}
-                                {% elseif (activite.getDateActivite() < date) %}
-                                    <a href="{{ path('activite_show', {'id': activite.id}) }}"
-                                       class="btn btn-primary btn-sm">détails</a>
+                                {# s'il n'est pas connecté #}
+                            {% else %}
+                                <td><a href="{{ path('app_login') }}" class="btn btn-primary btn-sm">Détail</a>
+                                </td>
 
-                                {% endif %}
-                            </td>
-
-                            {# s'il n'est pas connecté #}
+                            {% endif %}
+                        </tr>
                         {% else %}
-                            <td><a href="{{ path('app_login') }}" class="btn btn-primary btn-sm">Détail</a>
-                            </td>
-
-                        {% endif %}
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="9">no records found</td>
-                    </tr>
-                {% endfor %}
+                            <tr>
+                                <td colspan="9">no records found</td>
+                            </tr>
+                    {% endfor %}
 
                 </tbody>
             </table>
@@ -245,6 +289,7 @@
 
     </div>
     {# on affiche le bouton creer si l'adhérent est admin #}
+    {#
     {% if  is_granted("ROLE_ADMIN") %}
 
         <div class="row mb-4 pb-5 d-flex justify-content-center">
@@ -256,8 +301,9 @@
         </div>
     {% else %}
     {% endif %}
-
+    #}
     {# on affiche la proposition d'adhésion si l'utlisateur n'est pas connecte #}
+    {#
     {% if  is_granted("ROLE_USER") %}
 
     {% else %}
@@ -269,6 +315,7 @@
             </div>
         </div>
     {% endif %}
+    #}
     {# pour trier les colonnes bootstrap en js#}
     <script>function starsSorter(a, b) {
             if (new Date(a) > new Date(b)) return 1;

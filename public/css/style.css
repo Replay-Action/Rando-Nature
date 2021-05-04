@@ -324,3 +324,69 @@ img:nth-child(5) {
     justify-content: space-evenly;
     text-align: start;
 }
+/**
+----------------------------------------
+**************Programme***************
+----------------------------------------
+ */
+
+.présentation-programme{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.container{
+    padding: 0;
+}
+.row-container{
+    display: flex;
+    justify-content: center;
+}
+.activite-container{
+    display: flex;
+    justify-content: center;
+    background-color: #ffcc00;
+    padding: 20px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    border: solid 3px black;
+    border-radius: 8px;
+}
+.row-activite{
+    background-color: #aacd4e;
+}
+.detail-container{
+    display: none;
+    background-color: white;
+    border-radius: 8px;
+    margin: 20px;
+    padding: 0;
+}
+.activite-container:hover .detail-container{
+    display: block;
+}
+.sans-detail-container{
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    border-radius: 8px;
+}
+.date-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+}
+.nom-container{
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+
+}
+#title-activite{
+    font-weight: bold;
+}
