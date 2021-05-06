@@ -17,7 +17,7 @@ class PdfStatusType extends AbstractType
                     'mapped' => false,
                     'label' => 'choisissez votre fichier')
             )
-            ->add('Enregistrez ici', SubmitType::class);
+            ->add('Enregistrer', SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)

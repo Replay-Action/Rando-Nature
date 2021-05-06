@@ -26,7 +26,7 @@
 
 
     {# Création d'une navbar en bas de la page, le menu footer #}
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-3 image-nav-footer">
+    <div class="container-fluid navbar navbar-expand-lg navbar-dark p-3">
         {#  <a class="navbar-brand " href="{{path('home1')}}">Vélo Rando Nature Bruz</a>#}
 
         {# pour le responsive on crée le menu burger qui s'affichera sur petit écran #}
@@ -50,9 +50,9 @@
             </ul>
         </div>
         #}
-        <div class=" box1 col-4">En attente</div>
-        <div class=" box2 collapse navbar-collapse col-4 " id="navbarText"  >
-            <ul class="navbar-nav center-text-footer col-12 ">
+        <div class=" box1 col-lg-4 col-sm-12">En attente</div>
+        <div class=" box2 collapse navbar-collapse col-lg-4 col-sm-12 " id="navbarText"  >
+            <ul class="navbar-nav center-text-footer col-lg-12 ">
                 <li class="nav-item ">
                     <a class="color-black-text" href="{{path('quisommesnous')}}">Qui sommes-nous ? <span class="sr-only">(current)</span></a>
                 </li>
@@ -64,13 +64,13 @@
                 </li>
                 <li>
                     {# copyright #}
-                    <p class="text-black text-center">&copy;{{ "now"|date("Y") }} VRNB @ED</p>
+                    <p class="text-white text-center">&copy;{{ "now"|date("Y") }} VRNB @ED</p>
                 </li>
             </ul>
         </div>
 
         {# carousel partenaire #}
-        <div class="pic-ctn box3 col-4">
+        <div class="pic-ctn box3 col-lg-4 col-sm-12">
             <img src="{{ asset('logos/logo_LCV6-blanc.png') }}" class="pic" alt="">
             <img src="{{ asset('logos/komoot.png') }}" alt="" class="pic">
             <img src="{{ asset('logos/France Vélo Tourisme.jpg') }}" alt="" class="pic">
@@ -78,6 +78,6 @@
             <img src="{{ asset('logos/20170619_074312_Copy.jpg') }}" alt="" class="pic">
         </div>
 
-    </nav>
+    </div>
 
 </footer>
