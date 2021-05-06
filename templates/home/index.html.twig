@@ -79,34 +79,35 @@ et celui de la vignette clignotante #}
     {% else %}
     {% endif %}
     #}
+    {#
     <div class="box-image container-fluid">
         <div class="image"><img src="{{ asset('content/velo-pont resize.jpg') }}"></div>
     </div>
-
+    #}
     {# le texte sous le carrousel #}
     {# L'intro du site... #}
-    <div class="box-intro container-fluid" >
-
+    <div class="box-intro container-fluid">
         <div class="row">
-            <div class="paragraphe1 col-12">
-                <div class="box3 row col-12">
+
+            <div class="en-tete-accueil row col-12">
                     <div class="logo col-12">
                     <img src="{{ asset('logos/logo-velo.png') }}">
                     </div>
                     <div class="title col-12">
                     <img src="{{ asset('logos/velorandonaturebruz-maj2.png') }}">
                     </div>
-                </div>
             </div>
 
-            <div class="box2 col-12">
-                <hr>
-                <div class="">
-                    <div class="paragraphe2 row">
-                        <p class="lead col-12">
+            <div class="carousel-container col-12">
+                <div class="center-hr">
+                    <hr class="hr25-pourcent center">
+                </div>
+                <div class="description-accueil row">
+                    <div class="col-12">
+                    <p class="lead">
                             Vous aimez les balades à vélo, la nature et avez besoin de vous évader ?
-                        </p>
-
+                    </p>
+                    </div>
                     <div class="pic-ctn container">
                         <img src="{{ asset('content/velo-pont resize.jpg') }}" alt="" class="pic">
                         <img src="{{ asset('content/velo et enfant.png') }}" alt="" class="pic">
@@ -114,75 +115,80 @@ et celui de la vignette clignotante #}
                         <img src="{{ asset('content/photographie et video resize.jpg') }}" alt="" class="pic">
                         <img src="{{ asset('content/Paul.jpg') }}" alt="" class="pic">
                     </div>
-
-                        <p class="lead col-12">
-                            L'association « Vélo Rando Nature Bruz » vous propose des balades le long
-                            des canaux, des voies vertes et des chemins.
-                        </p>
+                    <div class="col-12">
+                    <p class="lead">
+                        L'association « Vélo Rando Nature Bruz » vous propose des balades le long
+                        des canaux, des voies vertes et des chemins.
+                    </p>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
-    <hr>
+    <div class="center-hr">
+        <hr class="hr25-pourcent ">
+    </div>
     <h2 id="h2-accueil"> Venez nous rejoindre !</h2>
-{# les 4 cards de choix, leurs liens, leurs photo, et leurs effets #}
-    <div class="paragraphe3 container example-wrapper ">
-        <div class="row center-block justify-content-center ">
+    {# les 4 cards de choix, leurs liens, leurs photo, et leurs effets #}
+        <div class="paragraphe3 container example-wrapper ">
+            <div class="row center-block justify-content-center ">
 
-            <div class="card hovereffect col-6 border border-white mb-4">
-                <a href="{{ path('randosvelo') }}">
-                    <img src="{{ asset('content/velo-pont resize.jpg') }}" class="card-img-top"
-                         alt="velo posé sur un pont">
-                    <div class="overlay">
-                        <h2>L'activité phare de Vélo Rando Nature Bruz</h2>
-                    </div>
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">Randos vélo</h5>
-                    </div>
-                </a>
-            </div>
+                <div class="card hovereffect col-5 border border-white mb-4">
+                    <a href="{{ path('randosvelo') }}">
+                        <img src="{{ asset('content/velo-pont resize.jpg') }}" class="card-img-top"
+                             alt="velo posé sur un pont">
+                        <div class="overlay">
+                            <h2>L'activité phare de Vélo Rando Nature Bruz</h2>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Randos vélo</h5>
+                        </div>
+                    </a>
+                </div>
 
-            <div class="card hovereffect col-6 border border-white mb-4">
-                <a href="{{ path('formations') }}">
-                    <img src="{{ asset('content/formation-menu-resize.jpg') }}" class="card-img-top" alt="...">
-                    <div class="overlay">
-                        <h2>liste des formations que nous proposons</h2>
-                    </div>
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">Formations</h5>
-                    </div>
-                </a>
-            </div>
+                <div class="card hovereffect col-5 border border-white mb-4">
+                    <a href="{{ path('formations') }}">
+                        <img src="{{ asset('content/formation-menu-resize.jpg') }}" class="card-img-top" alt="...">
+                        <div class="overlay">
+                            <h2>liste des formations que nous proposons</h2>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Formations</h5>
+                        </div>
+                    </a>
+                </div>
 
-            <div class="card hovereffect col-6 border border-white mb-4">
-                <a href="{{ path('pleinair') }}">
-                    <img src="{{ asset('content/2velos resize.jpg') }}" class="card-img-top" alt="...">
-                    <div class="overlay">
-                        <h2>Bientôt nous vous proposerons d'autres activités telles que le longe-côte...</h2>
-                    </div>
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">Autres activités de plein-air</h5>
-                    </div>
-                </a>
-            </div>
+                <div class="card hovereffect col-5 border border-white mb-4">
+                    <a href="{{ path('pleinair') }}">
+                        <img src="{{ asset('content/2velos resize.jpg') }}" class="card-img-top" alt="...">
+                        <div class="overlay">
+                            <h2>Bientôt nous vous proposerons d'autres activités telles que le longe-côte...</h2>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Autres activités de plein-air</h5>
+                        </div>
+                    </a>
+                </div>
 
-            <div class="card hovereffect col-6 border border-white mb-4">
-                <a href="{{ path('activite_index') }}">
-                    <img src="{{ asset('content/pleon air resize.jpg') }}" class="card-img-top " alt="...">
-                    <div class="overlay">
-                        <h2>Le programme de nos activités</h2>
-                    </div>
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">Le programme </h5>
-                    </div>
-                </a>
+                <div class="card hovereffect col-5 border border-white mb-4">
+                    <a href="{{ path('activite_index') }}">
+                        <img src="{{ asset('content/pleon air resize.jpg') }}" class="card-img-top " alt="...">
+                        <div class="overlay">
+                            <h2>Le programme de nos activités</h2>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Le programme </h5>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
-        <hr>
+        <div class="center-hr">
+            <hr class="hr25-pourcent center">
+        </div>
         {# le texte sous les cards #}
-        <div class="paragraphe4 example-wrapper" col-12>
+        <div class="text-bas-page example-wrapper" col-12>
                 <p class="lead">Vous pourrez découvrir la patrimoine naturel et culturel de notre belle région en
                     pratiquant une activité physique au plus près de la nature.
                 </p>

@@ -2,6 +2,34 @@
     margin: 0;
     padding: 0;
 }
+body{
+    background-color: lightyellow;
+    background-image: url("../background/nature2.png");
+}
+
+.container{
+    padding: 0;
+}
+.row-container{
+    display: flex;
+    justify-content: center;
+}
+img{
+    width: 100%;
+    height: 100%;
+}
+hr{
+    width: 25%;
+    background-color: black;
+}
+.center-hr{
+    display: flex;
+    justify-content: center;
+}
+
+/**
+****************** navbar ***********
+ */
 header{
     background-color: rgba(49,49,49, 0.9) ;
 
@@ -37,53 +65,41 @@ header{
 /**************************/
 /**     Page Accueil     **/
 /*************************/
-
-/** Paragraphre1 **/
-.box-image{
-    display: flex;
-    justify-content: center;
+.en-tete-accueil{
+    margin-top: 80px;
+    margin-bottom: 10px;
 }
-.image{
-    width: 1100px;
-    height: 550px;
-}
-img{
-    width: 100%;
-    height: 100%;
-}
-
-
 .logo{
     display: flex;
     justify-content: center;
-
+}
+.title{
+    display: flex;
+    justify-content: center;
 }
 .logo img{
     width: 340px;
     height: 260px;
-}
-
-.title{
-    display: flex;
-    justify-content: center;
 }
 .title img{
     width:  800px;
     height: 160px;
 }
 
-/**     Paragraphe2     **/
-.paragraphe2 p{
-    display: flex;
-    justify-content: center;
-}
+
 .paragraphe2{
     display: flex;
     justify-content: center;
 }
+.description-accueil p{
+    display: flex;
+    justify-content: center;
+    margin: 40px;
+    font-size: x-large;
+}
+
 
 /**       Caroussel     **/
-
 @keyframes display {
     0% {
         transform: translateX(200px);
@@ -106,21 +122,17 @@ img{
         opacity: 0;
     }
 }
-
 .pic-ctn {
     position: relative;
     width: 100vw;
     height: 600px;
-
 }
-
 .pic-ctn > img {
     position: absolute;
     top: 0;
     opacity: 0;
     animation: display 10s infinite;
 }
-
 img:nth-child(2) {
     animation-delay: 2s;
 }
@@ -134,9 +146,11 @@ img:nth-child(5) {
     animation-delay: 8s;
 }
 
-/** Paragraphe 3 **/
+
 #h2-accueil{
     text-align: center;
+    margin: 40px;
+    font-weight: bold;
 }
 .hovereffect {
     width: 100%;
@@ -146,6 +160,7 @@ img:nth-child(5) {
     position: relative;
     text-align: center;
     cursor: default;
+    margin: 20px;
 }
 
 .hovereffect .overlay {
@@ -158,7 +173,7 @@ img:nth-child(5) {
     opacity: 0;
     background-color: rgba(0, 0, 0, 0.5);
     -webkit-transition: all .4s ease-in-out;
-    transition: all .4s ease-in-out
+    transition: all .4s ease-in-out;
 }
 
 .hovereffect img {
@@ -226,10 +241,11 @@ img:nth-child(5) {
     transition-delay: .2s;
 }
 
-/** Päragraphe4 **/
 
-.paragraphe4{
+.text-bas-page{
     text-align: center;
+    margin: 40px;
+    font-size: x-large;
 }
 /**********************/
 /**     Bureau      **/
@@ -282,9 +298,7 @@ img:nth-child(5) {
 .title-activite hr{
     width: 25%;
 }
-#hr-activite{
-    width: 25%;
-}
+
 .activite-box{
     background-color: #AA3333;
     padding: 0;
@@ -329,47 +343,31 @@ img:nth-child(5) {
 **************Programme***************
 ----------------------------------------
  */
-
+.activite-container:hover .detail-container{
+    display: block;
+}
 .présentation-programme{
     display: flex;
     justify-content: center;
     text-align: center;
 }
 
-.container{
-    padding: 0;
-}
-.row-container{
-    display: flex;
-    justify-content: center;
-}
+
 .activite-container{
     display: flex;
     justify-content: center;
-    background-color: #ffcc00;
     padding: 20px;
     margin-bottom: 20px;
     margin-top: 20px;
     border: solid 3px black;
     border-radius: 8px;
-}
-.row-activite{
-    background-color: #aacd4e;
-}
-.detail-container{
-    display: none;
-    background-color: white;
-    border-radius: 8px;
-    margin: 20px;
-    padding: 0;
-}
-.activite-container:hover .detail-container{
-    display: block;
+    background-image: url("../content/forest.jpg");
 }
 .sans-detail-container{
     display: flex;
-    justify-content: space-around;
-    padding: 20px;
+    justify-content: space-evenly;
+    margin: 20px;
+    padding: 0;
     border-radius: 8px;
 }
 .date-container{
@@ -381,12 +379,100 @@ img:nth-child(5) {
     padding: 20px;
     border-radius: 8px;
 }
+.date-container p{
+    padding: 0;
+    margin: 2px;
+}
+#date-activite{
+    font-weight: bold;
+    font-size: x-large;
+}
 .nom-container{
     background-color: white;
     padding: 20px;
     border-radius: 8px;
-
 }
+.info-activite {
+    padding: 0;
+    margin: 0;
+}
+
+
 #title-activite{
     font-weight: bold;
+    font-size: x-large;
 }
+.type-activite-lieu{
+    margin: 0;
+}
+.type-activite{
+    display: flex;
+}
+.font-bold-activite{
+    font-weight: bold;
+    padding-right: 10px;
+}
+.padding-activite{
+    padding-right: 20px;
+}
+.is-inscrit{
+    display: flex;
+    justify-content: flex-end;
+    padding: 0;
+}
+.is-inscrit img{
+    max-width: 25%;
+    max-height: 25%;
+}
+
+
+.detail-container{
+    display: none;
+    background-color: white;
+    border-radius: 8px;
+    margin: 20px;
+    padding: 0;
+}
+.detail-gauche{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-left: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.detail-droite{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding-right: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.difficulte-activite img{
+    max-width: 100px;
+    max-height: 100px;
+}
+
+
+.buton-container{
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+}
+.inscrit p {
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+.button{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+}
+
+
+
