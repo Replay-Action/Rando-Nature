@@ -26,7 +26,6 @@ hr{
     display: flex;
     justify-content: center;
 }
-
 /**
 ****************** navbar ***********
  */
@@ -97,8 +96,6 @@ header{
     margin: 40px;
     font-size: x-large;
 }
-
-
 /**       Caroussel     **/
 @keyframes display {
     0% {
@@ -267,7 +264,7 @@ img:nth-child(5) {
     margin: 0;
 }
 .partie1{
-  padding-left: 300px;
+    padding-left: 300px;
 
 }
 
@@ -283,7 +280,6 @@ img:nth-child(5) {
     width: 600px;
     height: 600px;
 }
-
 /**
 ----------------------------------------
 **************Randos-Velo***************
@@ -487,6 +483,381 @@ img:nth-child(5) {
     align-items: center;
 
 }
+/**
+Partie Crée une activité
+ */
+.espace-div-form-activite{
+    margin-top: 1%;
+    margin-bottom: 1%;
+
+}
+.form-activite-fond-noir{
+
+    border-radius: 15px;
+    border:solid 1px;
+    background-color:rgba(49,49,49,0.7);
+    color: white;
+    justify-content: center;
+}
+.droite-form-activite{
+    margin: auto;
+    justify-content: center;
+}
+.gauche-form-activite{
+    margin: auto;
+    justify-content: center;
+}
+hr.hr-new-activite{
+    border: none;
+    height: 4px;
+    background-color: black;
+}
+/**
+Partie Profil
+ */
+.profil-fond-noir{
+    background-color:rgba(49,49,49,0.7);
+    color: white;
+    border-radius: 15px;
+    border:solid 1px;
+    justify-content: center;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+.global-profil-show{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.global-profiledit{
+    display: flex;
+    flex-direction: row;
+    max-width: content-box;
+    max-height: content-box;
+    justify-content: center;
+}
+
+.position-photo-profiledit{
+    flex-direction: row;
+    display: flex;
+    justify-content: center;
+}
+
+.affichage-photo-profiledit{
+    border-radius: 150px;
+    -moz-border-radius: 150px;
+    -webkit-border-radius: 150px;
+    max-height: 325px;
+    max-width: 325px;
+}
+
+.position-photo-show{
+    flex-direction: row;
+    display: flex;
+    max-height: 325px;
+    max-width: 325px;
+}
+
+.affichage-photo-show {
+    border-radius: 150px;
+    -moz-border-radius: 150px;
+    -webkit-border-radius: 150px;
+}
+.affichage-profil{
+    display: flex;
+    justify-content: center;
+}
+
+/**
+Partie Trombinoscope
+ */
+hr.hr-trombinoscope{
+    height: 1px;
+    border: none;
+    background: black;
+}
+.hovereffect {
+    width: 100%;
+    height: 100%;
+    float: left;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    cursor: default;
+}
+
+.hovereffect .overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    left: -10px;
+    -webkit-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+}
+
+.hovereffect:hover .overlay {
+    background-color: rgba(170, 170, 170, 0.4);
+}
+
+.hovereffect h2, .hovereffect img {
+    -webkit-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+}
+
+.hovereffect img {
+    display: block;
+    position: relative;
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.hovereffect:hover img {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+}
+
+.hovereffect h2 {
+    text-transform: uppercase;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    font-size: 17px;
+    padding: 0px;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.hovereffect a.info {
+    display: inline-block;
+    text-decoration: none;
+    padding: 7px 14px;
+    text-transform: uppercase;
+    color: #fff;
+    border: 1px solid #fff;
+    margin: 50px 0 0 0;
+    background-color: transparent;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    -webkit-transform: scale(1.5);
+    -ms-transform: scale(1.5);
+    transform: scale(1.5);
+    -webkit-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+    font-weight: bold;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: -20%;
+    left: 8%;
+    padding: 70px;
+}
+
+.hovereffect:hover a.info {
+    opacity: 1;
+    filter: alpha(opacity=100);
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+/**
+Partie Adhesion
+ */
+    hr.hr-bulletin-adhesion{
+        border: none;
+        height: 1px;
+        background: white;
+    }
+    .container-adhesion{
+        padding: 0;
+        margin: 0;
+    }
+
+    .gauche-adhesion{
+        display: flex;
+        justify-content: center;
+    }
+    .global-adhesion{
+        display: flex;
+        flex-direction: row;
+        max-width: content-box;
+        max-height: content-box;
+    }
+    .taille-text-adhesion{
+        font: oblique 20px Arial;
+    }
+    .map-ahesion{
+        margin: auto;
+    }
+    .text-important-adhesion{
+        margin-top: 75px;
+        display: flex;
+        justify-content: center;
+    }
+    .adhesion-fond-noir{
+        background-color:rgba(49,49,49,0.7);
+        color: white;
+        border-radius: 15px;
+        border:solid 1px;
+        justify-content: center;
+    }
+/**
+    Partie Présentation
+ */
+.taille-text-ecran{
+    text-align: center;
+    margin: 1em auto;
+    max-width: 1000px;
+    width: 95%;
+}
+.color-black-text:link{
+    color: black;
+    background-color: transparent;
+    text-decoration: none;
+    font: oblique 14px Arial;
+}
+.text-sous-ligner-vert{
+    font: oblique 20px "Arial Black";
+    text-decoration:underline;
+    color: green;
+    text-align: center;
+}
+.text-sous-ligner-noir{
+    text-decoration: underline;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container-lieu-asso{
+    display: flex;
+
+}
+.map-presentation{
+    width: 300px;
+    height: 300px;
+}
+iframe{
+    width: 100%;
+    height: 100%;
+}
+/**
+    Partie footer
+ */
+.box1{
+    background-color: transparent;
+    text-align: center;
+}
+
+.box2{
+    color: black;
+    text-decoration: black;
+    background-color: transparent;
+}
+
+.box3{
+    background-color: transparent;
+}
+
+.center-text-footer{
+    display: block;
+    text-align:center;
+}
+.color-orange{
+    background-color: orange;
+}
+.image-nav-footer{
 
 
+}
+.pic-ctn {
+    width: 100vw;
+    height: 200px;
+}
+@keyframes display {
+    0% {
+        transform: translateX(200px);
+        opacity: 0;
+    }
+    10% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    20% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    30% {
+        transform: translateX(-200px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(-200px);
+        opacity: 0;
+    }
+}
 
+.pic-ctn {
+    position: relative;
+    width: 100vw;
+    height: 100px;
+}
+
+.pic-ctn > img {
+    position: absolute;
+    opacity: 0;
+    animation: display 25s infinite;
+
+}
+.pic{
+    left: calc(30%);
+}
+img{
+    max-height: 100%;
+    max-width: 100%;
+}
+img:nth-child(2) {
+    animation-delay: 10s;
+}
+img:nth-child(3) {
+    animation-delay: 18s;
+}
+img:nth-child(4) {
+    animation-delay: 26s;
+}
+img:nth-child(5) {
+    animation-delay: 38s;
+}
+img:nth-child(6){
+    animation-delay: 44s;
+}
+img:nth-child(7){
+    animation-delay: 52s;
+}
+img:nth-child(8){
+    animation-delay: 60s;
+}
+img:nth-child(9){
+    animation-delay: 68s;
+}
+img:nth-child(10){
+    animation-delay: 76s;
+}
+footer{
+    flex-shrink: 0;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    bottom: 0;
+    background: url("../content/riviere-resize.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+}
+body{
+    display: flex;
+    flex-direction: column;
+}

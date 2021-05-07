@@ -3,18 +3,18 @@
 {# page de l'upload du pdf des mentions légales #}
 
 {% block body %}
-    {% if is_granted("ROLE_ADMIN") %}{
+    {% if is_granted("ROLE_ADMIN") %}
     <div class=" row d-flex text-center justify-content-center">
 
         <div class="col-auto">
             <H1 class="mb-5 mt-3">Charger le nouveau pdf des mentions légales</H1>
-            <h5 class="text-danger">Attention,<br> seul un fichier <strong>pdf</strong> peut-être enregistré ici !<br>
+            <h5 class="text-danger">Attention !<br> seul un fichier <strong>pdf</strong> peut-être enregistré ici !<br>
                 il effacera le précédent</h5><h5 class="bg-info text-white p-2 mb-5">Le pdf est visible dans la page
                 'mentions légales' dans le menu du bas</h5>
             {{ form(form) }}
         </div>
     </div>
-        }
+
     {% else %}
     {% endif %}
 {% endblock %}

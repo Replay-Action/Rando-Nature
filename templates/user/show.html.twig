@@ -5,76 +5,77 @@
 {% block body %}
 
     {# banniere #}
-    <div class="container-fluid">
-        <img src="{{ asset ('/content/user ban pages user.jpg') }}" class="img-fluid" width="100%">
+    {# <div class="container-fluid">
+        <img src="{{ asset ('content/user ban pages user.jpg') }}" class="img-fluid" width="100%">
     </div>
-
+    #}
+    <div class="row global-profil-show">
         {# titre #}
-    <div class="row m-5 d-flex justify-content-center bg-light border">
-        <h1>Détail du profil</h1>
+    <div class=" col-lg-12 m-5 d-flex justify-content-center bg-light border">
+        <h1>Profil</h1>
     </div>
 
     {# on boucle sur les photos pour l'afficher #}
-    <div class="bg-light border">
-        <div class="row m-3 d-flex justify-content-center text-center ">
+
+        <div class="position-photo-show col-lg-3 col-sm-12">
             {% for photo in user.photos %}
-                <img src="{{ asset ('/photo-profil/'~ photo.name) }}" class="img-fluid display:block"
+                <img src="{{ asset ('photo-profil/'~ photo.name) }}" class="img-fluid display:block affichage-photo-show"
                      style="width: 30rem  ;height: 20rem; object-fit: cover">
             {% endfor %}
         </div>
-
+        <div class=" col-lg-3 col-sm-12">
         {# on affiche les caracteristiques issues de la bdd #}
-        <table class="table table-borderless d-flex justify-content-center">
+        <table class="affichage-profil table table-borderless d-flex">
             <tbody>
-            <tr>
-                <th>Pseudo</th>
-                <td>{{ user.username }}</td>
-            </tr>
-            <tr>
-                <th>Roles</th>
-                <td> {% if (user.roles|json_encode) =='["ROLE_USER"]' %}
-                        Adhérent
-                    {% elseif (user.roles|json_encode) =='["ROLE_ADMIN","ROLE_USER"]' %} Administrateur
-                    {% else %}
-                    {% endif %}
-                </td>
-            </tr>
-            {# <tr>
-                <th>Mot de passe</th>
-                <td>{{ user.password }}</td>
-            </tr> #}
-            <tr>
-                <th>Nom</th>
-                <td>{{ user.nom }}</td>
-            </tr>
-            <tr>
-                <th>Prenom</th>
-                <td>{{ user.prenom }}</td>
-            </tr>
-            <tr>
-                <th>Telephone</th>
-                <td>{{ user.telephone }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ user.email }}</td>
-            </tr>
-            <tr>
-                <th>Date de naissance</th>
-                <td>{{ user.dateNaissance ? user.dateNaissance|date('d-m-Y') : '' }}</td>
-            </tr>
+                <tr>
+                    <th>Pseudo</th>
+                    <td>{{ user.username }}</td>
+                </tr>
+                <tr>
+                    <th>Roles</th>
+                    <td> {% if (user.roles|json_encode) =='["ROLE_USER"]' %}
+                            Adhérent
+                        {% elseif (user.roles|json_encode) =='["ROLE_ADMIN","ROLE_USER"]' %} Administrateur
+                        {% else %}
+                        {% endif %}
+                    </td>
+                </tr>
+                {# <tr>
+                    <th>Mot de passe</th>
+                    <td>{{ user.password }}</td>
+                </tr> #}
+                <tr>
+                    <th>Nom</th>
+                    <td>{{ user.nom }}</td>
+                </tr>
+                <tr>
+                    <th>Prénom</th>
+                    <td>{{ user.prenom }}</td>
+                </tr>
+                <tr>
+                    <th>Téléphone</th>
+                    <td>{{ user.telephone }}</td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>{{ user.email }}</td>
+                </tr>
+                <tr>
+                    <th>Date de Naissance</th>
+                    <td>{{ user.dateNaissance ? user.dateNaissance|date('d-m-Y') : '' }}</td>
+                </tr>
             </tbody>
         </table>
+        </div>
     </div>
     <div class="mt-3 mb-5 text-center">
 
             {# si l'utilisateur est bien celui a qui appartien le profi #}
         {% if user.username == user1 %}
-            <a href="{{ path('home1') }}" class="btn btn-outline-primary btn btn-lg">Retour à l'accueil</a>
-            <a href="{{ path('app_reset_password', { 'id': app.user.id}) }}" class="btn btn-warning btn btn-lg">modifier
-                mot de passe</a>
-            <a href="{{ path('profiledit',{ 'id': app.user.id}) }}" class="btn btn-primary btn btn-lg">modifier
-                profil</a>
+            <a href="{{ path('home1') }}" class="btn btn-outline-primary btn btn-lg">Retour</a>
+            {# <a href="{{ path('app_reset_password', { 'id': app.user.id}) }}" class="btn btn-warning btn btn-lg">modifier
+                mot de passe</a> #}
+            <a href="{{ path('profiledit',{ 'id': app.user.id}) }}" class="btn btn-primary btn btn-lg">Modifier</a>
 
         {% elseif userrole == ["ROLE_ADMIN","ROLE_USER"] %}
             <a href="{{ path('user_index') }}" class="btn btn-outline-primary btn btn-lg">Retour à la liste</a>
