@@ -4,6 +4,8 @@
 namespace App\Data;
 
 
+use App\Entity\Categorie;
+
 class SearchData
 {
     /**
@@ -11,4 +13,8 @@ class SearchData
      */
     public $q = '';
 
+    /**
+     * @var Categorie[]
+     */
+    public $categories = [];
 }

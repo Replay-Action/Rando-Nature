@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Data\SearchData;
 use App\Entity\Activite;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query\Expr\Select;
@@ -115,4 +116,35 @@ class ActiviteRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function findSearch(SearchData $search): array
+    {
+        $query = $this
+            ->createQueryBuilder('a')
+            ->innerJoin('a.organisateur', 'o')
+            ->addSelect('o')
+            ->innerJoin('a.categorie', 'c')
+            ->innerJoin('a.etat', 'e')
+            ->addSelect('e')
+            ->innerJoin('a.lieu', 'l')
+            ->addSelect('l')
+            ->leftJoin('a.users', 'u')
+            ->addSelect('u')
+            ->orderBy('a.date_activite', 'DESC');
+
+        if (!empty($search->q)) {
+            $query = $query
+                ->andWhere('a.nom LIKE :q')
+                ->setParameter('q', "%{$search->q}%");
+        }
+
+        if (!empty($search->categories)){
+            $query = $query
+                ->andWhere('c.id IN (:categories)')
+                ->setParameter('categories', $search->categories);
+        }
+
+
+        return $query->getQuery()->getResult();
+
+    }
 }

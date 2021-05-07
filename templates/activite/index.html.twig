@@ -73,128 +73,133 @@
         </div>
     </div>
     #}
-    <div class="container">
+    <div class="container-fluid">
         <div class="row-container row">
+            <div class="col-lg-2 col-sm-12">
+                {% include 'activite/_filter.html.twig' with {form: form} only %}
+            </div>
+           <div class="col-lg-8 col-sm-12">
+                {% for activite in activites %}
+                    {% if (activite.etat.libelle =="ouverte") or (activite.etat.libelle =="modifiée") %}
+                <div class="activite-container row col-12">
 
-            {% for activite in activites %}
-                {% if (activite.etat.libelle =="ouverte") or (activite.etat.libelle =="modifiée") %}
-            <div class="activite-container row col-12">
+                        <div class="sans-detail-container row col-12">
 
-                    <div class="sans-detail-container row col-12">
+                            <div class="date-container col-2">
+                                <p id="date-activite">{{ activite.dateActivite()|date('j')}}</p>
+                                <p>{{ activite.dateActivite()|date('F')}}</p>
+                                <p>{{ activite.dateActivite()|date('h:i')}}</p>
+                            </div>
 
-                        <div class="date-container col-2">
-                            <p id="date-activite">{{ activite.dateActivite()|date('j')}}</p>
-                            <p>{{ activite.dateActivite()|date('F')}}</p>
-                            <p>{{ activite.dateActivite()|date('h:i')}}</p>
+                            <div class="nom-container row col-8">
+                                <div class="info-activite row col-9">
+
+                                    <div class="title-container-programme col-12">
+                                        <p id="title-activite">{{ activite.nom }}</p>
+                                    </div>
+
+                                    <div class="type-activite-lieu row col-12">
+                                        <div class="type-activite">
+                                            <p class="font-bold-activite">Activité: </p>
+                                            <p class="padding-activite">{{ activite.categorie().getLibelle() }}</p>
+                                        </div>
+                                        <div class="type-activite">
+                                            <p class="font-bold-activite">Ville: </p>
+                                            <p class="padding-activite">{{ activite.lieu.nomVille|slice(0,20) }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="is-inscrit col-3">
+                                    {% if activite.users.contains(user) %}
+                                    <img src="{{ asset("tools/check.png") }}">
+                                    {% endif %}
+                                </div>
+                            </div>
+
                         </div>
 
-                        <div class="nom-container row col-8">
-                            <div class="info-activite row col-9">
-
-                                <div class="title-container-programme col-12">
-                                    <p id="title-activite">Les joies du code</p>
-                                </div>
-
-                                <div class="type-activite-lieu row col-12">
+                        <div class="detail-container col-11">
+                            <div class="row">
+                                <div class="detail-gauche col-8">
                                     <div class="type-activite">
-                                        <p class="font-bold-activite">Activité: </p>
-                                        <p class="padding-activite">{{ activite.nom }}</p>
+                                    <p class="font-bold-activite">Organisateur: </p>
+                                    <a href="{{ path('user_show', {'id': activite.organisateur.id}) }}">
+                                        {{ activite.organisateur.prenom }} {{ activite.organisateur.nom }}</a>
                                     </div>
                                     <div class="type-activite">
-                                        <p class="font-bold-activite">Ville: </p>
-                                        <p class="padding-activite">{{ activite.lieu.nomVille|slice(0,20) }}</p>
+                                        <p class="font-bold-activite">Durée:</p>
+                                        <p>{{ activite.duree }} minute</p>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="is-inscrit col-3">
-                                {% if activite.users.contains(user) %}
-                                <img src="{{ asset("tools/check.png") }}">
-                                {% endif %}
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="detail-container col-11">
-                        <div class="row">
-                            <div class="detail-gauche col-8">
-                                <div class="type-activite">
-                                <p class="font-bold-activite">Organisateur: </p>
-                                <a href="{{ path('user_show', {'id': activite.organisateur.id}) }}">
-                                    {{ activite.organisateur.prenom }} {{ activite.organisateur.nom }}</a>
-                                </div>
-                                <div class="type-activite">
-                                    <p class="font-bold-activite">Durée:</p>
-                                    <p>{{ activite.duree }} minute</p>
-                                </div>
-                                <div class="type-activite">
-                                    <p class="font-bold-activite">Lieu de rassemblement: </p>
-                                    <p>{{ activite.lieu().getNomRue() }}</p>
-                                </div>
-                                {% if (activite.denivele == '')%}
-                                {% else %}
                                     <div class="type-activite">
-                                        <p class="font-bold-activite">Info activité: </p>
-                                        <p>{{ activite.getInfosActivite() }}</p>
+                                        <p class="font-bold-activite">Lieu de rassemblement: </p>
+                                        <p>{{ activite.lieu().getNomRue() }}</p>
                                     </div>
-                                {% endif %}
-
-                            </div>
-                            <div class="detail-droite col-4">
-                                <div class="difficulte-activite">
-                                {% if (activite.getDifficulte() == 0 or activite.getDifficulte() == '')%}
-                                {% else %}
-                                    {% if ( activite.getDifficulte() == 1) %}
-                                    <img src="{{ asset("tools/difficulte1.png") }}">
-                                    {% elseif ( activite.getDifficulte() == 2) %}
-                                    <img src="{{ asset("tools/difficult2.png") }}">
+                                    {% if (activite.denivele == '')%}
                                     {% else %}
-                                    <img src="{{ asset("tools/difficult3.png") }}">
+                                        <div class="type-activite">
+                                            <p class="font-bold-activite">Info activité: </p>
+                                            <p>{{ activite.getInfosActivite() }}</p>
+                                        </div>
+                                    {% endif %}
+
+                                </div>
+                                <div class="detail-droite col-4">
+                                    <div class="difficulte-activite">
+                                    {% if (activite.getDifficulte() == 0 or activite.getDifficulte() == '')%}
+                                    {% else %}
+                                        {% if ( activite.getDifficulte() == 1) %}
+                                        <img src="{{ asset("tools/difficulte1.png") }}">
+                                        {% elseif ( activite.getDifficulte() == 2) %}
+                                        <img src="{{ asset("tools/difficult2.png") }}">
+                                        {% else %}
+                                        <img src="{{ asset("tools/difficult3.png") }}">
+                                        {% endif %}
+                                    {% endif %}
+                                    </div>
+
+                                    {% if (activite.denivele == 0 or activite.denivele == '')%}
+                                    {% else %}
+                                        <div class="type-activite">
+                                            <p class="font-bold-activite">Dénivelé: </p>
+                                            <p>{{ activite.denivele }} mètre</p>
+                                        </div>
+                                    {% endif %}
+
+                                    {% if (activite.distance == 0 or activite.distance == '')%}
+                                    {% else %}
+                                        <div class="type-activite">
+                                            <p class="font-bold-activite">Distance: </p>
+                                            <p>{{ activite.distance }} kilomètre</p>
+                                        </div>
+                                    {% endif %}
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="buton-container row col-11">
+                            <div class="inscrit col-6">
+                            <p>il y a {{ activite.users.count }} inscrits a cette activité</p>
+                            </div>
+                            <div class="button col-6">
+                                {% if is_granted(["ROLE_USER"]) %}
+                                    {# ou que l'adhérent est inscrit #}
+                                    {% if (activite.users.contains(user)) %}
+                                        <a href="{{ path('activite_sedesister', {'id': activite.id}) }}"
+                                           class="btn btn-info btn-sm">se désister</a>
+
+                                        {# s'il n'est pas inscrit #}
+                                    {% else %}
+                                        <a href="{{ path('activite_sinscrire', {'id': activite.id}) }}"
+                                           class="btn btn-info btn-sm">s'inscrire</a>
                                     {% endif %}
                                 {% endif %}
-                                </div>
-
-                                {% if (activite.denivele == 0 or activite.denivele == '')%}
-                                {% else %}
-                                    <div class="type-activite">
-                                        <p class="font-bold-activite">Dénivelé: </p>
-                                        <p>{{ activite.denivele }} mètre</p>
-                                    </div>
-                                {% endif %}
-
-                                {% if (activite.distance == 0 or activite.distance == '')%}
-                                {% else %}
-                                    <div class="type-activite">
-                                        <p class="font-bold-activite">Distance: </p>
-                                        <p>{{ activite.distance }} kilomètre</p>
-                                    </div>
-                                {% endif %}
-
                             </div>
                         </div>
-                    </div>
-                    <div class="buton-container row col-11">
-                        <div class="inscrit col-6">
-                        <p>il y a {{ activite.users.count }} inscrits a cette activité</p>
-                        </div>
-                        <div class="button col-6">
-                            {% if is_granted(["ROLE_USER"]) %}
-                                {# ou que l'adhérent est inscrit #}
-                                {% if (activite.users.contains(user)) %}
-                                    <a href="{{ path('activite_sedesister', {'id': activite.id}) }}"
-                                       class="btn btn-info btn-sm">se désister</a>
-
-                                    {# s'il n'est pas inscrit #}
-                                {% else %}
-                                    <a href="{{ path('activite_sinscrire', {'id': activite.id}) }}"
-                                       class="btn btn-info btn-sm">s'inscrire</a>
-                                {% endif %}
-                            {% endif %}
-                        </div>
-                    </div>
+                </div>
+                    {% endif %}
+                {% endfor %}
             </div>
-                {% endif %}
-            {% endfor %}
+
         </div>
     </div>
     <!--
