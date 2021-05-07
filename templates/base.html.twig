@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr_FR">
 
 <head>
     {# Required meta tags #}
@@ -14,19 +14,25 @@
     {% block stylesheets %}{% endblock %}
     <link rel="stylesheet" type="text/css"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.css">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    {#  <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.css"> #}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
 </head>
 
 
 <body>
-<header>
-    {% include ('inc/nav.html.twig') %}
-    {% if app.user %}
-        <div class="  text-align-right" style="background-color: lightgrey;">
-            Vous êtes connecté en tant que {{ app.user.username }}
+<header class="container-fluid">
+    <div class="col">
+     <div class="row">
+            <div class="header-navbar col-lg-9">{% include ('inc/nav.html.twig') %}</div>
+            <div class="header-hello_user col-lg-3">
+            {% if app.user %}
+                <div class="header-texte-hello-user">
+                    Vous êtes connecté en tant que {{ app.user.username }}
+                </div>
+            {% endif %}
+            </div>
         </div>
-    {% endif %}
+    </div>
 </header>
 
 {# ------ FLASH MESSAGE ------ #}

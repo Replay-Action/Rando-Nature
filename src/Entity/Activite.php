@@ -56,6 +56,11 @@ class Activite
     private $difficulte;
 
     /**
+     * @ORM\ManyToOne (targetEntity=Categorie::class, inversedBy="activites")
+     */
+    public $categorie;
+
+    /**
      * @ORM\ManyToOne(targetEntity=Etat::class, inversedBy="activites")
      */
     private $etat;
@@ -182,6 +187,16 @@ class Activite
         $this->difficulte = $difficulte;
 
         return $this;
+    }
+
+    public function getCategorie()
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie($categorie): void
+    {
+        $this->categorie = $categorie;
     }
 
     public function getEtat(): ?Etat

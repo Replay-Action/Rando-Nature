@@ -1,6 +1,5 @@
-
 {# Création d'une navbar en haut de la page #}
-<nav class="navbar navbar-expand-lg navbar-light " style="background-color: lightgrey;">
+<nav class="navbar navbar-expand-lg navbar-dark ">
     <div class="pt-3">
     <a class="navbar-brand" href="{{path('home1')}}">Vélo Rando Nature Bruz</a>
     </div>
@@ -97,9 +96,31 @@
                 </li>
             {% endif %}
             {% if is_granted ("ROLE_ADMIN")%}
+                {#
             <li class="nav-item">
                 <a class="nav-link btn btn-warning" href="{{path('administrateur')}}">Admin</a>
             </li>
+                #}
+                {# éléments a menu déroulant #}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Admin
+                    </a>
+
+                    {# éléments dans le menu déroulant #}
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ path('activite_new') }}">Créer une activité</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{path('user_index')}}">Gestion des adhérents</a>
+                        <a class="dropdown-item" href="{{path('activite_index')}}">Gestion des activités</a>
+                        <a class="dropdown-item" href="{{path('recap')}}">Gestion des récapitulatfs</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{path('pdfstatus')}}">Status</a>
+                        <a class="dropdown-item" href="{{path('chartestatus')}}">Charte</a>
+                        <a class="dropdown-item" href="{{path('pdfmentionslegales')}}">Mention légales</a>
+                    </div>
+                </li>
             {% else %}
             {% endif %}
         </ul>

@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Data\SearchData;
 use App\Entity\Activite;
 use App\Entity\Lieu;
 use App\Form\ActiviteType;
+use App\Form\SearchForm;
 use App\Repository\ActiviteRepository;
 use App\Repository\DocPdfRepository;
 use App\Repository\EtatRepository;
@@ -26,14 +28,21 @@ class ActiviteController extends AbstractController
     public function index(ActiviteRepository $activiteRepository,
                           EtatRepository $etatRepository, Request $request): Response
     {
+
         $user = $this->getUser();
         $date = new \DateTime('now');
 
         $datecrit = $date->getTimestamp();
 
+        $data = new SearchData();
+        $form = $this->createForm(SearchForm::class, $data);
+
+        $form->handleRequest($request);
+        $products= $activiteRepository->findSearch($data);
+
         #on liste toutes les activités comme le findall mais en une requete
-        $acti = $activiteRepository->findActivites();
-dump($acti);
+        /**$acti = $activiteRepository->findSearch();**/
+
         # on cherche les activités dont la date est dépassée et on change leur état en 'finie'
         $acti2 = $activiteRepository->miseajouretat();
 
@@ -43,8 +52,10 @@ dump($acti);
 
         return $this->render('activite/index.html.twig', [
             'user' => $user,
-            'activites' => $acti,
+            /**'activites' => $acti,*/
             'date' => $date,
+            'activites'=> $products,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -73,7 +84,7 @@ dump($acti);
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
 
-#pour indiquer automatiquement l'etat 'ouverte' lors de la creation de l'activité'
+            #pour indiquer automatiquement l'etat 'ouverte' lors de la creation de l'activité'
             $etat = $etatRepository->findOneBy(['libelle' => 'ouverte']);
             $activite->setEtat($etat);
 

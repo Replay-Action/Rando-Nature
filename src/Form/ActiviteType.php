@@ -6,11 +6,13 @@ use App\Entity\Activite;
 use App\Entity\Etat;
 use App\Entity\Lieu;
 use App\Entity\User;
+
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use function Sodium\add;
@@ -20,7 +22,7 @@ class ActiviteType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom', ChoiceType::class, [
+            ->add('nom', TextType::class/**ChoiceType::class, [
                 'choices' => [
                     'Rando Vélo' => 'Rando Vélo',
                     'Escapade Séjour Vélo' => 'Escapade Séjour Vélo',
@@ -28,7 +30,7 @@ class ActiviteType extends AbstractType
                     'Spectacle' => 'Spectacle',
                     'Formation' => 'Formation',
                     'Autre évènement' => 'Autre évènement',
-                ],])
+                ],]**/)
             ->add('date_activite')
             ->add('duree')
             ->add('distance')

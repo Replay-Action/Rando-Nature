@@ -4,7 +4,9 @@
 {# twig d'affichage de la page plein-air #}
 {% block body %}
     {# le style bootstrap par defaut #}
-    <style>.centrer{
+    {#
+    <style>
+        .centrer{
             display: flex;
             align-items: center;
         }
@@ -21,50 +23,65 @@
             padding: 2px 6px;
         }
     </style>
-
-
+    #}
     {# la banniere et le titre #}
+    {#
     <div class="container-fluid">
-        <img src="{{ asset ('/content/2velos resize.jpg') }}" class="img-fluid" width="100%">
+        <img src="{{ asset ('content/2velos resize.jpg') }}" class="img-fluid" width="100%">
     </div>
-
-
+    #}
+    <div class="title-activite row">
+        <h1 class="col-12">Nos autres activités de plein-air</h1>
+    </div>
+    <div class="center-hr">
+        <hr class="hr25-pourcent center">
+    </div>
     {# le corps de la page #}
-    <div class="container-fluid">
-    <div class="row">
+    {#
+    <div class="container">
+        <div class="row">
 
-        <div class="example-wrapper"><br>
-            <H1 class="font-weight-bold">Nos autres activités de plein-air</H1>
-            <hr>
-            <p><strong> Découverte d'autres activités de plein air </strong></p>
+            <div class="presentation-activite"><br>
+                <p>
+                    Découverte d'autres activités de plein air.
+                </p>
 
-            <img src="{{ asset('/content/pleon air resize.jpg') }}" class="img-fluid" width="100%">
+                <img src="{{ asset('content/pleon air resize.jpg') }}" class="img-fluid" width="100%">
+
+            </div>
 
         </div>
-
     </div>
     <hr>
+    #}
+    <div class="container-fluid">
+        <div class="row">
 
+            <div class="activite-box m-md-5 bg-light border">
+                <div class="activite row col-12">
 
-    <div class=" m-md-5 bg-light border">
-    <div class="row col-12" align="center">
+                    <a class="btn-activite btn btn-primary col-lg-2 col-sm-12" href="{{ path('activite_index') }}">
+                        <h3>Le longe-côte</h3>
+                    </a>
+                    <div class="text-activite col-lg-8 col-xs-12">
+                        <p>
+                            La marche aquatique ou « longe-côte », est une activité sportive pratiquée depuis maintenant
+                            près de 8 ans, le long de notre littoral.
+                            C'est de la thalasso en plein air, la marche sportive y est associée à de l'aquatonic.
 
-        <a class="btn btn-primary col-lg-3 col-sm-12 centrer" href="{{ path('activite_index') }}">
-        <div>
-            <h3>Le longe-côte</h3>
-        </div>
-        </a>
-        <div class="col-lg-5 col-xs-12 centrer"><br>
+                            La séance dans l’eau dure de cinquante minutes à une heure quinze, selon la saison et la
+                            température.
+                            À la sortie, récipient isotherme de café, tisane et petites douceurs sucrées sont
+                            indispensables pour ceux qui se sont sentis comme des poissons, l’espace d’une petite heure.
+                        </p>
+                    </div>
+                    <div class="image-box col-lg-2 col-xs-12 centrer">
+                        <img class="image-activite" src="{{ asset('content/Paul.jpg') }}">
+                    </div>
 
-            <p>La marche aquatique ou « longe-côte », est une activité sportive pratiquée depuis maintenant près de 8 ans,
-                le long de notre littoral. C'est de la thalasso en plein air, la marche sportive y est associée à de l'aquatonic.
+                </div>
+            </div>
 
-                La séance dans l’eau dure de cinquante minutes à une heure quinze, selon la saison et la température.
-                À la sortie, récipient isotherme de café, tisane et petites douceurs sucrées sont indispensables
-                pour ceux qui se sont sentis comme des poissons, l’espace d’une petite heure.</p>
-        </div>
-        <div class="col-lg-4 col-xs-12 centrer">
-            <img src="{{ asset('/content/Paul.jpg') }}" class="img-fluid" width="100%">
         </div>
     </div>
 {% endblock %}
