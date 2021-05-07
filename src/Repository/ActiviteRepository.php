@@ -140,7 +140,7 @@ class ActiviteRepository extends ServiceEntityRepository
         if (!empty($search->categories)){
             $query = $query
                 ->andWhere('c.id IN (:categories)')
-                ->setParameter('categoriesfind', $search->categories);
+                ->setParameter('categories', $search->categories);
         }
 
 
