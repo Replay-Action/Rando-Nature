@@ -52,7 +52,7 @@ class ActiviteController extends AbstractController
 
         return $this->render('activite/index.html.twig', [
             'user' => $user,
-            /**'activites' => $acti,**/
+            /**'activites' => $acti,*/
             'date' => $date,
             'activites'=> $products,
             'form' => $form->createView(),
