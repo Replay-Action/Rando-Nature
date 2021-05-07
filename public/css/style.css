@@ -684,8 +684,6 @@ Partie Adhesion
     .global-adhesion{
         display: flex;
         flex-direction: row;
-        background: url("../content/formation resize.jpg");
-        background-repeat: no-repeat;
         max-width: content-box;
         max-height: content-box;
     }
