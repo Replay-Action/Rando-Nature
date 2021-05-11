@@ -27,12 +27,9 @@
         <div class="taille-text-ecran"><br>
             <h1 class="font-weight-bold">Présentation</h1>
             <hr>
-            <div>
-    </div>
+
     <div class="container-fluid">
         <div class="row justify-content-center text-center">
-
-
 
                     <p> L'association a été créée le <strong>20 Janvier 2020</strong> par deux amis anciens vttistes.<p>
 
@@ -99,7 +96,19 @@
                         <p>« Nous partons tous ensemble, nous roulons ensemble et nous rentrons ensemble »</p>
                     </div>
                 </div>
-                {# boutons d'affichage du pdf des status et de la charte #}
+        <div class="row">
+            <div class="col-lg-6 col-sm-12">
+                <button class="m-3 btn btn-primary center-block btn-lg">
+                <a class="text-white" href="{{ asset('documents/Statuts_asso_Rando nature Bruz.pdf') }}" target="_blank" >Status de l'association</a>
+                </button>
+            </div>
+            <div class="col-lg-6 col-sm-12">
+                <button class="m-3 btn btn-primary center-block btn-lg">
+                <a class="text-white" href="{{ asset('documents/Charte_asso_Rando nature Bruz.pdf') }}" target="_blank">Charte de l'association</a>
+                </button>
+            </div>
+        </div>
+                {# boutons d'affichage du pdf des status et de la charte
                 <div class="p-3 text-center justify-content-center">
                     <div class=" d-flex flex-column">
                         <button class=" button m-3 btn btn-primary center-block btn-lg " onclick="maFonction()">Afficher
@@ -113,7 +122,7 @@
                         </button>
                     </div>
 
-{# on affiche les pdfs issu du dossier public #}
+                    on affiche les pdfs issu du dossier public
                     <div id="maDIV" style="display:none;">
                         <div>
                             <embed class="embed-responsive"src="{{ asset('documents/Statuts_asso_Rando nature Bruz.pdf') }}" width=800
@@ -130,10 +139,10 @@
                     </div>
                     <div class="col-auto">
 
-                        {# <p><img src="{{ asset('/content/velo et enfant.png') }}"
-                                class=" p-3 justify-content-center img-fluid"></p> #}
+                         <p><img src="{{ asset('/content/velo et enfant.png') }}"
+                                class=" p-3 justify-content-center img-fluid"></p>
 
-                        {# le js pour afficher et desafficher les pdfs #}
+                         le js pour afficher et desafficher les pdfs
                         <script>
                             function maFonction() {
                                 var div = document.getElementById("maDIV2");
@@ -159,7 +168,7 @@
                         </script>
                     </div>
 
-                </div>
+                </div>#}
 
             </div>
         </div>

@@ -1,5 +1,5 @@
 {{ form_start(form) }}
-{# {{ form_widget(form) }} #}
+{# {{ form_widget(form) }}
 
 <div class="col-auto d-flex justify-content-center">
 
@@ -7,9 +7,9 @@
 
 {# le formulaire du user #}
 {{ form_start(form) }}
-<div class="row d-flex justify-content-center">
+<div class="row ">
     <div class="col">
-        <table class="table table-borderless d-flex justify-content-center bg-light border">
+        <table class="table table-borderless d-flex justify-content-center">
             <tbody>
             <tr>
                 <th scope="col">Role :</th>
@@ -52,11 +52,11 @@
         </table>
     </div>
 </div>
-<div class="row d-flex justify-content-center">
+<div class="row justify-content-center">
 
 
-    <button class="mb-5 mt-2 btn btn-primary btn btn-lg">{{ button_label|default('Enregistrer') }}</button>
-    <a href="{{ path('user_index') }}" class="mb-5 mt-2 btn btn-outline-primary btn btn-lg">retour à la liste</a>
+    <button class="col-lg-4 mb-5 mt-2 btn btn-primary btn btn-lg">{{ button_label|default('Enregistrer') }}</button>
+    <a href="{{ path('user_index') }}" class="col-lg-4 mb-5 mt-2 btn btn-outline-primary btn btn-lg bg-light">retour à la liste</a>
 
 
 </div>

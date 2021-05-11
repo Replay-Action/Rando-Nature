@@ -33,18 +33,26 @@
         <div class="row m-3">
             <div class="example-wrapper"><br>
                 <H1 class="font-weight-bold">Mentions légales</H1>
+                {#
                 <hr>
                 <p><img src="{{ asset('content/logo velo.png') }}"></p>
                 <hr>
-                <button class="btn btn-primary m-3" onclick="maFonction()">Afficher les mentions légales</button>
-                <div id="maDIV" style="display:none;">
+                #}
+                <div>
+                    <a href="{{ asset('documents/Mentions_legales.pdf') }}">DL</a>
+                </div>
+                {# <button class="btn btn-primary m-3" onclick="maFonction()">Afficher les mentions légales</button>
+                 <div id="maDIV" style="display:none;">
                     <div>
+
                         <embed src="{{ asset('documents/Mentions_legales.pdf') }}" width=800 height=2300
                                type='application/pdf'/>
-                    </div>
-                </div>
 
-                {# le js pour fermer ou ouvrir le pdf #}
+                    </div>
+
+                     </div>
+                      le js pour fermer ou ouvrir le pdf
+
                 <script>
                     function maFonction() {
                         var div = document.getElementById("maDIV");
@@ -56,7 +64,9 @@
                     }
                 </script>
 
+
             </div>
+                #}
         </div>
     </div>
 {% endblock %}

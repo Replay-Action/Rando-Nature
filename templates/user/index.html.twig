@@ -7,9 +7,9 @@
     {% if is_granted("ROLE_ADMIN") %}{
 
     {# la banniere et le titre et le nota bene #}
-    <div class="container-fluid">
-        <img src="{{ asset ('/content/user ban pages user.jpg') }}" class="img-fluid" width="100%">
-    </div>
+    {#  <div class="container-fluid">
+        <img src="{{ asset ('content/user ban pages user.jpg') }}" class="img-fluid" width="100%">
+    </div>#}
     <div class="col-auto">
         <div class="m-5 justify-content-center text-center ">
             <div class="">
@@ -18,13 +18,13 @@
             <div class="bg-light border m-5"><p class="font-weight-bold pt-2">NOTA BENE</p>
                 <div>
                     <p class="text-center small">Pour effacer un adhérent, allez sur le bouton 'modifier et cliquez sur
-                        le bouton 'effacer'</p>
+                        le bouton 'Effacer l'adhérent'</p>
                 </div>
                 <div>
                     <p class="text-center small">Pour modifier le profil d'un adhérent (pour le changer en
                         administrateur ou en adhérent simple par exemple) vous avez besoin de son accord et de son mot
                         de passe</p>
-                    <p class="small">par contre vous pouvez effacer sa photo si elle ne convient aux valeurs du site</p>
+                    <p class="small">par contre vous pouvez effacer sa photo si elle ne convient pas aux valeurs du site</p>
                 </div>
             </div>
         </div>

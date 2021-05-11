@@ -6,15 +6,16 @@
 {% block body %}
     {% if is_granted("ROLE_ADMIN") %}
 
-        <div class="container-fluid">
+        {# <div class="container-fluid">
             <img src="{{ asset ('/content/user ban pages user.jpg') }}" class="img-fluid" width="100%">
         </div>
-
-        <div class="row m-5 d-flex justify-content-center bg-light border">
+        #}
+        <div class="admin-cree-adherent-fond-noir container-fluid col-lg-6 col-sm-12">
+        <div class="row m-5 d-flex justify-content-center border">
             <h1>Créer un nouvel adhérent</h1>
         </div>
         {{ include('user/_form.html.twig') }}
-
+        </div>
     {% else %}
         <div class="row d-flex justify-content-center m-3">
             <a href="{{ path('home1') }}" class=" btn btn-lg btn-danger "> vous n'avez pas accès à ces droits</a>

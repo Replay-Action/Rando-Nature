@@ -513,6 +513,40 @@ hr.hr-new-activite{
     background-color: black;
 }
 /**
+Partie Crée un adhérent
+ */
+.admin-cree-adherent-fond-noir{
+    background-color:rgba(49,49,49,0.7);
+    color: white;
+    border-radius: 15px;
+    border:solid 1px;
+    justify-content: center;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+/**
+Partie Modif profil en tant que Admin
+ */
+.affichage-admin-photo-profiledit{
+    border-radius: 150px;
+    -moz-border-radius: 150px;
+    -webkit-border-radius: 150px;
+    max-height: 325px;
+    max-width: 325px;
+
+}
+.admin-profil-fond-noir{
+    background-color:rgba(49,49,49,0.7);
+    color: white;
+    border-radius: 15px;
+    border:solid 1px;
+    justify-content: center;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+/**
 Partie Profil
  */
 .profil-fond-noir{
