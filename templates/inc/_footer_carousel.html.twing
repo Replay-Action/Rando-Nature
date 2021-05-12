@@ -1,0 +1,203 @@
+<div id="carousel1">
+        <div class="item">
+            <div class="item__image">
+                <a href="https://le-cercle-des-voyageurs.fr/" target="_blank"><img alt="" src="{{asset('logos/logo_LCV6-blanc.png')}}"></a>
+
+            </div>
+            <div class="item__body">
+                <div class="item__title">
+                    <a href="https://le-cercle-des-voyageurs.fr/" target="_blank">Le cercle des voyageur</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="item__image">
+                <img alt="" src="{{asset('logos/KomootPNG+(1).png')}}">
+            </div>
+            <div class="item__body">
+                <div class="item__title">
+                    Komoot
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="item__image">
+                <img alt="" src="{{asset('logos/358913-logo_komoot_2_green-RGB-v2.1-74a410-original-1594397399-5.png')}}">
+            </div>
+            <div class="item__body">
+                <div class="item__title">
+                    Mon titre 2
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="item__image">
+                <img alt="" src="{{asset('logos/Logo_France_Vélo_Tourisme.jpg')}}">
+            </div>
+            <div class="item__body">
+                <div class="item__title">
+                    Mon titre 2
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="item__image">
+                <img alt="" src="{{asset('logos/Photo_FIT_OCEAN1.jpg')}}">
+            </div>
+            <div class="item__body">
+                <div class="item__title">
+                    Mon titre 2
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!--
+    <div id="carousel2">
+
+        <div class="item">
+            <div class="item__image">
+                <img alt="" src="{{asset('logos/logo_LCV6-blanc.png')}}">
+            </div>
+            <div class="item__body">
+                <div class="item__title">
+                    Mon titre 1
+                </div>
+                <div class="item__description">
+                    Ici une petite description pour tester le carousel 10
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="item__image">
+                <img alt="" src="{{asset('logos/logo_LCV6-blanc.png')}}">
+            </div>
+            <div class="item__body">
+                <div class="item__title">
+                    Mon titre 2
+                </div>
+                <div class="item__description">
+                    Ici une petite description pour tester le carousel 20
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="item__image">
+                <img alt="" src="{{asset('logos/logo_LCV6-blanc.png')}}">
+            </div>
+            <div class="item__body">
+                <div class="item__title">
+                    Mon titre 2
+                </div>
+                <div class="item__description">
+                    Ici une petite description pour tester le carousel 30
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="item__image">
+                <img alt="" src="{{asset('logos/logo_LCV6-blanc.png')}}">
+            </div>
+            <div class="item__body">
+                <div class="item__title">
+                    Mon titre 2
+                </div>
+                <div class="item__description">
+                    Ici une petite description pour tester le carousel 40
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="item__image">
+                <img alt="" src="{{asset('logos/logo_LCV6-blanc.png')}}">
+            </div>
+            <div class="item__body">
+                <div class="item__title">
+                    Mon titre 2
+                </div>
+                <div class="item__description">
+                    Ici une petite description pour tester le carousel 50
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="carousel3">
+
+        <div class="item">
+            <div class="item__image">
+                <img alt="" src="{{asset('logos/logo_LCV6-blanc.png')}}">
+            </div>
+            <div class="item__body">
+                <div class="item__title">
+                    Mon titre 1
+                </div>
+                <div class="item__description">
+                    Ici une petite description pour tester le carousel 10
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="item__image">
+                <img alt="" src="{{asset('logos/logo_LCV6-blanc.png')}}">
+            </div>
+            <div class="item__body">
+                <div class="item__title">
+                    Mon titre 2
+                </div>
+                <div class="item__description">
+                    Ici une petite description pour tester le carousel 20
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="item__image">
+                <img alt="" src="{{asset('logos/logo_LCV6-blanc.png')}}">
+            </div>
+            <div class="item__body">
+                <div class="item__title">
+                    Mon titre 3
+                </div>
+                <div class="item__description">
+                    Ici une petite description pour tester le carousel 30
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="item__image">
+                <img alt="" src="{{asset('logos/logo_LCV6-blanc.png')}}">
+            </div>
+            <div class="item__body">
+                <div class="item__title">
+                    Mon titre 4
+                </div>
+                <div class="item__description">
+                    Ici une petite description pour tester le carousel 40
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="item__image">
+                <img alt="" src="{{asset('logos/logo_LCV6-blanc.png')}}">
+            </div>
+            <div class="item__body">
+                <div class="item__title">
+                    Mon titre 5
+                </div>
+                <div class="item__description">
+                    Ici une petite description pour tester le carousel 50
+                </div>
+            </div>
+        </div>
+        -->

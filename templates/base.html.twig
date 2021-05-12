@@ -16,6 +16,7 @@
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
     {#  <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.css"> #}
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+    <script src="{{ asset('js/main.js') }}" async></script>
 </head>
 
 
@@ -25,11 +26,11 @@
      <div class="row">
             <div class="header-navbar col-lg-9">{% include ('inc/nav.html.twig') %}</div>
             <div class="header-hello_user col-lg-3">
-            {% if app.user %}
-                <div class="header-texte-hello-user">
+                {% if app.user %}
+                <div class="header-texte-hello-user" id="navbarTexto">
                     Vous êtes connecté en tant que {{ app.user.username }}
                 </div>
-            {% endif %}
+                {% endif %}
             </div>
         </div>
     </div>
