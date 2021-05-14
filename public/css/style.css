@@ -512,6 +512,50 @@ hr.hr-new-activite{
     height: 4px;
     background-color: black;
 }
+
+/**
+Partie Gestion adhérent
+ */
+.police-email{
+    font: oblique 12px Arial;
+}
+.global-div-adherents{
+justify-content: center;
+}
+.div-group-un-adherent{
+justify-content: center;
+}
+.div-un-adherent{
+    background-image:url("../content/ecocitoyenete resize.jpg") ;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    border-radius: 10px;
+    border:solid 1px;
+    margin: 3%;
+    height: 100%;
+    width: 100%;
+
+}
+.pseudo-div-un-adherent{
+ font: oblique 40px "Freestyle Script";
+}
+.interieur-div-un-adherent{
+
+}
+.button-modifier-profil-admin{
+    border-radius: 15px;
+
+}
+.button-div-modifier-profil-admin{
+    text-align: right;
+
+}
+
+@font-face {
+    font-family: Algerian;
+    src: url("/");
+}
 /**
 Partie Crée un adhérent
  */
