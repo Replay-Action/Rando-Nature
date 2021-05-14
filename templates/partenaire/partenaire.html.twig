@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="title__partenaire container-fluid row">
+        <h1 class="title col-12">Liste des partenaires</h1>
+        <div class="center-hr col-12">
+            <hr class="hr25-pourcent">
+        </div>
+    </div>
+    <div class="main__partenaire">
+        {% for partenaire in partenaires %}
+            <div class="tabel__partenaire">
+                <p>{{ partenaire.nom }}</p>
+                <p>{{ partenaire.logo }}</p>
+                <a href="{{ partenaire.url }}">{{ partenaire.nom }}</a>
+                <p></p>
+            </div>
+        {% endfor %}
+    </div>
+
+
+{% endblock %}

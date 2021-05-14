@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Partenaire;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -18,7 +19,13 @@ class PartenaireRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Partenaire::class);
     }
-
+    public function findPartenaire(){
+        $partenaire = $this
+            ->createQueryBuilder('p')
+            ->orderBy('p.nom', 'DESC');
+        $query = $partenaire->getQuery();
+        return $query->getResult();
+    }
     // /**
     //  * @return Partenaire[] Returns an array of Partenaire objects
     //  */
@@ -47,4 +54,5 @@ class PartenaireRepository extends ServiceEntityRepository
         ;
     }
     */
+
 }

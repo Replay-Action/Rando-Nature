@@ -38,7 +38,7 @@ class ActiviteController extends AbstractController
         $form = $this->createForm(SearchForm::class, $data);
 
         $form->handleRequest($request);
-        $products= $activiteRepository->findSearch($data);
+        $products = $activiteRepository->findSearch($data);
 
         #on liste toutes les activités comme le findall mais en une requete
         /**$acti = $activiteRepository->findSearch();**/
