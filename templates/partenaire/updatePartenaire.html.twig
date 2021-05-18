@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container-fluid row page__container">
+        <div class="title__partenaire container-fluid row">
+            <h1 class="title col-12">Modification Partenaire</h1>
+            <div class="center-hr col-12">
+                <hr class="hr25-pourcent">
+            </div>
+        </div>
+        <div class="main__partenaire container-fluid row">
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+            <a href="{{ path('partenaire') }}">Retour</a>
+        </div>
+    </div>
+{% endblock %}

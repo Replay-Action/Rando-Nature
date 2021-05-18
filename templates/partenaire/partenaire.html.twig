@@ -1,21 +1,26 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <div class="title__partenaire container-fluid row">
-        <h1 class="title col-12">Liste des partenaires</h1>
-        <div class="center-hr col-12">
-            <hr class="hr25-pourcent">
+    <div class="container-fluid row page__container">
+        <div class="title__partenaire container-fluid row">
+            <h1 class="title col-12">Liste des partenaires</h1>
+            <div class="center-hr col-12">
+                <hr class="hr25-pourcent">
+            </div>
+        </div>
+        <div class="main__partenaire container-fluid row">
+            {% for partenaire in partenaires %}
+                <div class="tabel__partenaire container-fluid col-lg 4 row">
+                    <a href="{{ partenaire.url }}">
+                        <img class="img__partenaire col-lg-12" src="{{ asset("logos/"~ partenaire.logo) }}" alt="Logo du partenaire">
+                    </a>
+                    <a class="nom__partarenaire col-lg-12" href="{{ partenaire.url }}">{{ partenaire.nom }}</a>
+                    <div>
+                        <a href="{{ path('partenaire_delete', {"id":partenaire.id} ) }}" onclick="return confirm('Voulez-vous vraiment supprimer ce partenaire ?')">Supprimer</a>
+                        <a href="{{ path('partenaire_update', {"id": partenaire.id}) }}">Modifier</a>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
     </div>
-    <div class="main__partenaire">
-        {% for partenaire in partenaires %}
-            <div class="tabel__partenaire">
-                <p>{{ partenaire.nom }}</p>
-                <p>{{ partenaire.logo }}</p>
-                <a href="{{ partenaire.url }}">{{ partenaire.nom }}</a>
-                <p></p>
-            </div>
-        {% endfor %}
-    </div>
-
 
 {% endblock %}

@@ -952,3 +952,26 @@ PARTENAIRE
     padding-top: 100px;
     text-align: center;
 }
+.tabel__partenaire{
+background: lightcoral;
+    display: flex;
+    justify-content: center;
+}
+.main__partenaire{
+    background: lightgreen;
+    margin-top: 50px;
+}
+.nom__partarenaire{
+    font-size: x-large;
+    font-weight: bold;
+    font-style: oblique;
+}
+.img__partenaire{
+
+}
+.page__container{
+    display: flex;
+    justify-content: center;
+    background: lightseagreen;
+    padding: 0;
+}

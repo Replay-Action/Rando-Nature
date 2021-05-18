@@ -49,12 +49,12 @@ class Partenaire
         return $this;
     }
 
-    public function getLogo(): ?string
+    public function getLogo()
     {
         return $this->logo;
     }
 
-    public function setLogo(string $logo): self
+    public function setLogo($logo): self
     {
         $this->logo = $logo;
 
@@ -72,4 +72,5 @@ class Partenaire
 
         return $this;
     }
+
 }

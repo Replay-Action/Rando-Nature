@@ -20,7 +20,8 @@ class PartenaireType extends AbstractType
             ])
             ->add('logo', FileType::class, [
                 'label' => 'Logo du Partenaire: ',
-                'required' => true
+                'required' => true,
+                'data_class' => null,
             ])
             ->add('url', TextType::class,[
                 'label' => 'Url du site partenaire: ',
