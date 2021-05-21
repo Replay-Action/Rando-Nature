@@ -6,6 +6,7 @@ use App\Entity\Activite;
 use App\Entity\User;
 use App\Form\PdfStatusType;
 use App\Repository\ActiviteRepository;
+use App\Repository\PartenaireRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
@@ -256,6 +257,5 @@ class HomeController extends AbstractController
             'form' => $form->createView(),
         ));
     }
-
 
 }

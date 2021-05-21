@@ -1,60 +1,17 @@
 <div id="carousel1">
+    {% for partenaire in partenaires %}
         <div class="item">
             <div class="item__image">
-                <a href="https://le-cercle-des-voyageurs.fr/" target="_blank"><img alt="" src="{{asset('logos/logo_LCV6-blanc.png')}}"></a>
+                <a href="{{ partenaire.url }}" target="_blank"><img alt="" src="{{ asset("logos/"~ partenaire.logo) }}"></a>
 
             </div>
             <div class="item__body">
                 <div class="item__title">
-                    <a href="https://le-cercle-des-voyageurs.fr/" target="_blank">Le cercle des voyageur</a>
+                    <a href="{{ partenaire.url }}" target="_blank">{{ partenaire.nom }}</a>
                 </div>
             </div>
         </div>
-
-        <div class="item">
-            <div class="item__image">
-                <img alt="" src="{{asset('logos/KomootPNG+(1).png')}}">
-            </div>
-            <div class="item__body">
-                <div class="item__title">
-                    Komoot
-                </div>
-            </div>
-        </div>
-
-        <div class="item">
-            <div class="item__image">
-                <img alt="" src="{{asset('logos/358913-logo_komoot_2_green-RGB-v2.1-74a410-original-1594397399-5.png')}}">
-            </div>
-            <div class="item__body">
-                <div class="item__title">
-                    Mon titre 2
-                </div>
-            </div>
-        </div>
-
-        <div class="item">
-            <div class="item__image">
-                <img alt="" src="{{asset('logos/Logo_France_Vélo_Tourisme.jpg')}}">
-            </div>
-            <div class="item__body">
-                <div class="item__title">
-                    Mon titre 2
-                </div>
-            </div>
-        </div>
-
-        <div class="item">
-            <div class="item__image">
-                <img alt="" src="{{asset('logos/Photo_FIT_OCEAN1.jpg')}}">
-            </div>
-            <div class="item__body">
-                <div class="item__title">
-                    Mon titre 2
-                </div>
-            </div>
-        </div>
-
+    {% endfor %}
     </div>
     <!--
     <div id="carousel2">

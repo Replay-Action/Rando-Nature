@@ -7,11 +7,14 @@
                 <hr class="hr25-pourcent">
             </div>
         </div>
-        <div class="main__partenaire container-fluid row">
-            {{ form_start(form) }}
-            {{ form_widget(form) }}
-            {{ form_end(form) }}
-            <a href="{{ path('partenaire') }}">Retour</a>
+    </div>
+    <div class="container-fluid box1">
+            <div class="main__partenaire">
+                <div class="form__partenaire">
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                {{ form_end(form) }}
+            </div>
         </div>
     </div>
 {% endblock %}

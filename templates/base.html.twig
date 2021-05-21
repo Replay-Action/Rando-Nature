@@ -21,40 +21,42 @@
 
 
 <body>
-<header class="container-fluid">
-    <div class="col">
-     <div class="row">
-            <div class="header-navbar col-lg-9">{% include ('inc/nav.html.twig') %}</div>
-            <div class="header-hello_user col-lg-3">
-                {% if app.user %}
-                <div class="header-texte-hello-user" id="navbarTexto">
-                    Vous êtes connecté en tant que {{ app.user.username }}
+    <header class="container-fluid">
+        <div class="col">
+         <div class="row">
+                <div class="header-navbar col-lg-9">{% include ('inc/nav.html.twig') %}</div>
+                <div class="header-hello_user col-lg-3">
+                    {% if app.user %}
+                    <div class="header-texte-hello-user" id="navbarTexto">
+                        Vous êtes connecté en tant que {{ app.user.username }}
+                    </div>
+                    {% endif %}
                 </div>
-                {% endif %}
             </div>
         </div>
-    </div>
-</header>
+    </header>
 
-{# ------ FLASH MESSAGE ------ #}
-{% for label, messages in app.flashes %}
-    {% for message in messages %}
-        <div class="alert alert-{{ label }}">
-            {{ message }}
-        </div>
+    {# ------ FLASH MESSAGE ------ #}
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
     {% endfor %}
-{% endfor %}
-</div>
+    </div>
 </div>
 
 <main>
     {% block body %}{% endblock %}
+
 </main>
 
 <footer>
-    {% include('inc/nav_footer.html.twig') %}
+    {% block carousel %}
+        {{ carousel() }}
+    {% endblock %}
 </footer>
-
 
 {% block javascripts %}
     {# Optional JavaScript; choose one of the two! #}

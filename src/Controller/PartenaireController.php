@@ -14,6 +14,12 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PartenaireController extends AbstractController
 {
+
+    public function __construct()
+    {
+
+    }
+
     /**
      * @Route ("/partenaire", name="partenaire")
      * @param PartenaireRepository $partenaireRepository
@@ -63,6 +69,47 @@ class PartenaireController extends AbstractController
     }
 
     /**
+     * @Route ("/update/{id}", name="partenaire_update")
+     * @param Partenaire $partenaire
+     * @param Request $request
+     * @return RedirectResponse|Response
+     */
+    public function partenaireUpdate(Partenaire $partenaire, Request $request): Response
+    {
+        $this->denyAccessUnlessGranted("ROLE_USER");
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $nom = $partenaire->getLogo();
+
+
+        $form = $this->createForm(PartenaireType::class, $partenaire);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            if($nom != null) {
+                unlink($this->getParameter('logo_directory') . '/' . $nom);
+            }
+
+
+            $file = $partenaire->getLogo();
+            $fileName = md5(uniqid()). '.' .$file->guessExtension();
+            $file->move($this->getParameter('logo_directory'),$fileName);
+            $partenaire->setLogo($fileName);
+
+
+            $entityManager->persist($partenaire);
+            $entityManager->flush();
+
+
+            return $this->redirectToRoute('partenaire');
+        }
+        return $this->render('partenaire/updatePartenaire.html.twig',[
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
      * @Route("/delete/{id}", name="partenaire_delete")
      * @param Partenaire $partenaire
      * @return RedirectResponse
@@ -79,40 +126,5 @@ class PartenaireController extends AbstractController
         return $this->redirectToRoute('partenaire');
     }
 
-    /**
-     * @Route ("/update/{id}", name="partenaire_update")
-     * @param Partenaire $partenaire
-     * @param Request $request
-     * @return RedirectResponse|Response
-     */
-    public function partenaireUpdate(Partenaire $partenaire, Request $request): Response
-    {
-        $this->denyAccessUnlessGranted("ROLE_USER");
 
-        $partenaire = new Partenaire();
-        $entityManager = $this->getDoctrine()->getManager();
-
-        $form = $this->createForm(PartenaireType::class, $partenaire);
-        $form->handleRequest($request);
-
-
-        $file = $partenaire->getLogo();
-        $fileName = md5(uniqid()). '.' .$file->guessExtension();
-        $file->move($this->getParameter('logo_directory'),$fileName);
-        $partenaire->setLogo($fileName);
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            $nom = $partenaire->getLogo();
-            unlink($this->getParameter('logo_directory') . '/' . $nom);
-
-            $entityManager->remove($nom);
-            $entityManager->persist($partenaire);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('partenaire');
-        }
-        return $this->render('partenaire/updatePartenaire.html.twig',[
-           'form' => $form->createView()
-        ]);
-    }
 }

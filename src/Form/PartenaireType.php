@@ -15,16 +15,16 @@ class PartenaireType extends AbstractType
     {
         $builder
             ->add('nom', TextType::class,[
-                'label' => 'Nom du partenaire: ',
+                'label' => 'Nom du partenaire : ',
                 'required' => true
             ])
             ->add('logo', FileType::class, [
-                'label' => 'Logo du Partenaire: ',
+                'label' => 'Logo du Partenaire : ',
                 'required' => true,
                 'data_class' => null,
             ])
             ->add('url', TextType::class,[
-                'label' => 'Url du site partenaire: ',
+                'label' => 'Url du site partenaire : ',
                 'required' => true
             ])
             ->add('Valider', SubmitType::class)
