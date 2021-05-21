@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+{% block title %}Création d'un Référent | {{ parent() }}{% endblock %}
+{# la page de la liste des référents #}
+
+{% block body %}
+    {% if is_granted("ROLE_ADMIN") %}
+
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="container-fluid row tilte__referent"><br>
+
+                    <h1 class="col-lg-12 font-weight-bold">Modifier un Référent</h1>
+                    <div class="col-lg-12 center-hr">
+                        <hr>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+        {# on inclus ici le formulaire #}
+
+        <div class="mb-5">
+            {{ include('referent/_formref.html.twig', {'button_label':'Enregistrer' }) }}
+
+        </div>
+    {% endif %}
+{% endblock %}

@@ -18,6 +18,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\CallbackTransformer;
 
+use Symfony\Component\Validator\Constraints\Choice;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use function Sodium\add;
@@ -63,6 +64,14 @@ class UserType extends AbstractType
                     'Adhérent' => 'ROLE_USER',
                     'Administrateur' => 'ROLE_ADMIN',
                 ],
+            ])
+            ->add('referents', ChoiceType::class,[
+                'required'=> false,
+                'multiple'=> true,
+                'expanded'=> false,
+                'choices'=>[
+
+                ]
             ])
 
 

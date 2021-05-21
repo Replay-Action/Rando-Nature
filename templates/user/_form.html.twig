@@ -16,6 +16,11 @@
                 <td>{{ form_widget(form.roles) }}</td>
             </tr>
             <tr>
+                <th scope="col">Référent :</th>
+                <td>{{ form_widget(form.referents) }}</td>
+            </tr>
+
+            <tr>
                 <th scope="col">Prénom :</th>
                 <td>{{ form_widget(form.prenom) }}</td>
             </tr>
@@ -56,7 +61,7 @@
 
 
     <button class="col-lg-4 mb-5 mt-2 btn btn-primary btn btn-lg">{{ button_label|default('Enregistrer') }}</button>
-    <a href="{{ path('user_index') }}" class="col-lg-4 mb-5 mt-2 btn btn-outline-primary btn btn-lg bg-light">retour à la liste</a>
+    <a href="{{ path('user_index') }}" class="col-lg-4 mb-5 mt-2 btn btn-outline-primary btn btn-lg bg-light">Retour</a>
 
 
 </div>

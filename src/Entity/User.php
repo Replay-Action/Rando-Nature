@@ -85,6 +85,10 @@ class User implements UserInterface
      *     cascade={"persist","remove"})
      */
     private $photos;
+    /**
+     * @ORM\ManyToOne (targetEntity=Referent::class, inversedBy="user")
+     */
+    private $referents;
 
     public function __construct()
     {
@@ -222,6 +226,19 @@ class User implements UserInterface
     public function setDateNaissance(?\DateTimeInterface $date_naissance): self
     {
         $this->date_naissance = $date_naissance;
+
+        return $this;
+    }
+
+
+    public function getReferents(): ?Referent
+    {
+        return $this->referents;
+    }
+
+    public function setReferents(?Referent $referents): self
+    {
+        $this->referents = $referents;
 
         return $this;
     }

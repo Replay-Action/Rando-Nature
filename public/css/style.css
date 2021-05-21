@@ -26,6 +26,7 @@ hr{
     display: flex;
     justify-content: center;
 }
+
 /**
 ****************** navbar ***********
  */
@@ -512,7 +513,36 @@ hr.hr-new-activite{
     height: 4px;
     background-color: black;
 }
+/**
+Partie Referent
+ */
+.global-referent{
+    margin-top: 100px;
+    justify-content: center;
+    display: flex;
+    background-color: #ffcc00;
+}
+.liste-referent{
+    justify-content: center;
+    display: flex;
+    background-color: #aacd4e;
 
+}
+.abcdef{
+    display: flex;
+    justify-content: center;
+
+}
+.tilte__referent{
+    display: flex;
+    justify-content: center;
+    padding-top: 100px;
+    text-align: center;
+}
+.button-enregistrer-new-referent{
+    display: flex;
+    justify-content: center;
+}
 /**
 Partie Gestion adhérent
  */
@@ -550,11 +580,6 @@ justify-content: center;
 .button-div-modifier-profil-admin{
     text-align: right;
 
-}
-
-@font-face {
-    font-family: Algerian;
-    src: url("/");
 }
 /**
 Partie Crée un adhérent

@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Référents | {{ parent() }}{% endblock %}
+{# la page de la liste des référents #}
+
+{% block body %}
+    {% if is_granted("ROLE_ADMIN") %}
+
+    <div class="container-fluid row global-referent">
+        <div>
+        <h1>Liste des Référents</h1>
+        </div>
+    {% for referent in referents %}
+        <div class="col-lg-12 row liste-referent">
+            <div class="col-lg-1">
+                <p class=" mb-5 mt-2 ">{{ referent.nom }}</p>
+            </div>
+            <div class="col-lg-1 d-flex justify-content-center">
+                <a class="mb-5 mt-2 btn " href="{{ path('updateRef', {"id": referent.id}) }}">Modifier</a>
+                <a class="mb-5 mt-2 btn " href="{{ path('deleteRef', {"id": referent.id}) }}">Supprimer</a>
+            </div>
+        </div>
+
+
+        {% endfor %}
+        <div>
+            <a class="mb-5 mt-2 btn btn-primary btn btn-lg" href="{{ path('createRef') }}">Créer</a>
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}
