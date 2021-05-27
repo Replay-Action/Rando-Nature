@@ -60,7 +60,7 @@ class Referent
 
 
     /**
-     * @return Collection|User
+     * @return Collection|User[]
      */
     public function getUser():Collection
     {

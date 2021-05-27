@@ -32,6 +32,7 @@ class ReferentController extends AbstractController
      */
     public function createReferent(Request $request): Response
     {
+        #autorise l'accès uniquement aux administrateurs du site#
     $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
     $referent = new Referent();
@@ -58,6 +59,9 @@ class ReferentController extends AbstractController
      */
     public function updateReferent(Request $request, Referent $referent):Response
     {
+        #fonction qui permet de modifier un référent#
+
+        #autorise l'accès uniquement aux administrateurs du site#
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         $form = $this->createForm(ReferentType::class, $referent);
@@ -81,6 +85,9 @@ class ReferentController extends AbstractController
      */
     public function deleteReferent(Referent $referent): Response
     {
+         #fonction qui supprime un référent#
+
+        #autorise l'accès uniquement aux administrateurs du site#
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         $em=$this->getDoctrine()->getManager();
@@ -95,6 +102,9 @@ class ReferentController extends AbstractController
      */
     public function afficherReferent(ReferentRepository $referentRepository, UserRepository $userRepository):Response
     {
+        #fonction en charge d'afficher le référent et son utilisateur#
+
+        #autorise l'accès uniquement aux administrateurs du site#
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         $products1 = $referentRepository->findAll();
