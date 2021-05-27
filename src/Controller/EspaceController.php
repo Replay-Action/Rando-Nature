@@ -2,11 +2,13 @@
 
 namespace App\Controller;
 
+use App\Data\SearchData;
 use App\Entity\Activite;
 use App\Entity\DocPdf;
 use App\Entity\User;
 use App\Form\ActiviteType;
 use App\Form\DocPdfType;
+use App\Form\SearchForm;
 use App\Repository\ActiviteRepository;
 use App\Repository\DocPdfRepository;
 use App\Repository\PhotoRepository;
@@ -41,67 +43,74 @@ class EspaceController extends AbstractController
     /**
      * @Route("/recapo", name="recap", methods={"GET"})
      */
-    public function recap(ActiviteRepository $activiteRepository): Response{
-
+    public function recap(ActiviteRepository $activiteRepository, Request $request): Response{
+        $user = $this->getUser();
         $this->denyAccessUnlessGranted("ROLE_USER");
+        $data = new SearchData();
+        $form = $this->createForm(SearchForm::class, $data);
 
+        $form->handleRequest($request);
+        $products= $activiteRepository->findSearch($data);
         $activite=$activiteRepository->affichefinie();
 
 
         return $this->render('espace/recap-activite.html.twig',[
-            'activites'=>$activite]);
+            'user'=>$user,
+            'activites'=>$activite,
+            'form'=>$form->createView(),
+        ]);
     }
 
 
 
-/**
- * @Route("/{id}/editrecapo", name="editrecap", methods={"GET","POST"})
- */
-public function editrecap(Request $request, Activite $activite, EntityManagerInterface $entityManager){
+    /**
+     * @Route("/{id}/editrecapo", name="editrecap", methods={"GET","POST"})
+     */
+    public function editrecap(Request $request, Activite $activite, EntityManagerInterface $entityManager){
 
-    $this->denyAccessUnlessGranted("ROLE_ADMIN");
+        $this->denyAccessUnlessGranted("ROLE_ADMIN");
 
-    $form = $this->createForm(ActiviteType::class, $activite);
+        $form = $this->createForm(ActiviteType::class, $activite);
 
-    #gere le traitement du formulaire#
-    $form->handleRequest($request);
-    if ($form->isSubmitted() && $form->isValid()) {
+        #gere le traitement du formulaire#
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
 
-      $pdf=$form->get('docPdfs')->getData();
+            $pdf=$form->get('docPdfs')->getData();
 
-      // on boucle sur les pdf
-     //   foreach ($pdf as $pdf1) {
+            // on boucle sur les pdf
+            //   foreach ($pdf as $pdf1) {
 // on genere un nouveau nom de fichier
-if ($pdf) {
+            if ($pdf) {
 
-    $fichier = md5(uniqid()) . '.' . $pdf->guessExtension();
-    $pdf->move(
-        $this->getParameter('upload_recap_directory'),
-        $fichier
-    );
+                $fichier = md5(uniqid()) . '.' . $pdf->guessExtension();
+                $pdf->move(
+                    $this->getParameter('upload_recap_directory'),
+                    $fichier
+                );
 
-    // on stocke son nom en bdd
-    $upload = new DocPdf();
-    $upload->setNompdf($fichier);
-    $activite->addDocPdf($upload);
+                // on stocke son nom en bdd
+                $upload = new DocPdf();
+                $upload->setNompdf($fichier);
+                $activite->addDocPdf($upload);
 
-    // }
-    $entityManager = $this->getDoctrine()->getManager();
-    $entityManager->persist($activite);
-    $entityManager->flush();
+                // }
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($activite);
+                $entityManager->flush();
 
-}
+            }
 
 
-        return $this->redirectToRoute('home1');
+            return $this->redirectToRoute('home1');
+
+        }
+        return $this->render('espace/edit-recap.html.twig',[
+            'form' => $form->createView(),
+            'activite'=>$activite]);
+
 
     }
-    return $this->render('espace/edit-recap.html.twig',[
-        'form' => $form->createView(),
-        'activite'=>$activite]);
-
-
-   }
 
 
 
@@ -114,7 +123,7 @@ if ($pdf) {
         $this->denyAccessUnlessGranted("ROLE_ADMIN");
 
         $data = json_decode($request->getContent(), true);
-dump($data);
+        dump($data);
         // On vérifie si le token est valide
         if ($this->isCsrfTokenValid('delete' . $docPdf->getId(), $data['_token'])) {
             // On récupère le nom du pdf
@@ -134,15 +143,15 @@ dump($data);
             return new JsonResponse(['success' => 1]);
         } else {
             return new JsonResponse(['error' => 'Token Invalide'], 400);
-          dd($data);
+            dd($data);
         }
         return $this->redirectToRoute('home1');
-        }
+    }
 
 
-       /**
-        * @Route("/detailrecap/{id}", name="detailrecap", methods={"GET"})
-        */
+    /**
+     * @Route("/detailrecap/{id}", name="detailrecap", methods={"GET"})
+     */
     public function voir (Activite $activite): Response
     {
         $this->denyAccessUnlessGranted("ROLE_USER");

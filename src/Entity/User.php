@@ -89,6 +89,10 @@ class User implements UserInterface
      * @ORM\ManyToOne (targetEntity=Referent::class, inversedBy="user")
      */
     private $referents;
+    public function __toString()
+    {
+        return $this->getUsername();
+    }
 
     public function __construct()
     {

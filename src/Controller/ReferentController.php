@@ -7,6 +7,7 @@ namespace App\Controller;
 use App\Entity\Referent;
 use App\Form\ReferentType;
 use App\Repository\ReferentRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -85,7 +86,24 @@ class ReferentController extends AbstractController
         $em=$this->getDoctrine()->getManager();
         $em->remove($referent);
         $em->flush();
-
+        $this->addFlash('succes', 'Le référent à été supprimer');
         return $this->redirectToRoute('referent');
     }
+
+    /**
+     * @Route ("/showRef",name="showRef")
+     */
+    public function afficherReferent(ReferentRepository $referentRepository, UserRepository $userRepository):Response
+    {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
+        $products1 = $referentRepository->findAll();
+        $products2 = $userRepository->findAll();
+
+        return $this->render('referent/showref.html.twig',[
+           'referents' => $products1,
+           'users' => $products2,
+        ]);
+    }
+
 }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ReferentRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,6 +12,17 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Referent
 {
+    public function __toString()
+    {
+        return $this->getNom();
+    }
+
+    public function __construct()
+    {
+        $this->user = new ArrayCollection();
+    }
+
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -45,7 +58,11 @@ class Referent
         return $this;
     }
 
-    public function getUser()
+
+    /**
+     * @return Collection|User
+     */
+    public function getUser():Collection
     {
         return $this->user;
     }

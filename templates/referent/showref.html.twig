@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les Référents | {{ parent() }}{% endblock %}
+{# la page de la liste des référents #}
+
+{% block body %}
+    {% if is_granted("ROLE_ADMIN") %}
+
+        <div class="container-fluid row global-referent">
+            <div>
+                <h1>Les Référents</h1>
+            </div>
+
+            {% for user in users %}
+                {% if user.referents != null %}
+                    {% for referent in referents %}
+
+                        {% if user.referents.getId() == 1 %}
+
+                            <div class="president">
+                                <p>{{ user.username }}</p>
+
+                                <p>{{ user.referents }}</p>
+                            </div>
+
+                        {% endif %}
+                    {% else %}
+                        <div class="autres">
+                            <p>{{ user.username }}</p>
+
+                            <p>{{ user.referents }}</p>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+
+            {% for referent in referents %}
+                <div class="boxflorian">
+                    <p>{{ referent.nom }}</p>
+                    {# <p>{{ referent.user }}</p> #}
+                </div>
+            {% endfor %}
+
+        </div>
+    {% endif %}
+{% endblock %}

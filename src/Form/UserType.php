@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Photo;
+use App\Entity\Referent;
 use App\Entity\User;
 use Doctrine\DBAL\Types\JsonType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
@@ -54,7 +55,7 @@ class UserType extends AbstractType
             ->add('nom')
             ->add('prenom')
             ->add('telephone', IntegerType::class,[
-            'required' => true])
+                'required' => true])
             ->add('email')
             ->add('roles', ChoiceType::class, [
                 'required' => true,
@@ -65,16 +66,9 @@ class UserType extends AbstractType
                     'Administrateur' => 'ROLE_ADMIN',
                 ],
             ])
-            ->add('referents', ChoiceType::class,[
-                'required'=> false,
-                'multiple'=> true,
-                'expanded'=> false,
-                'choices'=>[
-
-                ]
+            ->add('referents', EntityType::class,[
+                'class'=>Referent::class,
             ])
-
-
 
             #class birthday pour que les années soient dispos jusque 1901#
             ->add('date_naissance', BirthdayType::class, [
