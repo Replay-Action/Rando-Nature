@@ -5,63 +5,63 @@
         <div class="col-lg-6 col-sm-10 espace-div-form-activite couleur-gauche">
             <table class="gauche-form-activite table table-borderless d-flex ">
                 <tbody class="mb-3">
-                    <tr>
-                        <th scope='col'>Type d'activité</th>
-                        <td>{{ form_widget(form.nom) }}</td>
-                    </tr>
-                    <tr>
-                        <th scope='col'>Nom de l'activité</th>
-                        <td>Reprise de la Rando</td>
-                    </tr>
-                    <tr>
-                        <th scope='col'>Date de l'activité</th>
-                        <td>{{ form_widget(form.date_activite) }}</td>
-                    </tr>
-                    <tr>
-                        <th scope='col'>Distance (kilomètre)</th>
-                        <td>{{ form_widget(form.distance) }} </td>
-                    </tr>
-                    <tr>
-                        <th scope='col'>Dénivelé (mètre)</th>
-                        <td>{{ form_widget(form.denivele) }} </td>
-                    </tr>
+                <tr>
+                    <th scope='col'>Type d'activité</th>
+                    <td>{{ form_widget(form.nom) }}</td>
+                </tr>
+                <tr>
+                    <th scope='col'>Nom de l'activité</th>
+                    <td>{{ form_widget(form.categorie) }}</td>
+                </tr>
+                <tr>
+                    <th scope='col'>Date de l'activité</th>
+                    <td>{{ form_widget(form.date_activite) }}</td>
+                </tr>
+                <tr>
+                    <th scope='col'>Distance (kilomètre)</th>
+                    <td>{{ form_widget(form.distance) }} </td>
+                </tr>
+                <tr>
+                    <th scope='col'>Dénivelé (mètre)</th>
+                    <td>{{ form_widget(form.denivele) }} </td>
+                </tr>
                 </tbody>
             </table>
         </div>
         <div class="col-lg-6 col-sm-10 espace-div-form-activite couleur-droite">
             <table class="droite-form-activite table table-borderless d-flex ">
                 <tbody class="mb-3">
-                    <tr>
-                        <th scope='col'>Difficulté</th>
-                        <td>{{ form_widget(form.difficulte) }}</td>
-                    </tr>
-                    <tr>
-                        <th scope='col'>Durée (minute)</th>
-                        <td>{{ form_widget(form.duree) }} </td>
-                    </tr>
-                    {#<tr>
+                <tr>
+                    <th scope='col'>Difficulté</th>
+                    <td>{{ form_widget(form.difficulte) }}</td>
+                </tr>
+                <tr>
+                    <th scope='col'>Durée (minute)</th>
+                    <td>{{ form_widget(form.duree) }} </td>
+                </tr>
+                {#<tr>
                         <th scope='col'>état</th>
                         <td>{{ form_widget(form.etat) }}</td>
                     </tr> #}
-                    <tr>
-                        <th scope='col'>Lieu de RDV</th>
-                        <td>{{ form_widget(form.lieu) }}</td>
-                    </tr>
-                    <tr>
-                        <th scope='col'>Infos activité</th>
-                        <td>{{ form_widget(form.infos_activite) }}</td>
-                    </tr>
+                <tr>
+                    <th scope='col'>Lieu de RDV</th>
+                    <td>{{ form_widget(form.lieu) }}</td>
+                </tr>
+                <tr>
+                    <th scope='col'>Infos activité</th>
+                    <td>{{ form_widget(form.infos_activite) }}</td>
+                </tr>
                 </tbody>
             </table>
         </div>
 
-            {#
-            <tr class="invisible">
-                <th scope='col'>pdf</th>
-                <td>{{ form_widget(form.docPdfs) }}</td>
-            </tr>
-            #}
-            {# <tr>
+        {#
+        <tr class="invisible">
+            <th scope='col'>pdf</th>
+            <td>{{ form_widget(form.docPdfs) }}</td>
+        </tr>
+        #}
+        {# <tr>
         <th scope='col'>ville</th>
         <td>{{ form_widget(form.lieu)}}</td>
     </tr> #}

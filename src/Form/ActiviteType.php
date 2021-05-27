@@ -4,8 +4,6 @@ namespace App\Form;
 
 use App\Entity\Activite;
 use App\Entity\Etat;
-use App\Entity\Lieu;
-use App\Entity\User;
 
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -15,7 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use function Sodium\add;
+
 
 class ActiviteType extends AbstractType
 {
@@ -23,14 +21,14 @@ class ActiviteType extends AbstractType
     {
         $builder
             ->add('nom', TextType::class/**ChoiceType::class, [
-                'choices' => [
-                    'Rando Vélo' => 'Rando Vélo',
-                    'Escapade Séjour Vélo' => 'Escapade Séjour Vélo',
-                    'Réunion' => 'Réunion',
-                    'Spectacle' => 'Spectacle',
-                    'Formation' => 'Formation',
-                    'Autre évènement' => 'Autre évènement',
-                ],]**/)
+            'choices' => [
+            'Rando Vélo' => 'Rando Vélo',
+            'Escapade Séjour Vélo' => 'Escapade Séjour Vélo',
+            'Réunion' => 'Réunion',
+            'Spectacle' => 'Spectacle',
+            'Formation' => 'Formation',
+            'Autre évènement' => 'Autre évènement',
+            ],]**/)
             ->add('date_activite')
             ->add('duree')
             ->add('distance')
@@ -54,12 +52,26 @@ class ActiviteType extends AbstractType
             ->add('lieu', LieuType::class, [
 
             ])
-        ->add('docPdfs', FileType::class,[
-         //  'data_class'=> null,
-            'label' => false,
-            'mapped' => false,
-            'required' => false
-        ]);
+            ->add('docPdfs', FileType::class,[
+                //  'data_class'=> null,
+                'label' => false,
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('categorie',ChoiceType::class,[
+                'choices' => [
+                    'Balade du dimanche'=>'Balade du dimanche',
+                    'Escapade'=>'Escapade',
+                    'Formation mécanique'=>'Formation mécanique',
+                    'Formation Sécurité'=>'Formation Sécurité',
+                    'Formation Secourisme'=>'Formation Secourisme',
+                    'Formation photo et vidéo'=>'Formation photo et vidéo',
+                    'Film Documentaire'=>'Film Documentaire',
+                    'Ecocitoyenneté'=>'Ecocitoyenneté',
+                    'Longe côte'=>'Longe côte',
+                    'Réunion'=>'Réunion',
+
+                ]]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
