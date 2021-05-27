@@ -15,13 +15,13 @@
             <h1>Profil</h1>
         </div>
 
-    {# pour voir si l'utilisateur est bien le meme que le profil qu'il regarde #}
-    {% if user.username == user1 %}
+        {# pour voir si l'utilisateur est bien le meme que le profil qu'il regarde #}
+        {% if user.username == user1 %}
         <div class="row position-photo-profiledit col-lg-6 col-sm-8">
 
                 {# on boucle sur les photos pour l'afficher#}
                 {% for photo in user.photos %}
-                    <img src="{{ asset ('photo-profil/'~ photo.name) }}" class="img-fluid affichage-photo-profiledit col-lg-6">
+                    <img src="{{ asset ('photo-profil/'~ photo.name) }}" class="img-fluid affichage-photo-profiledit col-lg-6" alt="Image de l'utilisateur">
 
                     {# On ajoute un lien permettant de supprimer une image (sera géré en Ajax) #}
                     <a href="{{ path('user_delete_photo', {id: photo.id}) }}" data-delete
@@ -83,9 +83,9 @@
             <button class="mb-5 mt-2 btn btn-primary btn btn-lg ">{{ button_label|default('Enregistrer') }}</button>
             </div>
             <div class="col-lg-3 col-sm-6">
-            <a href="{{ path('user_show', { 'id': app.user.id}) }}"
-               class="mb-5 mt-2 btn btn-outline-primary btn btn-lg bg-light">Retour</a>
-            {{ form_end(form) }}
+                <a href="{{ path('user_show', { 'id': app.user.id}) }}"
+                   class="mb-5 mt-2 btn btn-outline-primary btn btn-lg bg-light">Retour</a>
+                {{ form_end(form) }}
             </div>
         </div>
     </div>

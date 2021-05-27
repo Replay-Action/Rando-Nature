@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container-fluid">
+        <div class="title__partenaire container-fluid row">
+            <h1 class="col-12">Documentation</h1>
+            <div class="center-hr col-12">
+                <hr class="hr25-pourcent">
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="main__documentation col-12">
+            {% for doc in documentation %}
+                <div class="container__documentation">
+                <div class="documentation">
+                    <div class="title__documentaire col-12">
+                    <a href="{{ path('show_documentation', {"id":doc.id}) }}">{{ doc.titre }}</a>
+                    </div>
+                    <div class="documentation_date_user col-12">
+                        <div class="documentation_date row ">
+                        <img  src="{{ asset('tools/calendrier.png') }}" alt="icon de calendrier">
+                        <p>{{ doc.getDateCreation()| date('j F Y h:i')}}</p>
+                        </div>
+                        <div class="documentation_user row">
+                            <img src="{{ asset('tools/user.png') }}" alt="icon d'utilisateur">
+                            <p>{{ doc.auteur }}</p>
+                        </div>
+                    </div>
+                    <div class="documentation__resume col-12">
+                        <p>{{ doc.intro }}</p>
+                    </div>
+                    <div class="container__etiquette col-12 row">
+                        <div class="documentation__etiquette">
+                        <img src="{{ asset('tools/etiquette.png') }}" alt="icon d'étiquette">
+                        <p>{{ doc.categorie }}</p>
+                        </div>
+                    </div>
+                </div>
+                    {% if is_granted(["ROLE_USER"]) %}
+                <div class="documentation__option">
+                    {% if(app.user.username == doc.auteur) %}
+                    <a href="{{ path('update_documentation', {"id":doc.id}) }}">Modifier</a>
+                    {% endif %}
+                    {% if(app.user.username == doc.auteur or is_granted ("ROLE_ADMIN")) %}
+                    <a href="{{ path('delete_documentation', {"id":doc.id}) }}" onclick="return confirm('Voulez-vous vraiment supprimer cette article ?')">Supprimer</a>
+                    {% endif %}
+                </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

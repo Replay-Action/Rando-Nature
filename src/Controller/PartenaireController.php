@@ -15,11 +15,6 @@ use Symfony\Component\Routing\Annotation\Route;
 class PartenaireController extends AbstractController
 {
 
-    public function __construct()
-    {
-
-    }
-
     /**
      * @Route ("/partenaire", name="partenaire")
      * @param PartenaireRepository $partenaireRepository
@@ -49,7 +44,8 @@ class PartenaireController extends AbstractController
         $formPartenaire = $this->createForm(PartenaireType::class, $partenaire);
         $formPartenaire->handleRequest($request);
 
-        if($formPartenaire->isSubmitted() && $formPartenaire->isValid()){
+        if($formPartenaire->isSubmitted() && $formPartenaire->isValid())
+        {
             $file = $partenaire->getLogo();
             $fileName = md5(uniqid()). '.' .$file->guessExtension();
             $file->move($this->getParameter('logo_directory'),$fileName);
@@ -58,7 +54,7 @@ class PartenaireController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($partenaire);
             $entityManager->flush();
-            return $this->redirectToRoute('home1');
+            return $this->redirectToRoute('partenaire');
         }
 
         return $this->render('partenaire/_formPartenaire.html.twig',[
@@ -81,7 +77,6 @@ class PartenaireController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $nom = $partenaire->getLogo();
 
-
         $form = $this->createForm(PartenaireType::class, $partenaire);
         $form->handleRequest($request);
 
@@ -90,7 +85,6 @@ class PartenaireController extends AbstractController
             if($nom != null) {
                 unlink($this->getParameter('logo_directory') . '/' . $nom);
             }
-
 
             $file = $partenaire->getLogo();
             $fileName = md5(uniqid()). '.' .$file->guessExtension();

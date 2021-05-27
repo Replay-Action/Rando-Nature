@@ -1016,3 +1016,219 @@ PARTENAIRE
  display: flex;
     justify-content: center;
 }
+/**
+    DOCUMENTATION
+ */
+.main__documentation{
+    margin: 10px;
+    padding: 0;
+}
+.container__documentation{
+    background: white;
+    margin: 40px;
+    padding: 0;
+}
+.documentation{
+    padding: 10px;
+    border-radius: 5px;
+}
+.title__documentaire{
+    font-size: x-large;
+    color: lightskyblue;
+    margin: 10px;
+    padding: 0;
+}
+.documentation_date_user{
+    display: flex;
+    flex-direction: row;
+}
+.documentation_date_user img, .documentation__etiquette img{
+    width: 20px ;
+    height:20px ;
+    object-fit: contain;
+}
+.documentation_date, .documentation_user{
+    width: 250px;
+    height: 40px;
+}
+.documentation_date img, .documentation_user img{
+    margin: 0 10px 0 10px;
+}
+
+.documentation_date p, .documentation_user p{
+    color: lightslategray;
+}
+.documentation__resume{
+
+    padding-bottom: 10px;
+}
+.documentation__resume p{
+    margin: 0 10px 0 10px;
+}
+.container__etiquette{
+    margin: 0 10px 0 10px;
+}
+.documentation__etiquette, .documentation__etiquette p{
+     display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: lightgray;
+    margin: 0 5px 0 5px;
+    padding: 1px;
+    border-radius: 5px;
+}
+.documentation__etiquette p{
+    font-size: x-small;
+    font-style: italic;
+    color: darkgrey;
+
+}
+.documentation__option{
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 10px 0 10px;
+}
+.documentation__etiquette img{
+    width: 12px ;
+    height:12px ;
+    object-fit: contain;
+}
+.documentation__option a{
+    padding: 10px;
+}
+/*
+DOCUMENTATION SHOW
+ */
+.documentation__box{
+    background: white;
+    padding: 50px;
+    border-radius: 5px;
+    box-shadow: 5px 2px 10px black;
+}
+.main__documentation__show{
+    padding: 0;
+    margin: 0;
+}
+.documentation__show__header{
+    display: flex;
+    flex-direction: column;
+}
+.categories__show{
+
+}
+.categories__show p {
+    margin: 10px;
+    font-size: small;
+    font-weight: bold;
+    color: lightslategrey;
+}
+.intro__documentation{
+
+}
+.intro__documentation p{
+    margin: 10px;
+    font-weight: bold;
+}
+.title__show{
+
+}
+.title__show p{
+    font-size: xx-large;
+    font-weight: lighter;
+    margin: 10px;
+}
+.documentation_date_user-show{
+    margin: 10px;
+}
+.documentation_date_user-show{
+    display: flex;
+    flex-direction: row;
+}
+.documentation_date_user-show img, .documentation__etiquette img{
+    width: 20px ;
+    height:20px ;
+    object-fit: contain;
+}
+.documentation-show__main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.documentation__paragraphe1, .documentation__paragraphe2{
+    margin: 0 80px 0 80px;
+}
+.documentation__image1 p {
+    text-align: center;
+    font-style: italic;
+    font-size: small;
+    color: lightslategrey;
+}
+.documentation__image1, .documentation__image2{
+    margin: 20px 80px 40px 80px;
+    width: 500px;
+    height: 500px;
+    object-fit: contain;
+}
+.documentation_date_modifier{
+    color: lightslategray;
+    padding-right: 30px;
+}
+.commentaire_box{
+    background: white;
+    padding: 50px;
+    border-radius: 5px;
+    box-shadow: 5px 2px 10px black;
+    margin: 20px 0 20px 0;
+}
+
+/**
+    COMMENTAIRE
+ */
+.documentation_commentaire{
+
+    margin: 40px;
+}
+.info_commentaire{
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+}
+.info_commentaire p {
+    margin: 0 10px 0 10px;
+}
+.userName_commentaire{
+    font-weight: lighter;
+    color: black;
+}
+.dateCreation_commentaire, .dateModification_commentaire{
+    display: flex;
+    align-items: center;
+    font-size: small;
+    font-weight: initial;
+    font-style: italic;
+    color: lightslategrey;
+}
+.comment_commentaire{
+
+}
+.comment_commentaire p{
+    font-family: Calibri, serif;
+    margin: 10px;
+}
+.delete_commentaire{
+    display: flex;
+    justify-content: flex-end;
+}
+.info_box{
+    display: flex;
+    flex-direction: row;
+}
+.delete_commentaire img{
+    width: 15px;
+    height: 15px;
+    object-fit: contain;
+}
+.update_commentaire{
+    margin: 10px;
+}

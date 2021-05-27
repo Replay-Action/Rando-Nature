@@ -8,6 +8,7 @@ parameters:
     photo_directory: '%kernel.project_dir%/public/photo-profil'
     upload_directory: '%kernel.project_dir%/public/documents'
     upload_recap_directory: '%kernel.project_dir%/public/recap'
+    documentation_directory: '%kernel.project_dir%/public/documentation-image'
 
 services:
     # default configuration for services in *this* file
