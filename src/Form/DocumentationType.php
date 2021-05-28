@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Categorie;
 use App\Entity\Documentation;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -19,7 +21,9 @@ class DocumentationType extends AbstractType
             ->add('auteur',HiddenType::class)
             ->add('titre')
             ->add('intro')
-            ->add('categorie')
+            ->add('categorie', EntityType::class,[
+                'class' => Categorie::class,
+            ])
             ->add('paragraphe1')
             ->add('paragraphe2')
             ->add('url')

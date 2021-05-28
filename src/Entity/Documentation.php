@@ -7,6 +7,7 @@ use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
+
 /**
  * @ORM\Entity(repositoryClass=DocumentationRepository::class)
  */
@@ -36,29 +37,26 @@ class Documentation
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="Le champ doit contenir du texte pour être validable")
      */
     private $titre;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\ManyToOne (targetEntity=Categorie::class, inversedBy="documentation")
+     * @Assert\Type(type="App\Entity\Categorie")
      */
     private $categorie;
 
     /**
      * @ORM\Column (type="text")
-     * @Assert\NotBlank(message="Le champ doit contenir du texte pour être validable")
      */
     private $intro;
     /**
      * @ORM\Column (type="text")
-     * @Assert\NotBlank(message="Le champ doit contenir du texte pour être validable")
      */
     private $paragraphe1;
 
     /**
      * @ORM\Column (type="text", nullable=true)
-     * @Assert\NotBlank(message="Le champ doit contenir du texte pour être validable")
      */
     private $paragraphe2;
 
@@ -74,7 +72,6 @@ class Documentation
 
     /**
      * @ORM\Column(type="string", length=255,  nullable=true)
-     * @Assert\NotBlank(message="Le champ doit contenir du texte pour être validable")
      */
     private $imageLegende;
 
@@ -90,7 +87,6 @@ class Documentation
 
     /**
      * @ORM\Column(type="string", length=255,  nullable=true)
-     * @Assert\NotBlank(message="Le champ doit contenir du texte pour être validable")
      */
     private $imageLegende2;
 
@@ -155,16 +151,14 @@ class Documentation
         return $this;
     }
 
-    public function getCategorie(): ?string
+    public function getCategorie()
     {
         return $this->categorie;
     }
 
-    public function setCategorie(?string $categorie): self
+    public function setCategorie($categorie): void
     {
         $this->categorie = $categorie;
-
-        return $this;
     }
 
     public function getIntro()

@@ -104,6 +104,7 @@ class DocumentationController extends AbstractController
                 $fileName = md5(uniqid()).'.'.$file->guessExtension();
                 $file->move($this->getParameter('documentation_directory'),$fileName);
                 $documentation->setImage2($fileName);
+                $documentation->setImageModification2($fileName);
             }
 
             $entityManager = $this->getDoctrine()->getManager();
@@ -165,6 +166,8 @@ class DocumentationController extends AbstractController
                      $fileName = md5(uniqid()). '.' .$file->guessExtension();
                      $file->move($this->getParameter('documentation_directory'),$fileName);
                      $documentation->setImage2($fileName);
+                 } else {
+                     $documentation->setImage2($imageModification2);
                  }
 
 
@@ -188,7 +191,7 @@ class DocumentationController extends AbstractController
     {
         $entityManager = $this->getDoctrine()->getManager();
 
-        $form = $this->createForm(Commentaire::class, $commentaire);
+        $form = $this->createForm(CommentaireType::class, $commentaire);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
@@ -198,7 +201,7 @@ class DocumentationController extends AbstractController
             $entityManager->flush();
             return $this->redirectToRoute('documentaire');
         }
-        return $this->render('documentation/show_documentation.html.twig',[
+        return $this->render('documentation/update_commentaire.html.twig',[
            'form' => $form->createView(),
         ]);
     }

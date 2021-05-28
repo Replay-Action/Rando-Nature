@@ -87,6 +87,15 @@
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.2"
     },
+    "friendsofsymfony/ckeditor-bundle": {
+        "version": "2.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "2.0",
+            "ref": "8eb1cd0962ded6a6d6e1e5a9b6d3e888f9f94ff6"
+        }
+    },
     "jms/metadata": {
         "version": "2.5.0"
     },
@@ -204,6 +213,9 @@
     },
     "symfony/event-dispatcher-contracts": {
         "version": "v1.1.9"
+    },
+    "symfony/expression-language": {
+        "version": "v4.4.22"
     },
     "symfony/filesystem": {
         "version": "v4.4.18"

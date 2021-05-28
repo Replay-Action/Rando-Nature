@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ActiviteRepository;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -117,12 +118,12 @@ class Activite
         return $this;
     }
 
-    public function getDateActivite(): ?\DateTimeInterface
+    public function getDateActivite(): ?DateTimeInterface
     {
         return $this->date_activite;
     }
 
-    public function setDateActivite(\DateTimeInterface $date_activite): self
+    public function setDateActivite(DateTimeInterface $date_activite): self
     {
         $this->date_activite = $date_activite;
 

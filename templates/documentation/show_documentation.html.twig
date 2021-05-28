@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block body %}
+    {#
     <div class="container-fluid ">
         <div class="title__partenaire container-fluid row">
             <h1 class="col-12">{{ documentations.titre }}</h1>
@@ -8,7 +9,8 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid ">
+    #}
+    <div class="container-fluid page_box">
         <div class="container documentation__box">
             <div class="documentation__show__header">
                 <div class="categories__show col-12">
@@ -21,16 +23,16 @@
                     <p>{{ documentations.intro }}</p>
                 </div>
                 <div class="documentation_date_user-show col-12">
-                        <div class="documentation_date row ">
+                        <div class="documentation_date">
                         <img  src="{{ asset('tools/calendrier.png') }}" alt="icon de calendrier">
                             <p>{{ documentations.getDateCreation()| date('j F Y h:i') }}</p>
                         </div>
                         <div class="documentation_date_modifier">
                             {% if(documentations.getDateModifier() != null) %}
-                                <p>mis à jour le {{ documentations.getDateModifier()| date('j F Y h:i') }}</p>
+                                <p>, mis à jour le {{ documentations.getDateModifier()| date('j F Y h:i') }}</p>
                             {% endif %}
                         </div>
-                        <div class="documentation_user row">
+                        <div class="documentation_user">
                         <img src="{{ asset('tools/user.png') }}" alt="icon d'utilisateur">
                             <p>{{ documentations.auteur }}</p>
                         </div>
@@ -40,19 +42,26 @@
                 <hr>
             </div>
             <div class="documentation-show__main">
+                {% if(documentations.image != null) %}
                 <div class="documentation__image1 col-12">
                     <img src="{{ asset("documentation-image/"~ documentations.image) }}" alt="Une image">
                     <p>{{ documentations.imageLegende }}</p>
                 </div>
+                {% endif %}
                 <div class="documentation__paragraphe1 col-12">
                     <p>{{ documentations.paragraphe1 }}</p>
                 </div>
+                {% if(documentations.image2 != null) %}
                 <div class="documentation__image2 col-12">
                     <img src="{{ asset("documentation-image/"~ documentations.image2) }}" alt="Une image">
+                    <p>{{ documentations.imageLegende2 }}</p>
                 </div>
+                {% endif %}
+                {% if(documentations.paragraphe2 != null) %}
                 <div class="documentation__paragraphe2 col-12">
                     <p>{{ documentations.paragraphe2 }}</p>
                 </div>
+                {% endif %}
             </div>
                 <div class="documentation__option">
                     {% if(app.user.username == documentations.auteur) %}
@@ -61,6 +70,7 @@
                     {% if(app.user.username == documentations.auteur or is_granted ("ROLE_ADMIN")) %}
                     <a href="{{ path('delete_documentation', {"id":documentations.id}) }}" onclick="return confirm('Voulez-vous vraiment supprimer cette article ?')">Supprimer</a>
                     {% endif %}
+                    <a href="{{ path('documentation') }}">Retour</a>
                 </div>
         </div>
     </div>
@@ -68,51 +78,55 @@
         <div class="commentaire_box">
             <div class="documentation_form">
             {{ form_start(form) }}
-            {{ form_widget(form) }}
+                <p>{{ form_widget(form.commentaire) }}</p>
+                <p class="button">{{ form_widget(form.envoyer) }}</p>
             {{ form_end(form) }}
             </div>
         </div>
     </div>
     <div class="container">
-        <div class="commentaire_box">
-            {% for com in commentaires %}
-                <div class="documentation_commentaire">
-                    <div class="info_commentaire col-lg-12">
-                        <div class=" info_box col-lg-6">
-                        <div class="userName_commentaire">
-                            <p>{{ com.userName }}</p>
+        {% for com in commentaires %}
+            {% if (com.commentaire != null) %}
+                <div class="commentaire_box">
+                    <div class="documentation_commentaire">
+                        <div class="info_commentaire col-lg-12">
+                            <div class=" info_box col-lg-6">
+                                <div class="userName_commentaire">
+                                    <p>{{ com.userName }}</p>
+                                </div>
+                                {% if(com.dateModification == null) %}
+                                <div class="dateCreation_commentaire">
+                                    <p>{{ com.dateCreation| date('j F Y h:i') }}</p>
+                                </div>
+                                {% else %}
+                                <div class="dateModification_commentaire">
+                                    <p>{{ com.dateModification }}</p>
+                                </div>
+                                {% endif %}
+                            </div>
+                                {% if(app.user.username == com.userName or is_granted ("ROLE_ADMIN")) %}
+                                <div class="delete_commentaire col-lg-6">
+                                    <a href="{{ path('delete_commentaire', {"id":com.id}) }}"
+                                       onclick="return confirm('Voulez-vous vraiment supprimer cette article ?')">
+                                        <img src="{{ asset('tools/croix_rouge.png') }}" alt="image de croix rouge">
+                                    </a>
+                                </div>
+                                {% endif %}
                         </div>
-                        {% if(com.dateModification == null) %}
-                        <div class="dateCreation_commentaire">
-                            <p>{{ com.dateCreation| date('j F Y h:i') }}</p>
+                        <div class="comment_commentaire col-lg-12">
+                            {% if is_granted(["ROLE_USER"]) %}
+                                <p>{{ com.commentaire }}</p>
+                            {% endif %}
                         </div>
-                        {% else %}
-                        <div class="dateModification_commentaire">
-                            <p>{{ com.dateModification }}</p>
-                        </div>
-                        {% endif %}
-                        </div>
-                        {% if(app.user.username == com.userName or is_granted ("ROLE_ADMIN")) %}
-                        <div class="delete_commentaire col-lg-6">
-                            <a href="{{ path('delete_commentaire', {"id":com.id}) }}"
-                               onclick="return confirm('Voulez-vous vraiment supprimer cette article ?')">
-                                <img src="{{ asset('tools/croix_rouge.png') }}" alt="image de croix rouge">
-                            </a>
-                        </div>
+                        {% if(app.user.username == com.userName) %}
+                            <div class="update_commentaire col-lg-12">
+                                <a href="{{ path('update_commentaire', {"id":com.id}) }}">modifier</a>
+                            </div>
                         {% endif %}
                     </div>
-                    <div class="comment_commentaire col-lg-12">
-                        {% if is_granted(["ROLE_USER"]) %}
-                        <p>{{ com.commentaire }}</p>
-                        {% endif %}
-                    </div>
-                    {% if(app.user.username == com.userName) %}
-                    <div class="update_commentaire col-lg-12">
-                        <a href="{{ path('update_commentaire', {"id":com.id}) }}">modifier</a>
-                    </div>
-                    {% endif %}
                 </div>
-            {% endfor %}
-        </div>
+            {% else %}
+            {% endif %}
+        {% endfor %}
     </div>
 {% endblock %}

@@ -17,11 +17,15 @@
                     <a href="{{ path('show_documentation', {"id":doc.id}) }}">{{ doc.titre }}</a>
                     </div>
                     <div class="documentation_date_user col-12">
-                        <div class="documentation_date row ">
+                        <div class="documentation_date">
+                            <div>
                         <img  src="{{ asset('tools/calendrier.png') }}" alt="icon de calendrier">
+                            </div>
+                            <div>
                         <p>{{ doc.getDateCreation()| date('j F Y h:i')}}</p>
+                            </div>
                         </div>
-                        <div class="documentation_user row">
+                        <div class="documentation_user">
                             <img src="{{ asset('tools/user.png') }}" alt="icon d'utilisateur">
                             <p>{{ doc.auteur }}</p>
                         </div>
@@ -29,7 +33,7 @@
                     <div class="documentation__resume col-12">
                         <p>{{ doc.intro }}</p>
                     </div>
-                    <div class="container__etiquette col-12 row">
+                    <div class="container__etiquette col-12 ">
                         <div class="documentation__etiquette">
                         <img src="{{ asset('tools/etiquette.png') }}" alt="icon d'étiquette">
                         <p>{{ doc.categorie }}</p>
