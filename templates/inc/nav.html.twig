@@ -31,6 +31,21 @@
                 </div>
             </li>
 
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Documentation
+                </a>
+
+                {# éléments dans le menu déroulant #}
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{path('documentation')}}">Documentation</a>
+                    {% if is_granted ("ROLE_USER")%}
+                    <a class="dropdown-item" href="{{path('create_documentation')}}">Créer une documentation</a>
+                    {% endif %}
+                </div>
+            </li>
+
             {# éléments a menu déroulant #}
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -86,20 +101,11 @@
                 {% endif %}
             </li>
 
-            {% if is_granted ('IS_AUTHENTICATED_REMEMBERED')%}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
-                </li>
-            {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
-                </li>
-            {% endif %}
             {% if is_granted ("ROLE_ADMIN")%}
                 {#
-            <li class="nav-item">
-                <a class="nav-link btn btn-warning" href="{{path('administrateur')}}">Admin</a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-warning" href="{{path('administrateur')}}">Admin</a>
+                </li>
                 #}
                 {# éléments a menu déroulant #}
                 <li class="nav-item dropdown">
@@ -111,9 +117,11 @@
                     {# éléments dans le menu déroulant #}
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ path('activite_new') }}">Créer une activité</a>
+                        <a class="dropdown-item" href="{{ path('createP') }}">Créer un partenaire</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{path('user_index')}}">Gestion des adhérents</a>
                         <a class="dropdown-item" href="{{path('activite_index')}}">Gestion des activités</a>
+                        <a class="dropdown-item" href="{{path('partenaire')}}">Gestion des partenaires</a>
                         <a class="dropdown-item" href="{{path('recap')}}">Gestion des récapitulatfs</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{path('pdfstatus')}}">Status</a>
@@ -123,6 +131,17 @@
                 </li>
             {% else %}
             {% endif %}
+
+            {% if is_granted ('IS_AUTHENTICATED_REMEMBERED')%}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+                </li>
+            {% endif %}
+
         </ul>
     </div>
 </nav>

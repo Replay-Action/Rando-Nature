@@ -2,6 +2,12 @@
     margin: 0;
     padding: 0;
 }
+body, html{
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    overflow-x: hidden;
+}
 body{
     background-color: lightyellow;
     background-image: url("../background/nature2.png");
@@ -32,7 +38,6 @@ hr{
  */
 header{
     background-color: rgba(49,49,49, 0.9) ;
-
     color: white;
     position: fixed;
     width: 100%;
@@ -62,6 +67,199 @@ header{
     background: #ddd;
     color: black;
 }
+/**
+    Partie footer
+ */
+main{
+    position: relative;
+    margin-bottom: 50px;
+}
+footer {
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-image: url("../content/ban page menu footer.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-x: center;
+    background-position-y: center ;
+
+}
+.footer__container{
+    display: flex;
+    justify-content: center;
+    padding:0;
+    margin: 0;
+}
+
+.lien-footer{
+
+}
+.navbar-toggler{
+
+}
+.box2{
+    padding: 0;
+    margin: 0;
+    max-width: 100%;
+}
+.box3{
+
+}
+.box4 a {
+    font-size: large;
+    font-weight: lighter;
+    padding-left: 10px;
+
+}
+.box5{
+
+}
+.box6{
+    padding: 0;
+    margin: 0;
+    max-width: 100%;
+}
+.box4{
+
+}
+.copyright{
+    display: flex;
+    justify-content: flex-end;
+}
+.copyright p{
+    padding-right: 10px ;
+}
+/**
+    Carousel
+ */
+
+
+.item{
+    margin:  40px 10px;
+    box-shadow: 0 15px 35px #3232321a, 0 5px 15px #0000001a;
+    transition: transform 0.3s;
+    transform: translate3d(0, -1px, 0);
+
+}
+
+.item:hover{
+    transform: translate3d(0, -10px, 0);
+}
+
+.item img{
+    display: block;
+    width: 100%;
+    min-height: 100px;
+    max-height: 100px;
+    border-radius: 5px;
+    object-fit: contain;
+}
+
+.item__body{
+    margin: 5px;
+    padding: 10px 25px 10px 25px;
+    background: white;
+    border-radius: 5px;
+}
+
+.item__title{
+    font-size: 20px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.item__title a {
+    color: lightslategray;
+    text-decoration: none;
+}
+
+.items{
+    position: relative;
+}
+
+/**
+CAROUSEL
+ */
+#carousel1{
+    display: flex;
+    justify-content: space-around;
+
+}
+.carousel{
+    position: relative;
+    overflow-x: hidden;
+    width: 60%;
+    height: 60%;
+}
+.carousel__container{
+    transition: transform 0.3s ;
+    transform: translate3d(0, 0, 0);
+}
+.carousel__container::after{
+    content: '';
+    clear: both;
+    display: table;
+}
+.carousel__item{
+    float: left;
+}
+.carousel__next, .carousel__prev{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: #fff url("../logos/right-arrow.png") center center no-repeat;
+    background-size: 20px 20px;
+    border-radius: 50%;
+    top: 50%;
+    margin: 0 20px 0 20px;
+    right: -20px;
+    box-shadow: 0 15px 35px #3232321a, 0 5px 15px #0000001a;
+    cursor: pointer;
+    transition: transform 0.3s, opacity 0.3s;
+
+}
+
+.carousel__next:hover, .carousel__prev:hover{
+    transform: scale(1.2);
+}
+
+.carousel__prev{
+    background-image:url("../logos/left-arrow.png");
+    right: auto;
+    left: -20px;
+}
+.carousel__next--hidden, .carousel__prev--hidden {
+    opacity: 0;
+}
+
+.carousel__pagination{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    display: none;
+}
+.carousel__pagination__button{
+    background-color: #fff;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display:inline-block ;
+    margin: 0 3px;
+    box-shadow: 0 2px 5px #3232321a;
+    transition: transform 0.3s;
+    cursor: pointer;
+}
+.carousel__pagination__button--active, .carousel__pagination__button:hover{
+    transform: scale(1.4);
+}
+@media screen and (min-width: 800px) {
+    .carousel__pagination{
+        display: block;
+    }
+}
 /**************************/
 /**     Page Accueil     **/
 /*************************/
@@ -76,6 +274,7 @@ header{
 .title{
     display: flex;
     justify-content: center;
+    font-weight: bold;
 }
 .logo img{
     width: 340px;
@@ -85,7 +284,16 @@ header{
     width:  800px;
     height: 160px;
 }
-
+.popup_accueil{
+    display: block;
+    position: absolute;
+    background: white;
+    border: black solid 1px;
+    right: 0;
+    margin-top: 300px;
+    margin-right: 150px;
+    padding: 20px;
+}
 
 .paragraphe2{
     display: flex;
@@ -763,7 +971,7 @@ hr.hr-trombinoscope{
     text-align: center;
     position: relative;
     font-size: 17px;
-    padding: 0px;
+    padding: 0;
     background: rgba(0, 0, 0, 0.6);
 }
 
@@ -845,7 +1053,7 @@ hr.hr-bulletin-adhesion{
 /**
     Partie Présentation
  */
-.taille-text-ecran{
+.taille-ecran{
     text-align: center;
     margin: 1em auto;
     max-width: 1000px;
@@ -883,118 +1091,315 @@ iframe{
     height: 100%;
 }
 /**
-    Partie footer
+PARTENAIRE
  */
 .box1{
-    background-color: transparent;
+    display: flex;
+    justify-content: center;
+}
+.title__partenaire{
+    display: flex;
+    justify-content: center;
+    padding-top: 100px;
     text-align: center;
 }
-
-.box2{
-    color: black;
-    text-decoration: black;
-    background-color: transparent;
+.tabel__partenaire{
+    padding: 0;
+    margin: 40px;
+    max-width: 500px;
+    background: antiquewhite;
+    border-radius: 5px;
+    border: solid whitesmoke 1px;
 }
-
-.box3{
-    background-color: transparent;
+.contenue__partenaire{
+    background: white;
+    border-radius: 5px;
+    border: solid white 1px;
+    margin: 20px;
 }
-
-.center-text-footer{
-    display: block;
-    text-align:center;
+.main__partenaire{
+    padding: 0;
 }
-.color-orange{
-    background-color: orange;
+.form__partenaire{
+    max-width: 750px;
+    margin-top: 50px;
+    padding: 20px;
+    border-radius: 15px;
+    border:solid 1px;
+    background-color:rgba(49,49,49,0.7);
+    color: white;
 }
-.image-nav-footer{
-
-
+.nom__partarenaire{
+    font-size: x-large;
+    font-weight: bold;
+    font-style: oblique;
 }
-.pic-ctn {
-    width: 100vw;
-    height: 200px;
-}
-@keyframes display {
-    0% {
-        transform: translateX(200px);
-        opacity: 0;
-    }
-    10% {
-        transform: translateX(0);
-        opacity: 1;
-    }
-    20% {
-        transform: translateX(0);
-        opacity: 1;
-    }
-    30% {
-        transform: translateX(-200px);
-        opacity: 0;
-    }
-    100% {
-        transform: translateX(-200px);
-        opacity: 0;
-    }
-}
-
-.pic-ctn {
-    position: relative;
-    width: 100vw;
-    height: 100px;
-}
-
-.pic-ctn > img {
-    position: absolute;
-    opacity: 0;
-    animation: display 25s infinite;
-
-}
-.pic{
-    left: calc(30%);
-}
-img{
-    max-height: 100%;
-    max-width: 100%;
-}
-img:nth-child(2) {
-    animation-delay: 10s;
-}
-img:nth-child(3) {
-    animation-delay: 18s;
-}
-img:nth-child(4) {
-    animation-delay: 26s;
-}
-img:nth-child(5) {
-    animation-delay: 38s;
-}
-img:nth-child(6){
-    animation-delay: 44s;
-}
-img:nth-child(7){
-    animation-delay: 52s;
-}
-img:nth-child(8){
-    animation-delay: 60s;
-}
-img:nth-child(9){
-    animation-delay: 68s;
-}
-img:nth-child(10){
-    animation-delay: 76s;
-}
-footer{
-    flex-shrink: 0;
-    height: 100%;
-    width: 100%;
+.img__partenaire{
+    display: flex;
     justify-content: center;
-    bottom: 0;
-    background: url("../content/riviere-resize.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
+    padding: 20px;
+    width: 450px ;
+    height: 325px;
 }
-body{
+.img__partenaire img{
+    object-fit: contain;
+}
+.action__partenaire{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+.page__container{
+ display: flex;
+    justify-content: center;
+}
+/**
+    DOCUMENTATION
+ */
+.main__documentation{
+    margin: 10px;
+    padding: 0;
+}
+.container__documentation{
+    background: white;
+    margin: 40px;
+    padding: 0;
+}
+.documentation{
+    padding: 10px;
+    border-radius: 5px;
+}
+.title__documentaire{
+    font-size: x-large;
+    color: lightskyblue;
+    margin: 10px;
+    padding: 0;
+
+}
+.title__documentaire a, .title__documentaire a:hover{
+    text-decoration: none;
+}
+.documentation_date_user{
+
+    display: flex;
+    flex-direction: row;
+}
+.documentation_date_user img, .documentation__etiquette img{
+    width: 20px ;
+    height:20px ;
+    object-fit: contain;
+}
+.documentation_date, .documentation_user{
+    display: flex;
+    flex-direction: row;
+
+}
+.documentation_date, .documentation_user{
+    width: 250px;
+    height: 40px;
+}
+.documentation_date img, .documentation_user img{
+    margin: 0 10px 0 10px;
+}
+
+.documentation_date p, .documentation_user p{
+    color: lightslategray;
+}
+.documentation__resume{
+
+    padding-bottom: 10px;
+}
+.documentation__resume p{
+    margin: 0 10px 0 10px;
+}
+.container__etiquette{
+    margin: 0 10px 0 10px;
+}
+
+.documentation__etiquette, .documentation__etiquette p{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: lightgray;
+    margin: 0 5px 0 5px;
+    padding: 1px;
+    width: max-content;
+    border-radius: 5px;
+}
+.documentation__etiquette p{
+    font-size: x-small;
+    font-style: italic;
+    color: darkgrey;
+
+}
+.documentation__option{
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 10px 0 10px;
+}
+.documentation__etiquette img{
+    width: 12px ;
+    height:12px ;
+    object-fit: contain;
+}
+.documentation__option a{
+    padding: 10px;
+}
+/*
+DOCUMENTATION SHOW
+ */
+.page_box{
+ margin-top: 100px;
+}
+.documentation__box{
+    background: white;
+    padding: 50px;
+    border-radius: 5px;
+    box-shadow: 5px 2px 10px black;
+}
+.main__documentation__show{
+    padding: 0;
+    margin: 0;
+}
+.documentation__show__header{
     display: flex;
     flex-direction: column;
+}
+.categories__show{
+
+}
+.categories__show p {
+    margin: 10px;
+    font-size: small;
+    font-weight: bold;
+    color: lightslategrey;
+}
+.intro__documentation{
+
+}
+.intro__documentation p{
+    margin: 10px;
+    font-weight: bold;
+}
+.title__show{
+
+}
+.title__show p{
+    font-size: xx-large;
+    font-weight: lighter;
+    margin: 10px;
+}
+.documentation_date_user-show{
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+
+}
+.documentation_date, .documentation_date_modifier,.documentation_user {
+
+    margin: 5px;
+    width: max-content;
+}
+
+.documentation_date_user-show img, .documentation__etiquette img{
+    width: 20px ;
+    height:20px ;
+    object-fit: contain;
+}
+.documentation-show__main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.documentation__paragraphe1, .documentation__paragraphe2{
+    margin: 0 80px 0 80px;
+}
+.documentation__image1 p {
+    text-align: center;
+    font-style: italic;
+    font-size: small;
+    color: lightslategrey;
+}
+.documentation__image2 p {
+    text-align: center;
+    font-style: italic;
+    font-size: small;
+    color: lightslategrey;
+}
+.documentation__image1, .documentation__image2{
+    margin: 20px 80px 40px 80px;
+    width: 500px;
+    height: 500px;
+    object-fit: contain;
+}
+.documentation_date_modifier{
+    color: lightslategray;
+    padding-right: 30px;
+}
+.commentaire_box{
+    background: white;
+    padding: 50px;
+    border-radius: 5px;
+    box-shadow: 5px 2px 10px black;
+    margin: 20px 0 20px 0;
+}
+.documentation__option a{
+    text-decoration: none;
+}
+/*
+    FORMULAIRE Commentaire
+ */
+
+
+/**
+    COMMENTAIRE
+ */
+.documentation_commentaire{
+
+    margin: 40px;
+}
+.info_commentaire{
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+}
+.info_commentaire p {
+    margin: 0 10px 0 10px;
+}
+.userName_commentaire{
+    font-weight: lighter;
+    color: black;
+}
+.dateCreation_commentaire, .dateModification_commentaire{
+    display: flex;
+    align-items: center;
+    font-size: small;
+    font-weight: initial;
+    font-style: italic;
+    color: lightslategrey;
+}
+.comment_commentaire{
+
+}
+.comment_commentaire p{
+    font-family: Calibri, serif;
+    margin: 10px;
+}
+.delete_commentaire{
+    display: flex;
+    justify-content: flex-end;
+}
+.info_box{
+    display: flex;
+    flex-direction: row;
+}
+.delete_commentaire img{
+    width: 15px;
+    height: 15px;
+    object-fit: contain;
+}
+.update_commentaire a{
+    text-decoration: none;
+    margin: 10px;
 }

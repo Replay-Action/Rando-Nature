@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container-fluid row page__container">
+        <div class="title__partenaire container-fluid row">
+            <h1 class="title col-12">Liste des partenaires</h1>
+            <div class="center-hr col-12">
+                <hr class="hr25-pourcent">
+            </div>
+        </div>
+        <div class="main__partenaire container-fluid row">
+
+            {% for partenaire in partenaires %}
+                <div class="tabel__partenaire col-lg-4">
+                    <div class="contenue__partenaire">
+                    <div class="img__partenaire">
+                    <a href="{{ partenaire.url }}">
+                        <img class="col-lg-12" src="{{ asset("logos/"~ partenaire.logo) }}" alt="x">
+                    </a>
+                    </div>
+                    <a class="nom__partarenaire col-lg-12" href="{{ partenaire.url }}">{{ partenaire.nom }}</a>
+                    </div>
+                    <div class="action__partenaire">
+                        <a href="{{ path('partenaire_update', {"id":partenaire.id}) }}">Modifier</a>
+                        <a href="{{ path('partenaire_delete', {"id":partenaire.id}) }}" onclick="return confirm('Voulez-vous vraiment supprimer ce partenaire ?')">Supprimer</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

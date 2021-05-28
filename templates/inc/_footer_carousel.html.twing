@@ -1,0 +1,160 @@
+<div id="carousel1">
+    {% for partenaire in partenaires %}
+        <div class="item">
+            <div class="item__image">
+                <a href="{{ partenaire.url }}" target="_blank"><img alt="" src="{{ asset("logos/"~ partenaire.logo) }}"></a>
+
+            </div>
+            <div class="item__body">
+                <div class="item__title">
+                    <a href="{{ partenaire.url }}" target="_blank">{{ partenaire.nom }}</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+    <!--
+    <div id="carousel2">
+
+        <div class="item">
+            <div class="item__image">
+                <img alt="" src="{{asset('logos/logo_LCV6-blanc.png')}}">
+            </div>
+            <div class="item__body">
+                <div class="item__title">
+                    Mon titre 1
+                </div>
+                <div class="item__description">
+                    Ici une petite description pour tester le carousel 10
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="item__image">
+                <img alt="" src="{{asset('logos/logo_LCV6-blanc.png')}}">
+            </div>
+            <div class="item__body">
+                <div class="item__title">
+                    Mon titre 2
+                </div>
+                <div class="item__description">
+                    Ici une petite description pour tester le carousel 20
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="item__image">
+                <img alt="" src="{{asset('logos/logo_LCV6-blanc.png')}}">
+            </div>
+            <div class="item__body">
+                <div class="item__title">
+                    Mon titre 2
+                </div>
+                <div class="item__description">
+                    Ici une petite description pour tester le carousel 30
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="item__image">
+                <img alt="" src="{{asset('logos/logo_LCV6-blanc.png')}}">
+            </div>
+            <div class="item__body">
+                <div class="item__title">
+                    Mon titre 2
+                </div>
+                <div class="item__description">
+                    Ici une petite description pour tester le carousel 40
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="item__image">
+                <img alt="" src="{{asset('logos/logo_LCV6-blanc.png')}}">
+            </div>
+            <div class="item__body">
+                <div class="item__title">
+                    Mon titre 2
+                </div>
+                <div class="item__description">
+                    Ici une petite description pour tester le carousel 50
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="carousel3">
+
+        <div class="item">
+            <div class="item__image">
+                <img alt="" src="{{asset('logos/logo_LCV6-blanc.png')}}">
+            </div>
+            <div class="item__body">
+                <div class="item__title">
+                    Mon titre 1
+                </div>
+                <div class="item__description">
+                    Ici une petite description pour tester le carousel 10
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="item__image">
+                <img alt="" src="{{asset('logos/logo_LCV6-blanc.png')}}">
+            </div>
+            <div class="item__body">
+                <div class="item__title">
+                    Mon titre 2
+                </div>
+                <div class="item__description">
+                    Ici une petite description pour tester le carousel 20
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="item__image">
+                <img alt="" src="{{asset('logos/logo_LCV6-blanc.png')}}">
+            </div>
+            <div class="item__body">
+                <div class="item__title">
+                    Mon titre 3
+                </div>
+                <div class="item__description">
+                    Ici une petite description pour tester le carousel 30
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="item__image">
+                <img alt="" src="{{asset('logos/logo_LCV6-blanc.png')}}">
+            </div>
+            <div class="item__body">
+                <div class="item__title">
+                    Mon titre 4
+                </div>
+                <div class="item__description">
+                    Ici une petite description pour tester le carousel 40
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="item__image">
+                <img alt="" src="{{asset('logos/logo_LCV6-blanc.png')}}">
+            </div>
+            <div class="item__body">
+                <div class="item__title">
+                    Mon titre 5
+                </div>
+                <div class="item__description">
+                    Ici une petite description pour tester le carousel 50
+                </div>
+            </div>
+        </div>
+        -->

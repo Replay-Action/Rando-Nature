@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container-fluid">
+        <div class="title__partenaire container-fluid row">
+            <h1 class="col-12">Création d'un article</h1>
+            <div class="center-hr col-12">
+                <hr class="hr25-pourcent">
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid box1">
+        <div class="main__partenaire">
+            <div class="form__partenaire">
+                {{ form_start(form) }}
+                <p>Titre</p>
+                {{ form_widget(form.titre) }}
+                <p>Intro</p>
+                {{ form_widget(form.intro) }}
+                <p>Categorie</p>
+                {{ form_widget(form.categorie) }}
+                <p>Paragraphe</p>
+                {{ form_widget(form.paragraphe1) }}
+                {% if(form.paragraphe1 == null or form.paragraphe1 == '') %}
+                    {% else %}
+                    <p>Paragraphe</p>
+                    {{ form_widget(form.paragraphe2) }}
+                {% endif %}
+                <p>Url</p>
+                {{ form_widget(form.url) }}
+                <p>Paragraphe</p>
+                {{ form_widget(form.image) }}
+                <p>Paragraphe</p>
+                {{ form_widget(form.imageLegende) }}
+                <p>Paragraphe</p>
+                {{ form_widget(form.image2) }}
+                <p>Paragraphe</p>
+                {{ form_widget(form.imageLegende2) }}
+                {{ form_end(form) }}
+                <a href="{{ path('documentation') }}">Retour</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

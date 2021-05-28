@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Data\SearchData;
 use App\Entity\Activite;
-use App\Entity\Lieu;
 use App\Form\ActiviteType;
 use App\Form\SearchForm;
 use App\Repository\ActiviteRepository;
@@ -24,6 +23,10 @@ class ActiviteController extends AbstractController
 {
     /**
      * @Route("/", name="activite_index", methods={"GET"})
+     * @param ActiviteRepository $activiteRepository
+     * @param EtatRepository $etatRepository
+     * @param Request $request
+     * @return Response
      */
     public function index(ActiviteRepository $activiteRepository,
                           EtatRepository $etatRepository, Request $request): Response
@@ -38,7 +41,7 @@ class ActiviteController extends AbstractController
         $form = $this->createForm(SearchForm::class, $data);
 
         $form->handleRequest($request);
-        $products= $activiteRepository->findSearch($data);
+        $products = $activiteRepository->findSearch($data);
 
         #on liste toutes les activités comme le findall mais en une requete
         /**$acti = $activiteRepository->findSearch();**/
@@ -61,6 +64,11 @@ class ActiviteController extends AbstractController
 
     /**
      * @Route("/new", name="activite_new", methods={"GET","POST"})
+     * @param Request $request
+     * @param LieuRepository $lieuRepository
+     * @param EtatRepository $etatRepository
+     * @param EntityManagerInterface $entityManager
+     * @return Response
      */
     public function new(Request $request, LieuRepository $lieuRepository,
                         EtatRepository $etatRepository,
@@ -109,6 +117,8 @@ class ActiviteController extends AbstractController
 
     /**
      * @Route("/{id}", name="activite_show", methods={"GET"})
+     * @param Activite $activite
+     * @return Response
      */
     public function show(Activite $activite): Response
     {
@@ -153,6 +163,10 @@ class ActiviteController extends AbstractController
 
     /**
      * @Route("/{id}", name="activite_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param Activite $activite
+     * @param DocPdfRepository $docPdfRepository
+     * @return Response
      */
     public function delete(Request $request, Activite $activite, DocPdfRepository $docPdfRepository): Response
     {
@@ -186,6 +200,8 @@ class ActiviteController extends AbstractController
 
     /**
      * @Route("/{id}/sinscrire", name="activite_sinscrire", methods={"GET","POST"})
+     * @param Activite $activite
+     * @return Response
      */
 
     public function sinscrire(Activite $activite): Response
@@ -208,6 +224,8 @@ class ActiviteController extends AbstractController
 
     /**
      * @Route("/{id}/sedesister", name="activite_sedesister", methods={"GET","POST"})
+     * @param Activite $activite
+     * @return Response
      */
 
     public function sedesister(Activite $activite): Response
@@ -228,6 +246,9 @@ class ActiviteController extends AbstractController
 
     /**
      * @Route ("/{id}/annuler", name="activite_annuler",methods={"GET","POST"})
+     * @param Activite $activite
+     * @param EtatRepository $etatRepository
+     * @return Response
      */
 
     public function annuler(Activite $activite, EtatRepository $etatRepository): Response

@@ -89,13 +89,14 @@ et celui de la vignette clignotante #}
     <div class="box-intro container-fluid">
         <div class="row">
 
-            <div class="en-tete-accueil row col-12">
+            <div class="en-tete-accueil row col-12 col-sm-12">
                     <div class="logo col-12">
                     <img src="{{ asset('logos/logo-velo.png') }}">
                     </div>
-                    <div class="title col-12">
+                    <div class="title col-lg-12 col-sm-12">
                     <img src="{{ asset('logos/velorandonaturebruz-maj2.png') }}">
                     </div>
+                {% include ('home/_news_activite.html.twig') %}
             </div>
 
             <div class="carousel-container col-12">

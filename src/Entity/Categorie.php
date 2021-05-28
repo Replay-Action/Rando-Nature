@@ -26,6 +26,10 @@ class Categorie
      * @ORM\OneToMany (targetEntity=Activite::class, mappedBy="categorie")
      */
     private $activites;
+    /**
+     * @ORM\OneToMany (targetEntity=Documentation::class, mappedBy="categorie")
+     */
+    private $documentation;
 
 
     public function getId(): ?int
@@ -54,9 +58,20 @@ class Categorie
     {
         $this->activites = $activites;
     }
+
+    public function getDocumentation()
+    {
+        return $this->documentation;
+    }
+
+    public function setDocumentation($documentation): void
+    {
+        $this->documentation = $documentation;
+    }
+
     public function __toString()
     {
         return $this->getLibelle();
-        
     }
+
 }
