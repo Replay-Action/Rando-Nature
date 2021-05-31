@@ -6,10 +6,9 @@
 </div>
 
 {# le formulaire du user #}
-{{ form_start(form) }}
 <div class="row ">
     <div class="col">
-        <table class="table table-borderless d-flex justify-content-center">
+        <table class="table table-borderless d-flex justify-content-center text-white">
             <tbody>
             <tr>
                 <th scope="col">Role :</th>
@@ -54,17 +53,19 @@
                 <td>{{ form_widget(form.photos) }}</td>
             </tr>
             </tbody>
+
         </table>
     </div>
+    <div class="m-3 row d-flex justify-content-center">
+        <div class="col-lg-12">
+            <p class="justify-content-center d-flex">{{ form_widget(form.enregistrer) }}</p>
+        </div>
+        <div class="col-lg-12 justify-content-center d-flex">
+            <a href="{{ path('user_index') }}" class="btn color-button-retour">Retour</a>
+        </div>
+    </div>
+    {{ form_end(form) }}
 </div>
-<div class="row justify-content-center">
 
-
-    <button class="col-lg-4 mb-5 mt-2 btn btn-primary btn btn-lg">{{ button_label|default('Enregistrer') }}</button>
-    <a href="{{ path('user_index') }}" class="col-lg-4 mb-5 mt-2 btn btn-outline-primary btn btn-lg bg-light">Retour</a>
-
-
-</div>
-{{ form_end(form) }}
 
 

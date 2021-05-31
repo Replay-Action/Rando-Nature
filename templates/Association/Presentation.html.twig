@@ -23,13 +23,18 @@
     {# <div class="container-fluid">
         <img src="{{ asset ('/content/velo-pont resize.jpg') }}" class="img-fluid" width="100%">
     </div> #}
-    <div class="title presentation">
-        <div class="taille-text-ecran"><br>
-            <h1 class="font-weight-bold">Présentation</h1>
-            <hr>
 
-    <div class="container-fluid">
-        <div class="row justify-content-center text-center">
+    <div class="title-presentation row">
+        <h1 class="">Présentation</h1>
+
+    <div class="center-hr">
+        <hr class="hr25-pourcent center">
+    </div>
+    </div>
+    <div class="">
+
+    <div class="container">
+        <div class="row justify-content-center text-presentation">
 
                     <p> L'association a été créée le <strong>20 Janvier 2020</strong> par deux amis anciens vttistes.<p>
 
@@ -59,10 +64,12 @@
                     </div>
 
                 </div>
-                <hr>
+                    <div class="center-hr">
+                        <hr class="hr25-pourcent center">
+                    </div>
                 <div class="border bg-light p-3">
                     <h2 class="text-sous-ligner-vert">L'association proposera et organisera également:</h2>
-                    <div>
+                    <div class="text-presentation">
                         <p>La projection de films-documentaires sur le voyage à vélo ou à pied, notamment en partenariat avec l'association « aux 4 coins du monde »</p>
                         <p>La découverte d'autres activités sportives de loisir de plein-air (longe-côte..) en partenariat avec d'autres associations spécialisées.</p>
                     </div>
@@ -70,7 +77,7 @@
                 <br>
                 <div class="border bg-light p-3 ">
                     <h2 class="text-sous-ligner-vert">Chaque membre de l'association doit adhérer aux valeurs de Vélo Rando Nature Bruz définies dans la charte de l'association :</h2>
-                    <div>
+                    <div class="text-presentation">
                         <ul>
                             <li>
                         Respect et tolérance .
@@ -82,30 +89,32 @@
                     </div>
                 </div>
 
-                <hr>
-                <div>
+                    <div class="center-hr">
+                        <hr class="hr25-pourcent center">
+                    </div>
+                <div class="text-presentation">
                     <p>Chacun pourra participer à la vie et au développement de Vélo Rando Nature Bruz en faisant des propositions et en prenant des initiatives. </p>
                     <p>RNB se construira grâce à la mise en commun des compétences, de la participation et de la motivation de chacun.</p>
                 </div>
-                <hr>
+                    <div class="center-hr">
+                        <hr class="hr25-pourcent center">
+                    </div>
 
                 <div class="border bg-light p-3">
                     <h2 class="text-sous-ligner-vert">Nos deux devises :</h2>
-                    <div>
+                    <div class="text-presentation">
                         <p>« Roule tes souvenirs sont devant »</p>
                         <p>« Nous partons tous ensemble, nous roulons ensemble et nous rentrons ensemble »</p>
                     </div>
                 </div>
         <div class="row">
-            <div class="col-lg-6 col-sm-12">
-                <button class="m-3 btn btn-primary center-block btn-lg">
-                <a class="text-white" href="{{ asset('documents/Statuts_asso_Rando nature Bruz.pdf') }}" target="_blank" >Status de l'association</a>
-                </button>
+            <div class="col-lg-12 col-sm-12 d-flex justify-content-center">
+                <a class="m-3 btn btn-primary btn-lg text-white" href="{{ asset('documents/Statuts_asso_Rando nature Bruz.pdf') }}" target="_blank" >Status de l'association</a>
             </div>
-            <div class="col-lg-6 col-sm-12">
-                <button class="m-3 btn btn-primary center-block btn-lg">
-                <a class="text-white" href="{{ asset('documents/Charte_asso_Rando nature Bruz.pdf') }}" target="_blank">Charte de l'association</a>
-                </button>
+            <div class="col-lg-12 col-sm-12 d-flex justify-content-center">
+
+                <a class="m-3 btn btn-primary btn-lg text-white" href="{{ asset('documents/Charte_asso_Rando nature Bruz.pdf') }}" target="_blank">Charte de l'association</a>
+
             </div>
         </div>
                 {# boutons d'affichage du pdf des status et de la charte
@@ -171,6 +180,5 @@
                 </div>#}
 
             </div>
-        </div>
     </div>
 {% endblock %}

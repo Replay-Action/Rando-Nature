@@ -10,15 +10,19 @@
     </div>
    #}
 
+    <div class=" title-modifier-profil-admin">
+        <h1>Modifier le profil</h1>
+    </div>
+    <div class="center-hr">
+        <hr class="hr25-pourcent center">
+    </div>
+
+
     <div class="admin-profil-fond-noir col-lg-6 col-sm-12 container-fluid">
-    <div class="row m-5 d-flex border col-lg-10 col-sm-9 justify-content-center">
     {% if (user1 == user.username) or is_granted("ROLE_ADMIN") %}
 
-        <h1>Modifier le profil</h1>
-        </div>
-
         {# on boucle sur les photos #}
-        <div class="row justify-content-center ">
+        <div class="row justify-content-center m-3">
             <div class="row d-flex col-lg-4 ">
                 {% for photo in user.photos %}
                     <div>
@@ -27,7 +31,7 @@
                     </div>
                     <div>
                     {# On ajoute un lien permettant de supprimer une image (sera géré en Ajax) #}
-                    <a class="col-lg-1" href="{{ path('user_delete_photo', {id: photo.id}) }}" data-delete
+                    <a class="col-lg-1 text-white" href="{{ path('user_delete_photo', {id: photo.id}) }}" data-delete
                        data-token="{{ csrf_token('delete' ~ photo.id ) }}">Supprimer</a>
                     </div>
                 {% endfor %}
@@ -35,10 +39,10 @@
         </div>
 
         {# on inclue le formulaire #}
-        {{ include('user/_form.html.twig', {'button_label': 'modifier'}) }}
+        {{ include('user/_form.html.twig', {'button_label': 'Enregistrer'}) }}
 
         {# on inclue le formulaire d'effacement #}
-        <div class="row d-flex col-lg-12 justify-content-center">
+        <div class=" d-flex col-lg-12 justify-content-center">
             {{ include('user/_delete_form.html.twig') }}
         </div>
         </div>

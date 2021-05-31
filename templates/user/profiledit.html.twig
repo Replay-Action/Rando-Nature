@@ -13,6 +13,9 @@
         <div class="col-lg-12 title-modifier-profil">
             <h1>Profil</h1>
         </div>
+        <div class="center-hr ">
+            <hr class="hr25-pourcent center">
+        </div>
     <div class="row col-lg-6 col-sm-10 profil-fond-noir border">
 
 
@@ -22,10 +25,10 @@
 
                 {# on boucle sur les photos pour l'afficher#}
                 {% for photo in user.photos %}
-                    <div>
-                    <img src="{{ asset ('photo-profil/'~ photo.name) }}" class="img-fluid affichage-photo-profiledit col-lg-6">
+                    <div class="affichage-photo-profiledit">
+                    <img src="{{ asset ('photo-profil/'~ photo.name) }}" class="col-lg-8">
                     </div>
-                    <div>
+                    <div class="col-lg-6">
                     {# On ajoute un lien permettant de supprimer une image (sera géré en Ajax) #}
                     <a href="{{ path('user_delete_photo', {id: photo.id}) }}" data-delete
                        data-token="{{ csrf_token('delete' ~ photo.id ) }}" class="text-white">Supprimer</a>
@@ -34,12 +37,39 @@
         </div>
 
         {# on appelle le formulaire user #}
-        {{ form_start(form) }}
-        <div class="row d-flex justify-content-center col-lg-12">
-            <div class="col">
+
+
+        <div class="row div-ext-modifier-profil col-lg-12">
+            <div class="col-lg-6 div-int-modifier-profil">
+                {{ form_start(form) }}
+                <p>Pseudo : {{ form_widget(form.username) }}</p>
+                {% if is_granted("ROLE_ADMIN")%}
+                <p>Role : {{ form_widget(form.roles) }}</p>
+                <p>Référent : {{ form_widget(form.referents) }}</p>
+                {% else %}
+                    <p hidden>{{ form_widget(form.roles) }}</p>
+                    <p hidden>{{ form_widget(form.referents) }}</p>
+                {% endif %}
+                <p>Prénom : {{ form_widget(form.prenom) }}</p>
+                <p>Nom : {{ form_widget(form.nom) }}</p>
+                <p>Mail : {{ form_widget(form.email) }}</p>
+                <p>Téléphone : {{ form_widget(form.telephone) }}</p>
+                <p>Mot de Passe : {{ form_widget(form.password) }}</p>
+                <p>Date de Naissance : {{ form_widget(form.date_naissance) }}</p>
+                <p>{{ form_widget(form.photos) }}</p>
+                <div class="m-5 row d-flex justify-content-center">
+                    <div class="col-lg-6">
+                <p>{{ form_widget(form.enregistrer) }}</p>
+                    </div>
+                    <div class="col-lg-6">
+                <a href="{{ path('user_show', { 'id': app.user.id}) }}" class="btn color-button-retour">Retour</a>
+                    </div>
+                </div>
+                {{ form_end(form) }}
+                {#
                 <table class="table table-borderless d-flex justify-content-center ">
                     <tbody class="th-modifier-profil">
-                    <tr>{# on le cache pour ne pas l'afficher et eviter qu'il s'affiche plus bas #}
+                    <tr>{# on le cache pour ne pas l'afficher et eviter qu'il s'affiche plus bas
                         <th hidden scope="col">role :</th>
                         <td hidden>{{ form_widget(form.roles) }} </td>
                     </tr>
@@ -77,19 +107,12 @@
                         <th scope="col">Photo du profil :</th>
                         <td>{{ form_widget(form.photos) }}</td>
                     </tr>
+                    <tr>
+                        <td>{{ form_widget(form.enregistrer) }}</td>
+                    </tr>
                     </tbody>
                 </table>
-            </div>
-        </div>
-        <div class="row d-flex justify-content-center">
-
-            <div class="col-lg-3 col-sm-6">
-            <button class="mb-5 mt-2 btn btn-primary btn btn-lg ">{{ button_label|default('Enregistrer') }}</button>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-            <a href="{{ path('user_show', { 'id': app.user.id}) }}"
-               class="mb-5 mt-2 btn btn-outline-primary btn btn-lg bg-light">Retour</a>
-          {#   {{ form_end(form) }}#}
+                #}
             </div>
         </div>
     </div>
