@@ -2,13 +2,11 @@
 
 namespace App\Controller;
 
-use App\Entity\Activite;
-use App\Entity\User;
 use App\Form\PdfStatusType;
 use App\Repository\ActiviteRepository;
-use App\Repository\PartenaireRepository;
+use App\Repository\UserRepository;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -36,7 +34,7 @@ class HomeController extends AbstractController
     public function index(ActiviteRepository $activiteRepository): Response
     {
         #pour afficher la pastille clignotante de la page accueil
-        $date = new \DateTime('now');
+        $date = new DateTime('now');
         $actidispo = $activiteRepository->affichepastille();
 
 
@@ -58,11 +56,15 @@ class HomeController extends AbstractController
 
     /**
      * @Route("/organisation", name="organisation")
+     * @param UserRepository $userRepository
+     * @return Response
      */
-    public function organisation(): Response
+    public function organisation(UserRepository $userRepository): Response
     {
 
-        return $this->render('Association/Organisation.html.twig');
+        return $this->render('Association/Organisation.html.twig',[
+            'users' => $userRepository->orderUserByReferent(),
+        ]);
     }
 
 

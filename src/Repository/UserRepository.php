@@ -38,7 +38,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     }
 
     #pour lister tous les user en une seule requete pour le trombi
-    public function findUsers()
+    public function OrfindUsers()
     {
         $qb = $this->createQueryBuilder('u');
 
@@ -50,7 +50,30 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         return new Paginator($query);
     }
 
+    #On récupère la table User et la table Referent #
+    #Ensuite on tris les users via le champ ordre de la table Referent#
+    public function orderUserByReferent(){
+        $query = $this
+            ->createQueryBuilder('u')
+            ->innerJoin('u.referents', 'r')
+            ->addSelect('r')
+            ->orderBy('r.ordre', 'ASC')
+        ;
+        return $query->getQuery()->getResult();
+    }
 
+
+    public function orderUserByReferentWithPhoto(){
+        $query = $this
+            ->createQueryBuilder('u')
+            ->innerJoin('u.referents', 'r')
+            ->addSelect('r')
+            ->leftJoin('u.photos','p')
+            ->addSelect('p')
+            ->orderBy('r.ordre', 'ASC')
+        ;
+        return $query->getQuery()->getResult();
+    }
     // public function findUsers2()
     // {
     //     $qb = $this->createQueryBuilder('u');

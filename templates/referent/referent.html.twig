@@ -10,25 +10,21 @@
         <div>
         <h1>Liste des Référents</h1>
         </div>
-    {% for referent in referents %}
-        <div class="col-lg-12 row liste-referent">
-            <div class="col-lg-1">
-                <p class=" mb-5 mt-2 ">{{ referent.nom }}</p>
-            </div>
-            <div class="col-lg-1 d-flex justify-content-center">
-                <a class="mb-5 mt-2 btn " href="{{ path('updateRef', {"id": referent.id}) }}">Modifier</a>
-                <a class="mb-5 mt-2 btn " href="{{ path('deleteRef', {"id": referent.id}) }}">Supprimer</a>
-            </div>
-        </div>
-
-
-        {% endfor %}
-        <div>
-            <a class="mb-5 mt-2 btn btn-primary btn btn-lg" href="{{ path('createRef') }}">Créer</a>
-        </div>
-        <div>
-            <a class="mb-5 mt-2 btn btn-primary btn btn-lg" href="{{ path('showRef') }}">Ref</a>
-        </div>
     </div>
+<div class="container color_box" >
+    {% for referent in referents %}
+        <div class="color_referent col-lg-4">
+            <div class="col-lg-12 liste-referent">
+                <div class="col-lg-1">
+                    <p class=" mb-5 mt-2 ">
+                        {{ referent.nom }}
+                    </p>
+                </div>
+                <a href="{{ path('updateRef', {'id':referent.id}) }}">Modifier</a>
+                <a href="{{ path('deleteRef', {'id':referent.id}) }}">Supprimer</a>
+            </div>
+        </div>
+    {% endfor %}
+</div>
     {% endif %}
 {% endblock %}

@@ -23,7 +23,7 @@
                 {# on boucle sur les photos pour l'afficher#}
                 {% for photo in user.photos %}
                     <div>
-                    <img src="{{ asset ('photo-profil/'~ photo.name) }}" class="img-fluid affichage-photo-profiledit col-lg-6">
+                    <img src="{{ asset ('photo-profil/'~ photo.name) }}" class="img-fluid affichage-photo-profiledit col-lg-6" alt="">
                     </div>
                     <div>
                     {# On ajoute un lien permettant de supprimer une image (sera géré en Ajax) #}

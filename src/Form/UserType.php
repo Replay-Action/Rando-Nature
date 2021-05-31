@@ -2,16 +2,13 @@
 
 namespace App\Form;
 
-use App\Entity\Photo;
+
 use App\Entity\Referent;
 use App\Entity\User;
-use Doctrine\DBAL\Types\JsonType;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
@@ -20,10 +17,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\CallbackTransformer;
 
-use Symfony\Component\Validator\Constraints\Choice;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
-use function Sodium\add;
+
 
 class UserType extends AbstractType
 {
@@ -68,7 +64,7 @@ class UserType extends AbstractType
                 ],
             ])
             ->add('referents', EntityType::class,[
-                'class'=>Referent::class,
+                'class' => Referent::class
             ])
 
             #class birthday pour que les années soient dispos jusque 1901#

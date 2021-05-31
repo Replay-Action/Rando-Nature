@@ -16,11 +16,8 @@ class ReferentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom');
-        /**
-         *   ->add('user',EntityType::class,[
-        'class'=>User::class,
-        ] )*/
+            ->add('nom')
+           ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

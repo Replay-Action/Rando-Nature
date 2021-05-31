@@ -36,9 +36,15 @@ class Referent
     private $nom;
 
     /**
+     * @ORM\Column (type="integer")
+     */
+    private $ordre;
+
+    /**
      * @ORM\OneToMany (targetEntity=User::class, mappedBy="referents", cascade={"persist","remove"})
      */
     private $user;
+
 
 
     public function getId(): ?int
@@ -58,6 +64,15 @@ class Referent
         return $this;
     }
 
+    public function getOrdre()
+    {
+        return $this->ordre;
+    }
+
+    public function setOrdre($ordre): void
+    {
+        $this->ordre = $ordre;
+    }
 
     /**
      * @return Collection|User[]

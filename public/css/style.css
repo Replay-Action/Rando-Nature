@@ -466,28 +466,66 @@ img:nth-child(5) {
 .bureau hr{
     width: 25%;
 }
-.partie0{
+.bureau_main{
     display: flex;
-    justify-content: space-evenly;
-    padding: 0;
-    margin: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: max-content;
 }
 .partie1{
-    padding-left: 300px;
-
+    margin: 50px;
 }
-
 .partie2{
+    margin: 20px;
+}
+#img-bureau{
+    width: 600px;
+    height: 600px;
+}
+.president{
+    margin: 10px;
+}
+.secretaire_tresorier{
+    margin: 10px;
+}
+.teste{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-right: 300px;
-}
-#img-bureau{
-    margin: 50px;
     width: 600px;
     height: 600px;
+    margin: 20px;
+}
+.role_format{
+    display: flex;
+    flex-direction: row;
+}
+.role_user{
+    font-size: x-large;
+    font-style: oblique;
+    font-weight: lighter;
+    margin: 5px;
+}
+.prenom_nom_user{
+    display: flex;
+    flex-direction: row;
+    font-size: x-large;
+    font-style: oblique;
+    font-weight: lighter;
+}
+.prenom_nom_user p {
+    margin: 5px;
+}
+.president{
+    padding: 10px;
+}
+.other{
+    padding: 10px;
+    margin: 10px;
+}
+.secretaire_tresorier{
+    padding: 10px;
 }
 /**
 ----------------------------------------
@@ -733,42 +771,23 @@ hr.hr-new-activite{
 /**
 Partie Referent
  */
-.boxflorian{
-    margin: 20px;
-    background-color: fuchsia;
-}
-.president{
-    background-color: #aacd4e;
-}
-.autres{
-    background-color: #ffcc00;
-}
 .global-referent{
     margin-top: 100px;
     justify-content: center;
     display: flex;
     background-color: #ffcc00;
-}
-.liste-referent{
-    justify-content: center;
-    display: flex;
-    background-color: #aacd4e;
 
 }
-.abcdef{
+.color_box{
     display: flex;
-    justify-content: center;
-
+    flex-direction: row;
+    flex-wrap: wrap;
 }
-.tilte__referent{
-    display: flex;
-    justify-content: center;
-    padding-top: 100px;
-    text-align: center;
-}
-.button-enregistrer-new-referent{
-    display: flex;
-    justify-content: center;
+.color_referent{
+    margin: 20px;
+    background: #AA3333;
+    width: max-content;
+    padding: 50px;
 }
 /**
 Partie Gestion adhérent
@@ -916,10 +935,72 @@ Partie Profil
 /**
 Partie Trombinoscope
  */
-hr.hr-trombinoscope{
-    height: 1px;
-    border: none;
-    background: black;
+.trombi_page{
+    display: flex;
+    justify-content: center;
+    background: #aacd4e;
+}
+.title_trombi{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    margin: 100px 0 50px 0;
+}
+.trombi_box{
+    display: flex;
+    flex-direction: column;
+}
+.trombi_box p {
+    text-align: center;
+}
+.trombi_referent{
+    font-weight: bold;
+    font-size: xx-large;
+}
+.trombi_infos{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.trombi_infos img{
+    object-fit: contain;
+    width: 100px;
+    height: 100px;
+}
+.trombi_order1{
+    display: flex;
+    justify-content: center;
+    background: #AA3333;
+}
+.trombi_order2{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    background: #5eb5e0;
+}
+.trombi_order3{
+    background: lightpink;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+}
+.trombi_order4{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    background: lightseagreen;
+}
+.jaune{
+    margin: 10px;
+    width: 250px;
+    height: 250px;
+    background: #ffcc00;
 }
 .hovereffect {
     width: 100%;
@@ -1171,7 +1252,7 @@ PARTENAIRE
 }
 .title__documentaire{
     font-size: x-large;
-    color: lightskyblue;
+    color: royalblue;
     margin: 10px;
     padding: 0;
 
@@ -1204,6 +1285,10 @@ PARTENAIRE
 
 .documentation_date p, .documentation_user p{
     color: lightslategray;
+}
+.documentation_lien a{
+    margin: 0 20px 0 10px;
+    text-decoration: none;
 }
 .documentation__resume{
 
@@ -1288,6 +1373,7 @@ DOCUMENTATION SHOW
     font-size: xx-large;
     font-weight: lighter;
     margin: 10px;
+    color:royalblue ;
 }
 .documentation_date_user-show{
     display: flex;

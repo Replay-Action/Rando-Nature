@@ -34,15 +34,59 @@
     <h1 class="col-12">Bureau</h1>
     <hr>
     </div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="partie0 example-wrapper row col-12">
-                <div class="partie1 col-5">
-                <p><img id="img-bureau" src="{{ asset('content/Groupe.png') }}"></p>
-                </div>
-                <div class="partie2 col-5">
 
-{# corps de la page #}
+    <div class="container bureau_main">
+
+        <div class="partie1 col-sm-12 col-lg-5">
+            <p><img id="img-bureau" src="{{ asset('content/Groupe.png') }}" alt=""></p>
+        </div>
+
+        <div class="partie2 col-sm-12 col-lg-5">
+            <div class="teste">
+                {% for user in users %}
+                <div class="flex1">
+                {% if user.referents.getNom() == 'Président' %}
+                    <div class="president role_format">
+                        <p class="role_user">{{ user.referents.getNom() }}</p>
+                        <div class="prenom_nom_user ">
+                            <p>{{ user.prenom }}</p>
+                            <p>{{ user.nom }}</p>
+                        </div>
+                    </div>
+                {% endif %}
+                </div>
+                <div class="flex2">
+                {% if user.referents.getNom() == 'Secrétaire' or user.referents.getNom() == 'Trésorier' %}
+                    <div class="secretaire_tresorier role_format">
+                        <p class="role_user">{{ user.referents.getNom() }}</p>
+                        <div class="prenom_nom_user ">
+                            <p>{{ user.prenom }}</p>
+                            <p>{{ user.nom }}</p>
+                        </div>
+                    </div>
+                {% endif %}
+                </div>
+                <div class="flex3">
+                {% if user.referents.getNom() != 'Président' and user.referents.getNom() != 'Secrétaire'
+                    and user.referents.getNom() != 'Trésorier' and user.referents.getNom() != 'Adhérent' %}
+                    <div class="other role_format">
+                        <p class="role_user">{{ user.referents.getNom() }}</p>
+
+                        <div class="prenom_nom_user ">
+                            <p>{{ user.prenom }}</p>
+                            <p>{{ user.nom }}</p>
+                        </div>
+                    </div>
+                {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+
+                    {#
                     <h2>
                         <div class="d-inline p-2 font-weight-bold">Président :</div>
 
@@ -110,8 +154,5 @@
 
                         </div>
                     </h4>
-                </div>
-            </div>
-        </div>
-    </div>
+                    #}
 {% endblock %}
