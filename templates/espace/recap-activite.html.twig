@@ -81,11 +81,11 @@
                                             {% if (activite.getDifficulte() == 0 or activite.getDifficulte() == '')%}
                                             {% else %}
                                                 {% if ( activite.getDifficulte() == 1) %}
-                                                    <img src="{{ asset("tools/difficulte1.png") }}">
+                                                    <img src="{{ asset("tools/difficulte1.png") }}" alt="">
                                                 {% elseif ( activite.getDifficulte() == 2) %}
-                                                    <img src="{{ asset("tools/difficult2.png") }}">
+                                                    <img src="{{ asset("tools/difficult2.png") }}" alt="">
                                                 {% else %}
-                                                    <img src="{{ asset("tools/difficult3.png") }}">
+                                                    <img src="{{ asset("tools/difficult3.png") }}" alt="">
                                                 {% endif %}
                                             {% endif %}
                                         </div>
@@ -111,7 +111,7 @@
                             </div>
                             {#  #}<div class="buton-container row col-11">
                                 <div class="inscrit col-6">
-                                    <p> {{ activite.users.count }} personnes ont participé à cette activité</p>
+                                    <p> {{ activite.users.count }} personne(s) ont participé(s) à cette activité</p>
                                 </div>
                                 <div class="button col-6">
                                     {% if is_granted(["ROLE_USER"]) %}

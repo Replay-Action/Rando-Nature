@@ -71,7 +71,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{path('activite_index')}}">Programme</a>
             </li>
-
+            <li>
+                <a class="nav-link" href="{{ path('album') }}">Album photo</a>
+            </li>
             {# éléments a menu déroulant #}
             {% if is_granted ("ROLE_USER")%}
                 <li class="nav-item dropdown">
@@ -118,7 +120,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ path('activite_new') }}">Créer une activité</a>
                         <a class="dropdown-item" href="{{ path('createP') }}">Créer un partenaire</a>
-                        <a class="dropdown-item" href="createRef">Créer un référent</a>
+                        <a class="dropdown-item" href="{{ path('createRef') }}">Créer un référent</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{path('user_index')}}">Gestion des adhérents</a>
                         <a class="dropdown-item" href="{{ path('referent') }}">Gestion des référent</a>

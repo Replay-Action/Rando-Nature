@@ -17,6 +17,7 @@ class ReferentType extends AbstractType
     {
         $builder
             ->add('nom')
+            ->add('ordre')
            ;
     }
 

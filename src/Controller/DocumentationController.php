@@ -154,6 +154,7 @@ class DocumentationController extends AbstractController
                     $fileName = md5(uniqid()). '.' .$file->guessExtension();
                     $file->move($this->getParameter('documentation_directory'),$fileName);
                     $documentation->setImage($fileName);
+                    $documentation->setImageModification($fileName);
                 } else {
                     $documentation->setImage($imageModification);
                 }
@@ -166,6 +167,7 @@ class DocumentationController extends AbstractController
                      $fileName = md5(uniqid()). '.' .$file->guessExtension();
                      $file->move($this->getParameter('documentation_directory'),$fileName);
                      $documentation->setImage2($fileName);
+                     $documentation->setImageModification2($fileName);
                  } else {
                      $documentation->setImage2($imageModification2);
                  }
@@ -217,7 +219,8 @@ class DocumentationController extends AbstractController
 
 
         $entityManager = $this->getDoctrine()->getManager();
-        if( $documentation->getImage() != null) {
+        if( $documentation->getImage() != null)
+        {
             $nom = $documentation->getImage();
             unlink($this->getParameter('documentation_directory') . '/' . $nom);
 

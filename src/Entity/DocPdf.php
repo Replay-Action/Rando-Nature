@@ -32,7 +32,7 @@ class DocPdf
         return $this->id;
     }
 
-    public function getNompdf(): ?string
+    public function getNompdf()
     {
         return $this->nompdf;
     }

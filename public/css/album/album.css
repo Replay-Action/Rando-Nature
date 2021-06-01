@@ -1,0 +1,67 @@
+.album_photo_main{
+    margin: 150px 10px 10px 10px;
+    padding: 0;
+}
+.container_album_photo{
+    background: white;
+    margin: 40px;
+    padding: 0;
+}
+.album_photo{
+    padding: 20px;
+}
+.title_album_photo{
+    font-size: xx-large;
+    font-weight: lighter;
+    margin: 10px;
+    color:royalblue ;
+}
+.title_album_photo a {
+    text-decoration: none;
+}
+.album_photo_date_user{
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+}
+.album_photo_date, .album_photo_user{
+    display: flex;
+    flex-direction: row;
+    width: 250px;
+    height: 40px;
+}
+.album_photo_date img, .album_photo_user img{
+    margin: 0 10px 0 10px;
+    width: 20px ;
+    height:20px ;
+    object-fit: contain;
+}
+.album_photo_date p, .album_photo_user p{
+    color: lightslategray;
+}
+.nom_prenom_user_album_photo{
+    display: flex;
+    flex-direction: row;
+}
+.nom_prenom_user_album_photo p {
+    padding: 5px;
+}
+.album_photo_resume{
+    margin: 10px;
+}
+.album_photo_etiquette, .album_photo_etiquette p{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: lightgray;
+    margin: 0 5px 0 5px;
+    padding: 1px;
+    width: max-content;
+    border-radius: 5px;
+    color: lightslategray;
+}
+.album_photo_etiquette img{
+    width: 20px ;
+    height:20px ;
+    object-fit: contain;
+}
