@@ -1,0 +1,31 @@
+header{
+    background-color: rgba(49,49,49, 0.9) ;
+    color: white;
+    position: fixed;
+    width: 100%;
+    z-index: 12;
+    solid-opacity: 0.33;
+}
+.header-navbar{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+.header-hello_user{
+    display: flex;
+    justify-content: right;
+    align-items:center;
+    padding-top: 10px;
+}
+.navbar li ul a{
+    float: left;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+.navbar a:hover {
+    background: #ddd;
+    color: black;
+}

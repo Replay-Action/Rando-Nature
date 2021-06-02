@@ -66,15 +66,15 @@
                 </div>
                 {% endif %}
             </div>
-                <div class="documentation__option">
-                    {% if(app.user.username == documentations.auteur) %}
+            <div class="documentation__option">
+                {% if(app.user.username == documentations.auteur) %}
                     <a href="{{ path('update_documentation', {"id":documentations.id}) }}">Modifier</a>
-                    {% endif %}
-                    {% if(app.user.username == documentations.auteur or is_granted ("ROLE_ADMIN")) %}
+                {% endif %}
+                {% if(app.user.username == documentations.auteur or is_granted ("ROLE_ADMIN")) %}
                     <a href="{{ path('delete_documentation', {"id":documentations.id}) }}" onclick="return confirm('Voulez-vous vraiment supprimer cette article ?')">Supprimer</a>
-                    {% endif %}
+                {% endif %}
                     <a href="{{ path('documentation') }}">Retour</a>
-                </div>
+            </div>
         </div>
     </div>
     <div class="container">

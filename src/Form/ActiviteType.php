@@ -4,13 +4,12 @@ namespace App\Form;
 
 use App\Entity\Activite;
 use App\Entity\Categorie;
-use App\Entity\Etat;
 
 
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -35,7 +34,9 @@ class ActiviteType extends AbstractType
             ->add('categorie', EntityType::class,[
                 'class' => Categorie::class,
             ])
-            ->add('date_activite')
+            ->add('date_activite', DateTimeType::class,[
+                'widget' => 'single_text'
+            ])
             ->add('duree')
             ->add('distance')
             ->add('infos_activite', TextareaType::class)
@@ -47,24 +48,12 @@ class ActiviteType extends AbstractType
                     "3" => 3,
 
                 ],])
-            ->add('etat', EntityType::class, [
-                'class' => Etat::class,
-                'label' => 'etat',
-                'disabled' => true,
-                'choice_label' => function ($etat) {
-                    return $etat->getLibelle();
-                }
-            ])
+
             ->add('lieu', LieuType::class, [
 
             ])
-        ->add('docPdfs', FileType::class,[
-         //  'data_class'=> null,
-            'label' => false,
-            'mapped' => false,
-            'required' => false
-        ])
-        ->add('valider', SubmitType::class);
+
+            ->add('valider', SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)

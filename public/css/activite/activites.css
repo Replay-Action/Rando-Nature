@@ -1,0 +1,58 @@
+.title-recap-activite{
+    display: flex;
+    justify-content: center;
+    padding-top: 100px;
+    text-align: center;
+}
+.title-recap-activite hr{
+    width: 25%;
+}
+.title-activite{
+    display: flex;
+    justify-content: center;
+    padding-top: 100px;
+    text-align: center;
+}
+.title-activite hr{
+    width: 25%;
+}
+
+.activite-box{
+    background-color: #AA3333;
+    padding: 0;
+}
+.presentation-activite{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.activite{
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+.image-box{
+    padding: 0;
+}
+.img-activite{
+    display: flex;
+    align-items:end;
+    border-radius: 5px;
+}
+.image-activite{
+    max-width: content-box;
+    max-height: content-box;
+}
+.btn-activite{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+
+}
+.text-activite{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: start;
+}

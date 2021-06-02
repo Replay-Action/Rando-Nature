@@ -114,7 +114,6 @@ embed{
     background: white;
     border-radius: 5px;
     box-shadow: 5px 2px 10px black;
-
 }
 .album{
     padding: 50px;
@@ -129,18 +128,6 @@ embed{
     display: block;
     width: max-content;
     margin: 20px 0 20px 0;
-}
-.block_lien{
-    position: -webkit-sticky;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    text-decoration: none;
-    border-radius: 20px;
-    border: solid black 1px;
-    box-shadow: 4px 4px 8px black;
 }
 .block_lien p{
     padding-top: 15px;

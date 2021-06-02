@@ -31,20 +31,10 @@
                 </div>
             </li>
 
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
-                    Documentation
-                </a>
-
-                {# éléments dans le menu déroulant #}
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{path('documentation')}}">Documentation</a>
-                    {% if is_granted ("ROLE_USER")%}
-                    <a class="dropdown-item" href="{{path('create_documentation')}}">Créer une documentation</a>
-                    {% endif %}
-                </div>
+            <li class="nav-item active ">
+                <a class="nav-link" href="{{path('documentation')}}">Documentation</a>
             </li>
+
 
             {# éléments a menu déroulant #}
             <li class="nav-item dropdown">
@@ -71,9 +61,11 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{path('activite_index')}}">Programme</a>
             </li>
-            <li>
-                <a class="nav-link" href="{{ path('album') }}">Album photo</a>
-            </li>
+            {% if is_granted(["ROLE_USER"]) %}
+                <li>
+                    <a class="nav-link" href="{{ path('album') }}">Album photo</a>
+                </li>
+            {% endif %}
             {# éléments a menu déroulant #}
             {% if is_granted ("ROLE_USER")%}
                 <li class="nav-item dropdown">

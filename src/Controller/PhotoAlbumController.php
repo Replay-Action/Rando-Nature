@@ -10,8 +10,6 @@ use App\Entity\PhotoAlbum;
 use App\Form\DocPdfType;
 use App\Form\PhotoAlbumType;
 use App\Repository\ActiviteRepository;
-use App\Repository\DocPdfRepository;
-use App\Repository\PhotoRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,53 +20,14 @@ class PhotoAlbumController extends AbstractController
 {
     /**
      * @Route ("/album", name="album")
-     * @param PhotoRepository $photoRepository
      * @param ActiviteRepository $activiteRepository
-     * @param DocPdfRepository $docPdfRepository
      * @return Response
      */
-    public function album(PhotoRepository $photoRepository
-        , ActiviteRepository $activiteRepository
-        , DocPdfRepository $docPdfRepository): Response
+    public function album(ActiviteRepository $activiteRepository): Response
     {
 
         return $this->render('album/album_photo.html.twig',[
             'activite' => $activiteRepository->findActivites(),
-            'photos' =>  $photoRepository->findAll(),
-            'pdf' => $docPdfRepository->findAll(),
-        ]);
-    }
-
-    /**
-     * @Route ("/pdf/create/{id}", name="create_pdf")
-     * @param Request $request
-     * @param Activite $activite
-     * @return Response
-     */
-    public function createPdf(Request $request, Activite $activite): Response
-    {
-        $pdf = new DocPdf();
-
-        $form = $this->createForm(DocPdfType::class, $pdf);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid())
-        {
-            $pdf->setPdfactivite($activite);
-            if ($pdf->getNompdf() != null)
-            {
-                $file = $form->get('nompdf')->getData();
-                $fileName = md5(uniqid()).'.'.$file->guessExtension();
-                $file->move($this->getParameter('upload_recap_directory'),$fileName);
-                $pdf->setNompdf($fileName);
-            }
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($pdf);
-            $entityManager->flush();
-            return $this->redirectToRoute('album');
-        }
-        return $this->render('album/new_pdf.html.twig',[
-            'form' => $form->createView(),
         ]);
     }
 
@@ -87,9 +46,17 @@ class PhotoAlbumController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid())
         {
+            //On lie l'Album a son Activité.
+            //On lui injecte donc l'activité.
+            $album->setActivite($activite);
+            //Si getImage n'est pas null (vide),
+            //on récupère le nom du fichier envoyé dans le formulaire,
+            //on lui créer un identifiant (nom de fichier) unique
+            // et on le place dans le répertoire qu'on aura choisi.
+            //On donne le nouveau nom de fichier a l'attribut image.
+            //avant de le stocker en base de donnée
             if( $album->getImage() != null )
             {
-                $album->setActivite($activite);
                 $file = $album->getImage();
                 $fileName = md5(uniqid()).'.'.$file->guessExtension();
                 $file->move($this->getParameter('album_directory'),$fileName);
@@ -129,12 +96,72 @@ class PhotoAlbumController extends AbstractController
         $this->denyAccessUnlessGranted("ROLE_ADMIN");
 
         $entityManager = $this->getDoctrine()->getManager();
+        //Si getImage n'est pas null (vide),
+        //on récupère le nom de l'image stocké en base de donnée
+        //et on supprime le fichier stocker dans le projet puis dans la DB
         if ($photoAlbum->getImage() != null)
         {
             $nom = $photoAlbum->getImage();
             unlink($this->getParameter('album_directory').'/'.$nom);
         }
         $entityManager->remove($photoAlbum);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('album');
+    }
+
+    /**
+     * @Route ("/pdf/create/{id}", name="create_pdf")
+     * @param Request $request
+     * @param Activite $activite
+     * @return Response
+     */
+    public function createPdf(Request $request, Activite $activite): Response
+    {
+        $pdf = new DocPdf();
+
+        $form = $this->createForm(DocPdfType::class, $pdf);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $pdf->setPdfactivite($activite);
+            if ($pdf->getNompdf() != null)
+            {
+                $file = $form->get('nompdf')->getData();
+                $fileName = md5(uniqid()).'.'.$file->guessExtension();
+                $file->move($this->getParameter('upload_recap_directory'),$fileName);
+                $pdf->setNompdf($fileName);
+            }
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($pdf);
+            $entityManager->flush();
+            return $this->redirectToRoute('album');
+        }
+        return $this->render('album/new_pdf.html.twig',[
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route ("/delete/pdf/{id}", name="delete_pdf")
+     * @param DocPdf $docPdf
+     * @return Response
+     */
+    public function deletePdf(DocPdf $docPdf):Response
+    {
+        $this->denyAccessUnlessGranted("ROLE_ADMIN");
+
+        $entityManager = $this->getDoctrine()->getManager();
+        //Si getImage n'est pas null (vide),
+        //on récupère le nom de l'image stocké en base de donnée
+        //et on supprime le fichier stocker dans le projet puis dans la DB
+        if ($docPdf->getNompdf() != null)
+        {
+            $nom = $docPdf->getNompdf();
+            unlink($this->getParameter('upload_recap_directory').'/'.$nom);
+        }
+        $entityManager->remove($docPdf);
         $entityManager->flush();
 
         return $this->redirectToRoute('album');

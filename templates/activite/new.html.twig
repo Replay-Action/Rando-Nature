@@ -1,38 +1,11 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}{{parent()}} | Nouvelle Activite{% endblock %}
 {# twig d'affichage de la page creer activité #}
 {% block body %}
     {% if is_granted("ROLE_ADMIN") %}
-    {# le style bootstrap par defaut #}
-
-    {# la banniere et le titre #}
-        {#
-    <div class="container-fluid">
-        <img src="{{ asset ('content/ban page menu footer.jpg') }}" class="img-fluid" width="100%">
-    </div>
-        #}
-    <div class="container-fluid">
-        <div class="row">
-            {#
-            <div class="example-wrapper"><br>
-                <H1 class="font-weight-bold">Créer une Activité</H1>
-                <hr class="hr-new-activite center">
-
-
-                <p><img src="{{ asset('content/logo velo.png') }}"></p>
-                <hr>
-
-            </div>
-            #}
-        </div>
-    </div>
 {# on inclus ici le formulaire #}
-
 <div class="mb-5">
    {{ include('activite/_form.html.twig') }}
 </div>
     {% else %}
     {% endif %}
-
 {% endblock %}

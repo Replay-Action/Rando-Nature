@@ -1,0 +1,38 @@
+hr.hr-bulletin-adhesion{
+    border: none;
+    height: 1px;
+    background: white;
+}
+.container-adhesion{
+    padding: 0;
+    margin: 0;
+}
+
+.gauche-adhesion{
+    display: flex;
+    justify-content: center;
+}
+.global-adhesion{
+    display: flex;
+    flex-direction: row;
+    max-width: content-box;
+    max-height: content-box;
+}
+.taille-text-adhesion{
+    font: oblique 20px Arial;
+}
+.map-ahesion{
+    margin: auto;
+}
+.text-important-adhesion{
+    margin-top: 75px;
+    display: flex;
+    justify-content: center;
+}
+.adhesion-fond-noir{
+    background-color:rgba(49,49,49,0.7);
+    color: white;
+    border-radius: 15px;
+    border:solid 1px;
+    justify-content: center;
+}

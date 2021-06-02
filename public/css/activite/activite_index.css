@@ -1,0 +1,144 @@
+.activite-container:hover .detail-container{
+    display: block;
+}
+.présentation-programme{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+.filter{
+    display: block;
+    position: sticky;
+    top: 90px;
+    padding: 20px;
+    margin-top: 20px;
+    margin-right: 20px;
+    border: solid black 1px;
+    border-radius: 8px;
+    background-color: lightgoldenrodyellow;
+    background-image: url("../../background/feuille4.png");
+}
+.row-container{
+    padding-right: 40px;
+    padding-left: 40px;
+}
+.activite-container{
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    border: solid 1px black;
+    border-radius: 8px;
+    background-image: url("../../content/forest.jpg");
+}
+.sans-detail-container{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 20px;
+    padding: 0;
+    border-radius: 8px;
+}
+.date-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    margin-left: -20px;
+    border-radius: 8px;
+}
+.date-container p{
+    padding: 0;
+    margin: 2px;
+}
+#date-activite{
+    font-weight: bold;
+    font-size: x-large;
+}
+.nom-container{
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+}
+.info-activite {
+    padding: 0;
+    margin: 0;
+}
+
+
+#title-activite{
+    font-weight: bold;
+    font-size: x-large;
+}
+.type-activite-lieu{
+    margin: 0;
+}
+.type-activite{
+    display: flex;
+}
+.font-bold-activite{
+    font-weight: bold;
+    padding-right: 10px;
+}
+.padding-activite{
+    padding-right: 20px;
+}
+.is-inscrit{
+    display: flex;
+    justify-content: flex-end;
+    padding: 0;
+}
+.is-inscrit img{
+    max-width: 25px;
+    max-height: 25px;
+}
+
+
+.detail-container{
+    display: none;
+    background-color: white;
+    border-radius: 8px;
+    margin: 20px;
+    padding: 0;
+}
+.detail-gauche{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-left: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.detail-droite{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding-right: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.difficulte-activite img{
+    max-width: 100px;
+    max-height: 100px;
+}
+
+
+.buton-container{
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+}
+.inscrit p {
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+.boutton_box{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+}

@@ -1,0 +1,37 @@
+.taille-ecran{
+    text-align: center;
+    margin: 1em auto;
+    max-width: 1000px;
+    width: 95%;
+}
+.color-black-text:link{
+    color: black;
+    background-color: transparent;
+    text-decoration: none;
+    font: oblique 14px Arial;
+}
+.text-sous-ligner-vert{
+    font: oblique 20px "Arial Black";
+    text-decoration:underline;
+    color: green;
+    text-align: center;
+}
+.text-sous-ligner-noir{
+    text-decoration: underline;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container-lieu-asso{
+    display: flex;
+
+}
+.map-presentation{
+    width: 300px;
+    height: 300px;
+}
+iframe{
+    width: 100%;
+    height: 100%;
+}

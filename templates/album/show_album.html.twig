@@ -81,7 +81,7 @@
                     {% for pdf in activite.docPdfs %}
                         {% if pdf.nompdf is not empty or pdf.nompdf != null %}
                             <embed  src="{{ asset('recap/'~ pdf.nompdf) }}" type='application/pdf'/>
-                            <p>J'en ai marre !!! </p>
+                            <a href="{{ path('delete_pdf', {'id':pdf.id}) }}">supprimer</a>
                         {% else %}
                             <p>Aucun adhérent n'est ses inscrit a cette activité</p>
                         {% endif %}
