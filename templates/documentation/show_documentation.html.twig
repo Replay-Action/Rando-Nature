@@ -103,7 +103,7 @@
                                 </div>
                                 {% else %}
                                 <div class="dateModification_commentaire">
-                                    <p>{{ com.dateModification }}</p>
+                                    <p>{{ com.dateModification| date('j F Y h:i') }}</p>
                                 </div>
                                 {% endif %}
                             </div>

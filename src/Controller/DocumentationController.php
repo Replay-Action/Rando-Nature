@@ -201,7 +201,7 @@ class DocumentationController extends AbstractController
 
             $entityManager->persist($commentaire);
             $entityManager->flush();
-            return $this->redirectToRoute('documentaire');
+            return $this->redirectToRoute('documentation');
         }
         return $this->render('documentation/update_commentaire.html.twig',[
            'form' => $form->createView(),
