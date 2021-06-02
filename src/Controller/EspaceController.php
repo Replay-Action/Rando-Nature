@@ -16,7 +16,6 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Doctrine\ORM\EntityManagerInterface;
 class EspaceController extends AbstractController
 {
     /**
@@ -50,7 +49,6 @@ class EspaceController extends AbstractController
         $form = $this->createForm(SearchForm::class, $data);
 
         $form->handleRequest($request);
-        $products= $activiteRepository->findSearch($data);
         $activite=$activiteRepository->affichefinie();
 
 
@@ -66,10 +64,9 @@ class EspaceController extends AbstractController
      * @Route("/{id}/editrecapo", name="editrecap", methods={"GET","POST"})
      * @param Request $request
      * @param Activite $activite
-     * @param EntityManagerInterface $entityManager
      * @return RedirectResponse|Response
      */
-    public function editrecap(Request $request, Activite $activite, EntityManagerInterface $entityManager){
+    public function editrecap(Request $request, Activite $activite){
 
         $this->denyAccessUnlessGranted("ROLE_ADMIN");
 

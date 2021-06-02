@@ -26,7 +26,7 @@ class DocumentationController extends AbstractController
      */
     public function documentation(DocumentationRepository $documentationRepository): Response
     {
-        $documentation = $documentationRepository->findAll();
+        $documentation = $documentationRepository->findDocumentationOrderByDateModifier();
 
         return $this->render('documentation/documentation.html.twig',[
             'documentation' => $documentation,
@@ -47,9 +47,10 @@ class DocumentationController extends AbstractController
         $this->denyAccessUnlessGranted("ROLE_USER");
 
         $documentations = $documentationRepository->findOneBy(['id' => $documentation]);
-        $commentaires = $commentaireRepository->findAll();
-
+        $commentaires = $commentaireRepository->findCommentaireByDateCreation();
+        
         $comment = new Commentaire;
+
         $entityManager = $this->getDoctrine()->getManager();
         $name = $this->getUser()->getUsername();
 
@@ -91,7 +92,7 @@ class DocumentationController extends AbstractController
         {
             $documentation->setAuteur($user);
             $documentation->setDateCreation(new DateTime('now'));
-
+            $documentation->setDateModifier(new DateTime('now'));
             if( $documentation->getImage() != null ){
                 $file = $documentation->getImage();
                 $fileName = md5(uniqid()).'.'.$file->guessExtension();
@@ -184,6 +185,29 @@ class DocumentationController extends AbstractController
     }
 
     /**
+     * @Route ("/delete/documentation/{id}", name="delete_documentation")
+     * @param Documentation $documentation
+     * @return RedirectResponse
+     */
+    public function deleteDocumentation(Documentation $documentation): RedirectResponse
+    {
+        $this->denyAccessUnlessGranted("ROLE_USER");
+
+
+        $entityManager = $this->getDoctrine()->getManager();
+        if( $documentation->getImage() != null)
+        {
+            $nom = $documentation->getImage();
+            unlink($this->getParameter('documentation_directory') . '/' . $nom);
+
+        }
+        $entityManager->remove($documentation);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('documentation');
+    }
+
+    /**
      * @Route ("/update/commentaire/{id}", name="update_commentaire")
      * @param Commentaire $commentaire
      * @param Request $request
@@ -206,29 +230,6 @@ class DocumentationController extends AbstractController
         return $this->render('documentation/update_commentaire.html.twig',[
            'form' => $form->createView(),
         ]);
-    }
-
-    /**
-     * @Route ("/delete/documentation/{id}", name="delete_documentation")
-     * @param Documentation $documentation
-     * @return RedirectResponse
-     */
-    public function deleteDocumentation(Documentation $documentation): RedirectResponse
-    {
-        $this->denyAccessUnlessGranted("ROLE_USER");
-
-
-        $entityManager = $this->getDoctrine()->getManager();
-        if( $documentation->getImage() != null)
-        {
-            $nom = $documentation->getImage();
-            unlink($this->getParameter('documentation_directory') . '/' . $nom);
-
-        }
-        $entityManager->remove($documentation);
-        $entityManager->flush();
-
-        return $this->redirectToRoute('documentation');
     }
 
     /**

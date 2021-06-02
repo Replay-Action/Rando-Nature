@@ -28,7 +28,8 @@
                             <p>{{ documentations.getDateCreation()| date('j F Y h:i') }}</p>
                         </div>
                         <div class="documentation_date_modifier">
-                            {% if(documentations.getDateModifier() != null) %}
+                            {% if(documentations.getDateModifier() != null
+                                and documentations.getDateModifier() != documentations.getDateCreation()) %}
                                 <p>, mis à jour le {{ documentations.getDateModifier()| date('j F Y h:i') }}</p>
                             {% endif %}
                         </div>

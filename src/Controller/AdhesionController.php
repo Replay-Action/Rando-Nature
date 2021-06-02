@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Form\AdhesionType;
 
+use Swift_Mailer;
+use Swift_Message;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,8 +16,11 @@ class AdhesionController extends AbstractController
 {
     /**
      * @Route("/adhesion", name="adhesion")
+     * @param Request $request
+     * @param Swift_Mailer $mailer
+     * @return Response
      */
-    public function index(Request $request, \Swift_Mailer $mailer): Response
+    public function index(Request $request, Swift_Mailer $mailer): Response
     {
         $form = $this->createForm(AdhesionType::class);
         $form->handleRequest($request);
@@ -23,7 +28,7 @@ class AdhesionController extends AbstractController
 
             $adhesion = $form->getData();
             // envoi du mail
-            $message = (new\Swift_Message('Nouvel Adherent'))
+            $message = (new Swift_Message('Nouvel Adherent'))
 
                 // on attribue l'expediteur
                 ->setFrom($adhesion['email'])

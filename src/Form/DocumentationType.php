@@ -9,6 +9,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
@@ -19,14 +21,19 @@ class DocumentationType extends AbstractType
     {
         $builder
             ->add('auteur',HiddenType::class)
-            ->add('titre')
-            ->add('intro')
+            ->add('titre', TextType::class)
+            ->add('intro', TextareaType::class)
             ->add('categorie', EntityType::class,[
                 'class' => Categorie::class,
+
             ])
-            ->add('paragraphe1')
-            ->add('paragraphe2')
-            ->add('url')
+            ->add('paragraphe1', TextareaType::class)
+            ->add('paragraphe2', TextareaType::class,[
+                'required' => false,
+            ])
+            ->add('url',TextType::class,[
+                'required' => false,
+            ])
             ->add('image', FileType::class, [
                 'label' => 'Choisissez votre fichier',
                 'required' => false,
@@ -45,7 +52,9 @@ class DocumentationType extends AbstractType
                     ])
                 ]
             ])
-            ->add('imageLegende')
+            ->add('imageLegende', TextType::class,[
+                'required' => false,
+            ])
             ->add('image2', FileType::class, [
                 'label' => 'Choisissez votre fichier',
                 'required' => false,
@@ -64,7 +73,9 @@ class DocumentationType extends AbstractType
                     ])
                 ]
             ])
-            ->add('imageLegende2')
+            ->add('imageLegende2', TextType::class,[
+                'required' => false,
+            ])
             ->add('valider', SubmitType::class)
         ;
     }

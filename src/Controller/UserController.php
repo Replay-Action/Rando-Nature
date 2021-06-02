@@ -4,13 +4,14 @@ namespace App\Controller;
 
 use App\Entity\Photo;
 use App\Entity\User;
-use App\Form\ChangePasswordFormType;
 use App\Form\UserType;
 use App\Repository\PhotoRepository;
 use App\Repository\UserRepository;
-use Doctrine\ORM\EntityManagerInterface;
+use Swift_Mailer;
+use Swift_Message;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -41,8 +42,12 @@ class UserController extends AbstractController
 
     /**
      * @Route("/new", name="user_new", methods={"GET","POST"})
+     * @param Request $request
+     * @param UserPasswordEncoderInterface $encoder
+     * @param Swift_Mailer $mailer
+     * @return Response
      */
-    public function new(Request $request, UserPasswordEncoderInterface $encoder, \Swift_Mailer $mailer): Response
+    public function new(Request $request, UserPasswordEncoderInterface $encoder, Swift_Mailer $mailer): Response
     {
         $this->denyAccessUnlessGranted("ROLE_ADMIN");
         # creation d'un nouveau user#
@@ -105,7 +110,7 @@ class UserController extends AbstractController
 
             // ici nous enverrons automatiquement un mail avec le mot de passe non hashé
             //pour que le nouvel adhérent puisse s'inscrire avec ses nouveaux identifiants
-            $message = (new \Swift_Message('Votre adhesion est validee'))
+            $message = (new Swift_Message('Votre adhesion est validee'))
                 ->setFrom('vrnb2020@velorandonaturebruz.fr')
 
                 // on attribue le destinataire
@@ -138,6 +143,9 @@ class UserController extends AbstractController
 
     /**
      * @Route("/{id}", name="user_show", methods={"GET"})
+     * @param User $user
+     * @param UserRepository $userRepository
+     * @return Response
      */
     public function show(User $user, UserRepository $userRepository): Response
     {
@@ -161,6 +169,10 @@ class UserController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="user_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param User $user
+     * @param UserPasswordEncoderInterface $encoder
+     * @return Response
      */
     public function edit(Request $request, User $user, UserPasswordEncoderInterface $encoder): Response
     {
@@ -221,6 +233,10 @@ class UserController extends AbstractController
 
     /**
      * @Route("/{id}", name="user_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param User $user
+     * @param PhotoRepository $photoRepository
+     * @return Response
      */
     public function delete(Request $request, User $user, PhotoRepository $photoRepository): Response
 
@@ -245,7 +261,6 @@ class UserController extends AbstractController
                 #si la ohoto existe dans le dossier public alors on l'efface
                 if ($photoexist) {
                     unlink($photoexist);
-                } else {
                 }
             }
 
@@ -269,6 +284,9 @@ class UserController extends AbstractController
 
     /**
      * @Route("/supprime/photo/{id}", name="user_delete_photo", methods={"DELETE"})
+     * @param Photo $photo
+     * @param Request $request
+     * @return JsonResponse|RedirectResponse
      */
     public function deleteImage(Photo $photo, Request $request)
     {
@@ -301,6 +319,10 @@ class UserController extends AbstractController
 
     /**
      * @Route ("/profiledit/{id}", name="profiledit")
+     * @param Request $request
+     * @param User $user
+     * @param UserPasswordEncoderInterface $encoder
+     * @return Response
      */
 
     public function profiledit(Request $request, User $user, UserPasswordEncoderInterface $encoder): Response

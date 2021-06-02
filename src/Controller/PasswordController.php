@@ -2,10 +2,13 @@
 
 namespace App\Controller;
 
-use App\Form\ContactType;
+
 use App\Repository\UserRepository;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
+use Swift_Mailer;
+use Swift_Message;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -28,11 +31,18 @@ class PasswordController extends AbstractController
 
     /**
      * @Route ("/request", name="app_forgot_password_request")
+     * @param Request $request
+     * @param UserRepository $userRepository
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @param Swift_Mailer $mailer
+     * @param EntityManagerInterface $em
+     * @return Response
+     * @throws Exception
      */
 
     public function request(Request $request, UserRepository $userRepository,
                             UserPasswordEncoderInterface $passwordEncoder,
-                            \Swift_Mailer $mailer, EntityManagerInterface $em): Response
+                            Swift_Mailer $mailer, EntityManagerInterface $em): Response
     {
         #cette fonction sert a nous envoyer un mot de passe qd l'adhérent à oublié le sien
 
@@ -52,7 +62,7 @@ class PasswordController extends AbstractController
             if ($utilisateur1) {
 
                 // ici nous enverrons le mail avec le nouveau mdp aléatoire en utilisant un template emails
-                $message = (new \Swift_Message('Réinitialisation du mot de passe'))
+                $message = (new Swift_Message('Réinitialisation du mot de passe'))
                     ->setFrom('vrnb2020@velorandonaturebruz.fr')
                     ->setTo($utilisateur1)
                     ->setBody(
@@ -88,6 +98,11 @@ class PasswordController extends AbstractController
 
     /**
      * @Route("/reset/{id}", name="app_reset_password", requirements={"id": "\d+"})
+     * @param Request $request
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @param User $utilisateur
+     * @param EntityManagerInterface $em
+     * @return Response
      */
     public function reset(Request $request, UserPasswordEncoderInterface $passwordEncoder,
                           User $utilisateur, EntityManagerInterface $em): Response

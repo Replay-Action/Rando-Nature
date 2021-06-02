@@ -18,7 +18,7 @@ class HomeController extends AbstractController
      */
     public function redirige(): Response
     {
-#la page sur laquelle on arrive qd on se deconnecte, elle redirige vers 'home1
+        #la page sur laquelle on arrive qd on se deconnecte, elle redirige vers 'home1
 
         return $this->redirectToRoute('home1');
 
@@ -30,6 +30,8 @@ class HomeController extends AbstractController
 
     /**
      * @Route("/home", name="home1")
+     * @param ActiviteRepository $activiteRepository
+     * @return Response
      */
     public function index(ActiviteRepository $activiteRepository): Response
     {
@@ -143,6 +145,8 @@ class HomeController extends AbstractController
 
     /**
      * @Route("/pdfstatus", name="pdfstatus")
+     * @param Request $request
+     * @return Response
      */
     public function editpdf(Request $request): Response
     {
@@ -183,6 +187,8 @@ class HomeController extends AbstractController
 
     /**
      * @Route("/chartestatus", name="chartestatus")
+     * @param Request $request
+     * @return Response
      */
     public function editpdfcharte(Request $request): Response
     {
@@ -223,6 +229,8 @@ class HomeController extends AbstractController
 
     /**
      * @Route("/pdf_mentionslegales", name="pdfmentionslegales")
+     * @param Request $request
+     * @return Response
      */
     public function editpdfmentions(Request $request): Response
     {
