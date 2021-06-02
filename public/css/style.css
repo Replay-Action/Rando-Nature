@@ -14,7 +14,6 @@ body{
 }
 
 .container{
-
     padding: 0;
 }
 .row-container{
@@ -363,13 +362,14 @@ img:nth-child(5) {
     font-weight: bold;
 }
 .hovereffect-home {
-    width: 50%;
-    height: 50%;
+    width: 100%;
+    height: 100%;
     float: left;
     overflow: hidden;
     position: relative;
     text-align: center;
     cursor: default;
+    margin: 20px;
 }
 
 .hovereffect-home .overlay {
@@ -450,11 +450,19 @@ img:nth-child(5) {
     transition-delay: .2s;
 }
 
+
 .text-bas-page{
     text-align: center;
     margin: 40px;
     font-size: x-large;
 }
+
+.size-div-rfap-home{
+    width: 25%;
+    height: 25%;
+    background-color: orange;
+}
+
 /**********************/
 /**     Bureau      **/
 /********************/
@@ -468,18 +476,20 @@ img:nth-child(5) {
 .bureau hr{
     width: 25%;
 }
-.partie0{
+.bureau_main{
     display: flex;
-    justify-content: space-evenly;
-    padding: 0;
-    margin: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: max-content;
 }
 .partie1{
-    padding-left: 300px;
-
+    margin: 50px;
 }
 
 .partie2{
+    margin: 20px;
+}
+.teste{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -487,9 +497,41 @@ img:nth-child(5) {
     padding-right: 300px;
 }
 #img-bureau{
-    margin: 50px;
     width: 600px;
     height: 600px;
+    margin: 20px;
+}
+.role_format{
+    display: flex;
+    flex-direction: row;
+}
+.role_user{
+    font-size: x-large;
+    font-style: oblique;
+    font-weight: lighter;
+    margin: 5px;
+}
+.prenom_nom_user{
+    display: flex;
+    flex-direction: row;
+    font-size: x-large;
+    font-style: oblique;
+    font-weight: lighter;
+}
+.prenom_nom_user p {
+    margin: 5px;
+}
+.president{
+    padding: 10px;
+    margin: 10px;
+}
+.other{
+    padding: 10px;
+    margin: 10px;
+}
+.secretaire_tresorier {
+    padding: 10px;
+    margin: 10px;
 }
 /**
 ----------------------------------------
@@ -706,42 +748,80 @@ img:nth-child(5) {
 /**
 Partie Crée une activité
  */
-.espace-div-form-activite{
-    margin-top: 1%;
-    margin-bottom: 1%;
-
+.form__activite{
+    border-radius: 15px;
+    border:solid 1px;
+    background-color:rgba(49,49,49,0.7);
+    color: white;
+    padding: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
-.form-activite-fond-noir{
-
+.gauche-form-activite{
+    background-color: #5eb5e0;
+    width: 500px;
+}
+.droite-form-activite{
+    background-color: #ffcc00;
+    width: 500px;
+}
+/**
+Partie Referent
+ */
+.form-referent-fond-noir{
     border-radius: 15px;
     border:solid 1px;
     background-color:rgba(49,49,49,0.7);
     color: white;
     justify-content: center;
+    width: max-content;
+    padding: 25px;
 }
-.droite-form-activite{
-    margin: auto;
+
+.column-div{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 100px;
+}
+.espace-button-referent{
+    margin-left: 20px;
+}
+.test-color-size3{
+    padding-left: 11px ;
+    margin-top:20px ;
+    display: flex;
+    width: 500px;
+}
+
+.test-color-size2{
+    width: 500px;
+    display: flex;
+}
+
+.test-color-size{
+    text-align: left;
+    width: 300px;
+    padding: 20px;
+}
+
+.color-size-1{
+     display: flex;
+    flex-direction: column;
+    width: 180px;
+    padding-left: 20px;
+}
+
+.title__referent h1{
+    display: flex;
     justify-content: center;
 }
-.gauche-form-activite{
-    margin: auto;
-    justify-content: center;
-}
-hr.hr-new-activite{
-    border: none;
-    height: 4px;
-    background-color: black;
-}
-/**
-Partie Referent
- */
-.boxflorian{
+.boxref{
     margin: 20px;
     background-color: fuchsia;
 }
-.president{
-    background-color: #aacd4e;
-}
+
 .autres{
     background-color: #ffcc00;
 }
@@ -749,28 +829,45 @@ Partie Referent
     margin-top: 100px;
     justify-content: center;
     display: flex;
-    background-color: #ffcc00;
+}
+.referent-style{
+    font: bold 20px '';
+}
+.nom-referent{
+    display: flex;
+}
+.button-decoration-referent{
+    text-decoration: none;
+}
+.button-supprimer-modifier-referent{
+    display: flex;
 }
 .liste-referent{
     justify-content: center;
     display: flex;
-    background-color: #aacd4e;
-
+    flex-direction: column;
 }
 .abcdef{
     display: flex;
     justify-content: center;
 
 }
-.tilte__referent{
-    display: flex;
+.color_box{
+
     justify-content: center;
-    padding-top: 100px;
-    text-align: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
 }
-.button-enregistrer-new-referent{
-    display: flex;
-    justify-content: center;
+.color_referent{
+    margin: 20px;
+    background: #FFFFFF;
+    width: max-content;
+    padding: 25px;
+    border-radius: 15px;
+    border:solid 1px;
+    box-shadow: 5px 2px 10px black;
 }
 /**
 Partie Gestion adhérent
@@ -794,6 +891,7 @@ Partie Gestion adhérent
     margin: 3%;
     height: 100%;
     width: 100%;
+    box-shadow: 5px 2px 10px black;
 
 }
 .pseudo-div-un-adherent{
@@ -803,7 +901,6 @@ Partie Gestion adhérent
 
 }
 .button-modifier-profil-admin{
-
     border-radius: 15px;
 
 }
@@ -823,14 +920,22 @@ Partie Crée un adhérent
     margin-top: 1%;
     margin-bottom: 1%;
 }
+.title__new-adherent{
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}
 
+.margin-form-adherent{
+    padding: 30px;
+}
 /**
 Partie Modif profil en tant que Admin
  */
 .title-modifier-profil-admin{
+    padding: 30px;
     display: flex;
     justify-content: center;
-    margin-top: 100px;
 }
 
 .affichage-admin-photo-profiledit{
@@ -843,10 +948,11 @@ Partie Modif profil en tant que Admin
 }
 .admin-profil-fond-noir{
     background-color:rgba(49,49,49,0.7);
+    color: white;
     border-radius: 15px;
     border:solid 1px;
     justify-content: center;
-    margin-top: 1%;
+    margin-top: 100px;
     margin-bottom: 1%;
 }
 
@@ -858,13 +964,15 @@ Partie Profil
 }
 
 .title-modifier-profil{
-    margin-top: 100px;
+    padding: 30px;
     display: flex;
     justify-content: center;
 }
 .div-int-modifier-profil{
     display: flex;
     justify-content: center;
+}
+.th-modifier-profil{
     color: white;
 }
 .div-ext-modifier-profil{
@@ -879,6 +987,7 @@ Partie Profil
     justify-content: center;
     margin-top: 1%;
     margin-bottom: 1%;
+    color:#FFFFFF;
 }
 .global-div-img-profil{
     margin-top: 20px;
@@ -896,6 +1005,7 @@ Partie Profil
     max-width: content-box;
     max-height: content-box;
     justify-content: center;
+    margin-top: 100px;
 }
 
 .position-photo-profiledit{
@@ -905,6 +1015,8 @@ Partie Profil
 }
 
 .affichage-photo-profiledit{
+    display: flex;
+    justify-content: center;
     border-radius: 150px;
     -moz-border-radius: 150px;
     -webkit-border-radius: 150px;
@@ -933,10 +1045,75 @@ Partie Profil
 /**
 Partie Trombinoscope
  */
-hr.hr-trombinoscope{
-    height: 1px;
-    border: none;
-    background: black;
+.trombi_page{
+    display: flex;
+    justify-content: center;
+    background: #aacd4e;
+}
+.title_trombi{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    margin: 100px 0 50px 0;
+}
+.trombi_box{
+    display: flex;
+    flex-direction: column;
+}
+.trombi_box p {
+    text-align: center;
+}
+
+.trombi_referent{
+    font-weight: bold;
+    font-size: xx-large;
+
+}
+.trombi_infos{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.trombi_infos img{
+    object-fit: contain;
+    width: 100px;
+    height: 100px;
+}
+.trombi_order1{
+    display: flex;
+    justify-content: center;
+    background: #AA3333;
+}
+.trombi_order2{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    background: #5eb5e0;
+}
+.trombi_order3{
+    background: lightpink;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+}
+.trombi_order4{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    background: lightseagreen;
+}
+.jaune{
+    margin: 10px;
+    width: 250px;
+    height: 250px;
+    background: #ffcc00;
+    box-shadow: 5px 2px 10px black;
 }
 .hovereffect {
     width: 100%;
@@ -1034,6 +1211,8 @@ Partie Adhesion
 }
 
 hr.hr-bulletin-adhesion{
+    border: none;
+    height: 1px;
     background: white;
 }
 .container-adhesion{
@@ -1124,35 +1303,36 @@ iframe{
 /**
 PARTENAIRE
  */
-.box1{
-    display: flex;
-    justify-content: center;
-}
 .title__partenaire{
+
     display: flex;
     justify-content: center;
-    padding-top: 100px;
     text-align: center;
 }
 .tabel__partenaire{
     padding: 0;
     margin: 40px;
     max-width: 500px;
-    background: antiquewhite;
-    border-radius: 5px;
-    border: solid whitesmoke 1px;
 }
 .contenue__partenaire{
     background: white;
-    border-radius: 5px;
-    border: solid white 1px;
+    border-radius: 30px;
+    border: solid black 1px;
     margin: 20px;
+    padding: 20px 10px 10px 10px ;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    box-shadow: 5px 2px 10px black;
 }
 .main__partenaire{
+    display: flex;
+    justify-content: center;
     padding: 0;
+
 }
 .form__partenaire{
-    max-width: 750px;
     margin-top: 50px;
     padding: 20px;
     border-radius: 15px;
@@ -1161,28 +1341,44 @@ PARTENAIRE
     color: white;
 }
 .nom__partarenaire{
+
     font-size: x-large;
     font-weight: bold;
     font-style: oblique;
-}
-.img__partenaire{
+    text-decoration: none;
     display: flex;
     justify-content: center;
+}
+.img__partenaire{
     padding: 20px;
-    width: 450px ;
+    width: 400px ;
     height: 325px;
+    border: solid black 1px;
+    border-radius: 30px;
+    box-shadow: 5px 2px 10px black;
 }
 .img__partenaire img{
     object-fit: contain;
 }
 .action__partenaire{
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
-    padding: 10px;
+    align-items: center;
+    padding: 20px;
+
 }
 .page__container{
- display: flex;
+    margin-top: 100px;
+    display: flex;
     justify-content: center;
+}
+.button-style-partenaire{
+    text-decoration: none;
+}
+.button-espace-delete-partenaire{
+    margin-left: 20px;
 }
 /**
     DOCUMENTATION
@@ -1202,7 +1398,7 @@ PARTENAIRE
 }
 .title__documentaire{
     font-size: x-large;
-    color: lightskyblue;
+    color: royalblue;
     margin: 10px;
     padding: 0;
 
@@ -1235,6 +1431,10 @@ PARTENAIRE
 
 .documentation_date p, .documentation_user p{
     color: lightslategray;
+}
+.documentation_lien a{
+    margin: 0 20px 0 10px;
+    text-decoration: none;
 }
 .documentation__resume{
 
@@ -1319,6 +1519,7 @@ DOCUMENTATION SHOW
     font-size: xx-large;
     font-weight: lighter;
     margin: 10px;
+    color:royalblue ;
 }
 .documentation_date_user-show{
     display: flex;
@@ -1445,4 +1646,39 @@ Partie Nous Contacter
 .map-nous-contacter{
     width: 300px;
     height: 300px;
+}
+/**
+Partie Login
+ */
+.tilte__login{
+    justify-content: center;
+    display: flex;
+    margin-top: 100px;
+}
+.button-adherez-login{
+    background-color: limegreen;
+    color: #FFFFFF;
+}
+.button-style-login{
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    color: #FFFFFF;
+}
+.button-style-envoyer{
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.form-login-fond-noir{
+    border-radius: 15px;
+    border:solid 1px;
+    background-color:rgba(49,49,49,0.7);
+    color: white;
+    justify-content: center;
+    width: max-content;
+    padding: 25px;
+}
+.placement-button-envoyer-login{
+    justify-content: center;
+    display: flex;
 }

@@ -134,64 +134,73 @@ et celui de la vignette clignotante #}
     </div>
     <h2 id="h2-accueil"> Venez nous rejoindre !</h2>
     {# les 4 cards de choix, leurs liens, leurs photo, et leurs effets #}
-        <div class="paragraphe3 container ">
-            <div class="row center-block ">
-
-                <div class="card hovereffect-home col-lg-5 col-md-12 col-sm-12 border-white mb-4">
-                    <a href="{{ path('randosvelo') }}">
-                        <img src="{{ asset('content/velo-pont resize.jpg') }}" class="card-img-top"
-                             alt="velo posé sur un pont">
-                        <div class="overlay">
-                            <h2>L'activité phare de Vélo Rando Nature Bruz</h2>
-                        </div>
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">Randos vélo</h5>
-                        </div>
-                    </a>
+        <div class=" paragraphe3">
+            <div class="row justify-content-center">
+                <div class=" justify-content-center col-lg-6 col-md-12 size-div-rfap-home">
+                    <div class="card hovereffect-home border-white mb-4">
+                        <a href="{{ path('randosvelo') }}">
+                            <img src="{{ asset('content/velo-pont resize.jpg') }}" class="card-img-top"
+                                 alt="velo posé sur un pont">
+                            <div class="overlay">
+                                <h2>L'activité phare de Vélo Rando Nature Bruz</h2>
+                            </div>
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Randos vélo</h5>
+                            </div>
+                        </a>
+                    </div>
                 </div>
 
-                <div class="card hovereffect-home col-lg-5 col-md-12 col-sm-12 border border-white mb-4">
-                    <a href="{{ path('formations') }}">
-                        <img src="{{ asset('content/formation-menu-resize.jpg') }}" class="card-img-top" alt="...">
-                        <div class="overlay">
-                            <h2>liste des formations que nous proposons</h2>
-                        </div>
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">Formations</h5>
-                        </div>
-                    </a>
+                <div class=" justify-content-center col-lg-6 col-md-12 size-div-rfap-home">
+                    <div class="card hovereffect-home border border-white mb-4">
+                        <a href="{{ path('formations') }}">
+                            <img src="{{ asset('content/formation-menu-resize.jpg') }}" class="card-img-top" alt="...">
+                            <div class="overlay">
+                                <h2>liste des formations que nous proposons</h2>
+                            </div>
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Formations</h5>
+                            </div>
+                        </a>
+                    </div>
                 </div>
 
-                <div class="card hovereffect-home col-lg-5 col-md-12 col-sm-12 border border-white mb-4">
-                    <a href="{{ path('pleinair') }}">
-                        <img src="{{ asset('content/2velos resize.jpg') }}" class="card-img-top" alt="...">
-                        <div class="overlay">
-                            <h2>Bientôt nous vous proposerons d'autres activités telles que le longe-côte...</h2>
-                        </div>
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">Autres activités de plein-air</h5>
-                        </div>
-                    </a>
+                <div class=" justify-content-center col-lg-6 col-md-12 size-div-rfap-home">
+                    <div class="card hovereffect-home border border-white mb-4">
+                        <a href="{{ path('pleinair') }}">
+                            <img src="{{ asset('content/2velos resize.jpg') }}" class="card-img-top" alt="...">
+                            <div class="overlay">
+                                <h2>Bientôt nous vous proposerons d'autres activités telles que le longe-côte...</h2>
+                            </div>
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Autres activités de plein-air</h5>
+                            </div>
+                        </a>
+                    </div>
                 </div>
 
-                <div class="card hovereffect-home col-lg-5 col-md-12 col-sm-12 border border-white mb-4">
-                    <a href="{{ path('activite_index') }}">
-                        <img src="{{ asset('content/pleon air resize.jpg') }}" class="card-img-top " alt="...">
-                        <div class="overlay">
-                            <h2>Le programme de nos activités</h2>
-                        </div>
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">Le programme </h5>
-                        </div>
-                    </a>
+                <div class=" justify-content-center col-lg-6 col-md-12 size-div-rfap-home">
+                    <div class="card hovereffect-home border border-white ">
+                        <a href="{{ path('activite_index') }}">
+                            <img src="{{ asset('content/pleon air resize.jpg') }}" class="card-img-top " alt="...">
+                            <div class="overlay">
+                                <h2>Le programme de nos activités</h2>
+                            </div>
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Le programme </h5>
+                            </div>
+                        </a>
+                    </div>
                 </div>
+
             </div>
         </div>
-        <div class="center-hr">
+
+        <div class="center-hr m-5">
             <hr class="hr25-pourcent center">
         </div>
         {# le texte sous les cards #}
-        <div class="text-bas-page example-wrapper" col-12>
+        <div class="text-bas-page example-wrapper" >
                 <p class="lead text-accueil">Vous pourrez découvrir la patrimoine naturel et culturel de notre belle région en
                     pratiquant une activité physique au plus près de la nature.
                 </p>

@@ -85,10 +85,12 @@ class User implements UserInterface
      *     cascade={"persist","remove"})
      */
     private $photos;
+
     /**
      * @ORM\ManyToOne (targetEntity=Referent::class, inversedBy="user")
      */
     private $referents;
+
     public function __toString()
     {
         return $this->getUsername();

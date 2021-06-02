@@ -7,14 +7,29 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid box1">
-        <div class="main__partenaire">
-            <div class="form__partenaire">
+    <div class="container-fluid">
+            <div class="form__activite">
                 {{ form_start(form) }}
-                {{ form_widget(form) }}
+                <div class="gauche-form-activite">
+                    <p>Nom: {{ form_widget(form.nom) }}</p>
+                    <p>Categorie: {{ form_widget(form.categorie) }}</p>
+                    <p>Date: {{ form_widget(form.date_activite) }}</p>
+                    <p>Durée: {{ form_widget(form.duree) }}</p>
+                    <p>Distance: {{ form_widget(form.distance) }}</p>
+                </div>
+                <div class="droite-form-activite">
+                    <p>Infos: {{ form_widget(form.infos_activite) }}</p>
+                    <p>Denivele: {{ form_widget(form.denivele) }}</p>
+                    <p>Difficulte: {{ form_widget(form.difficulte) }}</p>
+                    <p hidden>{{ form_widget(form.etat) }}</p>
+                    <p>{{ form_widget(form.lieu) }}</p>
+                    <p hidden>{{ form_widget(form.docPdfs) }}</p>
+
+                </div>
+                <div class="d-flex justify-content-center">
                 {{ form_end(form) }}
+                </div>
             </div>
-        </div>
     </div>
 
 {# formulaire des activités, on le met sous forme de tableau #}

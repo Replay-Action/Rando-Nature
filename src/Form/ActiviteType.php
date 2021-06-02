@@ -10,6 +10,7 @@ use App\Entity\Etat;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -35,7 +36,9 @@ class ActiviteType extends AbstractType
             ->add('categorie', EntityType::class,[
                 'class' => Categorie::class,
             ])
-            ->add('date_activite')
+            ->add('date_activite',DateTimeType::class,[
+                'widget' =>'single_text'
+            ])
             ->add('duree')
             ->add('distance')
             ->add('infos_activite', TextareaType::class)

@@ -23,6 +23,9 @@ class EspaceController extends AbstractController
 {
     /**
      * @Route("/trombi", name="trombi")
+     * @param UserRepository $userRepository
+     * @param PhotoRepository $photoRepository
+     * @return Response
      */
     public function index(UserRepository $userRepository, PhotoRepository $photoRepository): Response
     {
@@ -32,10 +35,7 @@ class EspaceController extends AbstractController
 
 
         return $this->render('espace/index.html.twig', [
-            'controller_name' => 'EspaceController',
-            'users' => $userRepository->findUsers(),
-            // 'users2'=>$userRepository->findUsers2(),
-            //  'photos1'=>$photoRepository->findAll(),
+            'users' => $userRepository->orderUserByReferentWithPhoto(),
         ]);
     }
 
