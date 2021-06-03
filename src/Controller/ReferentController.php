@@ -105,27 +105,4 @@ class ReferentController extends AbstractController
         $this->addFlash('succes', 'Le référent à été supprimer');
         return $this->redirectToRoute('referent');
     }
-
-    /**
-     * @Route ("/showRef",name="showRef")
-     * @param ReferentRepository $referentRepository
-     * @param UserRepository $userRepository
-     * @return Response
-     */
-    public function afficherReferent(ReferentRepository $referentRepository, UserRepository $userRepository):Response
-    {
-        #fonction en charge d'afficher le référent et son utilisateur#
-
-        #autorise l'accès uniquement aux administrateurs du site#
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
-
-        $products1 = $referentRepository->findAll();
-        $products2 = $userRepository->findAll();
-
-        return $this->render('referent/showref.html.twig',[
-           'referents' => $products1,
-           'users' => $products2,
-        ]);
-    }
-
 }

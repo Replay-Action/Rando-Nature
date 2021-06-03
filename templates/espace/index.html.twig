@@ -29,10 +29,10 @@
                         <div class="trombi_infos">
                             <p class="col-12">{{ user.username }}</p>
                             {% for photo in user.photos %}
-                            {% if user.photos is not empty %}
-                                <img src="{{ asset ('photo-profil/'~ photo.name) }}" alt="photo de l'utilisateur">
-                            {% else %}
+                            {% if user.photos is null %}
                                 <img src="{{ asset('tools/logo_profil.png') }}" alt="logo de profil">
+                            {% else %}
+                                <img src="{{ asset ('photo-profil/'~ photo.name) }}" alt="photo de l'utilisateur">
                             {% endif %}
                             {% endfor %}
                         </div>
@@ -95,11 +95,11 @@
                                 <div class="trombi_infos">
                                     <p class="col-12">{{ user.username }}</p>
                                     {% for photo in user.photos %}
-                                    {% if user.photos is not empty %}
-                                        <img src="{{ asset ('photo-profil/'~ photo.name) }}" alt="photo de l'utilisateur">
-                                    {% else %}
-                                        <img src="{{ asset('tools/logo_profil.png') }}" alt="logo de profil">
-                                    {% endif %}
+                                        {% if user.photos is null %}
+                                            <img src="{{ asset('tools/logo_profil.png') }}" alt="logo de profil">
+                                        {% else %}
+                                            <img src="{{ asset ('photo-profil/'~ photo.name) }}" alt="photo de l'utilisateur">
+                                        {% endif %}
                                     {% endfor %}
                                 </div>
                             </div>

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Form\PdfStatusType;
 use App\Repository\ActiviteRepository;
+use App\Repository\ActualiteRepository;
 use App\Repository\UserRepository;
 use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -33,17 +34,19 @@ class HomeController extends AbstractController
      * @param ActiviteRepository $activiteRepository
      * @return Response
      */
-    public function index(ActiviteRepository $activiteRepository): Response
+    public function index(ActiviteRepository $activiteRepository, ActualiteRepository $actualiteRepository): Response
     {
         #pour afficher la pastille clignotante de la page accueil
         $date = new DateTime('now');
         $actidispo = $activiteRepository->affichepastille();
+        $actualite = $actualiteRepository->afficheactu();
 
 
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'actidispo' => $actidispo,
-            'date' => $date
+            'date' => $date,
+            'actualites' => $actualite
         ]);
     }
 

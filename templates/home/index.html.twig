@@ -92,7 +92,7 @@ et celui de la vignette clignotante #}
             <div class="en-tete-accueil row col-lg-12 col-sm-12">
                     <div class="logo col-lg-12">
                     <img src="{{ asset('logos/logo-velo.png') }}">
-                        {% include ('home/_news_activite.html.twig') %}
+
                     </div>
 
                     <div class="title col-lg-12 col-sm-12">
@@ -105,6 +105,19 @@ et celui de la vignette clignotante #}
                 <div class="center-hr">
                     <hr class="hr25-pourcent center">
                 </div>
+                <div class="global-div-home-actu-popup col-lg-12">
+                    <div class="div-home-actu-popup">
+                {% for actualite in actualites %}
+                    <div class=" lead actu-home col-lg-12">
+                        {{ actualite.actu }}
+                    </div>
+                {% endfor %}
+                    <div class="popup_accueil col-lg-12">
+                    {% include ('home/_news_activite.html.twig') %}
+                    </div>
+                    </div>
+                </div>
+
                 <div class="description-accueil row">
                     <div class="col-lg-12">
                     <p class="lead text-accueil">
