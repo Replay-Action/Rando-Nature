@@ -5,29 +5,25 @@ namespace App\Controller;
 use App\Data\SearchData;
 use App\Entity\Activite;
 use App\Entity\DocPdf;
-use App\Entity\User;
 use App\Form\ActiviteType;
-use App\Form\DocPdfType;
 use App\Form\SearchForm;
 use App\Repository\ActiviteRepository;
-use App\Repository\DocPdfRepository;
-use App\Repository\PhotoRepository;
 use App\Repository\UserRepository;
-use Doctrine\ORM\EntityManager;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Doctrine\ORM\EntityManagerInterface;
 class EspaceController extends AbstractController
 {
     /**
      * @Route("/trombi", name="trombi")
      * @param UserRepository $userRepository
-     * @param PhotoRepository $photoRepository
      * @return Response
      */
-    public function index(UserRepository $userRepository, PhotoRepository $photoRepository): Response
+    public function index(UserRepository $userRepository): Response
     {
         #ce controlleur ne gère que le trombinoscope
 
@@ -42,6 +38,9 @@ class EspaceController extends AbstractController
 
     /**
      * @Route("/recapo", name="recap", methods={"GET"})
+     * @param ActiviteRepository $activiteRepository
+     * @param Request $request
+     * @return Response
      */
     public function recap(ActiviteRepository $activiteRepository, Request $request): Response{
         $user = $this->getUser();
@@ -50,11 +49,10 @@ class EspaceController extends AbstractController
         $form = $this->createForm(SearchForm::class, $data);
 
         $form->handleRequest($request);
-        $products= $activiteRepository->findSearch($data);
         $activite=$activiteRepository->affichefinie();
 
 
-        return $this->render('espace/recap-activite.html.twig',[
+        return $this->render('album/show_album.html.twig',[
             'user'=>$user,
             'activites'=>$activite,
             'form'=>$form->createView(),
@@ -62,11 +60,13 @@ class EspaceController extends AbstractController
     }
 
 
-
     /**
      * @Route("/{id}/editrecapo", name="editrecap", methods={"GET","POST"})
+     * @param Request $request
+     * @param Activite $activite
+     * @return RedirectResponse|Response
      */
-    public function editrecap(Request $request, Activite $activite, EntityManagerInterface $entityManager){
+    public function editrecap(Request $request, Activite $activite){
 
         $this->denyAccessUnlessGranted("ROLE_ADMIN");
 
@@ -79,8 +79,8 @@ class EspaceController extends AbstractController
             $pdf=$form->get('docPdfs')->getData();
 
             // on boucle sur les pdf
-            //   foreach ($pdf as $pdf1) {
-// on genere un nouveau nom de fichier
+            // foreach ($pdf as $pdf1) {
+            // on genere un nouveau nom de fichier
             if ($pdf) {
 
                 $fichier = md5(uniqid()) . '.' . $pdf->guessExtension();
@@ -113,10 +113,11 @@ class EspaceController extends AbstractController
     }
 
 
-
-
     /**
      * @Route("/removerecap/pdf/{id}", name="removerecap", methods={"DELETE"})
+     * @param DocPdf $docPdf
+     * @param Request $request
+     * @return JsonResponse|RedirectResponse
      */
     public function removerecap(DocPdf $docPdf, Request $request){
 
@@ -143,7 +144,6 @@ class EspaceController extends AbstractController
             return new JsonResponse(['success' => 1]);
         } else {
             return new JsonResponse(['error' => 'Token Invalide'], 400);
-            dd($data);
         }
         return $this->redirectToRoute('home1');
     }
@@ -151,6 +151,8 @@ class EspaceController extends AbstractController
 
     /**
      * @Route("/detailrecap/{id}", name="detailrecap", methods={"GET"})
+     * @param Activite $activite
+     * @return Response
      */
     public function voir (Activite $activite): Response
     {

@@ -19,6 +19,13 @@ class DocumentationRepository extends ServiceEntityRepository
         parent::__construct($registry, Documentation::class);
     }
 
+    public function findDocumentationOrderByDateModifier(){
+        $documentation = $this
+            ->createQueryBuilder('d')
+            ->orderBy('d.date_modifier', 'DESC');
+        $query = $documentation->getQuery();
+        return $query->getResult();
+    }
     // /**
     //  * @return Documentation[] Returns an array of Documentation objects
     //  */

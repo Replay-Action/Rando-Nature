@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container">
+        <div class="album_photo_main col-12">
+            {% for activites in activite %}
+                <div class="container_album_photo">
+                    <div class="album_photo">
+                        <div class="title_album_photo col-12">
+                            <a href="{{ path('show_album', {"id":activites.id}) }}">{{ activites.nom }}</a>
+                        </div>
+                        <div class="album_photo_date_user col-12">
+                            <div class="album_photo_date">
+                                <div>
+                                    <img  src="{{ asset('tools/calendrier.png') }}" alt="icon de calendrier">
+                                </div>
+                                <div>
+                                    <p>{{ activites.getDateActivite()| date('j F Y h:i')}}</p>
+                                </div>
+                            </div>
+                            <div class="album_photo_user">
+                                <div>
+                                    <img src="{{ asset('tools/user.png') }}" alt="icon d'utilisateur">
+                                </div>
+                                <div class="nom_prenom_user_album_photo">
+                                    <p>{{ activites.organisateur.getNom() }}</p>
+                                    <p>{{ activites.organisateur.getPrenom() }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="album_photo_resume col-12">
+                            <p>{{ activites.getInfosActivite() }}</p>
+                        </div>
+                        <div class="container__etiquette col-12 ">
+                            <div class="album_photo_etiquette">
+                                <div class="album_photo_etiquette">
+                                    <img src="{{ asset('tools/etiquette.png') }}" alt="icon d'étiquette">
+                                    <p>{{ activites.categorie}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

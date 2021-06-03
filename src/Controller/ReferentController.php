@@ -18,6 +18,8 @@ class ReferentController extends AbstractController
 
     /**
      * @Route ("/referent", name="referent")
+     * @param ReferentRepository $referentRepository
+     * @return Response
      */
     public function referent(ReferentRepository $referentRepository):Response
     {
@@ -29,6 +31,8 @@ class ReferentController extends AbstractController
 
     /**
      * @Route ("/createRef", name="createRef")
+     * @param Request $request
+     * @return Response
      */
     public function createReferent(Request $request): Response
     {
@@ -56,6 +60,9 @@ class ReferentController extends AbstractController
 
     /**
      * @Route ("/updateRef/{id}", name="updateRef")
+     * @param Request $request
+     * @param Referent $referent
+     * @return Response
      */
     public function updateReferent(Request $request, Referent $referent):Response
     {
@@ -82,6 +89,8 @@ class ReferentController extends AbstractController
 
     /**
      * @Route ("/deleteRef/{id}", name="deleteRef")
+     * @param Referent $referent
+     * @return Response
      */
     public function deleteReferent(Referent $referent): Response
     {
@@ -99,6 +108,9 @@ class ReferentController extends AbstractController
 
     /**
      * @Route ("/showRef",name="showRef")
+     * @param ReferentRepository $referentRepository
+     * @param UserRepository $userRepository
+     * @return Response
      */
     public function afficherReferent(ReferentRepository $referentRepository, UserRepository $userRepository):Response
     {

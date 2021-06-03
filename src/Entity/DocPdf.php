@@ -32,7 +32,7 @@ class DocPdf
         return $this->id;
     }
 
-    public function getNompdf(): ?string
+    public function getNompdf()
     {
         return $this->nompdf;
     }
@@ -54,5 +54,10 @@ class DocPdf
         $this->pdfactivite = $pdfactivite;
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getNompdf();
     }
 }

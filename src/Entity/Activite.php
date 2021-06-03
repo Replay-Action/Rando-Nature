@@ -74,11 +74,15 @@ class Activite
      */
     private $lieu;
 
-
     /**
      * @ORM\ManyToMany(targetEntity=User::class, mappedBy="inscription")
      */
     private $users;
+
+    /**
+     * @ORM\OneToMany (targetEntity=PhotoAlbum::class, mappedBy="activite")
+     */
+    private $albumPhoto;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="activite")
@@ -97,9 +101,6 @@ class Activite
         $this->users = new ArrayCollection();
         $this->docPdfs = new ArrayCollection();
     }
-
-
-
 
     public function getId(): ?int
     {
@@ -222,6 +223,16 @@ class Activite
         $this->lieu = $lieu;
 
         return $this;
+    }
+
+    public function getAlbumPhoto()
+    {
+        return $this->albumPhoto;
+    }
+
+    public function setAlbumPhoto($albumPhoto): void
+    {
+        $this->albumPhoto = $albumPhoto;
     }
 
 

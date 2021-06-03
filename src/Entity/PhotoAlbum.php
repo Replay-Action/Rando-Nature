@@ -20,22 +20,37 @@ class PhotoAlbum
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $nom;
+    private $image;
+
+    /**
+     * @ORM\ManyToOne (targetEntity=Activite::class, inversedBy="albumPhoto")
+     */
+    private $activite;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getNom(): ?string
+    public function getImage()
     {
-        return $this->nom;
+        return $this->image;
     }
 
-    public function setNom(string $nom): self
+    public function setImage($image): void
     {
-        $this->nom = $nom;
-
-        return $this;
+        $this->image = $image;
     }
+
+    public function getActivite()
+    {
+        return $this->activite;
+    }
+
+    public function setActivite($activite): void
+    {
+        $this->activite = $activite;
+    }
+
+
 }

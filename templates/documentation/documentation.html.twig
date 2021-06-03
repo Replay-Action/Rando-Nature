@@ -6,6 +6,14 @@
             <div class="center-hr col-12">
                 <hr class="hr25-pourcent">
             </div>
+            {% if is_granted(["ROLE_USER"]) %}
+                <div class="container col-4 create_documentation">
+                    <a class="block_lien" href="{{ path('create_documentation')}}">
+                        <img class="logo_create_documentation" src="{{ asset('tools/plus.png') }}" alt="logo ajouter vert">
+                        <p> Créer une documentation</p>
+                    </a>
+                </div>
+            {% endif %}
         </div>
     </div>
     <div class="container">
@@ -22,7 +30,7 @@
                         <img  src="{{ asset('tools/calendrier.png') }}" alt="icon de calendrier">
                             </div>
                             <div>
-                        <p>{{ doc.getDateCreation()| date('j F Y h:i')}}</p>
+                        <p>{{ doc.getDateModifier()| date('j F Y h:i') }}</p>
                             </div>
                         </div>
                         <div class="documentation_user">

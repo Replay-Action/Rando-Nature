@@ -29,6 +29,11 @@ class Etat
      */
     private $activites;
 
+    public function __toString()
+    {
+        return $this->getLibelle();
+    }
+
     public function __construct()
     {
         $this->activites = new ArrayCollection();

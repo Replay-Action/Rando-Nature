@@ -1,0 +1,162 @@
+.recap_box{
+    background: white;
+    border-radius: 5px;
+    box-shadow: 5px 2px 10px black;
+    margin-bottom: 50px;
+}
+.recap_show_header{
+    padding: 50px;
+}
+.activite_categorie p {
+    margin: 10px;
+    font-size: small;
+    font-weight: bold;
+    color: lightslategrey;
+}
+.activite_title p{
+    font-size: xx-large;
+    font-weight: lighter;
+    margin: 10px;
+    color:royalblue ;
+}
+.activite_infosActivite p{
+    margin: 10px 0 20px 10px;
+    font-weight: bold;
+}
+.activite_date_user{
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+
+}
+.activite_date, .activite_user{
+    display: flex;
+    flex-direction: row;
+    width: 250px;
+    height: 40px;
+}
+.activite_date img, .activite_user img{
+    margin: 0 10px 0 10px;
+    width: 20px ;
+    height:20px ;
+    object-fit: contain;
+}
+.activite_date p, .activite_user p{
+    color: lightslategray;
+}
+.activite_user p {
+    margin-right: 10px;
+}
+.block0{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.block1 , .block2, .block3{
+    max-width: max-content;
+    margin: 0 120px 0 120px;
+}
+.block2{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+.block3{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+.block3 img{
+    margin-left: 20px;
+    max-width: 100px;
+    max-height: 100px;
+}
+.list_participant{
+    padding: 10px 10px 20px 10px;
+}
+.list_participant_title{
+    font-size: x-large;
+    font-weight: lighter;
+    color:royalblue;
+}
+.participant{
+    display: flex;
+    flex-direction: row;
+    width: max-content;
+    padding: 20px;
+}
+.recap_pdf{
+    font-size: x-large;
+    font-weight: lighter;
+    margin: 10px;
+    color:royalblue;
+}
+.ajout_pdf{
+    display: block;
+    width: max-content;
+    margin: 20px 0 20px 0;
+}
+.logo_create_pdf{
+    margin: 0 10px 0 10px;
+    width: 20px ;
+    height:20px ;
+    object-fit: contain;
+}
+.pdf_activite{
+    padding: 50px;
+}
+embed{
+    width: 100%;
+    height: 1500px;
+}
+.album_box{
+    background: white;
+    border-radius: 5px;
+    box-shadow: 5px 2px 10px black;
+}
+.album{
+    padding: 50px;
+}
+.album_title{
+    font-size: xx-large;
+    font-weight: lighter;
+    margin: 10px;
+    color:royalblue;
+}
+.ajout_photo{
+    display: block;
+    width: max-content;
+    margin: 20px 0 20px 0;
+}
+.block_lien p{
+    padding-top: 15px;
+    text-align: center;
+    text-decoration: none;
+}
+.block_liena{
+    text-decoration: none;
+}
+.logo_create_photo{
+    margin: 0 10px 0 10px;
+    width: 20px ;
+    height:20px ;
+    object-fit: contain;
+}
+.album_photos{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.photos_activite{
+    width: 25%;
+    height: 25%;
+    margin: 25px 500px 25px 500px;
+    object-fit: contain;
+;
+}
+.photos_activite:hover{
+    width: 90%;
+    height: 90%;
+    -webkit-transition: width 0.3s linear 0s;
+}

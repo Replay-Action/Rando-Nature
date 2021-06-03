@@ -44,7 +44,7 @@
         <div class="partie2 col-sm-12 col-lg-5">
             <div class="teste">
                 {% for user in users %}
-                <div class="">
+                <div class="flex1">
                 {% if user.referents.getNom() == 'Président' %}
                     <div class="president role_format">
                         <p class="role_user">{{ user.referents.getNom() }}</p>
@@ -55,7 +55,7 @@
                     </div>
                 {% endif %}
                 </div>
-                <div class="">
+                <div class="flex2">
                 {% if user.referents.getNom() == 'Secrétaire' or user.referents.getNom() == 'Trésorier' %}
                     <div class="secretaire_tresorier role_format">
                         <p class="role_user">{{ user.referents.getNom() }}</p>
@@ -66,7 +66,7 @@
                     </div>
                 {% endif %}
                 </div>
-                <div class="">
+                <div class="flex3">
                 {% if user.referents.getNom() != 'Président' and user.referents.getNom() != 'Secrétaire'
                     and user.referents.getNom() != 'Trésorier' and user.referents.getNom() != 'Adhérent' %}
                     <div class="other role_format">

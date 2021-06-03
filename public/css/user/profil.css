@@ -1,0 +1,71 @@
+
+/**
+Partie Profil
+ */
+.title-modifier-profil{
+    margin-top: 200px;
+    display: flex;
+    justify-content: center;
+}
+.th-modifier-profil{
+    color: white;
+}
+.profil-fond-noir{
+    background-color:rgba(49,49,49,0.7);
+    border-radius: 15px;
+    border:solid 1px;
+    justify-content: center;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+.global-div-img-profil{
+    margin-top: 20px;
+}
+
+.global-profil-show{
+    margin-top: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.global-profiledit{
+    display: flex;
+    flex-direction: row;
+    max-width: content-box;
+    max-height: content-box;
+    justify-content: center;
+}
+
+.position-photo-profiledit{
+    flex-direction: row;
+    display: flex;
+    justify-content: center;
+}
+
+.affichage-photo-profiledit{
+    display: flex;
+    justify-content: center;
+    border-radius: 150px;
+    -moz-border-radius: 150px;
+    -webkit-border-radius: 150px;
+    max-height: 325px;
+    max-width: 325px;
+}
+
+.position-photo-show{
+
+    flex-direction: row;
+    display: flex;
+    max-height: 325px;
+    max-width: 325px;
+}
+
+.affichage-photo-show {
+    border-radius: 150px;
+    -moz-border-radius: 150px;
+    -webkit-border-radius: 150px;
+}
+.affichage-profil{
+    display: flex;
+    justify-content: center;
+}

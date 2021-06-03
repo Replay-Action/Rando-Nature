@@ -1,37 +1,34 @@
+<div class="container">
+    <div class="form__activite">
+        <div class="title_form  col-lg-12">
+            <p>Création d'une activité</p>
+        </div>
+        <div class="gauche-form-activite col-lg6">
+            {{ form_start(form) }}
+            <p>Nom: {{ form_widget(form.nom) }}</p>
+            <p>Categorie: {{ form_widget(form.categorie) }}</p>
+            <p>Date: {{ form_widget(form.date_activite) }}</p>
+            <p>Durée: {{ form_widget(form.duree) }}</p>
+            <p>Distance: {{ form_widget(form.distance) }}</p>
+        </div>
+        <div class="droite-form-activite col-lg-6">
+            <p>Infos: {{ form_widget(form.infos_activite) }}</p>
+            <p>Denivele: {{ form_widget(form.denivele) }}</p>
+            <p>Difficulte: {{ form_widget(form.difficulte) }}</p>
+            <p>{{ form_widget(form.lieu) }}</p>
 
-    <div class="container-fluid">
-        <div class="title__partenaire container-fluid row">
-            <h1 class="col-12">Création d'une Activité</h1>
-            <div class="center-hr col-12">
-                <hr class="hr25-pourcent">
+        </div>
+        <div class="bas-form-activite col-12">
+            <div class="bas-form-activite1">
+                {{ form_widget(form.valider) }}
+                {{ form_end(form) }}
+            </div>
+            <div class="bas-form-activite2">
+                <a class="butonPersonnalise" href="{{ path('activite_index') }}">Retour</a>
             </div>
         </div>
     </div>
-    <div class="container-fluid">
-            <div class="form__activite">
-                {{ form_start(form) }}
-                <div class="gauche-form-activite">
-                    <p>Nom: {{ form_widget(form.nom) }}</p>
-                    <p>Categorie: {{ form_widget(form.categorie) }}</p>
-                    <p>Date: {{ form_widget(form.date_activite) }}</p>
-                    <p>Durée: {{ form_widget(form.duree) }}</p>
-                    <p>Distance: {{ form_widget(form.distance) }}</p>
-                </div>
-                <div class="droite-form-activite">
-                    <p>Infos: {{ form_widget(form.infos_activite) }}</p>
-                    <p>Denivele: {{ form_widget(form.denivele) }}</p>
-                    <p>Difficulte: {{ form_widget(form.difficulte) }}</p>
-                    <p hidden>{{ form_widget(form.etat) }}</p>
-                    <p>{{ form_widget(form.lieu) }}</p>
-                    <p hidden>{{ form_widget(form.docPdfs) }}</p>
-
-                </div>
-                <div class="d-flex justify-content-center">
-                {{ form_end(form) }}
-                </div>
-            </div>
-    </div>
-
+</div>
 {# formulaire des activités, on le met sous forme de tableau #}
 {#
 <div class="d-flex justify-content-center ">

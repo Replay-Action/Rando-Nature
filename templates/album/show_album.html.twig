@@ -1,0 +1,121 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container-fluid page_box">
+        <div class="container recap_box">
+            <div class="recap_show_header">
+                <div class="activite_categorie col-12">
+                    <p>{{ activite.categorie }}</p>
+                </div>
+                <div class="activite_title col-12">
+                    <p>{{ activite.nom }}</p>
+                </div>
+                <div class="activite_infosActivite">
+                    <p>{{ activite.getInfosActivite }}</p>
+                </div>
+                <div class="activite_date_user">
+                    <div class="activite_date">
+                        <img  src="{{ asset('tools/calendrier.png') }}" alt="icon de calendrier">
+                        <p>{{ activite.getDateActivite()| date('j F Y h:i') }}</p>
+                    </div>
+                    <div class="activite_user">
+                        <img src="{{ asset('tools/user.png') }}" alt="icon d'utilisateur">
+                        <p>{{ activite.organisateur.getNom() }}</p>
+                        <p>{{ activite.organisateur.getPrenom() }}</p>
+                    </div>
+                </div>
+                <div class="block0">
+                    <div class="block1 col-4">
+                        <p>Durée : {{ activite.duree }} minute(s)</p>
+                        <p>Ville : {{ activite.lieu.getNomVille() }}</p>
+                        <p>Adresse : {{ activite.lieu.getNomRue() }}</p>
+                    </div>
+                    <div class="block2 col-4">
+                        <p>Dénivelé : {{ activite.denivele }} mètre(s)</p>
+                        <p>Distance : {{ activite.distance }} kilomètre(s)</p>
+                    </div>
+                    <div class="block3 col-4">
+                        <p>Difficulté :</p>
+                        {% if (activite.getDifficulte() == 0 or activite.getDifficulte() == '')%}
+                        {% else %}
+                            {% if ( activite.difficulte == 1) %}
+                                <img src="{{ asset("tools/difficulte1.png") }}" alt="">
+                            {% elseif ( activite.difficulte == 2) %}
+                                <img src="{{ asset("tools/difficult2.png") }}" alt="">
+                            {% else %}
+                                <img src="{{ asset("tools/difficult3.png") }}" alt="">
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="list_participant">
+                    <div class="list_participant_title">
+                        Liste des participants
+                    </div>
+                    {% for activites in activite %}
+                        <p>{{ activites.users.count }} personne(s) ont participé(s) à cette activité</p>
+                    {% endfor %}
+                    {% for user in activite.users %}
+                        {%  if user.prenom is not empty and user.nom is not empty %}
+                        <div class="participant">
+                            <p>{{ user.prenom }}</p>
+                            <p>{{ user.nom }}</p>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="pdf">
+                    <div class="recap_pdf">
+                        <p>Parcours de l'activité</p>
+                    </div>
+                    <div>
+                        {% if is_granted(["ROLE_USER"]) %}
+                            <div class="ajout_pdf">
+                                <a class="block_lien" href="{{ path('create_pdf', {'id':activite.id}) }}">
+                                    <img class="logo_create_pdf" src="{{ asset('tools/plus.png') }}" alt="logo ajouter vert">
+                                    <p> Ajouter un pdf</p>
+                                </a>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="pdf_activite">
+                    {% for pdf in activite.docPdfs %}
+                        {% if pdf.nompdf is not empty or pdf.nompdf != null %}
+                            <embed  src="{{ asset('recap/'~ pdf.nompdf) }}" type='application/pdf'/>
+                            <a href="{{ path('delete_pdf', {'id':pdf.id}) }}">supprimer</a>
+                        {% else %}
+                            <p>Aucun adhérent n'est ses inscrit a cette activité</p>
+                        {% endif %}
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container  album_box">
+            <div class="album">
+                <div class="album_title">
+                    <p>Album Photo</p>
+                </div>
+                <div>
+                    {% if is_granted(["ROLE_USER"]) %}
+                        <div class="ajout_photo">
+                        <a class="block_lien" href="{{ path('create_album', {'id':activite.id}) }}">
+                            <img class="logo_create_photo" src="{{ asset('tools/plus.png') }}" alt="logo ajouter vert">
+                            <p> Ajouter une photo</p>
+                        </a>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="album_photos">
+                {% for photo in activite.albumPhoto %}
+                    {% if photo.image is not empty or photo.image != null %}
+                    <img class="photos_activite col-lg-12" src="{{ asset('album-photo/'~ photo.image)  }}" alt="Oups un soucis est survenus">
+                        <a href="{{ path('delete_album', {'id':photo.id}) }}">supprimer</a>
+                    {% else %}
+                        <p>Aucune images n'est associé a cette activité</p>
+                    {% endif %}
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
