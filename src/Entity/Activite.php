@@ -80,7 +80,8 @@ class Activite
     private $users;
 
     /**
-     * @ORM\OneToMany (targetEntity=PhotoAlbum::class, mappedBy="activite")
+     * @ORM\OneToMany (targetEntity=PhotoAlbum::class, mappedBy="activite",
+     * cascade={"persist","remove"})
      */
     private $albumPhoto;
 

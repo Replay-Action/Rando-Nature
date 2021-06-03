@@ -59,9 +59,19 @@
     width: max-content;
     border-radius: 5px;
     color: lightslategray;
+    font-style: italic;
 }
 .album_photo_etiquette img{
     width: 20px ;
     height:20px ;
     object-fit: contain;
+}
+.bas_album_photo{
+    display: flex;
+    justify-content: flex-end;
+    margin: 5px;
+}
+.bas_album_photo a {
+    margin: 0 10px 0 10px;
+    text-decoration: none;
 }

@@ -1,3 +1,18 @@
+/**
+    Partie Présentation
+ */
+
+.title-presentation{
+    text-align: center;
+    margin: 100px 0 50px 0;
+}
+.text-presentation,.text-presentation ul{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
 .taille-ecran{
     text-align: center;
     margin: 1em auto;

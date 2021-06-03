@@ -1,3 +1,5 @@
+@import "connexion/connexion.css";
+
 @import "navbar/navbar.css";
 @import "footer/footer.css";
 
@@ -29,6 +31,7 @@
 @import "partenaire/gestion_partenaire.css";
 
 @import "referent/gestion referent.css";
+
 *{
     margin: 0;
     padding: 0;

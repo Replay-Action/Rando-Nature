@@ -24,16 +24,16 @@
                     </div>
                 </div>
                 <div class="block0">
-                    <div class="block1 col-4">
+                    <div class="information_album_droite col-lg-4 col-sm-12">
                         <p>Durée : {{ activite.duree }} minute(s)</p>
                         <p>Ville : {{ activite.lieu.getNomVille() }}</p>
                         <p>Adresse : {{ activite.lieu.getNomRue() }}</p>
                     </div>
-                    <div class="block2 col-4">
+                    <div class="information_album_centre col-lg-4 col-sm-12">
                         <p>Dénivelé : {{ activite.denivele }} mètre(s)</p>
                         <p>Distance : {{ activite.distance }} kilomètre(s)</p>
                     </div>
-                    <div class="block3 col-4">
+                    <div class="information_album_gauche col-lg-4 col-sm-12">
                         <p>Difficulté :</p>
                         {% if (activite.getDifficulte() == 0 or activite.getDifficulte() == '')%}
                         {% else %}
@@ -51,24 +51,24 @@
                     <div class="list_participant_title">
                         Liste des participants
                     </div>
-                    {% for activites in activite %}
-                        <p>{{ activites.users.count }} personne(s) ont participé(s) à cette activité</p>
-                    {% endfor %}
-                    {% for user in activite.users %}
-                        {%  if user.prenom is not empty and user.nom is not empty %}
-                        <div class="participant">
-                            <p>{{ user.prenom }}</p>
-                            <p>{{ user.nom }}</p>
-                        </div>
-                        {% endif %}
-                    {% endfor %}
+
+                    <div class="inscrit_box col-12">
+                        {% for user in activite.users %}
+                            {%  if user.prenom is not empty and user.nom is not empty %}
+                            <div class="participant col-8">
+                                <p>{{ user.prenom }}</p>
+                                <p>{{ user.nom }}</p>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
                 </div>
                 <div class="pdf">
                     <div class="recap_pdf">
                         <p>Parcours de l'activité</p>
                     </div>
                     <div>
-                        {% if is_granted(["ROLE_USER"]) %}
+                        {% if is_granted(["ROLE_ADMIN"]) %}
                             <div class="ajout_pdf">
                                 <a class="block_lien" href="{{ path('create_pdf', {'id':activite.id}) }}">
                                     <img class="logo_create_pdf" src="{{ asset('tools/plus.png') }}" alt="logo ajouter vert">
@@ -81,7 +81,9 @@
                     {% for pdf in activite.docPdfs %}
                         {% if pdf.nompdf is not empty or pdf.nompdf != null %}
                             <embed  src="{{ asset('recap/'~ pdf.nompdf) }}" type='application/pdf'/>
-                            <a href="{{ path('delete_pdf', {'id':pdf.id}) }}">supprimer</a>
+                            {% if is_granted(["ROLE_ADMIN"]) %}
+                                <a href="{{ path('delete_pdf', {'id':pdf.id}) }}">supprimer</a>
+                            {% endif %}
                         {% else %}
                             <p>Aucun adhérent n'est ses inscrit a cette activité</p>
                         {% endif %}
@@ -96,7 +98,7 @@
                     <p>Album Photo</p>
                 </div>
                 <div>
-                    {% if is_granted(["ROLE_USER"]) %}
+                    {% if is_granted(["ROLE_ADMIN"]) %}
                         <div class="ajout_photo">
                         <a class="block_lien" href="{{ path('create_album', {'id':activite.id}) }}">
                             <img class="logo_create_photo" src="{{ asset('tools/plus.png') }}" alt="logo ajouter vert">
@@ -109,7 +111,9 @@
                 {% for photo in activite.albumPhoto %}
                     {% if photo.image is not empty or photo.image != null %}
                     <img class="photos_activite col-lg-12" src="{{ asset('album-photo/'~ photo.image)  }}" alt="Oups un soucis est survenus">
-                        <a href="{{ path('delete_album', {'id':photo.id}) }}">supprimer</a>
+                        {% if is_granted(["ROLE_ADMIN"]) %}
+                            <a href="{{ path('delete_album', {'id':photo.id}) }}">supprimer</a>
+                        {% endif %}
                     {% else %}
                         <p>Aucune images n'est associé a cette activité</p>
                     {% endif %}

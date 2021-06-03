@@ -31,7 +31,7 @@
                             {% for photo in user.photos %}
                             {% if user.photos is not empty %}
                                 <img src="{{ asset ('photo-profil/'~ photo.name) }}" alt="photo de l'utilisateur">
-                            {% else%}
+                            {% else %}
                                 <img src="{{ asset('tools/logo_profil.png') }}" alt="logo de profil">
                             {% endif %}
                             {% endfor %}
@@ -97,7 +97,7 @@
                                     {% for photo in user.photos %}
                                     {% if user.photos is not empty %}
                                         <img src="{{ asset ('photo-profil/'~ photo.name) }}" alt="photo de l'utilisateur">
-                                    {% elseif user.photos == null %}
+                                    {% else %}
                                         <img src="{{ asset('tools/logo_profil.png') }}" alt="logo de profil">
                                     {% endif %}
                                     {% endfor %}

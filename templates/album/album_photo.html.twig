@@ -38,6 +38,12 @@
                                 </div>
                             </div>
                         </div>
+                        {% if is_granted(["ROLE_ADMIN"]) %}
+                            <div class="bas_album_photo col-12">
+                                <a href="{{ path('activite_edit', {'id':activites.id}) }}">modifier</a>
+                                <a href="{{ path('activite_delete', {'id':activites.id}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer cette activité');">supprimer</a>
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
             {% endfor %}
