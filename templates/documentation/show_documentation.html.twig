@@ -68,7 +68,7 @@
                 {% endif %}
             </div>
             <div class="documentation__option">
-                {% if(app.user.username == documentations.auteur) %}
+                {% if(app.user.username == documentations.auteur and is_granted ("ROLE_USER") ) %}
                     <a href="{{ path('update_documentation', {"id":documentations.id}) }}">Modifier</a>
                 {% endif %}
                 {% if(app.user.username == documentations.auteur or is_granted ("ROLE_ADMIN")) %}
@@ -89,7 +89,7 @@
         </div>
     </div>
     <div class="container">
-        {% for com in commentaires %}
+        {% for com in documentations.commentaire %}
             {% if (com.commentaire != null) %}
                 <div class="commentaire_box">
                     <div class="documentation_commentaire">
