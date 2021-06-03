@@ -14,20 +14,30 @@
                 <div class="gauche-adhesion row">
                     <h1 class=" col-6 m-3 pt-3 text-center">Bulletin d'adhésion</h1>
 
-                    <div class="pt-3"><h4>Remplissez le formulaire en choisissant un pseudo</h4>
+                    <div class="pt-3 text-adhesion"><h4>Remplissez le formulaire en choisissant un pseudo</h4>
 
                         <p class="bg-info text-white p-1">Si le formulaire n'apparait pas, veuillez désactiver votre bloqueur
                         de publicité</p>
-                        <hr class="hr-bulletin-adhesion">
+                        <div class="center-hr">
+                            <hr class="hr25-pourcent center hr-bulletin-adhesion">
+                        </div>
                     </div>
 
                 {# on importe le formulaire #}
                     <div class="col-6 pt-4">
-                    {{ form(adhesionForm) }}
+                        {{ form_start(adhesionForm) }}
+                        <p>Nom : {{ form_widget(adhesionForm.nom) }}</p>
+                        <p>Prénom : {{ form_widget(adhesionForm.prenom) }}</p>
+                        <p>Pseudo : {{ form_widget(adhesionForm.pseudo) }}</p>
+                        <p>Mail : {{ form_widget(adhesionForm.email) }}</p>
+                        <p>Date de Naissance : {{ form_widget(adhesionForm.date_de_naissance) }}</p>
+                        <p>Téléphone : {{ form_widget(adhesionForm.telephone) }}</p>
+
+                        {{ form_end(adhesionForm) }}
                     </div>
 
                 {# simple documentation ecrite #}
-                <p class="lead text-center bg-info text-white p-2"> Après avoir envoyé le formulaire,<br> puis payé la
+                <p class="lead text-center bg-info text-white p-2 text-adhesion m-3"> Après avoir envoyé le formulaire,<br> puis payé la
                     cotisation par chèque ou par virement,<br> l'association valide votre adhésion <br>en vous envoyant un
                     mail qui contiendra les identifiants pour vous connecter</p>
 
@@ -39,8 +49,8 @@
                     <h2 class="text-align-center text-center">Informations complémentaire </h2>
                     <br>
                         <p>
-                        <p class="text-center taille-text-adhesion">Je reconnais :</p>
-                            <ul class="text-center taille-text-adhesion">
+                        <p class="text-center taille-text-adhesion text-adhesion-">Je reconnais :</p>
+                            <ul class="text-center taille-text-adhesion text-adhesion">
                                 <li>
                                     Connaître et accepter le règlement intérieur et la charte de l'association RNB .
                                 </li>
@@ -53,7 +63,7 @@
                             </ul>
                         </p>
                 </div>
-                <div class="bg-warning border p-2 text-important-adhesion ">
+                <div class="bg-warning border p-2 text-important-adhesion text-adhesion">
                     <h4>
                         Important Chacun roule sous sa propre responsabilité.<br><br>
                         En aucun cas, l'association Rando Nature Bruz :
@@ -68,10 +78,14 @@
 
 
             <div class=" taille-text-adhesion text-center m-5 ">
-            <hr class="hr-bulletin-adhesion">
+                <div class="center-hr">
+                    <hr class="hr25-pourcent center hr-bulletin-adhesion">
+                </div>
             <h4 class="">Où nous trouver ?</h4>
             {# le iframe de la map de google #}
-            <hr class="hr-bulletin-adhesion">
+                <div class="center-hr">
+                    <hr class="hr25-pourcent hr-bulletin-adhesion center">
+                </div>
                 <div class="map-presentation map-ahesion ">
                 <iframe class="display:block" style="border: solid 1px lightgrey;"
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2668.720611233386!2d-1.7574356843551209!3d48.0191073792142!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x480f1ef2cdd24d6f%3A0xc61fe53b8132941d!2s31%20Rue%20des%20Forges%2C%2035170%20Bruz!5e0!3m2!1sfr!2sfr!4v1613063726862!5m2!1sfr!2sfr"

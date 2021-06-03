@@ -1,0 +1,32 @@
+.tilte__login{
+    justify-content: center;
+    display: flex;
+    margin-top: 100px;
+}
+.button-adherez-login{
+    background-color: limegreen;
+    color: #FFFFFF;
+}
+.button-style-login{
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    color: #FFFFFF;
+}
+.button-style-envoyer{
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.form-login-fond-noir{
+    border-radius: 15px;
+    border:solid 1px;
+    background-color:rgba(49,49,49,0.7);
+    color: white;
+    justify-content: center;
+    width: max-content;
+    padding: 25px;
+}
+.placement-button-envoyer-login{
+    justify-content: center;
+    display: flex;
+}

@@ -10,8 +10,8 @@
         {% endif %}
 
 
-        <div class="row d-flex justify-content-center">
-            <div class="col-auto">
+        <div class="row tilte__login">
+            <div class="col-auto form-login-fond-noir">
                 <h1 class="h3 mb-3 font-weight-normal">Connectez-vous </h1>
                 <label for="inputUsername">Pseudo</label>
                 <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control"
@@ -22,18 +22,20 @@
                 <input type="hidden" name="_csrf_token"
                        value="{{ csrf_token('authenticate') }}"
                 >
-                <button class="btn btn-lg btn-primary btn-block mb-1 mt-3" type="submit">
-                    envoyer
+                <div class="placement-button-envoyer-login">
+                <button class="btn btn-lg btn-primary btn-block button-style-envoyer" type="submit">
+                    Envoyer
                 </button>
-                <a href="{{ path('app_forgot_password_request') }}">Mot de passe oublié ?</a>
+                </div>
+                <a class="button-style-login" href="{{ path('app_forgot_password_request') }}">Mot de passe oublié ?</a>
             </div>
 
 
         </div>
         <h2 class="text-center mt-5">Nouveau sur le site ?</h2>
-        <div class="row d-flex justify-content-center mt-1 mb-5">
+        <div class=" d-flex justify-content-center">
 
-            <a href="{{ path('adhesion') }}" class="btn btn-lg btn-success  m-3">
+            <a href="{{ path('adhesion') }}" class="btn btn-lg button-adherez-login m-3">
                 adhérez à l'association
             </a>
         </div>

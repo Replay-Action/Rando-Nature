@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Création d'actualite |{{ parent() }}{% endblock %}
+
+{% block body %}
+
+    <div class="title-actualite row">
+        <h1 class="col-12">Création d'Actualité</h1>
+        <hr>
+    </div>
+
+    {% include('actualite/_formactu.html.twig') %}
+{% endblock %}

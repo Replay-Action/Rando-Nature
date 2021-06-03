@@ -8,9 +8,11 @@ use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -70,14 +72,16 @@ class UserType extends AbstractType
             #class birthday pour que les années soient dispos jusque 1901#
             ->add('date_naissance', BirthdayType::class, [
                 # 'placeholder'=>'selectionner une valeur',
-                'format' => 'ddMMyyyy'
+                'widget' =>'single_text'
             ])
             ->add('photos', FileType::class, [
                 'label' => false,
                 'multiple' => true,
                 'mapped' => false,
                 'required' => false
-            ]);
+            ])
+
+            ->add('enregistrer',SubmitType::class);
 
 
 

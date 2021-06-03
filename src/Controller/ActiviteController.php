@@ -9,8 +9,7 @@ use App\Form\SearchForm;
 use App\Repository\ActiviteRepository;
 use App\Repository\DocPdfRepository;
 use App\Repository\EtatRepository;
-use App\Repository\LieuRepository;
-use Doctrine\ORM\EntityManagerInterface;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,18 +23,15 @@ class ActiviteController extends AbstractController
     /**
      * @Route("/", name="activite_index", methods={"GET"})
      * @param ActiviteRepository $activiteRepository
-     * @param EtatRepository $etatRepository
      * @param Request $request
      * @return Response
      */
-    public function index(ActiviteRepository $activiteRepository,
-                          EtatRepository $etatRepository, Request $request): Response
+    public function index(ActiviteRepository $activiteRepository, Request $request): Response
     {
 
         $user = $this->getUser();
-        $date = new \DateTime('now');
+        $date = new DateTime('now');
 
-        $datecrit = $date->getTimestamp();
 
         $data = new SearchData();
         $form = $this->createForm(SearchForm::class, $data);
@@ -65,14 +61,10 @@ class ActiviteController extends AbstractController
     /**
      * @Route("/new", name="activite_new", methods={"GET","POST"})
      * @param Request $request
-     * @param LieuRepository $lieuRepository
      * @param EtatRepository $etatRepository
-     * @param EntityManagerInterface $entityManager
      * @return Response
      */
-    public function new(Request $request, LieuRepository $lieuRepository,
-                        EtatRepository $etatRepository,
-                        EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EtatRepository $etatRepository): Response
     {
 
         $this->denyAccessUnlessGranted("ROLE_ADMIN");
@@ -129,6 +121,10 @@ class ActiviteController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="activite_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param Activite $activite
+     * @param EtatRepository $etatRepository
+     * @return Response
      */
     public function edit(Request $request, Activite $activite, EtatRepository $etatRepository): Response
     {
@@ -185,7 +181,6 @@ class ActiviteController extends AbstractController
                 #si le pdf existe dans le dossier public alors on l'efface
                 if ($pdfexist) {
                     unlink($pdfexist);
-                } else {
                 }
             }
 

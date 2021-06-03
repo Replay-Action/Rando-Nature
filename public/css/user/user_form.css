@@ -1,16 +1,12 @@
-.admin-cree-adherent-fond-noir{
-    background-color:rgba(49,49,49,0.7);
-    color: white;
-    border-radius: 15px;
-    border:solid 1px;
-    justify-content: center;
-    margin-top: 1%;
-    margin-bottom: 1%;
-}
-
 /**
 Partie Modif profil en tant que Admin
  */
+.title-modifier-profil-admin{
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+}
+
 .affichage-admin-photo-profiledit{
     border-radius: 150px;
     -moz-border-radius: 150px;
@@ -25,6 +21,91 @@ Partie Modif profil en tant que Admin
     border-radius: 15px;
     border:solid 1px;
     justify-content: center;
+    margin-top: 100px;
+    margin-bottom: 1%;
+}
+/**
+Partie Profil
+ */
+.color-button-retour{
+    background-color: #FFFFFF;
+}
+
+.title-modifier-profil{
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+}
+.div-int-modifier-profil{
+    display: flex;
+    justify-content: center;
+}
+.th-modifier-profil{
+    color: white;
+}
+.div-ext-modifier-profil{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+.profil-fond-noir{
+    background-color:rgba(49,49,49,0.7);
+    border-radius: 15px;
+    border:solid 1px;
+    justify-content: center;
     margin-top: 1%;
     margin-bottom: 1%;
+    color:#FFFFFF;
+}
+.global-div-img-profil{
+    margin-top: 20px;
+}
+
+.global-profil-show{
+    margin-top: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.global-profiledit{
+    display: flex;
+    flex-direction: row;
+    max-width: content-box;
+    max-height: content-box;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.position-photo-profiledit{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.affichage-photo-profiledit{
+    display: flex;
+    justify-content: center;
+    border-radius: 150px;
+    -moz-border-radius: 150px;
+    -webkit-border-radius: 150px;
+    max-height: 325px;
+    max-width: 325px;
+}
+
+.position-photo-show{
+
+    flex-direction: row;
+    display: flex;
+    max-height: 325px;
+    max-width: 325px;
+}
+
+.affichage-photo-show {
+    border-radius: 150px;
+    -moz-border-radius: 150px;
+    -webkit-border-radius: 150px;
+}
+.affichage-profil{
+    display: flex;
+    justify-content: center;
 }

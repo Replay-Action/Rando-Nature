@@ -68,7 +68,7 @@
                         <p>Parcours de l'activité</p>
                     </div>
                     <div>
-                        {% if is_granted(["ROLE_USER"]) %}
+                        {% if is_granted(["ROLE_ADMIN"]) %}
                             <div class="ajout_pdf">
                                 <a class="block_lien" href="{{ path('create_pdf', {'id':activite.id}) }}">
                                     <img class="logo_create_pdf" src="{{ asset('tools/plus.png') }}" alt="logo ajouter vert">
@@ -81,7 +81,9 @@
                     {% for pdf in activite.docPdfs %}
                         {% if pdf.nompdf is not empty or pdf.nompdf != null %}
                             <embed  src="{{ asset('recap/'~ pdf.nompdf) }}" type='application/pdf'/>
-                            <a href="{{ path('delete_pdf', {'id':pdf.id}) }}">supprimer</a>
+                            {% if is_granted(["ROLE_ADMIN"]) %}
+                                <a href="{{ path('delete_pdf', {'id':pdf.id}) }}">supprimer</a>
+                            {% endif %}
                         {% else %}
                             <p>Aucun adhérent n'est ses inscrit a cette activité</p>
                         {% endif %}
@@ -96,7 +98,7 @@
                     <p>Album Photo</p>
                 </div>
                 <div>
-                    {% if is_granted(["ROLE_USER"]) %}
+                    {% if is_granted(["ROLE_ADMIN"]) %}
                         <div class="ajout_photo">
                         <a class="block_lien" href="{{ path('create_album', {'id':activite.id}) }}">
                             <img class="logo_create_photo" src="{{ asset('tools/plus.png') }}" alt="logo ajouter vert">
@@ -109,7 +111,9 @@
                 {% for photo in activite.albumPhoto %}
                     {% if photo.image is not empty or photo.image != null %}
                     <img class="photos_activite col-lg-12" src="{{ asset('album-photo/'~ photo.image)  }}" alt="Oups un soucis est survenus">
-                        <a href="{{ path('delete_album', {'id':photo.id}) }}">supprimer</a>
+                        {% if is_granted(["ROLE_ADMIN"]) %}
+                            <a href="{{ path('delete_album', {'id':photo.id}) }}">supprimer</a>
+                        {% endif %}
                     {% else %}
                         <p>Aucune images n'est associé a cette activité</p>
                     {% endif %}

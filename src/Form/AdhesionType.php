@@ -31,7 +31,6 @@ class AdhesionType extends AbstractType
                 'required'=>true
             ])
             ->add('date_de_naissance', BirthdayType::class, [
-
                 'format' => 'ddMMyyyy',
                 'required'=>true,
             ])
@@ -39,6 +38,7 @@ class AdhesionType extends AbstractType
                 'required'=>true
             ])
             ->add('jAccepteLesTermesCi-dessous', CheckboxType::class, array(
+                    'label'=> "J'accepte les termes ci-dessous",
                     'mapped' => false,
                     'constraints' => new IsTrue(),
                 )

@@ -54,10 +54,13 @@
                     <a class="dropdown-item" href="{{path('pleinair')}}">Autres activités de plein-air </a>
                 </div>
             </li>
+            {% if is_granted('ROLE_USER') %}
 
+            {% else %}
             <li class="nav-item">
                 <a class="nav-link" href="{{ path('adhesion') }}">Adhésion</a>
             </li>
+            {% endif %}
             <li class="nav-item">
                 <a class="nav-link" href="{{path('activite_index')}}">Programme</a>
             </li>
