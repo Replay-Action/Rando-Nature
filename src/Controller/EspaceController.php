@@ -52,7 +52,7 @@ class EspaceController extends AbstractController
         $activite=$activiteRepository->affichefinie();
 
 
-        return $this->render('album/show_album.html.twig',[
+        return $this->render('espace/recap-activite.html.twig',[
             'user'=>$user,
             'activites'=>$activite,
             'form'=>$form->createView(),

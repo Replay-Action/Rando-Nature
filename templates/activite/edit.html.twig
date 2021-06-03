@@ -1,4 +1,6 @@
 {% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} | modifier Activite{% endblock %}
 {# twig d'affichage de la page modifier activite #}
 {% block body %}
     {% if is_granted("ROLE_ADMIN") %}
