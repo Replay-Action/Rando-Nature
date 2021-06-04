@@ -23,7 +23,7 @@ class ReferentController extends AbstractController
      */
     public function referent(ReferentRepository $referentRepository):Response
     {
-        $products = $referentRepository->findAll();
+        $products = $referentRepository->findReferent();
         return $this->render('referent/referent.html.twig', [
              'referents' => $products
         ]);

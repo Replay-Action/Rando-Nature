@@ -32,6 +32,9 @@
 
 @import "referent/gestion referent.css";
 
+@import "actualite/actualite_create-edit.css";
+@import "actualite/gestion_actualite.css";
+
 *{
     margin: 0;
     padding: 0;

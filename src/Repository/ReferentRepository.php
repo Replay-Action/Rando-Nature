@@ -18,7 +18,18 @@ class ReferentRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Referent::class);
     }
+    #On récupère la table Referent#
+    #Ensuite on envoie le resultat#
+    public function findReferent()
+    {
+        $referent = $this
 
+        ->createQueryBuilder('ref');
+
+        $query = $referent->getQuery();
+
+        return $query->getResult();
+    }
     // /**
     //  * @return Referent[] Returns an array of Referent objects
     //  */

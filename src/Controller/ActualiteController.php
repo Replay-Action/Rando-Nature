@@ -104,7 +104,7 @@ class ActualiteController extends AbstractController
             return $this->redirectToRoute('home1');
         }
         //On envoie les données et l'affichage du formulaire sur la page actu.html.twig.
-        return $this->render('actualite/actu.html.twig',[
+        return $this->render('actualite/editactu.html.twig',[
            'actualite' => $actualite,
            'form' => $form->createView(),
         ]);
