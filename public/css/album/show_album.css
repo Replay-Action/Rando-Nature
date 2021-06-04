@@ -54,7 +54,7 @@
     justify-content: space-between;
     margin-bottom: 20px;
 }
-.information_album_droite , .information_album_centre, .information_album_gauche{
+.information_album_gauche , .information_album_centre, .information_album_droite{
     max-width: max-content;
 
 }
@@ -63,12 +63,12 @@
     flex-direction: column;
     justify-content: flex-end;
 }
-.information_album_gauche{
+.information_album_droite{
     display: flex;
     flex-direction: row;
     align-items: flex-end;
 }
-.information_album_gauche img{
+.information_album_droite img{
     margin-left: 20px;
     max-width: 100px;
     max-height: 100px;
