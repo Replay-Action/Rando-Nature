@@ -5,90 +5,8 @@
 {% block body %}
 
     {# La page d'accueil #}
-
-
-    {# le style original de bootstrap
-et celui de la vignette clignotante #}
-    {# suppression en attente de confirmation ... #}
-    {#
-    <style>
-        .example-wrapper {
-            text-align: center;
-            margin: 1em auto;
-            max-width: 800px;
-            width: 95%;
-            font: 18px/1.5 sans-serif;
-        }
-
-        .example-wrapper code {
-            background: #F5F5F5;
-            padding: 2px 6px;
-        }
-
-        #test {
-            animation: Test 2s infinite;
-        }
-
-        @keyframes Test {
-            0% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
-        }
-
-    </style>
-  #}
-    {# le carrousel #}
-    {# Suppression en attente de confirmation.. #}
-    {#
-    <div class="container-fluid">
-        <div id="demo" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active" width=100%">
-                    <img class="d-block w-300" src="{{ asset('/content/riviere-resize.jpg') }}" alt="Carrousel slide 1"
-                         width=" 100%">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-300" src="{{ asset('/content/velo-cargo-resize.jpg') }}"
-                         alt="Carrousel slide 2" width=" 100%">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-300" src="{{ asset('/content/peniche bois resize.jpg') }}"
-                         alt="Carrousel slide 3" width=" 100%">
-                </div>
-            </div>
-        </div>
-    </div>
-    #}
-    {# la vignette clignotante #}
-    {# A changer en popue en attente.. TODO #}
-    {#
-    {% if (actidispo) %}
-        <div class="justify-content-center">
-            <div class="row lg-col-4 sm-col-12 m-3">
-                <a href="{{ path('activite_index') }}" id="test"
-                   class=" text-align-center bg-warning btn-lg btn-outline-danger"> {{ actidispo| length }} activités
-                    ouvertes aux inscriptions</a>
-            </div>
-        </div>
-    {% else %}
-    {% endif %}
-    #}
-    {#
-    <div class="box-image container-fluid">
-        <div class="image"><img src="{{ asset('content/velo-pont resize.jpg') }}"></div>
-    </div>
-    #}
-    {# le texte sous le carrousel #}
-    {# L'intro du site... #}
     <div class=" container-fluid">
         <div class="row">
-
             <div class="en-tete-accueil row col-lg-12 col-sm-12">
                     <div class="logo col-lg-12">
                     <img src="{{ asset('logos/logo-velo.png') }}">
@@ -102,55 +20,69 @@ et celui de la vignette clignotante #}
             </div>
 
             <div class="carousel-container col-lg-12">
-                <div class="center-hr">
-                    <hr class="hr25-pourcent center">
-                </div>
+
                 <div class="global-div-home-actu-popup col-lg-12">
                     <div class="div-home-actu-popup">
-                {% for actualite in actualites %}
-                    <div class=" lead actu-home col-lg-12">
-                        {{ actualite.actu }}
-                    </div>
-                {% endfor %}
-                    <div class="popup_accueil col-lg-12">
-                    {% include ('home/_news_activite.html.twig') %}
-                    </div>
+                            {# On boucle sur actualite afin d'afficher toutes les actualites existante #}
+                                {% for actualite in actualites %}
+                            <div class=" lead actu-home col-lg-12">
+                                {{ actualite.actu }}
+                            </div>
+                                {% endfor %}
+                            {# On inclut les news sur les activités #}
+                            <div class="popup_accueil col-lg-12">
+                                {% include ('home/_news_activite.html.twig') %}
+                            </div>
                     </div>
                 </div>
 
                 <div class="description-accueil row">
+
                     <div class="col-lg-12">
-                    <p class="lead text-accueil">
-                            Vous aimez les balades à vélo, la nature et avez besoin de vous évader ?
-                    </p>
+                        <p class="lead text-accueil">
+                                Vous aimez les balades à vélo, la nature et avez besoin de vous évader ?
+                        </p>
                     </div>
+
+                    {# Le carrousel #}
                     <div class="pic-ctn container-fluid col-lg-12 col-sm-12">
+
                         <img src="{{ asset('content/velo-pont resize.jpg') }}" alt="" class="pic">
                         <img src="{{ asset('content/velo et enfant.png') }}" alt="" class="pic">
                         <img src="{{ asset('content/sejour escapade resize.jpg') }}" alt="" class="pic">
                         <img src="{{ asset('content/photographie et video resize.jpg') }}" alt="" class="pic">
                         <img src="{{ asset('content/Paul.jpg') }}" alt="" class="pic">
+
                     </div>
+                    {# Le texte sous le carrousel #}
                     <div class="col-12">
-                    <p class="lead text-accueil">
-                        L'association « Vélo Rando Nature Bruz » vous propose des balades le long
-                        des canaux, des voies vertes et des chemins.
-                    </p>
+                        <p class="lead text-accueil">
+                            L'association « Vélo Rando Nature Bruz » vous propose des balades le long
+                            des canaux, des voies vertes et des chemins.
+                        </p>
                     </div>
                 </div>
             </div>
 
         </div>
     </div>
+
+
     <div class="center-hr">
         <hr class="hr25-pourcent ">
     </div>
+
+
     <h2 id="h2-accueil"> Venez nous rejoindre !</h2>
-    {# les 4 cards de choix, leurs liens, leurs photo, et leurs effets #}
-        <div class=" paragraphe3">
-            <div class="row justify-content-center">
-                <div class=" justify-content-center col-lg-6 col-md-12 size-div-rfap-home">
-                    <div class="card hovereffect-home border-white mb-4">
+
+
+    {# Les 4 cards de choix, leurs liens, leurs photo, et leurs effets #}
+        <div class="div-global-rfap">
+            <div class="second-div-global-rfap">
+
+                {# Première Card #}
+                <div class="col-lg-6 col-md-12 ">
+                    <div class=" size-div-rfap-home card hovereffect-home border-white mb-4">
                         <a href="{{ path('randosvelo') }}">
                             <img src="{{ asset('content/velo-pont resize.jpg') }}" class="card-img-top"
                                  alt="velo posé sur un pont">
@@ -164,8 +96,9 @@ et celui de la vignette clignotante #}
                     </div>
                 </div>
 
-                <div class=" justify-content-center col-lg-6 col-md-12 size-div-rfap-home">
-                    <div class="card hovereffect-home border border-white mb-4">
+                {# Deuxième Card #}
+                <div class="col-lg-6 col-md-12">
+                    <div class=" size-div-rfap-home card hovereffect-home border border-white mb-4">
                         <a href="{{ path('formations') }}">
                             <img src="{{ asset('content/formation-menu-resize.jpg') }}" class="card-img-top" alt="...">
                             <div class="overlay">
@@ -178,8 +111,9 @@ et celui de la vignette clignotante #}
                     </div>
                 </div>
 
-                <div class=" justify-content-center col-lg-6 col-md-12 size-div-rfap-home">
-                    <div class="card hovereffect-home border border-white mb-4">
+                {# Troisième Card #}
+                <div class="col-lg-6 col-md-12 ">
+                    <div class="size-div-rfap-home card hovereffect-home border border-white mb-4">
                         <a href="{{ path('pleinair') }}">
                             <img src="{{ asset('content/2velos resize.jpg') }}" class="card-img-top" alt="...">
                             <div class="overlay">
@@ -192,8 +126,9 @@ et celui de la vignette clignotante #}
                     </div>
                 </div>
 
-                <div class=" justify-content-center col-lg-6 col-md-12 size-div-rfap-home">
-                    <div class="card hovereffect-home border border-white ">
+                {# Quatrième Card #}
+                <div class="col-lg-6 col-md-12 ">
+                    <div class=" card hovereffect-home border border-white ">
                         <a href="{{ path('activite_index') }}">
                             <img src="{{ asset('content/pleon air resize.jpg') }}" class="card-img-top " alt="...">
                             <div class="overlay">
@@ -212,7 +147,8 @@ et celui de la vignette clignotante #}
         <div class="center-hr m-5">
             <hr class="hr25-pourcent center">
         </div>
-        {# le texte sous les cards #}
+
+        {# Le texte sous les cards #}
         <div class="text-bas-page example-wrapper" >
                 <p class="lead text-accueil">Vous pourrez découvrir la patrimoine naturel et culturel de notre belle région en
                     pratiquant une activité physique au plus près de la nature.

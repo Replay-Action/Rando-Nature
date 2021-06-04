@@ -215,7 +215,18 @@ img:nth-child(5) {
 }
 
 .size-div-rfap-home{
-    width: 25%;
-    height: 25%;
     background-color: orange;
+}
+
+.div-global-rfap{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.second-div-global-rfap{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
 }
