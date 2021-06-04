@@ -8,23 +8,23 @@
         <img src="{{ asset ('/content/velo-pont resize.jpg') }}" class="img-fluid" width="100%">
     </div>#}
 
-    <div class=" global-adhesion container-fluid pt-3 ">
-        <div class="row col-12 ">
-            <div class="adhesion-fond-noir m-5 col-lg-5 col-sm-10 ">
-                <div class="gauche-adhesion row">
-                    <h1 class=" col-6 m-3 pt-3 text-center">Bulletin d'adhésion</h1>
+    <div class=" global-adhesion container-fluid">
+            <div class="adhesion-fond-noir m-5 col-lg-5 col-l-12 col-md-12 col-sm-12 size">
+                <div class="gauche-adhesion ">
+                    <h1 class="adhesion_title_centre col-12">Bulletin d'adhésion</h1>
 
-                    <div class="pt-3 text-adhesion"><h4>Remplissez le formulaire en choisissant un pseudo</h4>
+                    <div class="pt-3 text-adhesion col-12">
+                        <h4>Remplissez le formulaire en choisissant un pseudo</h4>
 
-                        <p class="bg-info text-white p-1">Si le formulaire n'apparait pas, veuillez désactiver votre bloqueur
+                        <p class="bg-info text-white m-2">Si le formulaire n'apparait pas, veuillez désactiver votre bloqueur
                         de publicité</p>
                         <div class="center-hr">
                             <hr class="hr25-pourcent center hr-bulletin-adhesion">
                         </div>
                     </div>
 
-                {# on importe le formulaire #}
-                    <div class="col-6 pt-4">
+                    {# on importe le formulaire #}
+                    <div class="adhesion_form col-12 m-2">
                         {{ form_start(adhesionForm) }}
                         <p>Nom : {{ form_widget(adhesionForm.nom) }}</p>
                         <p>Prénom : {{ form_widget(adhesionForm.prenom) }}</p>
@@ -35,66 +35,64 @@
 
                         {{ form_end(adhesionForm) }}
                     </div>
-
-                {# simple documentation ecrite #}
-                <p class="lead text-center bg-info text-white p-2 text-adhesion m-3"> Après avoir envoyé le formulaire,<br> puis payé la
-                    cotisation par chèque ou par virement,<br> l'association valide votre adhésion <br>en vous envoyant un
-                    mail qui contiendra les identifiants pour vous connecter</p>
-
+                    <div class="col-12">
+                        {# simple documentation ecrite #}
+                        <p class="lead text-center bg-info text-white  text-adhesion m-3 "> Après avoir envoyé le formulaire,<br> puis payé la
+                        cotisation par chèque ou par virement,<br> l'association valide votre adhésion <br>en vous envoyant un
+                            mail qui contiendra les identifiants pour vous connecter</p>
+                    </div>
                 </div>
             </div>
-            <div class="adhesion-fond-noir m-5 col-lg-5 col-sm-10">
-            <div class="justify-content-center m-3">
-                <div class="col-12">
-                    <h2 class="text-align-center text-center">Informations complémentaire </h2>
-                    <br>
-                        <p>
-                        <p class="text-center taille-text-adhesion text-adhesion-">Je reconnais :</p>
-                            <ul class="text-center taille-text-adhesion text-adhesion">
+            <div class="adhesion-fond-noir m-5 col-lg-5 col-md-12 col-sm-12 size">
+                <div class="justify-content-center">
+
+                        <h2 class="adhesion_title_centre col-12">Informations complémentaire </h2>
+                        <br>
+                    <div class="lead obligation col-12">
+                        <p class="je_reconnais col-12">Je reconnais :</p>
+                        <div class="champ_je_reconnais">
+                            <ul>
                                 <li>
-                                    Connaître et accepter le règlement intérieur et la charte de l'association RNB .
-                                </li>
-                                 <li>
-                                    Avoir souscrit un contrat d’assurance individuel accident, ou une garantie complémentaire .
+                                    <p>Connaître et accepter le règlement intérieur et la charte de l'association RNB.</p>
                                 </li>
                                 <li>
-                                    Acquitter la cotisation annuelle : 15 €, à l'ordre Rando Nature Bruz .
+                                    <p>Avoir souscrit un contrat d’assurance individuel accident, ou une garantie complémentaire.</p>
+                                </li>
+                                <li>
+                                    <p>Acquitter la cotisation annuelle : 15 €, à l'ordre Rando Nature Bruz.</p>
                                 </li>
                             </ul>
-                        </p>
-                </div>
-                <div class="bg-warning border p-2 text-important-adhesion text-adhesion">
-                    <h4>
-                        Important Chacun roule sous sa propre responsabilité.<br><br>
-                        En aucun cas, l'association Rando Nature Bruz :
+                        </div>
+                    </div>
+                    <div class="bg-warning border p-1 text-important-adhesion text-adhesion">
+                        <h4>
+                            Important Chacun roule sous sa propre responsabilité.<br><br>
+                            En aucun cas, l'association Rando Nature Bruz :
 
-                               <p>- N'est affiliée à une fédération sportive</p>
-                        <p>- N'assure les dommages occasionnés ou subis par un de ses adhérents</p>
-
-                    </h4>
+                            <p>- N'est affiliée à une fédération sportive</p>
+                            <p>- N'assure les dommages occasionnés ou subis par un de ses adhérents</p>
+                        </h4>
+                    </div>
                 </div>
+
+                <div class=" taille-text-adhesion text-center m-5 ">
+                    <div class="center-hr">
+                        <hr class="hr25-pourcent center hr-bulletin-adhesion">
+                    </div>
+                <h4 class="">Où nous trouver ?</h4>
+                {# le iframe de la map de google #}
+                    <div class="center-hr">
+                        <hr class="hr25-pourcent hr-bulletin-adhesion center">
+                    </div>
+                    <div class="map-presentation map-ahesion ">
+                    <iframe class="display:block" style="border: solid 1px lightgrey;"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2668.720611233386!2d-1.7574356843551209!3d48.0191073792142!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x480f1ef2cdd24d6f%3A0xc61fe53b8132941d!2s31%20Rue%20des%20Forges%2C%2035170%20Bruz!5e0!3m2!1sfr!2sfr!4v1613063726862!5m2!1sfr!2sfr"
+                            frameborder="" style="border:0;" allowfullscreen="" aria-hidden="false"
+                            tabindex="0"></iframe>
+                    </div>
+                </div>
+
             </div>
-
-
-
-            <div class=" taille-text-adhesion text-center m-5 ">
-                <div class="center-hr">
-                    <hr class="hr25-pourcent center hr-bulletin-adhesion">
-                </div>
-            <h4 class="">Où nous trouver ?</h4>
-            {# le iframe de la map de google #}
-                <div class="center-hr">
-                    <hr class="hr25-pourcent hr-bulletin-adhesion center">
-                </div>
-                <div class="map-presentation map-ahesion ">
-                <iframe class="display:block" style="border: solid 1px lightgrey;"
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2668.720611233386!2d-1.7574356843551209!3d48.0191073792142!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x480f1ef2cdd24d6f%3A0xc61fe53b8132941d!2s31%20Rue%20des%20Forges%2C%2035170%20Bruz!5e0!3m2!1sfr!2sfr!4v1613063726862!5m2!1sfr!2sfr"
-                        frameborder="" style="border:0;" allowfullscreen="" aria-hidden="false"
-                        tabindex="0"></iframe>
-                </div>
-            </div>
-
-        </div>
         </div>
     </div>
 

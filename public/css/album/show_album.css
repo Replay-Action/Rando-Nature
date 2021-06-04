@@ -171,3 +171,11 @@ embed{
 .participant p{
     margin: 0 5px 0 5px;
 }
+.action_box{
+    display: flex;
+    justify-content: flex-end;
+}
+.action_box a {
+    padding: 0 5px 0 5px;
+    text-decoration: none;
+}

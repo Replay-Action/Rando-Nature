@@ -1,14 +1,22 @@
 {% extends 'base.html.twig' %}
+
+{# La page Album photo #}
 {% block body %}
     <div class="container">
         <div class="album_photo_main col-12">
+
+            {# On boucle sur Activite #}
             {% for activites in activite %}
                 <div class="container_album_photo">
                     <div class="album_photo">
+
                         <div class="title_album_photo col-12">
                             <a href="{{ path('show_album', {"id":activites.id}) }}">{{ activites.nom }}</a>
                         </div>
+
                         <div class="album_photo_date_user col-12">
+
+                            {# On affiche le logo Calendrier ainsi que la date et l'heure de l'activite #}
                             <div class="album_photo_date">
                                 <div>
                                     <img  src="{{ asset('tools/calendrier.png') }}" alt="icon de calendrier">
@@ -17,6 +25,8 @@
                                     <p>{{ activites.getDateActivite()| date('j F Y h:i')}}</p>
                                 </div>
                             </div>
+
+                            {# On affiche le logo User ainsi que le nom et le prénom de l'organisateur #}
                             <div class="album_photo_user">
                                 <div>
                                     <img src="{{ asset('tools/user.png') }}" alt="icon d'utilisateur">
@@ -26,27 +36,37 @@
                                     <p>{{ activites.organisateur.getPrenom() }}</p>
                                 </div>
                             </div>
+
                         </div>
+
+                        {# On affiche les infos de l'activite #}
                         <div class="album_photo_resume col-12">
                             <p>{{ activites.getInfosActivite() }}</p>
                         </div>
+
                         <div class="container__etiquette col-12 ">
                             <div class="album_photo_etiquette">
+
+                                {# On affiche le logo Etiquette ainsi que la Categorie #}
                                 <div class="album_photo_etiquette">
                                     <img src="{{ asset('tools/etiquette.png') }}" alt="icon d'étiquette">
                                     <p>{{ activites.categorie}}</p>
                                 </div>
                             </div>
                         </div>
+
+                        {# Si l'Utilisateur est Administrateur alors il as accès aux boutons Modifier et Supprimer #}
                         {% if is_granted(["ROLE_ADMIN"]) %}
                             <div class="bas_album_photo col-12">
                                 <a href="{{ path('activite_edit', {'id':activites.id}) }}">modifier</a>
                                 <a href="{{ path('activite_delete', {'id':activites.id}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer cette activité');">supprimer</a>
                             </div>
                         {% endif %}
+
                     </div>
                 </div>
             {% endfor %}
+
         </div>
     </div>
 {% endblock %}

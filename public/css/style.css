@@ -20,13 +20,15 @@
 
 @import "album/album.css";
 @import "album/show_album.css";
-@import "album/album_form.css";
+@import "album/image_form.css";
+@import "album/pdf_form.css";
 
 @import "espace/trombinoscope.css";
 
 @import "user/profil.css";
 @import "user/user_form.css";
 @import "user/gestion_adhérent.css";
+@import "user/pasword_forgotten.css";
 
 @import "partenaire/gestion_partenaire.css";
 
@@ -38,6 +40,7 @@
 *{
     margin: 0;
     padding: 0;
+
 }
 body, html{
     margin: 0;
@@ -96,4 +99,10 @@ hr{
     background: white;
 }
 
+.box20{
+    margin-top: 70px;
+}
 
+.merde{
+    background: #aacd4e;
+}
