@@ -15,6 +15,7 @@ use App\Repository\PhotoRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -42,6 +43,9 @@ class EspaceController extends AbstractController
 
     /**
      * @Route("/recapo", name="recap", methods={"GET"})
+     * @param ActiviteRepository $activiteRepository
+     * @param Request $request
+     * @return Response
      */
     public function recap(ActiviteRepository $activiteRepository, Request $request): Response{
         $user = $this->getUser();
@@ -62,9 +66,12 @@ class EspaceController extends AbstractController
     }
 
 
-
     /**
      * @Route("/{id}/editrecapo", name="editrecap", methods={"GET","POST"})
+     * @param Request $request
+     * @param Activite $activite
+     * @param EntityManagerInterface $entityManager
+     * @return RedirectResponse|Response
      */
     public function editrecap(Request $request, Activite $activite, EntityManagerInterface $entityManager){
 
@@ -113,10 +120,11 @@ class EspaceController extends AbstractController
     }
 
 
-
-
     /**
      * @Route("/removerecap/pdf/{id}", name="removerecap", methods={"DELETE"})
+     * @param DocPdf $docPdf
+     * @param Request $request
+     * @return JsonResponse|RedirectResponse
      */
     public function removerecap(DocPdf $docPdf, Request $request){
 
@@ -151,6 +159,8 @@ class EspaceController extends AbstractController
 
     /**
      * @Route("/detailrecap/{id}", name="detailrecap", methods={"GET"})
+     * @param Activite $activite
+     * @return Response
      */
     public function voir (Activite $activite): Response
     {

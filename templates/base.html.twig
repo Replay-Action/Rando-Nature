@@ -23,7 +23,7 @@
 <body>
     <header class="container-fluid">
         <div class="col">
-         <div class="row">
+            <div class="row">
                 <div class="header-navbar col-lg-9">{% include ('inc/nav.html.twig') %}</div>
             </div>
         </div>
@@ -32,7 +32,7 @@
     {# ------ FLASH MESSAGE ------ #}
     {% for label, messages in app.flashes %}
         {% for message in messages %}
-            <div class="alert alert-{{ label }}">
+            <div class="alert alert-{{ label }} box20">
                 {{ message }}
             </div>
         {% endfor %}
@@ -41,6 +41,8 @@
 </div>
 
 <main>
+
+
     {% block body %}{% endblock %}
 
 </main>

@@ -1,16 +1,27 @@
 {% extends 'base.html.twig' %}
+{% block title %}{{ parent() }}{% endblock %}
 {% block body %}
-    <div class="container-fluid">
-        <div class="title__partenaire container-fluid row">
-            <h1 class="col-12">Documentation</h1>
-            <div class="center-hr col-12">
-                <hr class="hr25-pourcent">
+    <div class="container">
+        <div class="placement_box col-12">
+        <div class="form_image_album">
+            <div class="title_form col-12">
+                <p>Ajout d'image a l'album</p>
+            </div>
+            <div class="centre_form_image_album col-12">
+                {{ form_start(form) }}
+                <p>Insérer une photo</p>
+                {{ form_widget(form.image) }}
+            </div>
+            <div class="bas_form_image_album col-12">
+                <div class="bas_form_image_album1">
+                    {{ form_widget(form.valider) }}
+                    {{ form_end(form) }}
+                </div>
+                <div class="bas_form_image_album2">
+                    <a class="butonPersonnalise" href="{{ path('album') }}">Retour</a>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container">
-        {{ form_start(form) }}
-        {{ form_widget(form) }}
-        {{ form_end(form) }}
+        </div>
     </div>
 {% endblock %}

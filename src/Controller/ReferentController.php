@@ -7,7 +7,6 @@ namespace App\Controller;
 use App\Entity\Referent;
 use App\Form\ReferentType;
 use App\Repository\ReferentRepository;
-use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,12 +19,17 @@ class ReferentController extends AbstractController
      * @Route ("/referent", name="referent")
      * @param ReferentRepository $referentRepository
      * @return Response
+     *
+     * Cette méthode sert a rediriger l'utilisateur sur la page Gestion referent,
+     * et affiche les tous les referent.
+     *
      */
     public function referent(ReferentRepository $referentRepository):Response
     {
-        $products = $referentRepository->findAll();
+        //On récupère les toutes les données de la table referent avec la méthode
+        //On envoie les données  sur la page referent.html.twig.
         return $this->render('referent/referent.html.twig', [
-             'referents' => $products
+             'referents' => $referentRepository->findAll(),
         ]);
     }
 
@@ -33,29 +37,38 @@ class ReferentController extends AbstractController
      * @Route ("/createRef", name="createRef")
      * @param Request $request
      * @return Response
+     *
+     * Cette méthode sert a créer un referent
+     *
      */
     public function createReferent(Request $request): Response
     {
-        #autorise l'accès uniquement aux administrateurs du site#
-    $this->denyAccessUnlessGranted('ROLE_ADMIN');
+        //On refuse l'accès a cette méthode a l'utilisateur si l'utilisateur n'a pas le rôle Admin.
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+        //On créer une nouvelle instance de l'objet Referent et on le stock dans la variable $referent.
+        $referent = new Referent();
+        //On créer notre formulaire.
+        $form = $this->createForm(ReferentType::class,$referent);
+        //On récupère les information saisi.
+        $form->handleRequest($request);
+        //Si le formulaire a bien été envoyer et qu'il est valide ...
+        if($form->isSubmitted() && $form->isValid()){
 
-    $referent = new Referent();
-    $form = $this->createForm(ReferentType::class,$referent);
-    $form->handleRequest($request);
+            //On envoie les informations a la base de donnée.
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($referent);
+            $entityManager->flush();
+            //On renvoie un message de success a l'utilisateur pour prévenir de la réussite.
+            $this->addFlash('succes', 'Un nouveau référent à été crée');
+            //On redirige l'utilisateur sur la page referent.html.twig
+            return $this->redirectToRoute('referent');
 
-    if($form->isSubmitted() && $form->isValid()){
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($referent);
-        $entityManager->flush();
-        $this->addFlash('succes', 'Un nouveau référent à été crée');
-        return $this->redirectToRoute('referent');
-
-    }
-
-        return $this->render('referent/newref.html.twig',[
-            'referent' => $referent,
-            'form'=> $form->createView(),
-        ]);
+        }
+            //On envoie les données sur la page newref.html.twig.
+            return $this->render('referent/newref.html.twig',[
+                'referent' => $referent,
+                'form'=> $form->createView(),
+            ]);
     }
 
     /**
@@ -63,24 +76,32 @@ class ReferentController extends AbstractController
      * @param Request $request
      * @param Referent $referent
      * @return Response
+     *
+     * Cette méthode sert a modifier un référent.
+     *
      */
     public function updateReferent(Request $request, Referent $referent):Response
     {
         #fonction qui permet de modifier un référent#
 
-        #autorise l'accès uniquement aux administrateurs du site#
+        //On refuse l'accès a cette méthode a l'utilisateur si l'utilisateur n'a pas le rôle Admin.
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
-
+        //On créer notre formulaire.
         $form = $this->createForm(ReferentType::class, $referent);
+        //On récupère les information saisi.
         $form->handleRequest($request);
-
+        //Si le formulaire a bien été envoyer et qu'il est valide ...
         if ($form->isSubmitted() && $form-> isValid())
         {
             $entityManager = $this->getDoctrine()->getManager();
+            //On envoie les informations modifiées a la base de donnée.
             $entityManager->flush();
+            //On renvoie un message de success a l'utilisateur pour prévenir de la réussite.
             $this->addFlash('succes', 'Le référent à été modifier');
+            //On redirige l'utilisateur sur la page referent.html.twig
             return $this->redirectToRoute('referent');
         }
+        //On envoie les données sur la page editref.html.twig.
         return $this->render('referent/editref.html.twig', [
             'referent' => $referent,
             'form' =>$form->createView(),
@@ -91,41 +112,25 @@ class ReferentController extends AbstractController
      * @Route ("/deleteRef/{id}", name="deleteRef")
      * @param Referent $referent
      * @return Response
+     *
+     * Cette méthode sert a supprimer un référent.
+     *
      */
     public function deleteReferent(Referent $referent): Response
     {
          #fonction qui supprime un référent#
 
-        #autorise l'accès uniquement aux administrateurs du site#
+        //On refuse l'accès a cette méthode a l'utilisateur si l'utilisateur n'a pas le rôle Admin.
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         $em=$this->getDoctrine()->getManager();
+        //On supprime le referent.
         $em->remove($referent);
         $em->flush();
+        //On renvoie un message de success a l'utilisateur pour prévenir de la réussite.
         $this->addFlash('succes', 'Le référent à été supprimer');
+        //On envoie les données sur la page referent.html.twig.
         return $this->redirectToRoute('referent');
-    }
-
-    /**
-     * @Route ("/showRef",name="showRef")
-     * @param ReferentRepository $referentRepository
-     * @param UserRepository $userRepository
-     * @return Response
-     */
-    public function afficherReferent(ReferentRepository $referentRepository, UserRepository $userRepository):Response
-    {
-        #fonction en charge d'afficher le référent et son utilisateur#
-
-        #autorise l'accès uniquement aux administrateurs du site#
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
-
-        $products1 = $referentRepository->findAll();
-        $products2 = $userRepository->findAll();
-
-        return $this->render('referent/showref.html.twig',[
-           'referents' => $products1,
-           'users' => $products2,
-        ]);
     }
 
 }
