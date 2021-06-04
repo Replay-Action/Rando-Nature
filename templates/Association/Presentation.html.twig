@@ -1,29 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ parent() }} |Présentation {% endblock %}
-
+{# La page Présentation #}
 {% block body %}
-  {#   <style>
-         le style css bootstrap par defaut
-        .example-wrapper {
-            text-align: center;
-            margin: 1em auto;
-            max-width: 800px;
-            width: 95%;
-            font: 18px/1.5 sans-serif;
-        }
 
-        .example-wrapper code {
-            background: #F5F5F5;
-            padding: 2px 6px;
-        }
-    </style>#}
-
-    {# banniere et titre #}
-    {# <div class="container-fluid">
-        <img src="{{ asset ('/content/velo-pont resize.jpg') }}" class="img-fluid" width="100%">
-    </div> #}
-
+    {# Le titre #}
     <div class="title-presentation row">
         <h1 class="">Présentation</h1>
 
@@ -34,8 +15,9 @@
     <div class="">
 
     <div class="container">
-        <div class="row justify-content-center text-presentation">
+                <div class="row justify-content-center text-presentation">
 
+                    {# Le premier paragraphe #}
                     <p> L'association a été créée le <strong>20 Janvier 2020</strong> par deux amis anciens vttistes.<p>
 
                     <p>Le but principal de l'association est de :</p>
@@ -43,142 +25,105 @@
                     <p>- faire des activités sportives de loisirs respectant l'environnement en privilégiant la circulation sur les voies vertes et le long des canaux.</p>
                 </div>
                 <br>
+
+                {# Partie Ou somme nous ? #}
                 <div class="border bg-light p-3">
                     <div>
-                        <h2 class="text-sous-ligner-vert">Ou somme nous ?</h2>
+                            <h2 class="text-sous-ligner-vert">Ou somme nous ?</h2>
                         <div class="row col-12 container-lieu-asso">
+
+                            {# Le texte #}
                             <div class="col-lg-6 col-sm-12 col-xs-12 text-sous-ligner-noir">
                             <div>
                             <p>Notre associations se situe sur Bruz </p>
                             <p>31 Rue des Forges 35170</p>
                             </div>
                             </div>
+
+                            {# L'iframe de la map de google #}
                             <div class="col-lg-6 col-sm-12 col-xs-12 map-presentation">
-                            {# le iframe de la map de google #}
                                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2668.720611233386!2d-1.7574356843551209!3d48.0191073792142!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x480f1ef2cdd24d6f%3A0xc61fe53b8132941d!2s31%20Rue%20des%20Forges%2C%2035170%20Bruz!5e0!3m2!1sfr!2sfr!4v1613063726862!5m2!1sfr!2sfr"
                                      frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false"
                                     tabindex="0"></iframe>
-
                             </div>
+
                         </div>
                     </div>
-
                 </div>
-                    <div class="center-hr">
+
+                <div class="center-hr">
                         <hr class="hr25-pourcent center">
-                    </div>
+                </div>
+
+                {# Partie futur #}
                 <div class="border bg-light p-3">
+                    {# Titre Second Paragraphe #}
                     <h2 class="text-sous-ligner-vert">L'association proposera et organisera également:</h2>
+
+                    {# Second Paragraphe #}
                     <div class="text-presentation">
                         <p>La projection de films-documentaires sur le voyage à vélo ou à pied, notamment en partenariat avec l'association « aux 4 coins du monde »</p>
                         <p>La découverte d'autres activités sportives de loisir de plein-air (longe-côte..) en partenariat avec d'autres associations spécialisées.</p>
                     </div>
                 </div>
                 <br>
+
+                {# Partie règle d'or #}
                 <div class="border bg-light p-3 ">
+                    {# Titre Règle d'Or #}
                     <h2 class="text-sous-ligner-vert">Chaque membre de l'association doit adhérer aux valeurs de Vélo Rando Nature Bruz définies dans la charte de l'association :</h2>
+
+                    {# Règle D'or #}
                     <div class="text-presentation">
                         <ul>
                             <li>
-                        Respect et tolérance .
+                                Respect et tolérance .
                             </li>
                             <li>
-                        Partage et solidarité .
+                                Partage et solidarité .
                             </li>
                         </ul>
                     </div>
                 </div>
 
-                    <div class="center-hr">
-                        <hr class="hr25-pourcent center">
-                    </div>
+                <div class="center-hr">
+                     <hr class="hr25-pourcent center">
+                </div>
+
+                {# Troisième Paragraphe #}
                 <div class="text-presentation">
                     <p>Chacun pourra participer à la vie et au développement de Vélo Rando Nature Bruz en faisant des propositions et en prenant des initiatives. </p>
                     <p>RNB se construira grâce à la mise en commun des compétences, de la participation et de la motivation de chacun.</p>
                 </div>
-                    <div class="center-hr">
-                        <hr class="hr25-pourcent center">
-                    </div>
+
+                <div class="center-hr">
+                    <hr class="hr25-pourcent center">
+                </div>
 
                 <div class="border bg-light p-3">
+
+                    {# Titre Devises #}
                     <h2 class="text-sous-ligner-vert">Nos deux devises :</h2>
+
+                    {# Les Devises #}
                     <div class="text-presentation">
                         <p>« Roule tes souvenirs sont devant »</p>
                         <p>« Nous partons tous ensemble, nous roulons ensemble et nous rentrons ensemble »</p>
                     </div>
                 </div>
-        <div class="row">
-            <div class="col-lg-12 col-sm-12 d-flex justify-content-center">
-                <a class="m-3 btn btn-primary btn-lg text-white" href="{{ asset('documents/Statuts_asso_Rando nature Bruz.pdf') }}" target="_blank" >Status de l'association</a>
-            </div>
-            <div class="col-lg-12 col-sm-12 d-flex justify-content-center">
 
-                <a class="m-3 btn btn-primary btn-lg text-white" href="{{ asset('documents/Charte_asso_Rando nature Bruz.pdf') }}" target="_blank">Charte de l'association</a>
-
-            </div>
-        </div>
-                {# boutons d'affichage du pdf des status et de la charte
-                <div class="p-3 text-center justify-content-center">
-                    <div class=" d-flex flex-column">
-                        <button class=" button m-3 btn btn-primary center-block btn-lg " onclick="maFonction()">Afficher
-                            les statuts de l'association
-                        </button>
+                {# Boutons d'affichage des pdf de status et de la charte #}
+                <div class="row">
+                    <div class="col-lg-12 col-sm-12 d-flex justify-content-center">
+                        <a class="m-3 btn btn-primary btn-lg text-white" href="{{ asset('documents/Statuts_asso_Rando nature Bruz.pdf') }}" target="_blank" >Status de l'association</a>
                     </div>
+                    <div class="col-lg-12 col-sm-12 d-flex justify-content-center">
 
-                    <div class=" d-flex flex-column ">
-                        <button class="m-3 btn btn-primary center-block btn-lg  " onclick="maFonction2()">Afficher la
-                            charte de l'association
-                        </button>
+                        <a class="m-3 btn btn-primary btn-lg text-white" href="{{ asset('documents/Charte_asso_Rando nature Bruz.pdf') }}" target="_blank">Charte de l'association</a>
+
                     </div>
+                </div>
 
-                    on affiche les pdfs issu du dossier public
-                    <div id="maDIV" style="display:none;">
-                        <div>
-                            <embed class="embed-responsive"src="{{ asset('documents/Statuts_asso_Rando nature Bruz.pdf') }}" width=800
-                                   height=2300 type='application/pdf'/>
-                        </div>
-                    </div>
-
-
-                    <div id="maDIV2" style="display:none;">
-                        <div>
-                            <embed class="embed-responsive" src="{{ asset('documents/Charte_asso_Rando nature Bruz.pdf') }}" width=800
-                                   height=2300 type='application/pdf'/>
-                        </div>
-                    </div>
-                    <div class="col-auto">
-
-                         <p><img src="{{ asset('/content/velo et enfant.png') }}"
-                                class=" p-3 justify-content-center img-fluid"></p>
-
-                         le js pour afficher et desafficher les pdfs
-                        <script>
-                            function maFonction() {
-                                var div = document.getElementById("maDIV2");
-                                div.style.display = "none";
-                                var div = document.getElementById("maDIV");
-                                if (div.style.display === "none") {
-                                    div.style.display = "block";
-                                } else {
-                                    div.style.display = "none";
-                                }
-                            }
-
-                            function maFonction2() {
-                                var div = document.getElementById("maDIV");
-                                div.style.display = "none";
-                                var div = document.getElementById("maDIV2");
-                                if (div.style.display === "none") {
-                                    div.style.display = "block";
-                                } else {
-                                    div.style.display = "none";
-                                }
-                            }
-                        </script>
-                    </div>
-
-                </div>#}
-
-            </div>
     </div>
+</div>
 {% endblock %}
