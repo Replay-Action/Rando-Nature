@@ -14,7 +14,9 @@
     background-color:rgba(49,49,49,0.7);
     padding: 20px;
     width: 600px;
-
+}
+.form_image_album p{
+    color: #dddddd;
 }
 .centre_form_image_album{
     display: flex;

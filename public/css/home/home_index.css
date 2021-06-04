@@ -90,8 +90,8 @@
 }
 .pic-ctn {
     position: relative;
-    width: 65vw;
-    height: 600px;
+    width: 1200px;
+    height: 800px;
 }
 .pic-ctn > img {
     position: absolute;

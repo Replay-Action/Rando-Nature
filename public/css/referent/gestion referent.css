@@ -1,3 +1,8 @@
+.referent_box{
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}
 .form-referent-fond-noir{
     border-radius: 15px;
     border:solid 1px;

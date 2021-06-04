@@ -16,6 +16,9 @@
     width: 600px;
 
 }
+.form_pdf_album p {
+    color: white;
+}
 .centre_form_pdf_album{
     display: flex;
     flex-direction: row;
