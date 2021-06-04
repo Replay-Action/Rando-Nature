@@ -19,12 +19,18 @@ class ActualiteRepository extends ServiceEntityRepository
         parent::__construct($registry, Actualite::class);
     }
 
+    /**
+     * @return int|mixed|string
+     * fonction en charge de récupèrer les informations d'Actualité dans la base de donnée
+     */
     public function afficheactu()
     {
         $actualite = $this
-            ->createQueryBuilder('actu');
+        //Création du QueryBuilder
+        ->createQueryBuilder('actu');
+        //On récupère les infos de la base de donnée
         $query = $actualite->getQuery();
-
+        //On retourne les infos reçu de la base de donnée
         return $query->getResult();
     }
     // /**

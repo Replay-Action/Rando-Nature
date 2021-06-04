@@ -29,9 +29,6 @@ class UserType extends AbstractType
     {
         $builder
             ->add('username')
-
-            # j'enleve role du formulaire  Il  doit etre en json et je l'ai ecrit en dur dans le UserController
-            #  ->add('roles')
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'options' => ['attr' => ['class' => 'password-field']],
@@ -82,8 +79,6 @@ class UserType extends AbstractType
             ])
 
             ->add('enregistrer',SubmitType::class);
-
-
 
 
         // Data transformer, pour gerer les rôles

@@ -22,14 +22,17 @@ class EspaceController extends AbstractController
      * @Route("/trombi", name="trombi")
      * @param UserRepository $userRepository
      * @return Response
+     *
+     *
+     * Cette methode est en charge d'afficher le trombinoscope
+     *
      */
     public function index(UserRepository $userRepository): Response
     {
-        #ce controlleur ne gère que le trombinoscope
-
+        //On as accès a cette page a partir du moment qu'on est Adhérent
         $this->denyAccessUnlessGranted("ROLE_USER");
 
-
+        //On redirige l'utilisateur sur la page espace/index.html.twig.
         return $this->render('espace/index.html.twig', [
             'users' => $userRepository->orderUserByReferentWithPhoto(),
         ]);
@@ -41,17 +44,24 @@ class EspaceController extends AbstractController
      * @param ActiviteRepository $activiteRepository
      * @param Request $request
      * @return Response
+     *
+     *
+     * Cette methode est en charge d'afficher la page Récap Sorties
+     *
      */
     public function recap(ActiviteRepository $activiteRepository, Request $request): Response{
         $user = $this->getUser();
+        //On laisse l'accès à cette fonction seulement aux Administrateur.
         $this->denyAccessUnlessGranted("ROLE_USER");
+
         $data = new SearchData();
+        //On récupère le formulaire dans SearchForm.
         $form = $this->createForm(SearchForm::class, $data);
 
         $form->handleRequest($request);
         $activite=$activiteRepository->affichefinie();
 
-
+        //On redirige l'utilisateur sur la page recap-activite.html.twig.
         return $this->render('espace/recap-activite.html.twig',[
             'user'=>$user,
             'activites'=>$activite,
@@ -65,22 +75,25 @@ class EspaceController extends AbstractController
      * @param Request $request
      * @param Activite $activite
      * @return RedirectResponse|Response
+     *
+     *
+     * Cette methode est en charge de modifier un pdf lié a une activite
+     *
      */
     public function editrecap(Request $request, Activite $activite){
-
+        //On laisse l'accès à cette fonction seulement aux Administrateur.
         $this->denyAccessUnlessGranted("ROLE_ADMIN");
-
+        //On récupère le formulaire dans ActualiteType.
         $form = $this->createForm(ActiviteType::class, $activite);
 
-        #gere le traitement du formulaire#
+        //Gere le traitement du formulaire
         $form->handleRequest($request);
+        //Si le formulaire a été envoyer et est valide ...
         if ($form->isSubmitted() && $form->isValid()) {
 
             $pdf=$form->get('docPdfs')->getData();
 
-            // on boucle sur les pdf
-            // foreach ($pdf as $pdf1) {
-            // on genere un nouveau nom de fichier
+            //On genere un nouveau nom de fichier
             if ($pdf) {
 
                 $fichier = md5(uniqid()) . '.' . $pdf->guessExtension();
@@ -89,22 +102,22 @@ class EspaceController extends AbstractController
                     $fichier
                 );
 
-                // on stocke son nom en bdd
+                //On envoie les informations à la base de donnée.
                 $upload = new DocPdf();
                 $upload->setNompdf($fichier);
                 $activite->addDocPdf($upload);
 
-                // }
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($activite);
                 $entityManager->flush();
 
             }
 
-
+            //On redirige l'utilisateur sur la page home/index.html.twig.
             return $this->redirectToRoute('home1');
 
         }
+        //On envoie les données et l'affichage du formulaire sur la page edit-recap.html.twig.
         return $this->render('espace/edit-recap.html.twig',[
             'form' => $form->createView(),
             'activite'=>$activite]);
@@ -118,6 +131,10 @@ class EspaceController extends AbstractController
      * @param DocPdf $docPdf
      * @param Request $request
      * @return JsonResponse|RedirectResponse
+     *
+     *
+     * Cette Methode est en charge de supprimer un pdf lié a une activite
+     *
      */
     public function removerecap(DocPdf $docPdf, Request $request){
 

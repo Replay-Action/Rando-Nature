@@ -22,19 +22,21 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
  */
 class UserController extends AbstractController
 {
-    #ce controlleur gère les pages user#
-
     /**
      * @Route("/", name="user_index", methods={"GET"})
      * @param UserRepository $userRepository
      * @return Response
+     *
+     *
+     * Cette methode est en charge d'afficher la page Liste des Adhérents
+     *
      */
     public function index(UserRepository $userRepository): Response
     {
-
+        //On laisse l'accès à cette fonction seulement aux Administrateur.
         $this->denyAccessUnlessGranted("ROLE_ADMIN");
         $user = $userRepository->findAll();
-        #liste tous les users
+        //On redirige l'utilisateur sur la page user/index.html.twig.
         return $this->render('user/index.html.twig', [
             'users' => $user
         ]);
@@ -46,50 +48,55 @@ class UserController extends AbstractController
      * @param UserPasswordEncoderInterface $encoder
      * @param Swift_Mailer $mailer
      * @return Response
+     *
+     *
+     * Cette methode est en charge de créer un Utilisateur
+     *
      */
     public function new(Request $request, UserPasswordEncoderInterface $encoder, Swift_Mailer $mailer): Response
     {
+
+        //On laisse l'accès à cette fonction seulement aux Administrateur.
         $this->denyAccessUnlessGranted("ROLE_ADMIN");
-        # creation d'un nouveau user#
+        //Creation d'un nouvel utilisateur
         $user = new User();
 
-
-        #utilisation du formulaire de l'entité user, on l'appelle ici#
+        //On récupère le formulaire dans UserType.
         $form = $this->createForm(UserType::class, $user);
 
-        #gere le traitement de la saisie du formulaire, on récupère les données depuis la requête
+        //Gere le traitement de la saisie du formulaire, on récupère les données depuis la requête
         $form->handleRequest($request);
-
+        //Si le formulaire a été envoyer et est valide ...
         if ($form->isSubmitted() && $form->isValid()) {
 
-            #On recupere le role dans le formulaire,...
+            //On recupere le role dans le formulaire ...
             $role = $user->getRoles();
 
             $rolerecupere = $role[0];
             $role = [0 => $rolerecupere];
 
-            # et on l'inscrit correctement en BDD car sinon il s'sincrit mal
+            //Et on l'inscrit correctement en BDD car sinon il s'sincrit mal
             $user->setRoles($role);
 
-            #on recupere les coordonnées que le candidat à l'adhesion a envoyé
+            //On recupere les coordonnées que le candidat à l'adhesion a envoyé
             $adherent = $form->getData();
 
-            // on recupere les photos envoyées s'il y en a a l'inscription ou a la modification du profil
+            //On recupere les photos envoyées s'il y en a a l'inscription ou a la modification du profil
             $photos = $form->get('photos')->getData();
 
-            //on boucle sur les photos
+            //On boucle sur les photos
             foreach ($photos as $photo) {
 
-                // on genere un nouveau no de fichier photo
+                //On genere un nouveau no de fichier photo
                 $fichier = md5(uniqid()) . '.' . $photo->guessExtension();
 
-                // copie le fichier dans le dossier photo-profil dans le 'public'
+                //Copie le fichier dans le dossier photo-profil dans le 'public'
                 $photo->move(
                     $this->getParameter('photo_directory'),
                     $fichier
                 );
 
-                // on stocke le nom de la photo dans la bdd
+                //On stocke le nom de la photo dans la bdd
                 $phot = new Photo();
                 $phot->setName($fichier);
                 $user->addPhoto($phot);
@@ -97,10 +104,10 @@ class UserController extends AbstractController
 
             $entityManager = $this->getDoctrine()->getManager();
 
-            #on recupere le password non hashé pour l'envoyer en clair au candidat a l'inscription ds le mail
+            //On recupere le mot de passe non hashé pour l'envoyer en clair au candidat a l'inscription dans le mail
             $plainpassword = $user->getPassword();
 
-            #hasher le mot de passe
+            //Hashe le mot de passe
             $hashed = $encoder->encodePassword($user, $user->getPassword());
             $user->setPassword($hashed);
 
@@ -108,15 +115,15 @@ class UserController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            // ici nous enverrons automatiquement un mail avec le mot de passe non hashé
-            //pour que le nouvel adhérent puisse s'inscrire avec ses nouveaux identifiants
+            //Ici nous enverrons automatiquement un mail avec le mot de passe non hashé
+            //Pour que le nouvel adhérent puisse s'inscrire avec ses nouveaux identifiants
             $message = (new Swift_Message('Votre adhesion est validee'))
                 ->setFrom('vrnb2020@velorandonaturebruz.fr')
 
-                // on attribue le destinataire
+                //On attribue le destinataire
                 ->setTo($user->getEmail())
 
-                // on créée le message avec la vue twig
+                //On créée le message avec la vue twig
                 ->setBody(
                     $this->renderView(
                         'emails/buletin_valide.html.twig', [
@@ -126,15 +133,15 @@ class UserController extends AbstractController
                     ), 'text/html'
                 );
 
-            // on envoie le message
+            //On envoie le message
             $mailer->send($message);
 
-
+            //On renvoie un message de succes à l'utilisateur pour prévenir de la réussite de la création.
             $this->addFlash('success', 'Votre profil a bien été créé !!');
-
+            //on redirige l'utilisateur sur la page user/index.html.twig.
             return $this->redirectToRoute('user_index');
         }
-
+        //On envoie les données et l'affichage du formulaire sur la page new.html.twig
         return $this->render('user/new.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
@@ -146,19 +153,23 @@ class UserController extends AbstractController
      * @param User $user
      * @param UserRepository $userRepository
      * @return Response
+     *
+     *
+     * Cette methode est en charge d'afficher la page profil
+     *
      */
     public function show(User $user, UserRepository $userRepository): Response
     {
-
+        //Il faut être minimum Adhérent pour avoir accès a cette methode
         $this->denyAccessUnlessGranted("ROLE_USER");
 
-        #on recupere le pseudo de l'adhérent en cours et son rôle
+        //On recupere le pseudo de l'adhérent en cours et son rôle
         $user1 = $this->getUser()->getUsername();
         $userrole = $this->getUser()->getRoles();
 
-        #on recupere tout de l'adhérent en cours
+        //On recupere tout de l'adhérent en cours
         $utilisateur = $userRepository->findOneBy(['username' => $user]);
-
+        //On envoie les données sur la page show.html.twig.
         return $this->render('user/show.html.twig', [
             'user' => $user,
             'user1' => $user1,
@@ -173,45 +184,51 @@ class UserController extends AbstractController
      * @param User $user
      * @param UserPasswordEncoderInterface $encoder
      * @return Response
+     *
+     *
+     * Cette methode est en charge de modifier un Utilisateur en tant que Administrateur
+     *
      */
     public function edit(Request $request, User $user, UserPasswordEncoderInterface $encoder): Response
     {
-        $this->denyAccessUnlessGranted("ROLE_USER");
+        //Il faut être minimum Administrateur pour avoir accès a cette methode
+        $this->denyAccessUnlessGranted("ROLE_ADMIN");
 
-        #on recupere le pseudo de l'adhérent en cours
+        //On recupere le pseudo de l'adhérent en cours
         $user1 = $this->getUser()->getUsername();
 
-        #utilisation du formulaire du user#
+        //Utilisation du formulaire du user
         $form = $this->createForm(UserType::class, $user);
 
-        #gere le traitement du formulaire#
+        //Gere le traitement du formulaire
         $form->handleRequest($request);
 
+        //Si le formulaire a été envoyer et est valide ...
         if ($form->isSubmitted() && $form->isValid()) {
 
 
-            #hasher le mot de passe
+            //Hashe le mot de passe
             $hashed = $encoder->encodePassword($user, $user->getPassword());
             $user->setPassword($hashed);
 
-            // on recupere les photos envoyées
+            //On recupere les photos envoyées
             $photos = $form->get('photos')->getData();
             dump($photos);
 
-            //on boucle sur les photos
+            //On boucle sur les photos
             foreach ($photos as $photo) {
 
-                // on genere un nouveau no de fichier
+                //On genere un nouveau no de fichier
                 $fichier = md5(uniqid()) . '.' . $photo->guessExtension();
                 dump($fichier);
 
-                // copie le fichier dans le dossier photo-profil
+                //Copie le fichier dans le dossier photo-profil
                 $photo->move(
                     $this->getParameter('photo_directory'),
                     $fichier
                 );
 
-                // on stocke le nom de la photo dans la bdd
+                //On stocke le nom de la photo dans la bdd
                 $phot = new Photo();
                 $phot->setName($fichier);
                 $user->addPhoto($phot);
@@ -219,11 +236,12 @@ class UserController extends AbstractController
 
 
             $this->getDoctrine()->getManager()->flush();
-
-            $this->addFlash('success', 'Votre profil a bien été modifié !!');
+            //On renvoie un message de succes à l'utilisateur pour prévenir de la réussite de la modification.
+            $this->addFlash('success', 'Le profil a bien été modifié !!');
+            //On redirige l'utilisateur sur la page user/index.html.twig.
             return $this->redirectToRoute('user_index');
         }
-
+        //On renvoie les données et l'affichage du formulaire sur la page edit.html.twig.
         return $this->render('user/edit.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
@@ -237,46 +255,45 @@ class UserController extends AbstractController
      * @param User $user
      * @param PhotoRepository $photoRepository
      * @return Response
+     *
+     *
+     * Cette methode est en charge de supprimer un Utilisateur
+     *
      */
     public function delete(Request $request, User $user, PhotoRepository $photoRepository): Response
-
     {
+        //On laisse l'accès à cette fonction seulement aux Administrateur.
         $this->denyAccessUnlessGranted("ROLE_ADMIN");
 
-        #protection contre les attaques csrf#
+        //Protection contre les attaques csrf
         if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
 
-           #on recupere l'id du user
+            //On recupere l'id du user
             $user1 = $user->getId();
 
-            #on recupere la photo qui appartie au user dont on vient de recuperer l'id
+            //on recupere la photo qui appartie au user dont on vient de recuperer l'id
             $photo = $photoRepository->findOneBy(['adhherent' => $user1]);
 
-            #s'il y a une photo on recupere son nom et aussi son nom en bdd
+            //S'il y a une photo on recupere son nom et aussi son nom en bdd
             if ($photo != null) {
                 $nomphoto = $photo->getName();
                 $photoexist = $this->getParameter('photo_directory') . '/' . $nomphoto;
 
-                #si la ohoto existe dans le dossier public alors on l'efface
+                //Si la photo existe dans le dossier public alors on l'efface
                 if ($photoexist) {
                     unlink($photoexist);
                 }
             }
 
-            // On récupère le nom de l'image
-            // $nom = $photo->getName();
-            // On supprime le fichier
-            // unlink($this->getParameter('photo_directory').'/'.$nom);
-
-            #dans la bdd on efface  le user
+            //Dans la bdd on efface le user
             $entityManager->remove($user);
             $entityManager->flush();
 
-
+            //On renvoie un message de succes à l'utilisateur pour prévenir de la réussite de la suppresion.
+            $this->addFlash('success', 'Votre profil a bien été effacé !!');
         }
-        $this->addFlash('success', 'Votre profil a bien été effacé !!');
-
+        //On redirige l'utilisateur sur la page user/index.html.twig.
         return $this->redirectToRoute('user_index');
 
     }
@@ -287,33 +304,37 @@ class UserController extends AbstractController
      * @param Photo $photo
      * @param Request $request
      * @return JsonResponse|RedirectResponse
+     *
+     *
+     * Cette methode est en charge de supprimer son image profil
+     *
      */
     public function deleteImage(Photo $photo, Request $request)
     {
-        #fonction pour effacer la photo
-
+        //Il faut être minimum Adhérent pour avoir accès a cette methode
         $this->denyAccessUnlessGranted("ROLE_USER");
 
 
         $data = json_decode($request->getContent(), true);
 
-        // On vérifie si le token est valide
+        //On vérifie si le token est valide
         if ($this->isCsrfTokenValid('delete' . $photo->getId(), $data['_token'])) {
-            // On récupère le nom de l'image
+            //On récupère le nom de l'image
             $nom = $photo->getName();
-            // On supprime le fichier
+            //On supprime le fichier
             unlink($this->getParameter('photo_directory') . '/' . $nom);
 
-            // On supprime l'entrée de la base
+            //On supprime l'entrée de la base
             $em = $this->getDoctrine()->getManager();
             $em->remove($photo);
             $em->flush();
 
-            // On répond en json
+            //On répond en json
             return new JsonResponse(['success' => 1]);
         } else {
             return new JsonResponse(['error' => 'Token Invalide'], 400);
         }
+        //On redirige l'utilisateur sur la page user/index.html.twig.
         return $this->redirectToRoute('user_index');
     }
 
@@ -323,46 +344,49 @@ class UserController extends AbstractController
      * @param User $user
      * @param UserPasswordEncoderInterface $encoder
      * @return Response
+     *
+     *
+     * Cette methode est en charge modifier son propre profil
+     *
      */
 
     public function profiledit(Request $request, User $user, UserPasswordEncoderInterface $encoder): Response
     {
-        #cette fonction sert a editer le profil user
 
         $this->denyAccessUnlessGranted("ROLE_USER");
 
-        #on recupere le pseudo de l'adhérent en cours
+        #On recupere le pseudo de l'adhérent en cours
         $user1 = $this->getUser()->getUsername();
 
-        #utilisation du formulaire de la classe user#
+        #Utilisation du formulaire de la classe user#
         $form = $this->createForm(UserType::class, $user);
 
-        #gere le traitement du formulaire#
+        #Gere le traitement du formulaire#
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
 
-            #hasher le mot de passe
+            //Hashe le mot de passe
             $hashed = $encoder->encodePassword($user, $user->getPassword());
             $user->setPassword($hashed);
 
-            // on recupere les photos envoyées
+            //On recupere les photos envoyées
             $photos = $form->get('photos')->getData();
             dump($photos);
-            //on boucle sur les photos
+            //On boucle sur les photos
             foreach ($photos as $photo) {
 
-                // on genere un nouveau no de fichier
+                //On genere un nouveau no de fichier
                 $fichier = md5(uniqid()) . '.' . $photo->guessExtension();
                 dump($fichier);
-                // copie le fichier dans le dossier photo-profil
+                //Copie le fichier dans le dossier photo-profil
                 $photo->move(
                     $this->getParameter('photo_directory'),
                     $fichier
                 );
 
-                // on stocke le nom de la photo dans la bdd
+                //On stocke le nom de la photo dans la bdd
                 $phot = new Photo();
                 $phot->setName($fichier);
                 $user->addPhoto($phot);
@@ -370,11 +394,13 @@ class UserController extends AbstractController
 
 
             $this->getDoctrine()->getManager()->flush();
-
+            //On renvoie un message de succes à l'utilisateur pour prévenir de la réussite de la modification.
             $this->addFlash('success', 'Votre profil a bien été modifié !!');
+
+            //On redirige l'utilisateur sur la page home/index.html.twig
             return $this->redirectToRoute('home1');
         }
-
+        //On envoie les données et l'affichage du formulaire sur la page profiledit.html.twig.
         return $this->render('user/profiledit.html.twig', [
             'user' => $user,
             'form' => $form->createView(),

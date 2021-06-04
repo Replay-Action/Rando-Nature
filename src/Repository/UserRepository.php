@@ -62,7 +62,8 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         return $query->getQuery()->getResult();
     }
 
-
+    #On récupère la table User, Photo et la table Referent #
+    #Ensuite on tris les users via le champ ordre de la table Referent#
     public function orderUserByReferentWithPhoto(){
         $query = $this
             ->createQueryBuilder('u')
