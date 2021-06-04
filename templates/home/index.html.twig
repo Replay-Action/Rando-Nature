@@ -91,12 +91,12 @@ et celui de la vignette clignotante #}
 
             <div class="en-tete-accueil row col-lg-12 col-sm-12">
                     <div class="logo col-lg-12">
-                    <img src="{{ asset('logos/logo-velo.png') }}">
+                    <img src="{{ asset('logos/logo-velo.png') }}" alt="">
                         {% include ('home/_news_activite.html.twig') %}
                     </div>
 
                     <div class="title col-lg-12 col-sm-12">
-                    <img src="{{ asset('logos/velorandonaturebruz-maj2.png') }}">
+                    <img src="{{ asset('logos/velorandonaturebruz-maj2.png') }}" alt="">
                     </div>
 
             </div>
@@ -134,9 +134,10 @@ et celui de la vignette clignotante #}
     </div>
     <h2 id="h2-accueil"> Venez nous rejoindre !</h2>
     {# les 4 cards de choix, leurs liens, leurs photo, et leurs effets #}
-        <div class=" paragraphe3">
-            <div class="row justify-content-center">
-                <div class=" justify-content-center col-lg-6 col-md-12 size-div-rfap-home">
+        <div class="container">
+            <div class="paragraphe3">
+
+                <div class=" justify-content-center col-lg-6 col-md-12 taille">
                     <div class="card hovereffect-home border-white mb-4">
                         <a href="{{ path('randosvelo') }}">
                             <img src="{{ asset('content/velo-pont resize.jpg') }}" class="card-img-top"
@@ -151,7 +152,7 @@ et celui de la vignette clignotante #}
                     </div>
                 </div>
 
-                <div class=" justify-content-center col-lg-6 col-md-12 size-div-rfap-home">
+                <div class=" justify-content-center col-lg-6 col-md-12 taille">
                     <div class="card hovereffect-home border border-white mb-4">
                         <a href="{{ path('formations') }}">
                             <img src="{{ asset('content/formation-menu-resize.jpg') }}" class="card-img-top" alt="...">
@@ -165,7 +166,7 @@ et celui de la vignette clignotante #}
                     </div>
                 </div>
 
-                <div class=" justify-content-center col-lg-6 col-md-12 size-div-rfap-home">
+                <div class=" justify-content-center col-lg-6 col-md-12 taille">
                     <div class="card hovereffect-home border border-white mb-4">
                         <a href="{{ path('pleinair') }}">
                             <img src="{{ asset('content/2velos resize.jpg') }}" class="card-img-top" alt="...">
@@ -179,7 +180,7 @@ et celui de la vignette clignotante #}
                     </div>
                 </div>
 
-                <div class=" justify-content-center col-lg-6 col-md-12 size-div-rfap-home">
+                <div class=" justify-content-center col-lg-6 col-md-12 taille">
                     <div class="card hovereffect-home border border-white ">
                         <a href="{{ path('activite_index') }}">
                             <img src="{{ asset('content/pleon air resize.jpg') }}" class="card-img-top " alt="...">

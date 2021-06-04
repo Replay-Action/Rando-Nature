@@ -28,6 +28,7 @@
 @import "user/profil.css";
 @import "user/user_form.css";
 @import "user/gestion_adhérent.css";
+@import "user/pasword_forgotten.css";
 
 @import "partenaire/gestion_partenaire.css";
 
@@ -99,3 +100,6 @@ hr{
     margin-top: 70px;
 }
 
+.merde{
+    background: #aacd4e;
+}

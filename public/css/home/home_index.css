@@ -44,6 +44,27 @@
     margin: 40px;
     font-size: x-large;
 }
+.text-bas-page{
+    text-align: center;
+    margin: 40px;
+    font-size: x-large;
+}
+.size-div-rfap-home{
+
+    width: 25%;
+    height: 25%;
+    background-color: orange;
+}
+.paragraphe3{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.taille{
+    padding: 20px;
+}
+
 /**       Caroussel     **/
 @keyframes display {
     0% {
@@ -187,14 +208,3 @@ img:nth-child(5) {
 }
 
 
-.text-bas-page{
-    text-align: center;
-    margin: 40px;
-    font-size: x-large;
-}
-
-.size-div-rfap-home{
-    width: 25%;
-    height: 25%;
-    background-color: orange;
-}

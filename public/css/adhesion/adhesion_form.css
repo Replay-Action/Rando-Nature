@@ -11,17 +11,26 @@ hr.hr-bulletin-adhesion{
     padding: 0;
     margin: 0;
 }
+.adhesion_title_centre{
+    text-align: center;
+    margin-top: 20px;
 
+}
 .gauche-adhesion{
     display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
     justify-content: center;
 }
 .global-adhesion{
     display: flex;
     flex-direction: row;
-    max-width: content-box;
-    max-height: content-box;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
 }
+
 .taille-text-adhesion{
     font: oblique 20px Arial;
 }
@@ -39,4 +48,25 @@ hr.hr-bulletin-adhesion{
     border-radius: 15px;
     border:solid 1px;
     justify-content: center;
+}
+.adhesion_form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0 40px 0;
+}
+.obligation{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.je_reconnais{
+padding: 0 10px 0 10px;
+}
+.size{
+    width:700px ;
+    height: 1100px;
+}
+.champ_je_reconnais{
+    padding: 0 20px 0 20px;
 }

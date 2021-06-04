@@ -1,20 +1,46 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <div class="container-fluid">
-        <div class="title__partenaire container-fluid row">
-
-            <h1 class="col-12">Modification d'un article</h1>
-            <div class="center-hr col-12">
-                <hr class="hr25-pourcent">
+    <div class="container">
+        <div class="form__documentation">
+            <div class="title_form  col-12">
+                <p>Modification de la documentation</p>
             </div>
-        </div>
-    </div>
-    <div class="container-fluid box1">
-        <div class="main__partenaire">
-            <div class="form__partenaire">
+            <div class="gauche_form_documentation col-lg-6">
                 {{ form_start(form) }}
-                {{ form_widget(form) }}
-                {{ form_end(form) }}
+                <p>Titre *</p>
+                {{ form_widget(form.titre) }}
+
+                <p>Intro *</p>
+                {{ form_widget(form.intro) }}
+
+                <p>Paragraphe *</p>
+                {{ form_widget(form.paragraphe1) }}
+
+                <p>Paragraphe</p>
+                {{ form_widget(form.paragraphe2) }}
+            </div>
+            <div class="droite_form_documentation col-lg-6">
+                <p>Categorie</p>
+                {{ form_widget(form.categorie) }}
+                <p>Url</p>
+                {{ form_widget(form.url) }}
+                <p>image</p>
+                {{ form_widget(form.image) }}
+                <p>legende</p>
+                {{ form_widget(form.imageLegende) }}
+                <p>Paragraphe</p>
+                {{ form_widget(form.image2) }}
+                <p>Paragraphe</p>
+                {{ form_widget(form.imageLegende2) }}
+            </div>
+            <div class="bas_form_documentation col-12">
+                <div class="bas_form_documentation1">
+                    {{ form_widget(form.valider) }}
+                    {{ form_end(form) }}
+                </div>
+                <div class="bas_form_documentation2">
+                    <a class="butonPersonnalise" href="{{ path('documentation') }}">Retour</a>
+                </div>
             </div>
         </div>
     </div>

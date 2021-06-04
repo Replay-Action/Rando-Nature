@@ -90,6 +90,13 @@
                     {% endfor %}
                     </div>
                 </div>
+                <div class="action_box">
+                    {% if is_granted(["ROLE_ADMIN"]) %}
+                    <a href="{{ path('activite_edit', {'id':activite.id}) }}">modifier</a>
+                    <a href="{{ path('activite_delete', {'id':activite.id}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer cette activité');">supprimer</a>
+                    {% endif %}
+                    <a href="{{ path('album') }}">retour</a>
+                </div>
             </div>
         </div>
         <div class="container  album_box">

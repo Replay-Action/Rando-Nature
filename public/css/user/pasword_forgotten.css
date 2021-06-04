@@ -1,0 +1,15 @@
+.form_password_forgotten{
+    margin-top: 120px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-radius: 15px;
+    background-color:rgba(49,49,49,0.7);
+    padding: 20px;
+    color: white;
+}
+.bas_form_password_forgotten{
+    display: flex;
+    justify-content: center;
+}

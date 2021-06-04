@@ -183,7 +183,11 @@
                             <div class="boutton_box col-6">
                                 {% if is_granted(["ROLE_USER"]) %}
                                     {# ou que l'adhérent est inscrit #}
-                                    {% if (activite.users.contains(user)) %}
+                                    {% if is_granted("ROLE_ADMIN") %}
+                                    <a class="butonPersonnalise" href="{{ path('activite_edit', {'id':activite.id}) }}">modifier</a>
+                                    <a class="butonPersonnalise" href="{{ path('activite_delete', {'id':activite.id}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer cette activité');">supprimer</a>
+                                    {% endif %}
+                                        {% if (activite.users.contains(user)) %}
                                         <a class="butonPersonnalise" href="{{ path('activite_sedesister', {'id': activite.id}) }}"
                                            class="btn btn-info btn-sm">se désister</a>
 
