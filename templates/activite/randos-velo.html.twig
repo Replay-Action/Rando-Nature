@@ -1,58 +1,30 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ parent() }} | Randos vélo{% endblock %}
-{# twig d'affichage de la page randos vélo #}
+{# La page randos vélo #}
 {% block body %}
-    {# le style css bootstrap par defaut #}
-    {#
-    <style>
-        .centrer{
-            display: flex;
-            align-items: center;
-        }
-        .example-wrapper {
-            text-align: center;
-            margin: 1em auto;
-            max-width: 800px;
-            width: 95%;
-            font: 18px/1.5 sans-serif;
-        }
 
-        .example-wrapper code {
-            background: #F5F5F5;
-            padding: 2px 6px;
-        }
-    </style>
-    #}
-
-    {# la banniere et le titre #}
-    {#
-    <div class="container-fluid">
-        <img src="{{ asset ('content/2velos resize.jpg') }}" class="img-fluid" width="100%">
-    </div>
-    #}
-    {# le corps de la page #}
+    {# Le titre #}
     <div class="title-activite row">
         <h1 class="col-12">Nos randonnées à vélo</h1>
     </div>
     <div class="center-hr">
         <hr class="hr25-pourcent center">
     </div>
+
+    {# Le corps de la page #}
     <div class="container-fluid">
         <div class="row">
 
-           {#
-                <div class="container-fluid">
-                    <img id="fdp" src="{{ asset('content/reunionsite.jpeg') }}">
-                </div>
-            </div>
-            <hr>
-           #}
             <div class="activite-box m-md-5 m-sm-3 bg-light border">
                 <div class="activite row">
+
+                    {# Partie Randos Vélo#}
                     <a class="btn-activite btn btn-primary col-lg-2 col-sm-12" href="{{ path('activite_index') }}">
                         <h3>La balade du dimanche matin </h3>
                     </a>
+
+                    {# Texte Randos Vélo #}
                     <div class="text-activite col-lg-8 col-sm-12">
                         <p>
                             Chaque mois au moins une sortie autour de Rennes est programmée.
@@ -67,16 +39,24 @@
                             A chaque balade est associée la découverte et la présentation d'un ou deux sites remarquables (naturel ou culturel).
                         </p>
                     </div>
+
+                    {# Insertion de l'image de Randos Vélo #}
                     <div class="image-box col-lg-2 col-sm-12">
                         <img class="img-activite" src="{{ asset('content/velo et enfant.png') }}">
                     </div>
+
                 </div>
             </div>
+
             <div class="activite-box m-md-5 m-sm-3  bg-light border">
                 <div class="activite row" >
+
+                    {# Partie Escapades #}
                     <a class="btn-activite btn btn-primary col-lg-2 col-sm-12  " href="{{ path('activite_index') }}">
                       <h3>Escapades (séjours à vélo)</h3>
                     </a>
+
+                    {# Texte Escapades #}
                     <div class="text-activite col-lg-8 col-sm-12 ">
                         <p>
                             Chaque année, une escapade de plusieurs jours (3-4) sera organisée.
@@ -89,9 +69,12 @@
                             et de leur condition physique à 1,2,3 ou 4 étapes.
                         </p>
                     </div>
+
+                    {# Insertion de l'image Escapades #}
                     <div class="image-box col-lg-2 col-sm-12  ">
                         <img class="image-activite" src="{{ asset('content/sejour escapade resize.jpg') }}">
                     </div>
+
                 </div>
             </div>
 

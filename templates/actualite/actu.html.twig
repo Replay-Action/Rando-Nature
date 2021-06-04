@@ -1,15 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Création d'actualite |{{ parent() }}{% endblock %}
-
+{# La page Création d'actualité #}
 {% block body %}
     <div class="global-actualite">
         <div class="actualite-fond-noir">
+
+            {# Le titre #}
             <div class="title-actualite">
                 <h1 class="col-12">Création d'une Actualité</h1>
-
             </div>
 
+            {# le formulaire #}
             <div class="div-form-actu">
                 {{ form_start(form) }}
                 <label>Actualite : </label>
@@ -21,6 +23,7 @@
 
                 {{ form_end(form) }}
             </div>
+
         </div>
     </div>
 {% endblock %}

@@ -1,10 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ parent() }} | modifier Activite{% endblock %}
-{# twig d'affichage de la page modifier activite #}
+{# La page modifier activite #}
 {% block body %}
+    {# Si le role de l'utilisateur est Admin alors il peu avoir accès à la modification de l'activité #}
     {% if is_granted("ROLE_ADMIN") %}
 
+    {# On inclut le formulaire et les boutons Modifier / Supprimer #}
     {{ include('activite/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
 
     <div class="row d-flex justify-content-center">

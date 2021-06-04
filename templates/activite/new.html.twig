@@ -1,8 +1,12 @@
 {% extends 'base.html.twig' %}
-{# twig d'affichage de la page creer activité #}
+{# La page creer activité #}
 {% block body %}
+
+    {# Si l'Utilisateur est Administrateur alors on lui met le formulaire sinon on met rien #}
+
     {% if is_granted("ROLE_ADMIN") %}
-{# on inclus ici le formulaire #}
+
+{# On inclut le formulaire #}
 <div class="mb-5">
    {{ include('activite/_form.html.twig') }}
 </div>

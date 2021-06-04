@@ -1,51 +1,30 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ parent() }} | Projections{% endblock %}
-{# twig d'affichage de la page projections films #}
+{# La page projections films #}
 {% block body %}
-    {# le style css bootstrap par defaut #}
-    {#
-    <style>
-        .centrer{
-            display: flex;
-            align-items: center;
-        }
-        .example-wrapper {
-            text-align: center;
-            margin: 1em auto;
-            max-width: 800px;
-            width: 95%;
-            font: 18px/1.5 sans-serif;
-        }
 
-        .example-wrapper code {
-            background: #F5F5F5;
-            padding: 2px 6px;
-        }
-    </style>
-    #}
-    {# la banniere et le titre #}
-    {#
-    <div class="container-fluid">
-        <img src="{{ asset ('content/2velos resize.jpg') }}" class="img-fluid" width="100%">
-    </div>
-    #}
+    {#Le titre #}
     <div class="title-activite row">
         <h1 class="col-12">La projection de films documentaires</h1>
     </div>
     <div class="center-hr">
         <hr class="hr25-pourcent center">
     </div>
-    {# le corps de la page #}
+
+    {# Le corps de la page #}
     <div class="container-fluid">
         <div class="row">
 
             <div class="activite-box m-md-5 bg-light border">
                 <div class="activite row col-12">
 
+                    {# Partie documentaires sur le voyage #}
                     <a class="btn-activite btn btn-primary col-lg-2 col-sm-12" href="{{ path('activite_index') }}">
                         <h3>Les documentaires sur le voyage</h3>
                     </a>
+
+                    {# Texte documentaires sur le voyage #}
                     <div class="text-activite col-lg-8 col-xs-12 ">
                         <p>
                             les documentaires sur notre région Bretagne et sur le voyage à vélo sont nombreux.
@@ -54,9 +33,12 @@
                             <a href="http://www.a4cmonde.org/" target="_blank">« aux 4 coins du monde »</a> ).
                         </p>
                     </div>
+
+                    {# Insertion de l'image de documentaire #}
                     <div class="image-box col-lg-2 col-xs-12">
                         <img  class="image-activite" src="{{ asset('content/documentaire resize.jpg') }}">
                     </div>
+
                 </div>
             </div>
 

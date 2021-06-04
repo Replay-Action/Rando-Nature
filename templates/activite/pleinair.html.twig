@@ -1,68 +1,30 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ parent() }} | Plein-air{% endblock %}
-{# twig d'affichage de la page plein-air #}
-{% block body %}
-    {# le style bootstrap par defaut #}
-    {#
-    <style>
-        .centrer{
-            display: flex;
-            align-items: center;
-        }
-        .example-wrapper {
-            text-align: center;
-            margin: 1em auto;
-            max-width: 800px;
-            width: 95%;
-            font: 18px/1.5 sans-serif;
-        }
+{# La page plein-air #}
 
-        .example-wrapper code {
-            background: #F5F5F5;
-            padding: 2px 6px;
-        }
-    </style>
-    #}
-    {# la banniere et le titre #}
-    {#
-    <div class="container-fluid">
-        <img src="{{ asset ('content/2velos resize.jpg') }}" class="img-fluid" width="100%">
-    </div>
-    #}
+{% block body %}
+    {# Le titre #}
     <div class="title-activite row">
         <h1 class="col-12">Nos autres activités de plein-air</h1>
     </div>
     <div class="center-hr">
         <hr class="hr25-pourcent center">
     </div>
-    {# le corps de la page #}
-    {#
-    <div class="container">
-        <div class="row">
 
-            <div class="presentation-activite"><br>
-                <p>
-                    Découverte d'autres activités de plein air.
-                </p>
-
-                <img src="{{ asset('content/pleon air resize.jpg') }}" class="img-fluid" width="100%">
-
-            </div>
-
-        </div>
-    </div>
-    <hr>
-    #}
+    {# Le corps de la page #}
     <div class="container-fluid">
         <div class="row">
 
             <div class="activite-box m-md-5 bg-light border">
                 <div class="activite row col-12">
 
+                    {# Partie longe-côte #}
                     <a class="btn-activite btn btn-primary col-lg-2 col-sm-12" href="{{ path('activite_index') }}">
                         <h3>Le longe-côte</h3>
                     </a>
+
+                    {# Texte longe-côte #}
                     <div class="text-activite col-lg-8 col-xs-12">
                         <p>
                             La marche aquatique ou « longe-côte », est une activité sportive pratiquée depuis maintenant
@@ -75,6 +37,8 @@
                             indispensables pour ceux qui se sont sentis comme des poissons, l’espace d’une petite heure.
                         </p>
                     </div>
+
+                    {# Insertion de l'image de longe-côte #}
                     <div class="image-box col-lg-2 col-xs-12 centrer">
                         <img class="image-activite" src="{{ asset('content/Paul.jpg') }}">
                     </div>

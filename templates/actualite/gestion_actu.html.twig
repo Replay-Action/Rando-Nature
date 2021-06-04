@@ -1,25 +1,30 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Gestion des actualites |{{ parent() }}{% endblock %}
-
+{# La page Gestion des actualité #}
 {% block body %}
+
     <div class="gestion-actualite-global">
         <div>
 
+            {# Le titre#}
             <div class="title-actualite-gestion row">
                 <h1 class="">Gestion des Actualités</h1>
             </div>
-            {# on boucle sur Actualite afin d'afficher toutes les actualités existante #}
+            {# On boucle sur Actualite afin d'afficher toutes les actualités existante #}
             {% for actualite in actualites %}
 
                 <div class="actualite-gestion">
-                        {{ actualite.actu }}
+                        <p>{{ actualite.actu }}</p>
 
+                    {# Les boutons Modifier et Supprimer #}
                     <div class=" button-supprimer-modifier-actualite">
                         <a class="button-decoration-referent" href="{{ path('actuedit', {'id':actualite.id}) }}">Modifier</a>
                         <a class="espace-button-referent button-decoration-referent" href="{{ path('actudelete', {'id':actualite.id}) }}" onclick="return confirm('Voulez-vous vraiment supprimer cet actualité ?')">Supprimer</a>
                     </div>
+
                 </div>
+
         </div>
     </div>
             {% endfor %}
