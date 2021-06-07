@@ -1,21 +1,29 @@
 {% extends 'base.html.twig' %}
-{% block title %}Création d'un Référent | {{ parent() }}{% endblock %}
-{# la page de la liste des référents #}
+{% block title %}Modification d'un Référent | {{ parent() }}{% endblock %}
+{# La page de Modification de référent #}
 
 {% block body %}
+
+    {# Si l'Utilisateur est Administrateur alors il à accès a la page Modifier un Référent #}
     {% if is_granted("ROLE_ADMIN") %}
 
         <div class="container-fluid">
             <div class="row">
+
+                {# Le formulaire #}
                         {{ form_start(form) }}
                    <div class="row col-lg-12 justify-content-center">
 
                          <div class="container column-div row form-referent-fond-noir">
-                                <div class="container-fluid row title__referent">
 
+                                {# Le Titre #}
+                                <div class="container-fluid row title__referent">
                                     <h1 class="font-weight-bold">Modifier un Référent</h1>
                                 </div>
+
                             <div class="">
+
+                                {# le Nom du Référent #}
                                 <div class="col-lg-6 test-color-size3 container">
                                     <div class="col-lg-4 ">
                                         <label>Référent : </label>
@@ -25,12 +33,14 @@
 
                                 <div class="col-lg-12 test-color-size2 row container">
 
+                                    {# l'Odre pour gérer l'affichage sur le Trombinoscope et le Bureau #}
                                     <div class="col-lg-2 color-size-1">
                                         <label>Ordre : </label>
                                         <p>{{ form_widget(form.ordre) }}</p>
 
                                     </div>
 
+                                    {# Informations #}
                                     <div class="col-lg-10 col-md-12 test-color-size">
 
                                         <p>L'ordre permet de gérer l'affichage des Référents.<br>
@@ -44,6 +54,7 @@
 
                                 </div>
 
+                                {# Les boutons Enregistrer et Retour #}
                                 <div class="col-lg-12 button-enregistrer-new-referent">
                                     <div class="d-flex justify-content-center">
                                         <button class="mb-5 mt-2 btn btn-primary btn btn-lg">{{ button_label|default('Enregistrer') }}</button>
@@ -60,8 +71,5 @@
 
             </div>
         </div>
-        {# on inclus ici le formulaire #}
-
-
     {% endif %}
 {% endblock %}

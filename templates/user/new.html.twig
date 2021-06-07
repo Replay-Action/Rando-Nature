@@ -1,13 +1,16 @@
 {% extends 'base.html.twig' %}
-
+{# La page créer un utilisateur #}
 {% block title %}Nouvel Utilisateur  | {{ parent() }}{% endblock %}
 {# page de création d'un utilisateur #}
 
 {% block body %}
+
+    {# Si l'Utilisateur est Administrateur alors il a accès à cette page #}
     {% if is_granted("ROLE_ADMIN") %}
 
         <div class="admin-cree-adherent-fond-noir container-fluid col-lg-6 col-sm-12">
 
+        {# On inclut le formulaire#}
         {{ include('user/_form.html.twig') }}
         </div>
     {% else %}

@@ -1,18 +1,24 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Liste des utilisateurs  | {{ parent() }}{% endblock %}
-{# la page de liste des user #}
+{# La page de liste des user #}
 
 {% block body %}
+
+    {# Si l'Utilisateur est Administrateur alors il a accès à cette page #}
     {% if is_granted("ROLE_ADMIN") %}
         <div class="">
             <div class="m-5 justify-content-center text-center ">
                 <div class="">
+
+                    {# Le Titre #}
                     <h1 class="m-3 p-3">Liste des adhérents</h1>
                     <div class="center-hr">
                         <hr class="hr25-pourcent center">
                     </div>
                 </div>
+
+                {# Paragraphe Informatif #}
                 <div class="bg-light border m-5"><p class="font-weight-bold pt-2">NOTA BENE</p>
                     <div>
                         <p class="text-center small">Pour effacer un adhérent, allez sur le bouton 'modifier et cliquez sur
@@ -27,27 +33,39 @@
                 </div>
             </div>
             <div class="container-fluid global-div-adherents col-lg-12 col-sm-12 row ">
-            {# on boucle sur le user pour remplir la table #}
+
+            {# On boucle sur le user pour remplir la table #}
             {% for user in users %}
 
-                {# la table avec les filtres bootstrap (table-bootstrap #}
+                {# Partie affichage d'Adhérent#}
                  <div class="col-lg-2 col-sm-4 col-xs-6 div-group-un-adherent row m-5 mt-5" >
                     <div class="div-un-adherent col-lg-12">
+
+                        {# Le pseudo #}
                         <div class="pseudo-div-un-adherent "align="center">
                                 <p><strong>{{ user.username }}</strong></p>
                         </div>
+
                         <div class="interieur-div-un-adherent" align="center">
+
+                            {# Si l'Utilisateur possède le Role User alors on affiche Adhérent #}
                             <p>{% if (user.roles|json_encode) =='["ROLE_USER"]' %}
                                          Adhérent
+
+                                    {# Sinon si L'Utilisateur possède le Role Admin on affiche Administrateur #}
                                      {% elseif (user.roles|json_encode) =='["ROLE_ADMIN","ROLE_USER"]' %} Administrateur
                                      {% else %}
                                      {% endif %}</p>
+
+                            {# On affiche les informations sur l'Utilisateur #}
                             <p>Nom: {{ user.nom }}</p>
                             <p>Prénom: {{ user.prenom }}</p>
                             <p>Téléphone: {{ user.telephone }}</p>
                             <p class="police-email">Email: {{ user.email }}</p>
                             <p>Date de Naissance: {{ user.dateNaissance ? user.dateNaissance|date('d-m-Y') : '' }}</p>
                         </div>
+
+                        {# Le bouton Modifier #}
                             <div class="button-div-modifier-profil-admin">
                                  <a href="{{ path('user_edit', {'id': user.id}) }}" class="button-modifier-profil-admin btn btn-warning">modifier</a>
                             </div>

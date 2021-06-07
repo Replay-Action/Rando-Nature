@@ -1,10 +1,8 @@
-
-    {# Espace partenaire qui sera toujours au meme endroit dans la page au dessus du menu footer #}
-
+{# Le footer #}
 
     {# Création d'une navbar en bas de la page, le menu footer #}
     <div class="footer__container container-fluid navbar navbar-expand-lg navbar-dark p-3">
-        {#  <a class="navbar-brand " href="{{path('home1')}}">Vélo Rando Nature Bruz</a>#}
+
 
         {# pour le responsive on crée le menu burger qui s'affichera sur petit écran #}
         <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarText"
@@ -16,6 +14,7 @@
         <div class="box2 container">
             <div class="box6 row">
 
+                {# Le carrousel #}
                 <div class="box3 col-lg-12" id="navbarText" >
                     {% include 'inc/_footer_carousel.html.twig'  %}
                 </div>
@@ -24,6 +23,7 @@
 
                     <div class="lien-footer col-lg-6" id="navbarText"  >
 
+                        {# les boutons Qui somme nous ? , Mentions légales et Contact #}
                         <div class="nav_footer">
                         <a class="text-white" href="{{path('presentation')}}">Qui sommes-nous ?</a>
                             <a class="text-white" href="{{asset('documents/Mentions_legales.pdf')}}" target="_blank">Mentions légales</a>
@@ -32,6 +32,7 @@
 
                     </div>
 
+                    {# Le Copyright #}
                     <div class="copyright col-lg-6" id="navbarText">
                         <p class="text-white">&copy;{{ "now"|date("Y") }} VRNB @ED</p>
                     </div>

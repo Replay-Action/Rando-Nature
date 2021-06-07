@@ -36,9 +36,13 @@
             <div class="col-lg-6 div-int-modifier-profil">
                 {{ form_start(form) }}
                 <p>Pseudo : {{ form_widget(form.username) }}</p>
+
+                {# Si l'Utilisateur est Administrateur alors il peut voir le roles et le referents #}
                 {% if is_granted("ROLE_ADMIN")%}
                 <p>Role : {{ form_widget(form.roles) }}</p>
                 <p>Référent : {{ form_widget(form.referents) }}</p>
+
+                {# Sinon on lui cache #}
                 {% else %}
                     <p hidden>{{ form_widget(form.roles) }}</p>
                     <p hidden>{{ form_widget(form.referents) }}</p>
@@ -50,6 +54,8 @@
                 <p>Mot de Passe : {{ form_widget(form.password) }}</p>
                 <p>Date de Naissance : {{ form_widget(form.date_naissance) }}</p>
                 <p>{{ form_widget(form.photos) }}</p>
+
+                {# Les Boutons Enregistrer et Retour #}
                 <div class="m-5 row d-flex justify-content-center">
                     <div class="col-lg-6">
                 <p>{{ form_widget(form.enregistrer) }}</p>

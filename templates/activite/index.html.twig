@@ -1,9 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}programme des activités |{{ parent() }}{% endblock %}
-{# twig d'affichage de la page liste des activités #}
+{# La page programme des activités #}
 {% block body %}
 
+    {# Le titre #}
     <div class="title-activite row">
         <h1 class="col-12">Programme des Activités</h1>
         <hr>
@@ -11,22 +12,31 @@
 
     <div class="container-fluid">
         <div class="row-container row">
+
+            {# On inclut le Filter #}
             <div class="col-lg-2 col-sm-12">
                 {% include 'activite/_filter.html.twig' with {form: form} only %}
             </div>
+
            <div class="col-lg-8 col-sm-12">
+
+               {# On boucle sur Activite #}
                 {% for activite in activites %}
+
+                    {# Si l'état de l'activite est Ouverte ou Modifier alors elle s'affiche#}
                     {% if (activite.etat.libelle =="ouverte") or (activite.etat.libelle =="modifiée") %}
                 <div class="activite-container row col-12">
 
                         <div class="sans-detail-container row col-12">
 
+                            {# Ici on affiche la date et l'heure de l'activite #}
                             <div class="date-container col-2">
                                 <p id="date-activite">{{ activite.dateActivite()|date('j')}}</p>
                                 <p>{{ activite.dateActivite()|date('F')}}</p>
                                 <p>{{ activite.dateActivite()|date('h:i')}}</p>
                             </div>
 
+                            {# ici on affiche le Nom de l'Activité ainsi que sa Catégorie et dans quel Ville aura lieu l'Activité  #}
                             <div class="nom-container row col-8">
                                 <div class="info-activite row col-9">
 
@@ -46,6 +56,8 @@
                                     </div>
                                 </div>
                                 <div class="is-inscrit col-3">
+
+                                    {# Si l'Adhérent est inscrit alors on affiche le logo check #}
                                     {% if activite.users.contains(user) %}
                                     <img src="{{ asset("tools/check.png") }}" alt="">
                                     {% endif %}
@@ -57,20 +69,30 @@
                         <div class="detail-container col-11">
                             <div class="row">
                                 <div class="detail-gauche col-8">
+
+                                    {# On affiche l'organisateur #}
                                     <div class="type-activite">
                                     <p class="font-bold-activite">Organisateur: </p>
                                     <a href="{{ path('user_show', {'id': activite.organisateur.id}) }}">
                                         {{ activite.organisateur.prenom }} {{ activite.organisateur.nom }}</a>
                                     </div>
+
+                                    {# La durée en minute #}
                                     <div class="type-activite">
                                         <p class="font-bold-activite">Durée:</p>
                                         <p>{{ activite.duree }} minute</p>
                                     </div>
+
+                                    {# Le lieu du rassemblement #}
                                     <div class="type-activite">
                                         <p class="font-bold-activite">Lieu de rassemblement: </p>
                                         <p>{{ activite.lieu().getNomRue() }}</p>
                                     </div>
-                                    {% if (activite.denivele == '')%}
+
+                                    {# Si le champ infos activiter est vide on affiche rien #}
+                                    {% if (activite.getInfosActivite() == '')%}
+
+                                    {# Sinon on affiche les infos de l'activite #}
                                     {% else %}
                                         <div class="type-activite">
                                             <p class="font-bold-activite">Info activité: </p>
@@ -81,19 +103,28 @@
                                 </div>
                                 <div class="detail-droite col-4">
                                     <div class="difficulte-activite">
+
+                                    {# Si la difficulte de l'activite est également à 0 ou est vide on affiche rien #}
                                     {% if (activite.getDifficulte() == 0 or activite.getDifficulte() == '')%}
                                     {% else %}
+
+                                        {# Si la difficulté est égale à 1 on affiche le logo 1 #}
                                         {% if ( activite.getDifficulte() == 1) %}
                                         <img src="{{ asset("tools/difficulte1.png") }}" alt="">
+
+                                        {# Sinon si la difficulté est égale à 2 on affiche le logo 2 #}
                                         {% elseif ( activite.getDifficulte() == 2) %}
                                         <img src="{{ asset("tools/difficult2.png") }}" alt="">
+                                        {# Sinon on affiche le logo 3 #}
                                         {% else %}
                                         <img src="{{ asset("tools/difficult3.png") }}" alt="">
                                         {% endif %}
                                     {% endif %}
                                     </div>
 
+                                    {# Si le denivele est égale à 0 ou est vide on affiche rien #}
                                     {% if (activite.denivele == 0 or activite.denivele == '')%}
+                                    {# Sinon on affiche le denivele #}
                                     {% else %}
                                         <div class="type-activite">
                                             <p class="font-bold-activite">Dénivelé: </p>
@@ -101,7 +132,10 @@
                                         </div>
                                     {% endif %}
 
+                                    {# Si la distance est égale à 0 ou est vide alors on affiche rien #}
                                     {% if (activite.distance == 0 or activite.distance == '')%}
+
+                                    {# Sinon on affiche la distance  #}
                                     {% else %}
                                         <div class="type-activite">
                                             <p class="font-bold-activite">Distance: </p>
@@ -113,21 +147,26 @@
                             </div>
                         </div>
                         <div class="buton-container row col-11">
+                            {# On indique le nombre d'inscrit à l'activité #}
                             <div class="inscrit col-6">
                             <p>il y a {{ activite.users.count }} inscrits a cette activité</p>
                             </div>
                             <div class="boutton_box col-6">
+
+                                {# Si l'Utilisateur est Adhérent #}
                                 {% if is_granted(["ROLE_USER"]) %}
-                                    {# ou que l'adhérent est inscrit #}
+                                    {# Si l'Utilisateur est Administrateur il peut Modifier et Supprimer l'Activite #}
                                     {% if is_granted("ROLE_ADMIN") %}
                                     <a class="butonPersonnalise" href="{{ path('activite_edit', {'id':activite.id}) }}">modifier</a>
                                     <a class="butonPersonnalise" href="{{ path('delete_activite', {'id':activite.id}) }}" onclick="return confirm('Voulez-vous vraiment supprimer cette activité')">supprimer</a>
                                     {% endif %}
+
+                                        {# Si l'utilisateur est inscrit alors le bouton se désister s'affiche #}
                                         {% if (activite.users.contains(user)) %}
                                         <a class="butonPersonnalise" href="{{ path('activite_sedesister', {'id': activite.id}) }}"
                                           >se désister</a>
 
-                                        {# s'il n'est pas inscrit #}
+                                        {# Sinon le bouton s'inscrire sera afficher #}
                                     {% else %}
                                         <a class="butonPersonnalise" href="{{ path('activite_sinscrire', {'id': activite.id}) }}"
                                           >s'inscrire</a>
