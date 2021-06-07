@@ -1,21 +1,31 @@
 {% extends 'base.html.twig' %}
 {% block body %}
+{# La page ajouter un PDF #}
+
     <div class="container">
         <div class="placement_box">
             <div class="form_pdf_album">
+
+                {# Le Titre #}
                 <div class="title_form col-12">
                     <h1>Ajout d'un pdf a l'album</h1>
                 </div>
+
+                {# Le formulaire d'ajout d'un PDF #}
                 <div class="centre_form_pdf_album col-12">
                     {{ form_start(form) }}
                     <p>Insérer un pdf</p>
                     <p>{{ form_widget(form.nompdf) }}</p>
                 </div>
+
+                {# Le bouton Valider #}
                 <div class="bas_form_pdf_album col-12">
                     <div class="bas_form_pdf_album1">
                         {{ form_widget(form.valider) }}
                         {{ form_end(form) }}
                     </div>
+
+                    {# Le bouton Retour #}
                     <div class="bas_form_pdf_album2">
                         <a class="butonPersonnalise" href="{{ path('album') }}">Retour</a>
                     </div>

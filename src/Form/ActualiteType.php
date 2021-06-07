@@ -14,7 +14,14 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ActualiteType extends AbstractType
 {
-
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     *
+     * Cette Methode est en charge de construire le formulaire.
+     *
+     *
+     */
     public function buildForm(FormBuilderInterface $builder, array $options){
         $builder
             ->add('actu', TextType::class
@@ -27,6 +34,9 @@ class ActualiteType extends AbstractType
 
     }
 
+    /**
+     * @param OptionsResolver $resolver
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

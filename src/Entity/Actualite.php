@@ -27,16 +27,26 @@ class Actualite
      */
     private $Date_actu;
 
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @return string|null
+     */
     public function getActu(): ?string
     {
         return $this->actu;
     }
 
+    /**
+     * @param string $actu
+     * @return $this
+     */
     public function setActu(string $actu): self
     {
         $this->actu = $actu;
@@ -44,11 +54,18 @@ class Actualite
         return $this;
     }
 
+    /**
+     * @return DateTimeInterface|null
+     */
     public function getDateActu(): ?DateTimeInterface
     {
         return $this->Date_actu;
     }
 
+    /**
+     * @param DateTimeInterface $Date_actu
+     * @return $this
+     */
     public function setDateActu(DateTimeInterface $Date_actu): self
     {
         $this->Date_actu = $Date_actu;

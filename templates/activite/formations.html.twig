@@ -1,77 +1,56 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ parent() }} | Formations{% endblock %}
-{# twig d'affichage de la page formations #}
+{# La page formations #}
 {% block body %}
-    {# le style bootstrap par defaut #}
-    {#
-    <style>
-        .centrer {
-            display: flex;
-            align-items: center;
-        }
 
-        .example-wrapper {
-            text-align: center;
-            margin: 1em auto;
-            max-width: 800px;
-            width: 95%;
-            font: 18px/1.5 sans-serif;
-        }
-
-        .example-wrapper code {
-            background: #F5F5F5;
-            padding: 2px 6px;
-        }
-    </style>
-    #}
-
-    {# la baniiere et le titre #}
-    {#
-    <div class="container-fluid">
-        <img src="{{ asset ('content/2velos resize.jpg') }}" class="img-fluid" width="100%">
-    </div>
-    #}
+    {# Le titre #}
     <div class="title-activite row">
         <h1 class="col-12">Nos formations</h1>
     </div>
+
     <div class="center-hr">
         <hr class="hr25-pourcent">
     </div>
+
     <div class="container-fluid">
         <div class="row">
 
+            {# Le corp de la page #}
             <div class="presentation-activite col-12"><br>
                 <p>
                     Début 2021, l'association devrait compter une trentaine d'adhérents.
                     Faire bénéficier tous les adhérents des compétences et savoirs faire individuels est également un
                     objectif de l'association.
                 </p>
+
                 <p>
                     Le projet est d'organiser des formations
                         – autour du vélo
                         - sur les thèmes suivants:
                 </p>
 
-                {#
-                    <img src="{{ asset('content/formation resize.jpg') }}" class="img-fluid" width="100%">
-                #}
-
             </div>
 
         </div>
     </div>
+
     <div class="center-hr">
         <hr class="hr25-pourcent">
     </div>
+
     <div class="container-fuild">
         <div class="row">
 
+            {# Partie Mécanique #}
             <div class="activite-box m-md-5 m-sm-3 bg-light border">
                 <div class="activite row col-12">
+
                     <a class="btn-activite btn btn-primary col-lg-2 col-sm-12 " href="{{ path('activite_index') }}">
                         <h3>Mécanique</h3>
                     </a>
+
+                    {# Texte de Mécanique #}
                     <div class="text-activite col-lg-8 col-xs-12 ">
                         <p>
                             Nous allons voir ensemble quel est le matériel indispensable au dépannage ou a la
@@ -83,18 +62,23 @@
 
                         </p>
                     </div>
+                    {# Insertion de l'image de Mécanique #}
                     <div class="image-box col-lg-2 col-xs-12">
                         <img class="image-activite" src="{{ asset('content/mecanique resze.jpg') }}">
                     </div>
+
                 </div>
             </div>
 
-
+            {# Partie Sécurité Vélo #}
             <div class="activite-box m-md-5 m-sm-3 bg-light border">
                 <div class="activite row col-12">
+
                     <a class="btn-activite btn btn-primary col-lg-2 col-sm-12" href="{{ path('activite_index') }}">
-                        <h3>securité à vélo</h3>
+                        <h3>Securité à vélo</h3>
                     </a>
+
+                    {# Texte Sécurité Vélo #}
                     <div class="text-activite col-lg-8 col-sm-12 ">
                         <p>
                             Les cyclistes n’ont pas besoin d’avoir un permis pour se déplacer à vélo.
@@ -104,6 +88,7 @@
                             Il est important pour les cyclistes de connaître tant le Code de la route que le code de la
                             rue.
                         </p>
+
                         <p>
                             Les éléments imposés aux cyclistes sont définis dans les articles R313-4 à R313-5 et R313-18
                             à R313-20 du Code de la Route.
@@ -113,23 +98,31 @@
                             entraîner une amende pour les conducteurs du cycle.
                         </p>
                     </div>
+
+                    {# Insertion de l'image de Sécurite Vélo #}
                     <div class="image-box col-lg-2 col-sm-12">
                         <img class="image-activite" src="{{ asset('content/securite resize.jpg') }}">
                     </div>
+
                 </div>
             </div>
 
+            {# Partie Secourisme #}
             <div class="activite-box m-md-5 m-sm-3  bg-light border">
                 <div class="activite row col-12">
+
                     <a class="btn-activite col-lg-2 col-sm-12  btn btn-primary " href="{{ path('activite_index') }}">
                        <h3>Secourisme</h3>
                     </a>
+
+                    {# Texte Secourisme #}
                     <div class="text-activite col-lg-8 col-sm-12"><br>
                         <p>
                             Alerter les secours, masser, défibriller, traiter les hémorragies sont les gestes essentiels
                             d’urgence qui peuvent être pratiqués lors d’accidents de la vie quotidienne ou de situations
                             d’une gravité exceptionnelle.
                         </p>
+
                         <p>
                             Ces gestes essentiels peuvent sauver des vies.
                             Nombre d’associations agréées assurent des actions d'enseignement et de formation en matière
@@ -140,18 +133,24 @@
                             secours.
                         </p>
                     </div>
+
+                    {# Insertion de l'image de Secourisme #}
                     <div class="image-box col-lg-2 col-sm-12">
                         <img class="image-activite" src="{{ asset('content/secourisme resize.jpg') }}">
                     </div>
+
                 </div>
             </div>
 
-
+            {# Partie Photo Vidéo #}
             <div class="activite-box m-md-5 m-sm-3  bg-light border">
                 <div class="activite row col-12">
+
                     <a class="btn-activite btn btn-primary col-lg-2 col-12" href="{{ path('activite_index') }}">
                         <h3>Photo et vidéo</h3>
                     </a>
+
+                    {# Texte Photo Vidéo #}
                     <div class="text-activite col-lg-8 col-12">
                         <p>
                             Nous organisons lors de nos balades des ateliers pratiques sur le cadrage aussi bien en
@@ -165,11 +164,16 @@
                             secours.
                         </p>
                     </div>
+
+                    {# Insertion de l'image de Photo Vidéo #}
                     <div class="image-box col-lg-2 col-sm-12">
                         <img class="image-activite" src="{{ asset('content/photographie et video resize.jpg') }}">
                     </div>
+
                 </div>
             </div>
+
+
         </div>
     </div>
 

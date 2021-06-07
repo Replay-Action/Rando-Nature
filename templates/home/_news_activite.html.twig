@@ -1,8 +1,9 @@
-<div class="popup_accueil">
+    {# La partie News #}
+
     {% if (actidispo) %}
-            <p class="title">Activité a venir</p>
+            {# Le titre #}
+            <h1 class="title">Activité a venir</h1>
             <p>Il y a {{ actidispo| length }} activité a venir.</p>
         <a href="{{ path('activite_index') }}">Voir</a>
     {% else %}
     {% endif %}
-</div>

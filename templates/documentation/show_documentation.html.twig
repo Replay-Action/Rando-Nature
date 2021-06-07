@@ -1,19 +1,13 @@
 {% extends 'base.html.twig' %}
 {% block title %}{{ parent() }}{% endblock %}
+{# La page d'affichage de documentation #}
 {% block body %}
-    {#
-    <div class="container-fluid ">
-        <div class="title__partenaire container-fluid row">
-            <h1 class="col-12">{{ documentations.titre }}</h1>
-            <div class="center-hr col-12">
-                <hr class="hr25-pourcent">
-            </div>
-        </div>
-    </div>
-    #}
+
     <div class="container-fluid page_box">
         <div class="container documentation__box">
             <div class="documentation__show__header">
+
+                {# On affiche la Catégorie de la Documentation, le Titre et l'introduction #}
                 <div class="categories__show col-12">
                     <p>{{ documentations.categorie }}</p>
                 </div>
@@ -23,17 +17,24 @@
                 <div class="intro__documentation col-12">
                     <p>{{ documentations.intro }}</p>
                 </div>
+
+                {# On affiche le logo Calendrier avec la date de Création #}
                 <div class="documentation_date_user-show col-12">
                         <div class="documentation_date">
                         <img  src="{{ asset('tools/calendrier.png') }}" alt="icon de calendrier">
                             <p>{{ documentations.getDateCreation()| date('j F Y h:i') }}</p>
                         </div>
+
                         <div class="documentation_date_modifier">
+
+                            {# Si la documentation est modifier, on insère la date de Modification #}
                             {% if(documentations.getDateModifier() != null
                                 and documentations.getDateModifier() != documentations.getDateCreation()) %}
                                 <p>, mis à jour le {{ documentations.getDateModifier()| date('j F Y h:i') }}</p>
                             {% endif %}
                         </div>
+
+                        {# On affiche le logo User et le Pseudo de l'Auteur #}
                         <div class="documentation_user">
                         <img src="{{ asset('tools/user.png') }}" alt="icon d'utilisateur">
                             <p>{{ documentations.auteur }}</p>
@@ -47,21 +48,29 @@
                 <hr>
             </div>
             <div class="documentation-show__main">
+
+                {# Si l'image est différent de null on affiche l'image #}
                 {% if(documentations.image != null) %}
                 <div class="documentation__image1 col-12">
                     <img src="{{ asset("documentation-image/"~ documentations.image) }}" alt="Une image">
                     <p>{{ documentations.imageLegende }}</p>
                 </div>
                 {% endif %}
+
+                {# On affiche le paragraphe 1 #}
                 <div class="documentation__paragraphe1 col-12">
                     <p>{{ documentations.paragraphe1 }}</p>
                 </div>
+
+                {# Si l'image 2 est différent de null on affiche l'image 2 #}
                 {% if(documentations.image2 != null) %}
                 <div class="documentation__image2 col-12">
                     <img src="{{ asset("documentation-image/"~ documentations.image2) }}" alt="Une image">
                     <p>{{ documentations.imageLegende2 }}</p>
                 </div>
                 {% endif %}
+
+                {# Si le paragraphe 2 est différent de null on affiche le paragraphe 2 #}
                 {% if(documentations.paragraphe2 != null) %}
                 <div class="documentation__paragraphe2 col-12">
                     <p>{{ documentations.paragraphe2 }}</p>
@@ -69,9 +78,13 @@
                 {% endif %}
             </div>
             <div class="documentation__option">
+
+                {# Si l'Utilisateur est l'Auteur de la documentation et qu'il est Adhérent alors il peut Modifier la documentation #}
                 {% if(app.user.username == documentations.auteur and is_granted ("ROLE_USER") ) %}
                     <a href="{{ path('update_documentation', {"id":documentations.id}) }}">Modifier</a>
                 {% endif %}
+
+                {# Si l'Utilisateur est l'Auteur ou Administrateur alors il peut Supprimer la documentation #}
                 {% if(app.user.username == documentations.auteur or is_granted ("ROLE_ADMIN")) %}
                     <a href="{{ path('delete_documentation', {"id":documentations.id}) }}" onclick="return confirm('Voulez-vous vraiment supprimer cette article ?')">Supprimer</a>
                 {% endif %}
@@ -81,6 +94,8 @@
     </div>
     <div class="container">
         <div class="commentaire_box">
+
+            {# Formulaire pour ajouter un Commentaire #}
             <div class="documentation_form">
             {{ form_start(form) }}
                 <p>{{ form_widget(form.commentaire) }}</p>
@@ -90,25 +105,37 @@
         </div>
     </div>
     <div class="container">
+        {# On boucle sur commentaire #}
         {% for com in documentations.commentaire %}
+
+            {# Si commentaire est différent de null on l'affiche #}
             {% if (com.commentaire != null) %}
                 <div class="commentaire_box">
                     <div class="documentation_commentaire">
                         <div class="info_commentaire col-lg-12">
                             <div class=" info_box col-lg-6">
+
+                                {# On affiche le pseudo de L'Utilisateur #}
                                 <div class="userName_commentaire">
                                     <p>{{ com.userName }}</p>
                                 </div>
+
+                                {# Si la date de Modification est égale à null on affiche la date de Création#}
+
                                 {% if(com.dateModification == null) %}
                                 <div class="dateCreation_commentaire">
                                     <p>{{ com.dateCreation| date('j F Y h:i') }}</p>
                                 </div>
+
+                                {#  Sinon on affiche la date de Modification  #}
                                 {% else %}
                                 <div class="dateModification_commentaire">
                                     <p>{{ com.dateModification| date('j F Y h:i') }}</p>
                                 </div>
                                 {% endif %}
                             </div>
+
+                                {# Si l'Utilisateur est l'Auteur du commentaire ou Administrateur alors il peut supprimer le commentaire #}
                                 {% if(app.user.username == com.userName or is_granted ("ROLE_ADMIN")) %}
                                 <div class="delete_commentaire col-lg-6">
                                     <a href="{{ path('delete_commentaire', {"id":com.id}) }}"
@@ -118,11 +145,15 @@
                                 </div>
                                 {% endif %}
                         </div>
+
+                        {# Si l'Utilisateur est Adhérent alors il peut voir le commentaire#}
                         <div class="comment_commentaire col-lg-12">
                             {% if is_granted(["ROLE_USER"]) %}
                                 <p>{{ com.commentaire }}</p>
                             {% endif %}
                         </div>
+
+                        {# Si l'Utilisateur est l'Auteur du commentaire alors il peut le modifier #}
                         {% if(app.user.username == com.userName) %}
                             <div class="update_commentaire col-lg-12">
                                 <a href="{{ path('update_commentaire', {"id":com.id}) }}">modifier</a>

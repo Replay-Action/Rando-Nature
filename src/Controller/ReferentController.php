@@ -29,7 +29,7 @@ class ReferentController extends AbstractController
         //On récupère les toutes les données de la table referent avec la méthode
         //On envoie les données  sur la page referent.html.twig.
         return $this->render('referent/referent.html.twig', [
-             'referents' => $referentRepository->findAll(),
+             'referents' => $referentRepository->findReferent(),
         ]);
     }
 

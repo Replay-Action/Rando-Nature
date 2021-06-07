@@ -1,35 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ parent() }} | Organisation{% endblock %}
-{# affichage de la page organisation #}
+{# La page Organisation Bureau #}
 {% block body %}
-    {# le style  css bootstrap par defaut #}
-    {#
-    <style>
-        .example-wrapper {
-            text-align: center;
-            margin: 1em auto;
-            max-width: 800px;
-            width: 95%;
-            font: 18px/1.5 sans-serif;
-        }
 
-        .example-wrapper code {
-            background: #F5F5F5;
-            padding: 2px 6px;
-        }
-    </style>
-    #}
-    {#
-    <div class="container-fluid">
-    </div>
-     #}
-{# banniere et titre #}
-    {#
-    <div class="container-fluid">
-        <img src="{{ asset ('/content/velo-pont resize.jpg') }}" class="img-fluid" width="100%">
-    </div>
-    #}
+    {# Le titre #}
     <div class="title bureau row">
     <h1 class="col-12">Bureau</h1>
     <hr>
@@ -37,14 +12,20 @@
 
     <div class="container bureau_main">
 
+        {# La photo de groupe sur le Bureau #}
         <div class="partie1 col-sm-12 col-lg-5">
             <p><img id="img-bureau" src="{{ asset('content/Groupe.png') }}" alt=""></p>
         </div>
 
         <div class="partie2 col-sm-12 col-lg-5">
             <div class="teste">
+
+                {# On boucle sur User #}
                 {% for user in users %}
+
+                {# Partie Président #}
                 <div class="flex1">
+                {# Si il s'agit du Referent Président il s'affiche ici #}
                 {% if user.referents.getNom() == 'Président' %}
                     <div class="president role_format">
                         <p class="role_user">{{ user.referents.getNom() }}</p>
@@ -55,7 +36,11 @@
                     </div>
                 {% endif %}
                 </div>
+
+                {# Partie Secrétaire et Trésorier #}
                 <div class="flex2">
+
+                {# Si il s'agit du Referent Secrétaire ou Trésorier il s'affiche ici #}
                 {% if user.referents.getNom() == 'Secrétaire' or user.referents.getNom() == 'Trésorier' %}
                     <div class="secretaire_tresorier role_format">
                         <p class="role_user">{{ user.referents.getNom() }}</p>
@@ -66,7 +51,11 @@
                     </div>
                 {% endif %}
                 </div>
+
+                {# Partie Autres Référent #}
                 <div class="flex3">
+
+                {# Si il s'agit d'un Référent qui est différent de Président, Secrétaire, Trésorier et Adhérent, il s'affiche ici #}
                 {% if user.referents.getNom() != 'Président' and user.referents.getNom() != 'Secrétaire'
                     and user.referents.getNom() != 'Trésorier' and user.referents.getNom() != 'Adhérent' %}
                     <div class="other role_format">
@@ -79,80 +68,11 @@
                     </div>
                 {% endif %}
                 </div>
+
+
                 {% endfor %}
             </div>
         </div>
     </div>
 
-
-
-                    {#
-                    <h2>
-                        <div class="d-inline p-2 font-weight-bold">Président :</div>
-
-
-                        <div class="d-inline p-2 ">Loïck Touchard
-
-                        </div>
-                    </h2>
-                    <h2>
-                        <div class="d-inline p-2 font-weight-bold">Secrétaire:</div>
-
-
-                        <div class="d-inline p-2 ">Magali Février
-
-                        </div>
-                    </h2>
-                    <h2>
-                        <div class="d-inline p-2 font-weight-bold">Trésorier :</div>
-
-
-                        <div class="d-inline p-2 ">Pascal Décan
-
-                        </div>
-                    </h2>
-                    <h4>
-                        <hr>
-                        <div class="d-inline p-2 font-weight-bold">Site web :</div>
-                        <div class="d-inline p-2 ">.....................
-
-                        </div>
-                    </h4>
-                    <h4>
-                        <div class="d-inline p-2 font-weight-bold">Rédaction :</div>
-                        <div class="d-inline p-2 ">.....................
-
-                        </div>
-                    </h4>
-                    <h4>
-                        <div class="d-inline p-2 font-weight-bold">Photo:</div>
-                        <div class="d-inline p-2 ">.................
-
-                        </div>
-                    </h4>
-                    <h4>
-                        <div class="d-inline p-2 font-weight-bold">Mécanique :</div>
-                        <div class="d-inline p-2 ">.....................
-
-                        </div>
-                    </h4>
-                    <h4>
-                        <div class="d-inline p-2 font-weight-bold">Navigation :</div>
-                        <div class="d-inline p-2 ">.....................
-
-                        </div>
-                    </h4>
-                    <h4>
-                        <div class="d-inline p-2 font-weight-bold">Sécurité:</div>
-                        <div class="d-inline p-2 ">.................
-
-                        </div>
-                    </h4>
-                    <h4>
-                        <div class="d-inline p-2 font-weight-bold">Secourisme :</div>
-                        <div class="d-inline p-2 ">.....................
-
-                        </div>
-                    </h4>
-                    #}
 {% endblock %}

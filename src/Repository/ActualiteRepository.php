@@ -19,6 +19,18 @@ class ActualiteRepository extends ServiceEntityRepository
         parent::__construct($registry, Actualite::class);
     }
 
+    #On récupère la table Actualite#
+    #Ensuite on envoie le resultat#
+    public function afficheactu()
+    {
+        $actualite = $this
+
+        ->createQueryBuilder('actu');
+
+        $query = $actualite->getQuery();
+
+        return $query->getResult();
+    }
     // /**
     //  * @return Actualite[] Returns an array of Actualite objects
     //  */

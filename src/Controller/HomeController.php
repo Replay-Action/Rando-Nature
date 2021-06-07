@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Form\PdfStatusType;
 use App\Repository\ActiviteRepository;
+use App\Repository\ActualiteRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,7 +38,7 @@ class HomeController extends AbstractController
      * Cette méthode est en charge de rediriger l'utilisateur vers la page accueil.
      *
      */
-    public function index(ActiviteRepository $activiteRepository): Response
+    public function index(ActiviteRepository $activiteRepository, ActualiteRepository $actualiteRepository): Response
     {
         #pour afficher la pastille clignotante de la page accueil
         /**$date = new DateTime('now');*/
@@ -46,7 +47,7 @@ class HomeController extends AbstractController
         //et de rediriger sur la page index.html.twig (accueil)
         return $this->render('home/index.html.twig', [
             'actidispo' => $activiteRepository->affichepastille(),
-
+            'actualites' => $actualiteRepository->afficheactu(),
             /**
             'controller_name' => 'HomeController',
             'date' => $date

@@ -1,10 +1,15 @@
 {% extends 'base.html.twig' %}
+{# La page crée une documentation#}
 {% block body %}
     <div class="container">
         <div class="form__documentation">
+
+            {# Le Titre #}
             <div class="title_form  col-12">
                 <h1>Création d'une documentation</h1>
             </div>
+
+            {# Le formulaire partie Gauche #}
             <div class="gauche_form_documentation col-lg-6">
                 {{ form_start(form) }}
                 <p>Titre *</p>
@@ -19,6 +24,8 @@
                 <p>Paragraphe</p>
                 {{ form_widget(form.paragraphe2) }}
             </div>
+
+            {# Le formulaire partie Droite #}
             <div class="droite_form_documentation col-lg-6">
                 <p>Categorie</p>
                 {{ form_widget(form.categorie) }}
@@ -34,10 +41,14 @@
                 {{ form_widget(form.imageLegende2) }}
             </div>
             <div class="bas_form_documentation col-12">
+
+                {# Le bouton Valider #}
                <div class="bas_form_documentation1">
                    {{ form_widget(form.valider) }}
                    {{ form_end(form) }}
                </div>
+
+                {# Le bouton Retour #}
                 <div class="bas_form_documentation2">
                     <a class="butonPersonnalise" href="{{ path('documentation') }}">Retour</a>
                 </div>

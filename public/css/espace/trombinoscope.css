@@ -1,7 +1,7 @@
 .trombi_page{
     display: flex;
     justify-content: center;
-    background: #aacd4e;
+
 }
 .title_trombi{
     display: flex;
@@ -18,10 +18,19 @@
 .trombi_box p {
     text-align: center;
 }
+
 .trombi_referent{
     font-weight: bold;
     font-size: xx-large;
+
 }
+
+.trombi-username{
+    text-align: center;
+    text-decoration: none;
+    padding: 10px;
+}
+
 .trombi_infos{
     display: flex;
     justify-content: center;
@@ -36,17 +45,17 @@
 .trombi_order1{
     display: flex;
     justify-content: center;
-    background: #AA3333;
+
 }
 .trombi_order2{
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: center;
-    background: #5eb5e0;
+
 }
 .trombi_order3{
-    background: lightpink;
+
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -57,13 +66,14 @@
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: center;
-    background: lightseagreen;
+
 }
 .jaune{
     margin: 10px;
     width: 250px;
     height: 250px;
     background: #ffcc00;
+    box-shadow: 5px 2px 10px black;
 }
 .hovereffect {
     width: 100%;
