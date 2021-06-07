@@ -36,3 +36,13 @@
     align-items: center;
     margin: 10px;
 }
+.album_photo_widget{
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+
+}
+.album_photo_widget p{
+    margin-right: 10px;
+    font-weight: bold;
+}

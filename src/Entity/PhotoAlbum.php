@@ -18,9 +18,14 @@ class PhotoAlbum
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $image;
+
+    /**
+     * @ORM\Column (type="text", nullable=true)
+     */
+    private $url;
 
     /**
      * @ORM\ManyToOne (targetEntity=Activite::class, inversedBy="albumPhoto")
@@ -40,6 +45,16 @@ class PhotoAlbum
     public function setImage($image): void
     {
         $this->image = $image;
+    }
+
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    public function setUrl($url): void
+    {
+        $this->url = $url;
     }
 
     public function getActivite()

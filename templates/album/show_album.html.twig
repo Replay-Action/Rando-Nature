@@ -46,6 +46,15 @@
                             {% endif %}
                         {% endif %}
                     </div>
+                    <div class="col-12">
+                         <div class="album_photo_url">
+                             {% for photo in activite.albumPhoto %}
+                                 {% if photo.url is not empty %}
+                                    <a href="{{ photo.url }}">Komoot</a>
+                                 {% endif %}
+                             {% endfor %}
+                         </div>
+                    </div>
                 </div>
                 <div class="list_participant">
                     <div class="list_participant_title">
@@ -121,8 +130,6 @@
                         {% if is_granted(["ROLE_ADMIN"]) %}
                             <a href="{{ path('delete_album', {'id':photo.id}) }}">supprimer</a>
                         {% endif %}
-                    {% else %}
-                        <p>Aucune images n'est associé a cette activité</p>
                     {% endif %}
                 {% endfor %}
                 </div>

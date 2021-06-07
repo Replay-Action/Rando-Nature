@@ -27,7 +27,7 @@
                     <div class="tromb_user">
                         <p class="trombi_referent">{{ user.referents.getNom() }}</p>
                         <div class="trombi_infos">
-                            <p class="col-12">{{ user.username }}</p>
+                            <a href="{{ path('user_show',{ 'id': user.id}) }}" class="col-12">{{ user.username }}</a>
                             {% for photo in user.photos %}
                             {% if user.photos is not empty %}
                                 <img src="{{ asset ('photo-profil/'~ photo.name) }}" alt="photo de l'utilisateur">
@@ -49,7 +49,7 @@
                     <div class="tromb_user">
                         <p class="trombi_referent">{{ user.referents.getNom() }}</p>
                         <div class="trombi_infos">
-                            <p class="col-12">{{ user.username }}</p>
+                            <a href="{{ path('user_show',{ 'id': user.id}) }}" class="col-12">{{ user.username }}</a>
                             {% for photo in user.photos %}
                             {% if user.photos is not empty %}
                                 <img src="{{ asset ('photo-profil/'~ photo.name) }}" alt="photo de l'utilisateur">
@@ -72,7 +72,7 @@
                             <div class="tromb_user">
                                 <p class="trombi_referent">{{ user.referents.getNom() }}</p>
                                 <div class="trombi_infos">
-                                    <p class="col-12">{{ user.username }}</p>
+                                    <a href="{{ path('user_show',{ 'id': user.id}) }}" class="col-12">{{ user.username }}</a>
                                     {% for photo in user.photos %}
                                     {% if user.photos is not empty %}
                                         <img src="{{ asset ('photo-profil/'~ photo.name) }}" alt="photo de l'utilisateur">
@@ -93,7 +93,7 @@
                             <div class="tromb_user">
                                 <p class="trombi_referent">{{ user.referents.getNom() }}</p>
                                 <div class="trombi_infos">
-                                    <p class="col-12">{{ user.username }}</p>
+                                    <a href="{{ path('user_show',{ 'id': user.id}) }}" class="col-12">{{ user.username }}</a>
                                     {% for photo in user.photos %}
                                     {% if user.photos is not empty %}
                                         <img src="{{ asset ('photo-profil/'~ photo.name) }}" alt="photo de l'utilisateur">

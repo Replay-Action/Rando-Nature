@@ -9,8 +9,14 @@
             </div>
             <div class="centre_form_image_album col-12">
                 {{ form_start(form) }}
-                <p>Insérer une photo</p>
-                {{ form_widget(form.image) }}
+                <div class="album_photo_widget">
+                    <p>Insérer une photo</p>
+                    {{ form_widget(form.image) }}
+                </div>
+                <div class="album_photo_widget">
+                    <p>Insérer un lien url</p>
+                    {{ form_widget(form.url) }}
+                </div>
             </div>
             <div class="bas_form_image_album col-12">
                 <div class="bas_form_image_album1">

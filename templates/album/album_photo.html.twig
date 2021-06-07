@@ -3,6 +3,7 @@
     <div class="container">
         <div class="album_photo_main col-12">
             {% for activites in activite %}
+                {% if activites.etat.getLibelle() == 'annulée' or activites.etat.getLibelle() == 'finie' %}
                 <div class="container_album_photo">
                     <div class="album_photo">
                         <div class="title_album_photo col-12">
@@ -46,6 +47,7 @@
                         {% endif %}
                     </div>
                 </div>
+                {% endif %}
             {% endfor %}
         </div>
     </div>

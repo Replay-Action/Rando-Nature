@@ -189,12 +189,12 @@
                                     {% endif %}
                                         {% if (activite.users.contains(user)) %}
                                         <a class="butonPersonnalise" href="{{ path('activite_sedesister', {'id': activite.id}) }}"
-                                           class="btn btn-info btn-sm">se désister</a>
+                                          >se désister</a>
 
                                         {# s'il n'est pas inscrit #}
                                     {% else %}
                                         <a class="butonPersonnalise" href="{{ path('activite_sinscrire', {'id': activite.id}) }}"
-                                           class="btn btn-info btn-sm">s'inscrire</a>
+                                          >s'inscrire</a>
                                     {% endif %}
                                 {% endif %}
                             </div>

@@ -1,22 +1,15 @@
 {% extends 'base.html.twig' %}
 {% block title %}{{ parent() }}{% endblock %}
 {% block body %}
-    <div class="container-fluid">
-        <div class="title__partenaire container-fluid row">
-            <h1 class="col-12">Documentation</h1>
-            <div class="center-hr col-12">
-                <hr class="hr25-pourcent">
-            </div>
+    <div class="container">
             {% if is_granted(["ROLE_USER"]) %}
-                <div class="container col-4 create_documentation">
+                <div class="container col-12 create_documentation">
                     <a class="block_lien" href="{{ path('create_documentation')}}">
                         <img class="logo_create_documentation" src="{{ asset('tools/plus.png') }}" alt="logo ajouter vert">
                         <p> Créer une documentation</p>
-                        <a href="https://www.komoot.fr/tour/382716123?share_token=a5Sl6qtQhzF3VeGSB2202mDM33uaIcxHDMacV6x0PaSXSeKUux&ref=wtd">Lien utile</a>
                     </a>
                 </div>
             {% endif %}
-        </div>
     </div>
     <div class="container">
         <div class="main__documentation col-12">

@@ -12,7 +12,11 @@
     width: max-content;
     padding: 25px;
 }
-
+.centre_form_referent{
+    display: flex;
+    flex-direction: row;
+    margin: 20px 0 20px 0;
+}
 .column-div{
     display: flex;
     justify-content: center;
@@ -23,28 +27,24 @@
     margin-left: 20px;
 }
 .test-color-size3{
-    padding-left: 11px ;
-    margin-top:20px ;
     display: flex;
-    width: 500px;
+    flex-direction: column;
+    width: 300px;
+    padding-left: 30px;
 }
-
+.test-color-size4 , .color-size-1{
+    width: 180px;
+}
 .test-color-size2{
-    width: 500px;
+    width: 300px;
     display: flex;
+    flex-direction: column;
 }
 
 .test-color-size{
     text-align: left;
     width: 300px;
     padding: 20px;
-}
-
-.color-size-1{
-    display: flex;
-    flex-direction: column;
-    width: 180px;
-    padding-left: 20px;
 }
 
 .title__referent h1{

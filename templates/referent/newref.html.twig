@@ -8,28 +8,28 @@
             <div class="referent_box">
                 {{ form_start(form) }}
                 <div class="form-referent-fond-noir">
-                    <div class="title_form ">
-                        <h1 class="col-lg-12 font-weight-bold">Créer un Référent</h1>
+                    <div class="title_form col-12">
+                        <h1 >Créer un Référent</h1>
                     </div>
-                    <div class="col-lg-6 test-color-size3">
-                        <div class="col-lg-4 ">
-                            <label>Nouveau Référent : </label>
-                            <p>{{ form_widget(form.nom) }}</p>
+                    <div class="centre_form_referent">
+                        <div class="col-lg-6 test-color-size3">
+                            <div class="col-lg-4 test-color-size4">
+                                <label>Nouveau Référent : </label>
+                                <p>{{ form_widget(form.nom) }}</p>
+                            </div>
+                            <div class="col-lg-2 color-size-1">
+                                <label>Ordre : </label>
+                                <p>{{ form_widget(form.ordre) }}</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-6 test-color-size2">
-                        <div class="col-lg-2 color-size-1">
-                            <label>Ordre : </label>
-                            <p>{{ form_widget(form.ordre) }}</p>
-                        </div>
-
-                        <div class="col-lg-10 col-md-12 test-color-size">
-                            <p>L'ordre permet de gérer l'affichage des Référents.<br>
+                        <div class="col-lg-6 test-color-size2">
+                            <p>L'ordre gère l'affichage des Référents.</p>
+                            <div>
                                 <strong>1{</strong>Président<br>
                                 <strong>2{</strong>Trésorier et Secrétaire<br>
                                 <strong>3{</strong>Autres Référents<br>
                                 <strong>4{</strong>Adhérents
-                            </p>
+                            </div>
                         </div>
                     </div>
                     <div class="col-lg-12 button-enregistrer-new-referent">

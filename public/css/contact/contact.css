@@ -1,0 +1,23 @@
+.form_contact{
+    margin-top: 120px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-radius: 15px;
+    background-color:rgba(49,49,49,0.7);
+    padding: 20px;
+}
+.centre_form_contact{
+    display: flex;
+    justify-content: center;
+}
+.bas_form_contact{
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+.bas_form_contact1, .bas_form_contact2{
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
