@@ -77,6 +77,9 @@
 .type-activite{
     display: flex;
 }
+.type-activite a {
+    text-decoration: none;
+}
 .font-bold-activite{
     font-weight: bold;
     padding-right: 10px;

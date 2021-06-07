@@ -1,12 +1,10 @@
-
-/**
-PARTENAIRE
- */
 .title__partenaire{
-
     display: flex;
     justify-content: center;
     text-align: center;
+}
+.title__partenaire h1{
+    font-weight: lighter;
 }
 .tabel__partenaire{
     padding: 0;
@@ -28,11 +26,11 @@ PARTENAIRE
 .main__partenaire{
     display: flex;
     justify-content: center;
+    margin-top: 100px;
     padding: 0;
 
 }
 .form__partenaire{
-    margin-top: 50px;
     padding: 20px;
     border-radius: 15px;
     border:solid 1px;

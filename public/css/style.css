@@ -37,6 +37,8 @@
 @import "actualite/actualite_create-edit.css";
 @import "actualite/gestion_actualite.css";
 
+@import "contact/contact.css";
+
 *{
     margin: 0;
     padding: 0;

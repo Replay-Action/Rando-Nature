@@ -1,40 +1,23 @@
-.placement_box{
-
-    display: flex;
-    justify-content: center;
-
-}
-.form_pdf_album{
+.form_contact{
     margin-top: 120px;
     display: flex;
-    justify-content: center;
     flex-direction: row;
     flex-wrap: wrap;
     border-radius: 15px;
     background-color:rgba(49,49,49,0.7);
     padding: 20px;
-    width: 600px;
-
 }
-.form_pdf_album p {
-    color: white;
-}
-.centre_form_pdf_album{
+.centre_form_contact{
     display: flex;
-    flex-direction: row;
     justify-content: center;
-    margin: 10px;
 }
-
-.bas_form_pdf_album{
+.bas_form_contact{
     padding: 10px;
     display: flex;
     justify-content: center;
-
 }
-.bas_form_pdf_album1, .bas_form_pdf_album2{
+.bas_form_contact1, .bas_form_contact2{
     display: flex;
     justify-content: center;
-    align-items: center;
     margin: 10px;
 }

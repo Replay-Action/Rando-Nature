@@ -1,103 +1,59 @@
 {% extends 'base.html.twig' %}
-{# La page Album #}
 {% block body %}
     <div class="container-fluid page_box">
         <div class="container recap_box">
             <div class="recap_show_header">
-
-                {# On affiche la Catégorie de l'Activite #}
                 <div class="activite_categorie col-12">
                     <p>{{ activite.categorie }}</p>
                 </div>
-
-                {# On affiche le Nom de l'Activite #}
                 <div class="activite_title col-12">
                     <p>{{ activite.nom }}</p>
                 </div>
-
-                {# On affiche les Infos de l'Activite #}
                 <div class="activite_infosActivite">
                     <p>{{ activite.getInfosActivite }}</p>
                 </div>
-
                 <div class="activite_date_user">
-
-                    {# On affiche le logo Calendrier avec la Date et l'Heure de l'activite #}
                     <div class="activite_date">
                         <img  src="{{ asset('tools/calendrier.png') }}" alt="icon de calendrier">
                         <p>{{ activite.getDateActivite()| date('j F Y h:i') }}</p>
                     </div>
-
-                    {# On affiche le logo User avec le Nom et le Prénom de l'Organisateur #}
                     <div class="activite_user">
                         <img src="{{ asset('tools/user.png') }}" alt="icon d'utilisateur">
                         <p>{{ activite.organisateur.getNom() }}</p>
                         <p>{{ activite.organisateur.getPrenom() }}</p>
                     </div>
-
                 </div>
-
                 <div class="block0">
-
-                    {# On affiche sur la gauche la Durée, le Nom de la Ville et le Nom de la Rue de l'Activite #}
-                    <div class="information_album_gauche col-lg-4 col-sm-12">
+                    <div class="information_album_droite col-lg-4 col-sm-12">
                         <p>Durée : {{ activite.duree }} minute(s)</p>
                         <p>Ville : {{ activite.lieu.getNomVille() }}</p>
                         <p>Adresse : {{ activite.lieu.getNomRue() }}</p>
                     </div>
-
-                    {# On affiche au centre le Denivele et la Distance de l'Activite #}
                     <div class="information_album_centre col-lg-4 col-sm-12">
                         <p>Dénivelé : {{ activite.denivele }} mètre(s)</p>
                         <p>Distance : {{ activite.distance }} kilomètre(s)</p>
                     </div>
-
-                    {# On affiche sur la droite la Difficulte ce l'Activite #}
-                    <div class="information_album_droite col-lg-4 col-sm-12">
+                    <div class="information_album_gauche col-lg-4 col-sm-12">
                         <p>Difficulté :</p>
-
-                        {# Si la difficulte de l'Activite est égale à 0 ou est null alors on affiche rien #}
                         {% if (activite.getDifficulte() == 0 or activite.getDifficulte() == '')%}
                         {% else %}
-
-                            {# Si la difficulter de l'Activite est égale à 1 alors on affiche le logo 1 #}
                             {% if ( activite.difficulte == 1) %}
                                 <img src="{{ asset("tools/difficulte1.png") }}" alt="">
-
-                            {# Sinon si la difficulter de l'Activite est égale à 2 alors on affiche le logo 2 #}
                             {% elseif ( activite.difficulte == 2) %}
                                 <img src="{{ asset("tools/difficult2.png") }}" alt="">
-
-                            {# Sinon on affiche le logo de la difficulte 3 #}
                             {% else %}
                                 <img src="{{ asset("tools/difficult3.png") }}" alt="">
                             {% endif %}
                         {% endif %}
                     </div>
-                    <div class="col-12">
-                        <div class="album_photo_url">
-                            {# on boucle sur Album Photo pour récupérer l'url #}
-                            {% for photo in activite.albumPhoto %}
-
-                                {# Si l'url n'ai pas vide alors on affiche #}
-                                {% if photo.url is not empty %}
-                                    <a href="{{ photo.url }}">Komoot</a>
-                                {% endif %}
-                            {% endfor %}
-                        </div>
-                    </div>
                 </div>
-
                 <div class="list_participant">
                     <div class="list_participant_title">
                         Liste des participants
                     </div>
 
                     <div class="inscrit_box col-12">
-                        {# On boucle sur User #}
                         {% for user in activite.users %}
-
-                            {# Si le Prénom et le Nom de l'utilisateur ne sont pas vide on les affichent #}
                             {%  if user.prenom is not empty and user.nom is not empty %}
                             <div class="participant col-8">
                                 <p>{{ user.prenom }}</p>
@@ -107,15 +63,11 @@
                         {% endfor %}
                     </div>
                 </div>
-
-                {# Partie Pdf #}
                 <div class="pdf">
                     <div class="recap_pdf">
                         <p>Parcours de l'activité</p>
                     </div>
                     <div>
-
-                        {# Si l'Utilisateur est Administrateur il peut ajouter un pdf #}
                         {% if is_granted(["ROLE_ADMIN"]) %}
                             <div class="ajout_pdf">
                                 <a class="block_lien" href="{{ path('create_pdf', {'id':activite.id}) }}">
@@ -125,52 +77,34 @@
                             </div>
                         {% endif %}
                     </div>
-
                     <div class="pdf_activite">
-
-                    {# On boucle sur pdf #}
                     {% for pdf in activite.docPdfs %}
-
-                        {# Si le Nom du Pdf est ni vide ni null alors on l'affiche #}
                         {% if pdf.nompdf is not empty or pdf.nompdf != null %}
                             <embed  src="{{ asset('recap/'~ pdf.nompdf) }}" type='application/pdf'/>
-
-                            {# Si l'Utilisateur est Administrateur il peut Supprimer le Pdf #}
                             {% if is_granted(["ROLE_ADMIN"]) %}
                                 <a href="{{ path('delete_pdf', {'id':pdf.id}) }}">supprimer</a>
                             {% endif %}
-
-                        {# Sinon on affiche le message ci-dessous #}
                         {% else %}
                             <p>Aucun adhérent n'est ses inscrit a cette activité</p>
                         {% endif %}
                     {% endfor %}
                     </div>
-
                 </div>
-
                 <div class="action_box">
-
-                    {# Si l'Utilisateur est Administrateur alors on affiche les boutons Modifier et Supprimer #}
                     {% if is_granted(["ROLE_ADMIN"]) %}
                     <a href="{{ path('activite_edit', {'id':activite.id}) }}">modifier</a>
                     <a href="{{ path('activite_delete', {'id':activite.id}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer cette activité');">supprimer</a>
                     {% endif %}
                     <a href="{{ path('album') }}">retour</a>
                 </div>
-
             </div>
         </div>
-
-        {# Partie Album Photo #}
         <div class="container  album_box">
             <div class="album">
                 <div class="album_title">
                     <p>Album Photo</p>
                 </div>
                 <div>
-
-                    {# Si l'Utilisateur est Administrateur alors on lui affiche la possibilité d'ajouter des photos a son album #}
                     {% if is_granted(["ROLE_ADMIN"]) %}
                         <div class="ajout_photo">
                         <a class="block_lien" href="{{ path('create_album', {'id':activite.id}) }}">
@@ -180,26 +114,16 @@
                         </div>
                     {% endif %}
                 </div>
-
-
                 <div class="album_photos">
-
-                {# On boucle sur Photo #}
                 {% for photo in activite.albumPhoto %}
-
-                    {# Si le champ photo est vide ou null alors on affiche l'image #}
                     {% if photo.image is not empty or photo.image != null %}
-                    <img class="photos_activite col-lg-12" src="{{ asset('album-photo/'~ photo.image)  }}" alt="Photo">
-
-                        {# Si l'Utilisateur est Administrateur alors il peut Supprimer les Photos #}
+                    <img class="photos_activite col-lg-12" src="{{ asset('album-photo/'~ photo.image)  }}" alt="Oups un soucis est survenus">
                         {% if is_granted(["ROLE_ADMIN"]) %}
                             <a href="{{ path('delete_album', {'id':photo.id}) }}">supprimer</a>
                         {% endif %}
-                    {% else %}
                     {% endif %}
                 {% endfor %}
                 </div>
-
             </div>
         </div>
     </div>

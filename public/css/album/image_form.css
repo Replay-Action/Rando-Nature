@@ -14,7 +14,9 @@
     background-color:rgba(49,49,49,0.7);
     padding: 20px;
     width: 600px;
-
+}
+.form_image_album p{
+    color: #dddddd;
 }
 .centre_form_image_album{
     display: flex;
@@ -33,4 +35,14 @@
     justify-content: center;
     align-items: center;
     margin: 10px;
+}
+.album_photo_widget{
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+
+}
+.album_photo_widget p{
+    margin-right: 10px;
+    font-weight: bold;
 }

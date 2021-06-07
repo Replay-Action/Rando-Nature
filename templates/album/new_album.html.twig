@@ -1,45 +1,33 @@
 {% extends 'base.html.twig' %}
 {% block title %}{{ parent() }}{% endblock %}
-{# La page Ajouter une Photo #}
 {% block body %}
-
     <div class="container">
         <div class="placement_box col-12">
-            <div class="form_image_album">
-
-                {# Le Titre #}
-                <div class="title_form col-12">
-                    <h1>Ajout d'image a l'album</h1>
-                </div>
-
-                {# Le formulaire d'ajout d'une photo #}
-                <div class="centre_form_image_album col-12">
-                    {{ form_start(form) }}
-                    <div class="album_photo_widget">
-                        <p>Insérer une photo</p>
-                        {{ form_widget(form.image) }}
-                    </div>
-                    <div class="album_photo_widget">
-                        <p>Insérer un lien url</p>
-                        {{ form_widget(form.url) }}
-                    </div>
-                </div>
-
-                <div class="bas_form_image_album col-12">
-
-                    {# Le bouton Valider #}
-                    <div class="bas_form_image_album1">
-                        {{ form_widget(form.valider) }}
-                        {{ form_end(form) }}
-                    </div>
-
-                    {# Le bouton Retour #}
-                    <div class="bas_form_image_album2">
-                        <a class="butonPersonnalise" href="{{ path('album') }}">Retour</a>
-                    </div>
-                </div>
-
+        <div class="form_image_album">
+            <div class="title_form col-12">
+                <h1>Ajout d'image a l'album</h1>
             </div>
+            <div class="centre_form_image_album col-12">
+                {{ form_start(form) }}
+                <div class="album_photo_widget">
+                    <p>Insérer une photo</p>
+                    {{ form_widget(form.image) }}
+                </div>
+                <div class="album_photo_widget">
+                    <p>Insérer un lien url</p>
+                    {{ form_widget(form.url) }}
+                </div>
+            </div>
+            <div class="bas_form_image_album col-12">
+                <div class="bas_form_image_album1">
+                    {{ form_widget(form.valider) }}
+                    {{ form_end(form) }}
+                </div>
+                <div class="bas_form_image_album2">
+                    <a class="butonPersonnalise" href="{{ path('album') }}">Retour</a>
+                </div>
+            </div>
+        </div>
         </div>
     </div>
 {% endblock %}

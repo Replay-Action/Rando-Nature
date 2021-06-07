@@ -1,31 +1,32 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ parent() }} | Contact{% endblock %}
-{# La page contact #}
+{# la page contact #}
 {% block body %}
 
-    <div class="row d-flex justify-content-center">
-
-            <div class="m-3 col-lg-6 mb-5">
-                <div class="title-nous-contacter">
-                    <h1>Nous contacter</h1>
-                </div>
-                <div class="center-hr">
-                    <hr class="hr25-pourcent center">
-                </div>
-
-                {# On importe les champs du formulaire #}
+    <div class="container">
+        <div class="form_contact">
+            <div class="title_form col-12">
+                <h1>Nous contacter</h1>
+            </div>
+            <div class="centre_form_contact col-12">
+                {# on importe les champs du formulaire #}
 
                 {{ form_start(contactForm) }}
                 <p> Nom : {{ form_widget(contactForm.nom) }}</p>
                 <p> Mail : {{ form_widget(contactForm.email) }}</p>
                 <p> Message : {{ form_widget(contactForm.message) }}</p>
-                <p>{{ form_widget(contactForm.envoyer) }}</p>
-
-                 {{ form_end(contactForm) }}
-
             </div>
-
+            <div class="bas_form_contact col-12">
+                <div class="bas_form_contact1">
+                    <p>{{ form_widget(contactForm.envoyer) }}</p>
+                    {{ form_end(contactForm) }}
+                </div>
+                <div class="bas_form_contact2">
+                    <a class="butonPersonnalise" href="{{ path('home1') }}">Retour</a>
+                </div>
+            </div>
+        </div>
     </div>
 
 {% endblock %}
