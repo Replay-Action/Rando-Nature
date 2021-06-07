@@ -207,46 +207,6 @@ class ActiviteController extends AbstractController
             //On redirige l'utilisateur sur la page index.html.twig (Accueil)
         return $this->redirectToRoute('activite_index');
     }
-    /**
-     * @Route("/{id}", name="activite_delete", methods={"DELETE"})
-     * @param Request $request
-     * @param Activite $activite
-     * @param DocPdfRepository $docPdfRepository
-     * @return Response
-     *
-     * Cette méthode sert a supprimer une activité
-     *
-     */
-    public function delete(Request $request, Activite $activite, DocPdfRepository $docPdfRepository): Response
-    {
-        //On refuse l'accès a cette méthode si l'utilisateur n'a pas le rôle Admin.
-        $this->denyAccessUnlessGranted("ROLE_ADMIN");
-
-        if ($this->isCsrfTokenValid('delete' . $activite->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-
-            $activite1=$activite->getId();
-            $pdf=$docPdfRepository->findOneBy(['pdfactivite' => $activite1]);
-
-            if ($pdf != null) {
-                $nompdf = $pdf->getNompdf();
-                $pdfexist = $this->getParameter('upload_recap_directory') . '/' . $nompdf;
-
-                //si le pdf existe dans le dossier public alors on l'efface
-                if ($pdfexist) {
-                    unlink($pdfexist);
-                }
-            }
-
-            //On supprime le fichier stocker dans la base de donnée
-            $entityManager->remove($activite);
-            $entityManager->flush();
-        }
-        //On renvoie un message de success pour prévenir l'utilisateur de la réussite.
-        $this->addFlash('success', 'activité effacée');
-        //On redirige l'utilisateur sur la page index.html.twig (Accueil)
-        return $this->redirectToRoute('activite_index');
-    }
 
     /**
      * @Route("/{id}/sinscrire", name="activite_sinscrire", methods={"GET","POST"})

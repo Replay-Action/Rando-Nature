@@ -6,11 +6,6 @@
 {% block body %}
     {% if is_granted("ROLE_ADMIN") %}
 
-        {# <div class="container-fluid">
-            <img src="{{ asset ('/content/user ban pages user.jpg') }}" class="img-fluid" width="100%">
-        </div>
-        #}
-
         <div class="admin-cree-adherent-fond-noir container-fluid col-lg-6 col-sm-12">
 
         {{ include('user/_form.html.twig') }}

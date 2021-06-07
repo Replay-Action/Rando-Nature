@@ -6,9 +6,7 @@
 {% block body %}
 
     {% if is_granted("ROLE_USER") %}
-    {# <div class="container-fluid">
-        <img src="{{ asset ('content/user ban pages user.jpg') }}" class="img-fluid" width="100%">
-    </div> #}
+
 <div class="global-profiledit row col-lg-12 col-sm-10">
     <div class="row col-lg-6 col-sm-10 profil-form-fond-noir border">
         <div class="col-lg-12 title-modifier-profil">
@@ -61,53 +59,7 @@
                     </div>
                 </div>
                 {{ form_end(form) }}
-                {#
-                <table class="table table-borderless d-flex justify-content-center ">
-                    <tbody class="th-modifier-profil">
-                    <tr>{# on le cache pour ne pas l'afficher et eviter qu'il s'affiche plus bas
-                        <th hidden scope="col">role :</th>
-                        <td hidden>{{ form_widget(form.roles) }} </td>
-                    </tr>
 
-                    <tr>
-                        <th scope="col">Prénom :</th>
-                        <td>{{ form_widget(form.prenom) }}</td>
-                    </tr>
-                    <tr>
-                        <th scope="col">Nom :</th>
-                        <td>{{ form_widget(form.nom) }}</td>
-                    </tr>
-                    <tr>
-                        <th scope="col">Pseudo :</th>
-                        <td>{{ form_widget(form.username) }}</td>
-                    </tr>
-                    <tr>
-                        <th scope="col">Mail :</th>
-                        <td>{{ form_widget(form.email) }}</td>
-                    </tr>
-                    <tr>
-                        <th scope="col">Téléphone :</th>
-                        <td>{{ form_widget(form.telephone) }}</td>
-                    </tr>
-
-                    <tr>
-                        <th scope="col">Mot de passe :</th>
-                        <td>{{ form_widget(form.password) }}</td>
-                    </tr>
-                    <tr>
-                        <th scope="col">Date de Naissance :</th>
-                        <td>{{ form_widget(form.date_naissance) }}</td>
-                    </tr>
-                    <tr>
-                        <th scope="col">Photo du profil :</th>
-                        <td>{{ form_widget(form.photos) }}</td>
-                    </tr>
-                    <tr>
-                        <td>{{ form_widget(form.enregistrer) }}</td>
-                    </tr>
-                    </tbody>
-                </table>
-                #}
             </div>
         </div>
     </div>
@@ -121,7 +73,6 @@
         {% else %}
     {% endif %}
 {% endblock %}
-
 
 {# on appelle la fonction javascript dans le dossier js de public #}
 {% block javascripts %}

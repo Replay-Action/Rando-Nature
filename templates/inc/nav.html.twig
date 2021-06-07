@@ -81,9 +81,6 @@
 
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{path('trombi') }}">Trombinoscope</a>
-                        <a class="dropdown-item" href="{{ path('recap') }}">Récap Sorties</a>
-                     {#   <a class="dropdown-item" href="#">Trucs & Astuces</a>
-                        <a class="dropdown-item" href="#">Livres & documents</a>#}
                     </div>
                 </li>
             {%else%}
@@ -99,11 +96,7 @@
             </li>
 
             {% if is_granted ("ROLE_ADMIN")%}
-                {#
-                <li class="nav-item">
-                    <a class="nav-link btn btn-warning" href="{{path('administrateur')}}">Admin</a>
-                </li>
-                #}
+
                 {# éléments a menu déroulant #}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -122,7 +115,6 @@
                         <a class="dropdown-item" href="{{ path('referent') }}">Gestion des référent</a>
                         <a class="dropdown-item" href="{{path('activite_index')}}">Gestion des activités</a>
                         <a class="dropdown-item" href="{{path('partenaire')}}">Gestion des partenaires</a>
-                        <a class="dropdown-item" href="{{path('recap')}}">Gestion des récapitulatfs</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{path('pdfstatus')}}">Status</a>
                         <a class="dropdown-item" href="{{path('chartestatus')}}">Charte</a>
