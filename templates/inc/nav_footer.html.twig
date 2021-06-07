@@ -1,57 +1,16 @@
 
-    {# Espace partenaire qui sera toujours au meme endroit dans la page au dessus du menu footer #}
-
-    {# <div class="container-fluid class  bg-color border border-dark mt-3">
-
-        <div class="text-center bordered text-info p-4">
-            <h2 class="border border-info bg-white">
-                Espace Partenaires
-            </h2>
-
-        </div>
-        <style> .bg-color
-            {background : gainsboro}
-        </style>
-        <div class="row text-center ">
-            <div class="col-lg-3 col-md-6 col-12 responsive d-inline p-4 "><a href="https://le-cercle-des-voyageurs.fr/ "target="_blank"><img src="{{ asset('/logos/logo_LCV6-blanc.png') }}" width="300px" ></a></div>
-            <div class="col-lg-3 col-md-6 col-12 responsive d-inline p-4 "><a href="http://marcheaquatiquebrehec.over-blog.com/ "target="_blank"><img src="{{ asset('/logos/Photo_FIT_OCEAN1.jpg') }}"width="200px" ><br> Marche aquatique Brehec</a></div>
-            <div class="col-lg-3 col-md-6 col-12 responsive d-inline p-4 "><a href="https://www.francevelotourisme.com/" target="_blank"><img  src="{{ asset('/logos/France Vélo Tourisme.jpg') }}" width="170px"> </a></div>
-            <div class="col-lg-3 col-md-6 col-12 responsive d-inline p-4 "><a href="https://valleedelavilaine.fr/"target="_blank"><img src="{{ asset('/logos/20170619_074312_Copy.jpg') }}"width="200px" ><br>La vallée de la Villaine : </a></div>
-            <div class="col-lg-3 col-md-6 col-12 responsive d-inline p-4 "><a href="https://www.komoot.fr/"target="_blank"><img src="{{ asset('/logos/komoot.png') }}"width="200px" ></a></div>
-
-        </div>
-
-    </div>#}
-
-
-    {# Création d'une navbar en bas de la page, le menu footer #}
+    {# Le Footer #}
     <div class="footer__container container-fluid navbar navbar-expand-lg navbar-dark p-3">
-        {#  <a class="navbar-brand " href="{{path('home1')}}">Vélo Rando Nature Bruz</a>#}
 
-        {# pour le responsive on crée le menu burger qui s'affichera sur petit écran #}
         <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarText"
                 aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        {# on déclare les éléments qui seront dans la navbar #}
-        {# <div class="  collapse navbar-collapse" id="navbarText"  >
-            <ul class="navbar-nav ">
-                <li class="nav-item ">
-                    <a class="nav-link" href="{{path('quisommesnous')}}">Qui sommes-nous ? <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{path('mentionslegales')}}">Mentions légales</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{path('contact')}}">Contact</a>
-                </li>
-            </ul>
-        </div>
-        #}
         <div class="box2 container">
             <div class="box6 row">
 
+                {# On inclut le le carrousel du footer #}
                 <div class="box3 col-lg-12" id="navbarText" >
                     {% include 'inc/_footer_carousel.html.twig'  %}
                 </div>
@@ -59,24 +18,8 @@
                 <div class="box5 col-lg-12 row">
 
                     <div class="lien-footer col-lg-6" id="navbarText"  >
-                        <!--
-                        <ul class="navbar-nav col-lg-12 ">
-                            <li class="nav-item ">
-                                <a class="text-white" href="{{path('quisommesnous')}}">Qui sommes-nous ?
-                                    <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="text-white" href="{{path('mentionslegales')}}">Mentions légales</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="text-white" href="{{path('contact')}}">Contact</a>
-                            </li>
-                            <li>
-                                {# copyright #}
-                                <p class="text-white text-center">&copy;{{ "now"|date("Y") }} VRNB @ED</p>
-                            </li>
-                        </ul>
-                        -->
+
+                        {# Les boutons Qui somme nous ?, Mentions légales et Contact #}
                         <div class="box4">
                         <a class="text-white" href="{{path('presentation')}}">Qui sommes-nous ?</a>
                             <a class="text-white" href="{{asset('documents/Mentions_legales.pdf')}}" target="_blank">Mentions légales</a>
@@ -85,6 +28,7 @@
 
                     </div>
 
+                    {# Le Copyright #}
                     <div class="copyright col-lg-6" id="navbarText">
                         <p class="text-white">&copy;{{ "now"|date("Y") }} VRNB @ED</p>
                     </div>
