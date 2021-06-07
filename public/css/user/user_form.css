@@ -43,9 +43,9 @@ Partie Profil
 .div-ext-modifier-profil{
     display: flex;
     justify-content: center;
-    margin-top: 30px;
+    margin-top: 10px;
 }
-.profil-fond-noir{
+.profil-form-fond-noir{
     background-color:rgba(49,49,49,0.7);
     border-radius: 15px;
     border:solid 1px;
