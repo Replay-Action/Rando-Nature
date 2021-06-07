@@ -23,8 +23,8 @@
                         <p>{{ activite.organisateur.getPrenom() }}</p>
                     </div>
                 </div>
-                <div class="block0">
-                    <div class="information_album_droite col-lg-4 col-sm-12">
+                <div class="information_activite_finie">
+                    <div class="information_album_gauche col-lg-4 col-sm-12">
                         <p>Durée : {{ activite.duree }} minute(s)</p>
                         <p>Ville : {{ activite.lieu.getNomVille() }}</p>
                         <p>Adresse : {{ activite.lieu.getNomRue() }}</p>
@@ -33,7 +33,7 @@
                         <p>Dénivelé : {{ activite.denivele }} mètre(s)</p>
                         <p>Distance : {{ activite.distance }} kilomètre(s)</p>
                     </div>
-                    <div class="information_album_gauche col-lg-4 col-sm-12">
+                    <div class="information_album_droite col-lg-4 col-sm-12">
                         <p>Difficulté :</p>
                         {% if (activite.getDifficulte() == 0 or activite.getDifficulte() == '')%}
                         {% else %}
@@ -127,7 +127,7 @@
                 <div class="album_photos">
                 {% for photo in activite.albumPhoto %}
                     {% if photo.image is not empty or photo.image != null %}
-                    <img class="photos_activite col-lg-12" src="{{ asset('album-photo/'~ photo.image)  }}" alt="Oups un soucis est survenus">
+                    <img class="photos_activite col-lg-12" src="{{ asset('album-photo/'~ photo.image)  }}" alt="photo de rando">
                         {% if is_granted(["ROLE_ADMIN"]) %}
                             <a href="{{ path('delete_album', {'id':photo.id}) }}">supprimer</a>
                         {% endif %}

@@ -27,7 +27,6 @@
     display: flex;
     flex-direction: row;
     margin: 10px;
-
 }
 .activite_date, .activite_user{
     display: flex;
@@ -47,12 +46,13 @@
 .activite_user p {
     margin-right: 10px;
 }
-.block0{
+.information_activite_finie{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
     margin-bottom: 20px;
+
 }
 .information_album_gauche , .information_album_centre, .information_album_droite{
     max-width: max-content;
