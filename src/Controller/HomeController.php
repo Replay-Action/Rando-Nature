@@ -33,10 +33,10 @@ class HomeController extends AbstractController
     /**
      * @Route("/home", name="home1")
      * @param ActiviteRepository $activiteRepository
+     * @param ActualiteRepository $actualiteRepository
      * @return Response
      *
      * Cette méthode est en charge de rediriger l'utilisateur vers la page accueil.
-     *
      */
     public function index(ActiviteRepository $activiteRepository, ActualiteRepository $actualiteRepository): Response
     {

@@ -1,14 +1,8 @@
 {% extends 'base.html.twig' %}
 {% block title %}{{ parent() }}{% endblock %}
-
-{# La page Documentation #}
 {% block body %}
     <div class="container">
-
-            {# Si l'Utilisateur est Adhérent il peu crée une documentation #}
             {% if is_granted(["ROLE_USER"]) %}
-
-                {# Le bouton crée une documentation #}
                 <div class="container col-12 create_documentation">
                     <a class="block_lien" href="{{ path('create_documentation')}}">
                         <img class="logo_create_documentation" src="{{ asset('tools/plus.png') }}" alt="logo ajouter vert">
@@ -17,23 +11,15 @@
                 </div>
             {% endif %}
     </div>
-
     <div class="container">
         <div class="main__documentation col-12">
-
-            {# On boucle sur documentation #}
             {% for doc in documentation %}
                 <div class="container__documentation">
                 <div class="documentation">
-
-                    {# On récupère l'id et le Titre de documentation #}
                     <div class="title__documentaire col-12">
                     <a href="{{ path('show_documentation', {"id":doc.id}) }}">{{ doc.titre }}</a>
                     </div>
-
                     <div class="documentation_date_user col-12">
-
-                        {# On affiche le logo Calendrier ainsi que la date de publication #}
                         <div class="documentation_date">
                             <div>
                         <img  src="{{ asset('tools/calendrier.png') }}" alt="icon de calendrier">
@@ -42,40 +28,26 @@
                         <p>{{ doc.getDateModifier()| date('j F Y h:i') }}</p>
                             </div>
                         </div>
-
-                        {# On affiche le logo User ainsi que le nom du l'Utilisateur qui a crée la documentation #}
                         <div class="documentation_user">
                             <img src="{{ asset('tools/user.png') }}" alt="icon d'utilisateur">
                             <p>{{ doc.auteur }}</p>
                         </div>
                     </div>
-
-                    {# On affiche l'introduction #}
                     <div class="documentation__resume col-12">
                         <p>{{ doc.intro }}</p>
                     </div>
-
                     <div class="container__etiquette col-12 ">
-
-                        {# On affiche le logo Etiquette et la Catégorie de la documentation #}
                         <div class="documentation__etiquette">
                         <img src="{{ asset('tools/etiquette.png') }}" alt="icon d'étiquette">
                         <p>{{ doc.categorie }}</p>
                         </div>
                     </div>
-
                 </div>
-
-                    {# Si l'Utilisateur est Adhérent #}
                     {% if is_granted(["ROLE_USER"]) %}
                 <div class="documentation__option">
-
-                    {# Si l'Utilisateur est l'auteur de la documentation alors il peut Modifier la Documentation #}
                     {% if(app.user.username == doc.auteur) %}
                     <a href="{{ path('update_documentation', {"id":doc.id}) }}">Modifier</a>
                     {% endif %}
-
-                    {# Si l'Utilisateur est l'Ateur ou Administrateur alors il peut Supprimer la Documentation #}
                     {% if(app.user.username == doc.auteur or is_granted ("ROLE_ADMIN")) %}
                     <a href="{{ path('delete_documentation', {"id":doc.id}) }}" onclick="return confirm('Voulez-vous vraiment supprimer cette article ?')">Supprimer</a>
                     {% endif %}

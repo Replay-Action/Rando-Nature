@@ -34,9 +34,6 @@
 
 @import "referent/gestion referent.css";
 
-@import "actualite/actualite_create-edit.css";
-@import "actualite/gestion_actualite.css";
-
 @import "contact/contact.css";
 
 *{
