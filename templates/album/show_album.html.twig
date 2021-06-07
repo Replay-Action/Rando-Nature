@@ -74,6 +74,18 @@
                             {% endif %}
                         {% endif %}
                     </div>
+                    <div class="col-12">
+                        <div class="album_photo_url">
+                            {# on boucle sur Album Photo pour récupérer l'url #}
+                            {% for photo in activite.albumPhoto %}
+
+                                {# Si l'url n'ai pas vide alors on affiche #}
+                                {% if photo.url is not empty %}
+                                    <a href="{{ photo.url }}">Komoot</a>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
                 </div>
 
                 <div class="list_participant">

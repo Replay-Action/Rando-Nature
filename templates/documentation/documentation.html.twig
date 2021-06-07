@@ -1,28 +1,21 @@
 {% extends 'base.html.twig' %}
 {% block title %}{{ parent() }}{% endblock %}
+
 {# La page Documentation #}
 {% block body %}
-    <div class="container-fluid">
-
-        {# Le Titre #}
-        <div class="title__partenaire container-fluid row">
-            <h1 class="col-12">Documentation</h1>
-            <div class="center-hr col-12">
-                <hr class="hr25-pourcent">
-            </div>
+    <div class="container">
 
             {# Si l'Utilisateur est Adhérent il peu crée une documentation #}
             {% if is_granted(["ROLE_USER"]) %}
 
                 {# Le bouton crée une documentation #}
-                <div class="container col-4 create_documentation">
+                <div class="container col-12 create_documentation">
                     <a class="block_lien" href="{{ path('create_documentation')}}">
                         <img class="logo_create_documentation" src="{{ asset('tools/plus.png') }}" alt="logo ajouter vert">
                         <p> Créer une documentation</p>
                     </a>
                 </div>
             {% endif %}
-        </div>
     </div>
 
     <div class="container">

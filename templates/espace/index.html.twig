@@ -2,35 +2,48 @@
 
 {% block title %}Trombinoscope | {{ parent() }}{% endblock %}
 
-{# ATTENTION cette twig correspond à la page du trombinoscope #}
+{# La page Trombinoscope #}
 
 {% block body %}
 
+    {# Si l'Utilisateur est Adhérent #}
     {% if is_granted("ROLE_USER") %}
-    {# stylisation en css des photos du trombi #}
 
-        {# <div class="container-fluid">
-            <img src="{{ asset ('content/velo-pont resize.jpg') }}" class="img-fluid pb-4" width="100%">
-        </div> #}
-    {# titre #}
+
+    {# Le Titre #}
     <div class="title_trombi">
         <h1 class="col-12">Trombinoscope</h1>
         <hr>
     </div>
     <div class="container trombi_page">
         <div class="trombi_box">
-        {# on boucle sur les utilisateurs #}
+
+        {# On boucle sur les utilisateurs #}
             {% for user in users %}
+
+                {# Partie Président #}
                 <div class="trombi_order1">
+
+                {# Si l'Utilisateur est Président il s'affiche ici #}
                 {% if user.referents.getNom() == 'Président' %}
                     <div class=" jaune col-lg-4">
+
+                    {# Le Nom du Référent #}
                     <div class="tromb_user">
                         <p class="trombi_referent">{{ user.referents.getNom() }}</p>
                         <div class="trombi_infos">
+
+                            {# Le pseudo du Président #}
                             <p class="col-12">{{ user.username }}</p>
+
+                            {# On boucle sur Photo #}
                             {% for photo in user.photos %}
+
+                            {# Si la photo de l'utilisateur est null on affiche un logo par défaut #}
                             {% if user.photos is null %}
                                 <img src="{{ asset('tools/logo_profil.png') }}" alt="logo de profil">
+
+                                {# Sinon on affiche son image #}
                             {% else %}
                                 <img src="{{ asset ('photo-profil/'~ photo.name) }}" alt="photo de l'utilisateur">
                             {% endif %}
@@ -42,17 +55,32 @@
                 </div>
             {% endfor %}
 
+                {# Partie Secrétaire et Trésorier #}
                 <div class="trombi_order2">
+
+                    {# On boucle sur User #}
                     {% for user in users %}
+
+                {# Si le Nom du Référent est Secrétaire ou Trésorier alors il s'affiche ici #}
                 {% if user.referents.getNom() == 'Secrétaire' or user.referents.getNom() == 'Trésorier' %}
                     <div class="jaune col-lg-4 ">
                     <div class="tromb_user">
+
+                        {# Le nom du Référent #}
                         <p class="trombi_referent">{{ user.referents.getNom() }}</p>
                         <div class="trombi_infos">
+
+                            {# Le pseudo du Référent #}
                             <p class="col-12">{{ user.username }}</p>
+
+                            {# On boucle sur Photo #}
                             {% for photo in user.photos %}
+
+                            {# Si la photo n'ai pas vide on affiche la photo de l'Utilisateur #}
                             {% if user.photos is not empty %}
                                 <img src="{{ asset ('photo-profil/'~ photo.name) }}" alt="photo de l'utilisateur">
+
+                            {# Sinon on affiche le logo par défaut #}
                             {% else %}
                                 <img src="{{ asset('tools/logo_profil.png') }}" alt="logo de profil">
                             {% endif %}
@@ -64,18 +92,33 @@
                     {% endfor %}
                 </div>
 
+                {# Partie autres Référent #}
                 <div class="trombi_order3">
+
+                    {# On boucle sur User #}
                     {% for user in users %}
+
+                    {# Si le Nom de l'Utilisateur est différent de Président,Secrétaire,Trésorier et Adhérent alors il s'affiche ici #}
                     {% if user.referents.getNom() != 'Président' and user.referents.getNom() != 'Secrétaire'
                     and user.referents.getNom() != 'Trésorier' and user.referents.getNom() != 'Adhérent' %}
                         <div class="jaune col-4">
                             <div class="tromb_user">
+
+                                {# Le nom du Référent #}
                                 <p class="trombi_referent">{{ user.referents.getNom() }}</p>
                                 <div class="trombi_infos">
+
+                                    {# Le pseudo du Référent #}
                                     <p class="col-12">{{ user.username }}</p>
+
+                                    {# On boucle sur Photo #}
                                     {% for photo in user.photos %}
+
+                                    {# Si la photo n'ai pas vide alors on affiche la photo de l'utilisateur #}
                                     {% if user.photos is not empty %}
                                         <img src="{{ asset ('photo-profil/'~ photo.name) }}" alt="photo de l'utilisateur">
+
+                                    {# Sinon on affiche le logo par Défaut #}
                                     {% else %}
                                         <img src="{{ asset('tools/logo_profil.png') }}" alt="logo de profil">
                                     {% endif %}
@@ -86,17 +129,33 @@
                     {% endif %}
                     {% endfor %}
                 </div>
+
+                {# Partie Adhérent #}
                 <div class="trombi_order4">
+
+                    {# On boucle sur User #}
                     {% for user in users %}
+
+                    {# Si le nom du Référent est Adhérent on l'affiche ici #}
                     {% if user.referents.getNom() == 'Adhérent' %}
                         <div class="jaune col-lg-4">
                             <div class="tromb_user">
+
+                                {# Le Nom du Référent #}
                                 <p class="trombi_referent">{{ user.referents.getNom() }}</p>
                                 <div class="trombi_infos">
+
+                                    {# Le pseudo du Référent #}
                                     <p class="col-12">{{ user.username }}</p>
+
+                                    {# On boucle sur photo #}
                                     {% for photo in user.photos %}
+
+                                        {# Si la photo est null alors on affiche le logo par défaut #}
                                         {% if user.photos is null %}
                                             <img src="{{ asset('tools/logo_profil.png') }}" alt="logo de profil">
+
+                                        {# Sinon on affiche l'image de l'Utilisateur #}
                                         {% else %}
                                             <img src="{{ asset ('photo-profil/'~ photo.name) }}" alt="photo de l'utilisateur">
                                         {% endif %}
@@ -107,41 +166,6 @@
                     {% endif %}
                     {% endfor %}
                 </div>
-                {#
-                <div class="col-lg-3 col-md-4 col-sm-5 col-6 mt-5 ">
-                    <div class="card hovereffect" style=" border: solid 1px lightgrey;"
-                         style="width:300px ;height: 15em; object-fit:cover">
-
-                        {# si le user a une photo
-                        {% if (user.photos is not empty) %}
-
-                            {# on boucle sur les photos et on les affiche, avec son pseudo, son nom et prenom
-                            {% for photo in user.photos %}
-                                <img class="card-img-top img-fluid display: block "
-                                     src="{{ asset ('photo-profil/'~ photo.name) }}" alt="Card image cap " style="width: auto;
-                                         height: 15em;
-                                             object-fit: cover;border: solid 1px lightgrey;">
-                                <div class="overlay">
-                                    <h2>{{ user.username }}</h2>
-                                    <a class="info small"
-                                       href="{{ path('user_show',{ 'id': user.id}) }}">{{ user.prenom }} {{ user.nom }}</a>
-                                </div>
-                            {% endfor %}
-
-                            {# s'il n'a pas de photos, on lui met un logo avec son pseudo, son nom et prenom
-                        {% else %}
-                            <img class="card-img-top img-fluid display:block  "
-                                 src="{{ asset('logos/logo velo bleu.png') }}" alt="Card image cap" style=" width:300px;
-                                height:15em;  object-fit:cover;border: solid 1px lightgrey;">
-                            <div class="overlay">
-                                <h2>{{ user.username }}</h2>
-                                <a class="info small"
-                                   href="{{ path('user_show',{ 'id': user.id}) }}">{{ user.prenom }} {{ user.nom }}</a>
-                            </div>
-                        {% endif %}
-                    </div>
-                </div>
-                #}
 
         </div>
     </div>

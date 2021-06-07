@@ -7,6 +7,9 @@
 
             {# On boucle sur Activite #}
             {% for activites in activite %}
+
+                {# Si l'état de l'Activité est a annulée ou finie on l'affiche #}
+                {% if activites.etat.getLibelle() == 'annulée' or activites.etat.getLibelle() == 'finie' %}
                 <div class="container_album_photo">
                     <div class="album_photo">
 
@@ -65,6 +68,7 @@
 
                     </div>
                 </div>
+                {% endif %}
             {% endfor %}
 
         </div>
