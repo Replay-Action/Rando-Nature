@@ -62,7 +62,8 @@
                         {% if is_granted(["ROLE_ADMIN"]) %}
                             <div class="bas_album_photo col-12">
                                 <a href="{{ path('activite_edit', {'id':activites.id}) }}">modifier</a>
-                                <a href="{{ path('activite_delete', {'id':activites.id}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer cette activité');">supprimer</a>
+                                <a href="{{ path('delete_activite', {'id':activites.id}) }}"
+                                   onclick="return confirm('Voulez-vous vraiment supprimer cette activité')">supprimer</a>
                             </div>
                         {% endif %}
 

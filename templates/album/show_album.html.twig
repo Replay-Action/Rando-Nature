@@ -46,6 +46,15 @@
                             {% endif %}
                         {% endif %}
                     </div>
+                    <div class="col-12">
+                         <div class="album_photo_url">
+                             {% for photo in activite.albumPhoto %}
+                                 {% if photo.url is not empty %}
+                                    <a href="{{ photo.url }}">Komoot</a>
+                                 {% endif %}
+                             {% endfor %}
+                         </div>
+                    </div>
                 </div>
                 <div class="list_participant">
                     <div class="list_participant_title">
@@ -92,8 +101,9 @@
                 </div>
                 <div class="action_box">
                     {% if is_granted(["ROLE_ADMIN"]) %}
-                    <a href="{{ path('activite_edit', {'id':activite.id}) }}">modifier</a>
-                    <a href="{{ path('activite_delete', {'id':activite.id}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer cette activité');">supprimer</a>
+                        <a href="{{ path('activite_edit', {'id':activite.id}) }}">modifier</a>
+                        <a href="{{ path('delete_activite', {'id':activite.id}) }}"
+                           onclick="return confirm('Voulez-vous vraiment supprimer cette activité')">supprimer</a>
                     {% endif %}
                     <a href="{{ path('album') }}">retour</a>
                 </div>

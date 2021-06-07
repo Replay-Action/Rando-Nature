@@ -12,7 +12,6 @@
             <div class="en-tete-accueil row col-lg-12 col-sm-12">
                     <div class="logo col-lg-12">
                     <img src="{{ asset('logos/logo-velo.png') }}" alt="">
-                        {% include ('home/_news_activite.html.twig') %}
                     </div>
 
                     <div class="title col-lg-12 col-sm-12">
@@ -24,7 +23,7 @@
                 <div class="div-home-actu-popup">
                     {# On boucle sur actualite afin d'afficher toutes les actualites existante #}
                     {% for actualite in actualites %}
-                        <div class=" lead actu-home col-lg-12">
+                        <div class="actu-home col-lg-12">
                             {{ actualite.actu }}
                         </div>
                     {% endfor %}
@@ -105,7 +104,7 @@
                                 <h2>Bientôt nous vous proposerons d'autres activités telles que le longe-côte...</h2>
                             </div>
                             <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">Autres activités de plein-air</h5>
+                                <h5 class=" card-title">Autres activités de plein-air</h5>
                             </div>
                         </a>
                     </div>

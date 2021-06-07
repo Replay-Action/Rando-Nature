@@ -24,6 +24,13 @@
     font-size: xx-large;
 
 }
+
+.trombi-username{
+    text-align: center;
+    text-decoration: none;
+    padding: 10px;
+}
+
 .trombi_infos{
     display: flex;
     justify-content: center;
