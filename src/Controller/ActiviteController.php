@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Data\SearchData;
 use App\Entity\Activite;
+use App\Entity\DocPdf;
 use App\Form\ActiviteType;
 use App\Form\SearchForm;
 use App\Repository\ActiviteRepository;
@@ -175,6 +176,37 @@ class ActiviteController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route ("/delete/{id}", name="delete_activite")
+     * @param Activite $activite
+     * @param DocPdfRepository $docPdfRepository
+     * @return Response
+     *
+     * Cette méthode sert a un supprimer une activité et un fichier pdf si il y en a un de lier.
+     *
+     */
+    public function deleteActivite(Activite $activite, DocPdfRepository $docPdfRepository):Response{
+        $this->denyAccessUnlessGranted("ROLE_ADMIN");
+        $pdf=$docPdfRepository->findOneBy(['pdfactivite' => $activite]);
+        $entityManager = $this->getDoctrine()->getManager();
+        if ($pdf != null) {
+            $nompdf = $pdf->getNompdf();
+            $pdfexist = $this->getParameter('upload_recap_directory') . '/' . $nompdf;
+
+            //si le pdf existe dans le dossier public alors on l'efface
+            if ($pdfexist) {
+                unlink($pdfexist);
+            }
+        }
+        //On supprime le fichier stocker dans la base de donnée
+        $entityManager->remove($activite);
+        $entityManager->flush();
+
+        //On renvoie un message de success pour prévenir l'utilisateur de la réussite.
+        $this->addFlash('success', 'activité effacée');
+            //On redirige l'utilisateur sur la page index.html.twig (Accueil)
+        return $this->redirectToRoute('activite_index');
+    }
     /**
      * @Route("/{id}", name="activite_delete", methods={"DELETE"})
      * @param Request $request

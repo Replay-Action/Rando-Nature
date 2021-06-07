@@ -185,7 +185,7 @@
                                     {# ou que l'adhérent est inscrit #}
                                     {% if is_granted("ROLE_ADMIN") %}
                                     <a class="butonPersonnalise" href="{{ path('activite_edit', {'id':activite.id}) }}">modifier</a>
-                                    <a class="butonPersonnalise" href="{{ path('activite_delete', {'id':activite.id}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer cette activité');">supprimer</a>
+                                    <a class="butonPersonnalise" href="{{ path('delete_activite', {'id':activite.id}) }}" onclick="return confirm('Voulez-vous vraiment supprimer cette activité')">supprimer</a>
                                     {% endif %}
                                         {% if (activite.users.contains(user)) %}
                                         <a class="butonPersonnalise" href="{{ path('activite_sedesister', {'id': activite.id}) }}"
