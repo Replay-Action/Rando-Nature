@@ -9,6 +9,7 @@
     <div class=" container-fluid">
         <div class="row">
 
+            {# Le logo et le nom du site sous png #}
             <div class="en-tete-accueil row col-lg-12 col-sm-12">
                     <div class="logo col-lg-12">
                     <img src="{{ asset('logos/logo-velo.png') }}" alt="">
@@ -37,10 +38,14 @@
             <div class="carousel-container col-lg-12">
                 <div class="description-accueil row">
                     <div class="col-lg-12">
+
+                    {# Paragraphe avant Carrousel #}
                     <p class="lead text-accueil">
                             Vous aimez les balades à vélo, la nature et avez besoin de vous évader ?
                     </p>
                     </div>
+
+                    {# Carrousel #}
                     <div class="pic-ctn container col-lg-12 col-sm-12">
                         <img src="{{ asset('content/velo-pont resize.jpg') }}" alt="" class="pic">
                         <img src="{{ asset('content/velo et enfant.png') }}" alt="" class="pic">
@@ -49,6 +54,8 @@
                         <img src="{{ asset('content/Paul.jpg') }}" alt="" class="pic">
                     </div>
                     <div class="col-12">
+
+                    {# Paragraphe après Carrousel #}
                     <p class="lead text-accueil">
                         L'association « Vélo Rando Nature Bruz » vous propose des balades le long
                         des canaux, des voies vertes et des chemins.
@@ -62,11 +69,14 @@
     <div class="center-hr">
         <hr class="hr25-pourcent ">
     </div>
+
+
     <h2 id="h2-accueil"> Venez nous rejoindre !</h2>
-    {# les 4 cards de choix, leurs liens, leurs photo, et leurs effets #}
+    {# Les 4 cards de choix, leurs liens, leurs photo, et leurs effets #}
         <div class="container">
             <div class="paragraphe3">
 
+                {# Première Card #}
                 <div class=" justify-content-center col-lg-6 col-md-12 taille">
                     <div class="card hovereffect-home border-white mb-4">
                         <a href="{{ path('randosvelo') }}">
@@ -82,6 +92,7 @@
                     </div>
                 </div>
 
+                {# Seconde Card #}
                 <div class=" justify-content-center col-lg-6 col-md-12 taille">
                     <div class="card hovereffect-home border border-white mb-4">
                         <a href="{{ path('formations') }}">
@@ -96,6 +107,7 @@
                     </div>
                 </div>
 
+                {# Troisième Card #}
                 <div class=" justify-content-center col-lg-6 col-md-12 taille">
                     <div class="card hovereffect-home border border-white mb-4">
                         <a href="{{ path('pleinair') }}">
@@ -110,6 +122,7 @@
                     </div>
                 </div>
 
+                {# Quatrième Card #}
                 <div class=" justify-content-center col-lg-6 col-md-12 taille">
                     <div class="card hovereffect-home border border-white ">
                         <a href="{{ path('activite_index') }}">
@@ -130,7 +143,7 @@
         <div class="center-hr m-5">
             <hr class="hr25-pourcent center">
         </div>
-        {# le texte sous les cards #}
+        {# Le texte sous les cards #}
         <div class="text-bas-page example-wrapper" >
                 <p class="lead text-accueil">Vous pourrez découvrir la patrimoine naturel et culturel de notre belle région en
                     pratiquant une activité physique au plus près de la nature.

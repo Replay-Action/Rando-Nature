@@ -1,4 +1,5 @@
 {% extends 'base.html.twig' %}
+
 {% block body %}
     <div class="container-fluid page_box">
         <div class="container recap_box">
@@ -127,7 +128,7 @@
                 <div class="album_photos">
                 {% for photo in activite.albumPhoto %}
                     {% if photo.image is not empty or photo.image != null %}
-                    <img class="photos_activite col-lg-12" src="{{ asset('album-photo/'~ photo.image)  }}" alt="photo de rando">
+                    <img class="photos_activite col-lg-12" src="{{ asset('album-photo/'~ photo.image)  }}" alt="Oups un soucis est survenus">
                         {% if is_granted(["ROLE_ADMIN"]) %}
                             <a href="{{ path('delete_album', {'id':photo.id}) }}">supprimer</a>
                         {% endif %}
