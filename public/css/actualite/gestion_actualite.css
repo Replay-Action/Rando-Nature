@@ -1,11 +1,16 @@
 .gestion-actualite-global{
+    margin-top:100px;
     display: flex;
     justify-content: center;
-    margin-top:100px;
+    flex-direction:row ;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
 .title-actualite-gestion{
-    text-align: center;
+    display: flex;
+    justify-content: center;
+
 }
 
 .actualite-gestion{
@@ -17,6 +22,7 @@
     border:solid 1px;
     width: max-content;
     text-align: center;
+
 }
 
 .button-supprimer-modifier-actualite{
