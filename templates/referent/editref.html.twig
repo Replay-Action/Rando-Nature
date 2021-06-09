@@ -1,74 +1,59 @@
 {% extends 'base.html.twig' %}
 {% block title %}Modification d'un Référent | {{ parent() }}{% endblock %}
-{# La page de Modification de référent #}
+{# La page de Création d'un Référent #}
 
 {% block body %}
 
-    {# Si l'Utilisateur est Administrateur alors il à accès a la page Modifier un Référent #}
+    {# Si l'utilisateur est Administrateur alors il peut avoir accès à cette page #}
     {% if is_granted("ROLE_ADMIN") %}
+        <div class="container">
 
-        <div class="container-fluid">
-            <div class="row">
+            {# Le formulaire #}
+            <div class="referent_box">
+                {{ form_start(form) }}
+                <div class="form-referent-fond-noir">
 
-                {# Le formulaire #}
-                        {{ form_start(form) }}
-                   <div class="row col-lg-12 justify-content-center">
+                    {# Le Titre #}
+                    <div class="title_form col-12">
+                        <h1 >Modifier un Référent</h1>
+                    </div>
+                    <div class="centre_form_referent">
+                        <div class="col-lg-6 test-color-size3">
 
-                         <div class="container column-div row form-referent-fond-noir">
-
-                                {# Le Titre #}
-                                <div class="container-fluid row title__referent">
-                                    <h1 class="font-weight-bold">Modifier un Référent</h1>
-                                </div>
-
-                            <div class="">
-
-                                {# le Nom du Référent #}
-                                <div class="col-lg-6 test-color-size3 container">
-                                    <div class="col-lg-4 ">
-                                        <label>Référent : </label>
-                                        <p>{{ form_widget(form.nom) }}</p>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-12 test-color-size2 row container">
-
-                                    {# l'Odre pour gérer l'affichage sur le Trombinoscope et le Bureau #}
-                                    <div class="col-lg-2 color-size-1">
-                                        <label>Ordre : </label>
-                                        <p>{{ form_widget(form.ordre) }}</p>
-
-                                    </div>
-
-                                    {# Informations #}
-                                    <div class="col-lg-10 col-md-12 test-color-size">
-
-                                        <p>L'ordre permet de gérer l'affichage des Référents.<br>
-                                            <strong>1{</strong>Président<br>
-                                            <strong>2{</strong>Trésorier et Secrétaire<br>
-                                            <strong>3{</strong>Autres Référents<br>
-                                            <strong>4{</strong>Adhérents
-                                        </p>
-
-                                    </div>
-
-                                </div>
-
-                                {# Les boutons Enregistrer et Retour #}
-                                <div class="col-lg-12 button-enregistrer-new-referent">
-                                    <div class="d-flex justify-content-center">
-                                        <button class="mb-5 mt-2 btn btn-primary btn btn-lg">{{ button_label|default('Enregistrer') }}</button>
-
-                                        <a href="{{ path('referent') }}" class="mb-5 mt-2 btn btn-primary btn btn-lg espace-button-referent">Retour</a>
-                                    </div>
-                                </div>
+                            {# Le nom du Référent #}
+                            <div class="col-lg-4 test-color-size4">
+                                <label>Nouveau Référent : </label>
+                                <p>{{ form_widget(form.nom) }}</p>
                             </div>
 
+                            {# l'Odre pour gérer l'affichage sur le Trombinoscope et le Bureau #}
+                            <div class="col-lg-2 color-size-1">
+                                <label>Ordre : </label>
+                                <p>{{ form_widget(form.ordre) }}</p>
+                            </div>
                         </div>
-                        {{ form_end(form) }}
 
+                        {# Informations #}
+                        <div class="col-lg-6 test-color-size2">
+                            <p>L'ordre gère l'affichage des Référents.</p>
+                            <div>
+                                <strong>1{</strong>Président<br>
+                                <strong>2{</strong>Trésorier et Secrétaire<br>
+                                <strong>3{</strong>Autres Référents<br>
+                                <strong>4{</strong>Adhérents
+                            </div>
+                        </div>
                     </div>
 
+                    {# Les boutons Enregistrer et Retour #}
+                    <div class="col-lg-12 button-enregistrer-new-referent">
+                        <div class="d-flex justify-content-center">
+                            <button class="mb-5 mt-2 btn btn-primary btn btn-lg">{{ button_label|default('Enregistrer') }}</button>
+                            <a href="{{ path('referent') }}" class="mb-5 mt-2 btn btn-primary btn btn-lg espace-button-referent">Retour</a>
+                        </div>
+                    </div>
+                </div>
+                {{ form_end(form) }}
             </div>
         </div>
     {% endif %}
