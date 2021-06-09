@@ -12,7 +12,7 @@
             {# Le logo et le nom du site sous png #}
             <div class="en-tete-accueil row col-lg-12 col-sm-12">
                     <div class="logo col-lg-12">
-                    <img src="{{ asset('logos/logo-velo.png') }}" alt="">
+                    <img src="{{ asset('logos/LOGOV1_2_Copy.png') }}" alt="">
                     </div>
 
                     <div class="title col-lg-12 col-sm-12">
@@ -21,6 +21,7 @@
 
             </div>
             <div class="global-div-home-actu-popup col-lg-12">
+
                 <div class="div-home-actu-popup ">
                     {# On boucle sur actualite afin d'afficher toutes les actualites existante #}
                     {% for actualite in actualites %}
@@ -29,7 +30,7 @@
                         {# Si Actualité = 1 alors on l'affiche #}
                         {% if actualite.afficheactu == 1 %}
                         <div class="actu-home col-lg-12">
-                            {{ actualite.actu }}
+                            <p>{{ actualite.actu }}</p>
                         </div>
                         {% else %}
                         {% endif %}

@@ -4,7 +4,13 @@
     justify-content: center;
     flex-direction:row ;
     flex-wrap: wrap;
-    align-items: center;
+    background-color: #AA3333;
+}
+
+.gestion-actualite{
+    background-color: #ffcc00;
+    display: flex;
+    justify-content: center;
 }
 
 .title-actualite-gestion{
@@ -20,12 +26,13 @@
     box-shadow: 5px 2px 10px black;
     border-radius: 15px;
     border:solid 1px;
-    width: max-content;
+    width: 500px;
     text-align: center;
 
 }
 
 .button-supprimer-modifier-actualite{
-    justify-content: center;
     display: flex;
+    justify-content: center;
+
 }
