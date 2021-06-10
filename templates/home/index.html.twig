@@ -47,11 +47,13 @@
 
                     {# Carrousel #}
                     <div class="pic-ctn container col-lg-12 col-sm-12">
-                        <img src="{{ asset('content/velo-pont resize.jpg') }}" alt="" class="pic">
-                        <img src="{{ asset('content/velo et enfant.png') }}" alt="" class="pic">
-                        <img src="{{ asset('content/sejour escapade resize.jpg') }}" alt="" class="pic">
-                        <img src="{{ asset('content/photographie et video resize.jpg') }}" alt="" class="pic">
-                        <img src="{{ asset('content/Paul.jpg') }}" alt="" class="pic">
+                        {% for photo in photos %}
+                            {% if photo.getImage() is empty %}
+                            {% else %}
+                                <img class="pic col-lg-12" src="{{ asset('album-photo/'~ photo.image)  }}"
+                                     alt="Oups un soucis est survenus">
+                            {% endif %}
+                        {% endfor %}
                     </div>
                     <div class="col-12">
 

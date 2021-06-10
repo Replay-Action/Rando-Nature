@@ -32,6 +32,7 @@ class PhotoAlbum
      */
     private $activite;
 
+
     public function getId(): ?int
     {
         return $this->id;
@@ -67,5 +68,9 @@ class PhotoAlbum
         $this->activite = $activite;
     }
 
+    public function __construct()
+    {
+        return $this->getImage();
+    }
 
 }

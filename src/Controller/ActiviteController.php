@@ -4,12 +4,12 @@ namespace App\Controller;
 
 use App\Data\SearchData;
 use App\Entity\Activite;
-use App\Entity\DocPdf;
 use App\Form\ActiviteType;
 use App\Form\SearchForm;
 use App\Repository\ActiviteRepository;
 use App\Repository\DocPdfRepository;
 use App\Repository\EtatRepository;
+use App\Repository\PhotoAlbumRepository;
 use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -180,15 +180,18 @@ class ActiviteController extends AbstractController
      * @Route ("/delete/{id}", name="delete_activite")
      * @param Activite $activite
      * @param DocPdfRepository $docPdfRepository
+     * @param PhotoAlbumRepository $photoAlbumRepository
      * @return Response
      *
      * Cette méthode sert a un supprimer une activité et un fichier pdf si il y en a un de lier.
-     *
      */
-    public function deleteActivite(Activite $activite, DocPdfRepository $docPdfRepository):Response{
+    public function deleteActivite(Activite $activite, DocPdfRepository $docPdfRepository, PhotoAlbumRepository $photoAlbumRepository):Response{
         $this->denyAccessUnlessGranted("ROLE_ADMIN");
-        $pdf=$docPdfRepository->findOneBy(['pdfactivite' => $activite]);
+        $pdf = $docPdfRepository->findOneBy(['pdfactivite' => $activite]);
+        $photo = $photoAlbumRepository->findOneBy(['activite' => $activite]);
+
         $entityManager = $this->getDoctrine()->getManager();
+
         if ($pdf != null) {
             $nompdf = $pdf->getNompdf();
             $pdfexist = $this->getParameter('upload_recap_directory') . '/' . $nompdf;
@@ -198,6 +201,22 @@ class ActiviteController extends AbstractController
                 unlink($pdfexist);
             }
         }
+
+        while ($photo != null)
+        {
+            $nomphoto = $photo->getImage();
+            $photoexist = $this->getParameter('album_directory'). '/' .$nomphoto;
+            
+            if($photoexist)
+            {
+                unlink($photoexist);
+            }
+            $entityManager->remove($photo);
+            $entityManager->flush();
+            $photo = $photoAlbumRepository->findOneBy(['activite' => $activite]);
+        }
+
+
         //On supprime le fichier stocker dans la base de donnée
         $entityManager->remove($activite);
         $entityManager->flush();
@@ -205,46 +224,6 @@ class ActiviteController extends AbstractController
         //On renvoie un message de success pour prévenir l'utilisateur de la réussite.
         $this->addFlash('success', 'activité effacée');
             //On redirige l'utilisateur sur la page index.html.twig (Accueil)
-        return $this->redirectToRoute('activite_index');
-    }
-    /**
-     * @Route("/{id}", name="activite_delete", methods={"DELETE"})
-     * @param Request $request
-     * @param Activite $activite
-     * @param DocPdfRepository $docPdfRepository
-     * @return Response
-     *
-     * Cette méthode sert a supprimer une activité
-     *
-     */
-    public function delete(Request $request, Activite $activite, DocPdfRepository $docPdfRepository): Response
-    {
-        //On refuse l'accès a cette méthode si l'utilisateur n'a pas le rôle Admin.
-        $this->denyAccessUnlessGranted("ROLE_ADMIN");
-
-        if ($this->isCsrfTokenValid('delete' . $activite->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-
-            $activite1=$activite->getId();
-            $pdf=$docPdfRepository->findOneBy(['pdfactivite' => $activite1]);
-
-            if ($pdf != null) {
-                $nompdf = $pdf->getNompdf();
-                $pdfexist = $this->getParameter('upload_recap_directory') . '/' . $nompdf;
-
-                //si le pdf existe dans le dossier public alors on l'efface
-                if ($pdfexist) {
-                    unlink($pdfexist);
-                }
-            }
-
-            //On supprime le fichier stocker dans la base de donnée
-            $entityManager->remove($activite);
-            $entityManager->flush();
-        }
-        //On renvoie un message de success pour prévenir l'utilisateur de la réussite.
-        $this->addFlash('success', 'activité effacée');
-        //On redirige l'utilisateur sur la page index.html.twig (Accueil)
         return $this->redirectToRoute('activite_index');
     }
 

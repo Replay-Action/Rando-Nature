@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Form\PdfStatusType;
 use App\Repository\ActiviteRepository;
 use App\Repository\ActualiteRepository;
+use App\Repository\PhotoAlbumRepository;
+use App\Repository\PhotoRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -34,11 +36,12 @@ class HomeController extends AbstractController
      * @Route("/home", name="home1")
      * @param ActiviteRepository $activiteRepository
      * @param ActualiteRepository $actualiteRepository
+     * @param PhotoAlbumRepository $photoAlbumRepository
      * @return Response
      *
      * Cette méthode est en charge de rediriger l'utilisateur vers la page accueil.
      */
-    public function index(ActiviteRepository $activiteRepository, ActualiteRepository $actualiteRepository): Response
+    public function index(ActiviteRepository $activiteRepository, ActualiteRepository $actualiteRepository, PhotoAlbumRepository $photoAlbumRepository): Response
     {
         #pour afficher la pastille clignotante de la page accueil
         /**$date = new DateTime('now');*/
@@ -46,8 +49,9 @@ class HomeController extends AbstractController
         //Permet d'afficher le nombre d'activité en cours
         //et de rediriger sur la page index.html.twig (accueil)
         return $this->render('home/index.html.twig', [
-            'actidispo' => $activiteRepository->affichepastille(),
+            'actidispo' => $activiteRepository->findActivites(),
             'actualites' => $actualiteRepository->afficheactu(),
+            'photos' => $photoAlbumRepository->findAll(),
             /**
             'controller_name' => 'HomeController',
             'date' => $date

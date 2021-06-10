@@ -4,8 +4,8 @@ namespace App\Repository;
 
 use App\Data\SearchData;
 use App\Entity\Activite;
+use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\Query\Expr\Select;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -46,7 +46,7 @@ class ActiviteRepository extends ServiceEntityRepository
     {
 
         $em = $this->getEntityManager();
-        $datejour = new \DateTime();
+        $datejour = new DateTime();
         $query = $em->createQuery(
             'UPDATE App\Entity\Activite as a
              SET a.etat =2

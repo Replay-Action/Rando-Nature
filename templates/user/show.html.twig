@@ -4,11 +4,6 @@
 {# page d'affichage des détails d'un utilisateur #}
 {% block body %}
 
-    {# banniere #}
-    {# <div class="container-fluid">
-        <img src="{{ asset ('content/user ban pages user.jpg') }}" class="img-fluid" width="100%">
-    </div>
-    #}
     <div class="row global-profil-show">
         {# titre #}
     <div class=" col-lg-12 d-flex justify-content-center">
@@ -43,10 +38,6 @@
                         {% endif %}
                     </td>
                 </tr>
-                {# <tr>
-                    <th>Mot de passe</th>
-                    <td>{{ user.password }}</td>
-                </tr> #}
                 <tr>
                     <th>Nom</th>
                     <td>{{ user.nom }}</td>
@@ -77,19 +68,13 @@
             {# si l'utilisateur est bien celui a qui appartien le profi #}
         {% if user.username == user1 %}
             <a href="{{ path('home1') }}" class="btn btn-outline-primary btn btn-lg">Retour</a>
-            {# <a href="{{ path('app_reset_password', { 'id': app.user.id}) }}" class="btn btn-warning btn btn-lg">modifier
-                mot de passe</a> #}
             <a href="{{ path('profiledit',{ 'id': app.user.id}) }}" class="btn btn-primary btn btn-lg">Modifier</a>
-
         {% elseif userrole == ["ROLE_ADMIN","ROLE_USER"] %}
             <a href="{{ path('user_index') }}" class="btn btn-outline-primary btn btn-lg">Retour à la liste</a>
         {% else %}
             <a href="{{ path('home1') }}" class="btn btn-outline-primary btn btn-lg">Retour à l'accueil</a>
         {% endif %}
-
-        {# <a href="{{ path('user_edit', {'id': user.id}) }} "class="btn btn-primary btn btn-lg">edit</a> #}
     </div>
-    {# {{ include('user/_delete_form.html.twig') }} #}
 {% endblock %}
 
 

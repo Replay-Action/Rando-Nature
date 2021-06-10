@@ -54,91 +54,11 @@
 
                      </div>
                  </div>
-
-
-    {# la banniere et le titre et le nota bene #}
-    {#  <div class="container-fluid">
-        <img src="{{ asset ('content/user ban pages user.jpg') }}" class="img-fluid" width="100%">
-    </div>
-    <div class="col-auto">
-        <div class="m-5 justify-content-center text-center ">
-            <div class="">
-                <h1 class="bg-warning m-3 p-3">Liste des adhérents</h1>
-            </div>
-            <div class="bg-light border m-5"><p class="font-weight-bold pt-2">NOTA BENE</p>
-                <div>
-                    <p class="text-center small">Pour effacer un adhérent, allez sur le bouton 'modifier et cliquez sur
-                        le bouton 'Effacer l'adhérent'</p>
-                </div>
-                <div>
-                    <p class="text-center small">Pour modifier le profil d'un adhérent (pour le changer en
-                        administrateur ou en adhérent simple par exemple) vous avez besoin de son accord et de son mot
-                        de passe</p>
-                    <p class="small">par contre vous pouvez effacer sa photo si elle ne convient pas aux valeurs du site</p>
-                </div>
-            </div>
-        </div>
-
-        {# <div class="m-5">
-                {# la table avec les filtres bootstrap (table-bootstrap
-            <table class="table table-sm bg-light border m-1" data-toggle="table"
-                       data-search="true" data-show-columns="true" data-pagination="true">
-                    <thead>
-                    <tr>
-                        <th data-sortable="true" data-field="pseudo">Pseudo</th>
-                        <th data-sortable="true" data-field="role">Roles</th>
-                        {# <th>Password</th>
-                        <th data-sortable="true" data-field="nom">Nom</th>
-                        <th data-sortable="true" data-field="prenom">Prenom</th>
-                        <th data-sortable="true" data-field="telephone">Telephone</th>
-                        <th data-sortable="true" data-field="mail">Email</th>
-                        <th data-sortable="true" data-field="date_naissance" data-sorter="starsSorter">Date de naissance</th>
-                        <th>actions</th>
-                    </tr>
-                    </thead>
-
-
-                    <tbody>
-                    {# on boucle sur le user pour remplir la table
-                    {% for user in users %}
-                        <tr>
-                            <td>{{ user.username }}</td>
-                            <td> {% if (user.roles|json_encode) =='["ROLE_USER"]' %}
-                                    Adhérent
-                                {% elseif (user.roles|json_encode) =='["ROLE_ADMIN","ROLE_USER"]' %} Administrateur
-                                {% else %}
-                                {% endif %}
-
-                            </td>
-                            {# <td>{{ user.password }}</td>
-                            <td>{{ user.nom }}</td>
-                            <td>{{ user.prenom }}</td>
-                            <td>{{ user.telephone }}</td>
-                            <td>{{ user.email }}</td>
-                            <td>{{ user.dateNaissance ? user.dateNaissance|date('d-m-Y') : '' }}</td>
-                            <td>
-                                <a href="{{ path('user_show', {'id': user.id}) }}" class="btn btn-outline-primary">details</a>
-                                <a href="{{ path('user_edit', {'id': user.id}) }}" class="btn btn-warning">modifier</a>
-                            </td>
-                        </tr> #}
-                    {% else %}
-
-                            <a>il n'y a rien d'enregistré</a>
-
-                    {% endfor %}
-                        {#   </tbody>
-            </table>#}
+              {% else %}
+                  <a>il n'y a rien d'enregistré</a>
+            {% endfor %}
         </div>
     </div>
-
-
-
-{# cette fonction js permet de filtrer sur la table bootstrap au niveau des dates
-    <script>function starsSorter(a, b) {
-            if (new Date(a) > new Date(b)) return 1;
-            if (new Date(a) < new Date(b)) return -1;
-            return 0;
-        }</script> #}
 
     {% else %}
     {% endif %}
