@@ -1,10 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Modifier adhérent | {{ parent() }}{% endblock %}
-{# la page de modification de user #}
+{# la page de modification d'un Adhérent #}
 
 {% block body %}
 
+    {# Si l'Utilisateur en session est également au pseudo ou qu'il est Administrateur alors il peut modifier le profil #}
     {% if (user1 == user.username) or is_granted("ROLE_ADMIN") %}
 
 
@@ -15,19 +16,22 @@
                 <div class="title_form">
                     <h1>Modifier le profil</h1>
                 </div>
-                {# on boucle sur les photos #}
 
+                {# On boucle sur photos #}
                 {% for photo in user.photos %}
+
+                    {# Si photo est vide on affiche rien #}
                     {% if photo is empty %}
 
+                    {# Sinon on affiche la photo de profil de l'Utilisateur#}
                     {% else %}
                         <div class="adherent_photo_profil">
                             <div class="photo_profil">
-                                {# on affiche la photo #}
+                                {# On affiche la photo #}
                                 <img src="{{ asset ('photo-profil/'~ photo.name) }}" alt="photo profil">
                             </div>
                             <div>
-                                {# On ajoute un lien permettant de supprimer une image (sera géré en Ajax) #}
+                                {# On ajoute un lien permettant de supprimer une image #}
                                 <a class="col-lg-1 text-white" href="{{ path('user_delete_photo', {id: photo.id}) }}" data-delete
                                    data-token="{{ csrf_token('delete' ~ photo.id ) }}">Supprimer</a>
                             </div>
@@ -35,6 +39,7 @@
                     {% endif %}
                 {% endfor %}
 
+                {# Le formulaire #}
                 <div class="adhérent_widget">
                     <p>Role :</p>
                     <p>{{ form_widget(form.roles) }}</p>
@@ -76,11 +81,16 @@
                     <p>{{ form_widget(form.photos) }}</p>
                 </div>
             </div>
+
             <div class="bas_form_adhérent col-12">
+
+                {# Le bouton Enregistrer #}
                 <div class="bas_form_adhérent1">
                     {{ form_widget(form.enregistrer) }}
                     {{ form_end(form) }}
                 </div>
+
+                {# Le bouton Retour #}
                 <div class="bas_form_adhérent2">
                     <a href="{{ path('user_index') }}" class="butonPersonnalise">Retour</a>
                 </div>

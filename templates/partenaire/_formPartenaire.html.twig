@@ -1,21 +1,30 @@
 {% extends 'base.html.twig' %}
+{# La page de création d'un partenaire #}
 
 {% block body%}
     <div class="container-fluid box1">
         <div class="main__partenaire">
             <div class="form__partenaire">
+
+                {# Le Titre #}
                 <div class="title_form col-12">
                     <h1>Création d'un Partenaire</h1>
                 </div>
+
+                {# Le formulaire #}
                 <label>Nom:</label>
             {{ form_start(formPartenaire) }}
+
                 {{ form_widget(formPartenaire.nom) }}
                 <p id="form_file">{{ form_widget(formPartenaire.logo) }}</p>
                 <label>Url:</label>
                 {{ form_widget(formPartenaire.url) }}
+
+                {# Le bouton Valider #}
                 <div class="m-3 d-flex justify-content-center">
                 {{ form_widget(formPartenaire.Valider) }}
                 </div>
+
             {{ form_end(formPartenaire) }}
             </div>
         </div>

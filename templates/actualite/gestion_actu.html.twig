@@ -4,17 +4,16 @@
 {# La page Gestion des actualité #}
 {% block body %}
 
-    <div class="gestion-actualite-global">
-        <div>
+    <div class="gestion-actualite-global ">
 
             {# Le titre#}
-            <div class="title-actualite-gestion row">
+            <div class="title-actualite-gestion col-lg-12">
                 <h1 class="">Gestion des Actualités</h1>
             </div>
             {# On boucle sur Actualite afin d'afficher toutes les actualités existante #}
             {% for actualite in actualites %}
 
-                <div class="actualite-gestion">
+                <div class="actualite-gestion col-lg-12">
                         <p>{{ actualite.actu }}</p>
 
                     {# Les boutons Modifier et Supprimer #}
@@ -24,8 +23,7 @@
                     </div>
 
                 </div>
-
-        </div>
-    </div>
             {% endfor %}
+    </div>
+
 {% endblock %}

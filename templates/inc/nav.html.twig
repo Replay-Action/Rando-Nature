@@ -13,11 +13,15 @@
 {# on déclare les éléments qui seront dans la navbar #}
     <div class="collapse navbar-collapse" id="navbarTexto">
         <ul class="navbar-nav pt-3">
+
+            {# Partie Accueil #}
             <li class="nav-item active ">
                 <a class="nav-link" href="{{path('home1')}}">Accueil</a>
             </li>
 
             {# éléments a menu déroulant #}
+
+            {# Partie Association #}
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
@@ -31,12 +35,15 @@
                 </div>
             </li>
 
+            {# Partie Documentation #}
             <li class="nav-item active ">
                 <a class="nav-link" href="{{path('documentation')}}">Documentation</a>
             </li>
 
 
             {# éléments a menu déroulant #}
+
+            {# Partie Activite #}
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
@@ -54,23 +61,38 @@
                     <a class="dropdown-item" href="{{path('pleinair')}}">Autres activités de plein-air </a>
                 </div>
             </li>
+
+            {# Si l'Utilisateur est Adhérent on affiche pas Adhesion #}
             {% if is_granted('ROLE_USER') %}
 
+            {# Sinon on affiche Adhesion#}
             {% else %}
+
+            {# Partie Adhesion #}
             <li class="nav-item">
                 <a class="nav-link" href="{{ path('adhesion') }}">Adhésion</a>
             </li>
             {% endif %}
+
+            {# Partie Programme #}
             <li class="nav-item">
                 <a class="nav-link" href="{{path('activite_index')}}">Programme</a>
             </li>
+
+            {# Si l'Utilisateur est Adhérent alors il peut voir Album Photo #}
             {% if is_granted(["ROLE_USER"]) %}
+
+                {# Partie Album Photo #}
                 <li>
                     <a class="nav-link" href="{{ path('album') }}">Album photo</a>
                 </li>
             {% endif %}
             {# éléments a menu déroulant #}
+
+            {# Si l'Utilisateur est Adhérent alors il peut voir Espace Adhérent #}
             {% if is_granted ("ROLE_USER")%}
+
+                {# Partie Espace Adhérent #}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -88,15 +110,22 @@
 
 
             <li class="nav-item">
+
+                {# Si l'Utilisateur est en session on affiche le lien vers son Profil #}
                 {% if app.user %}
+
+                    {# Partie Profil #}
                 <a class="nav-link" href="{{ path('user_show', { 'id': app.user.id}) }}">Profil</a>
                     {% else %}
 
                 {% endif %}
             </li>
 
+            {# Si l'Utilisateur est Administrateur alors le bouton Admin est visible #}
             {% if is_granted ("ROLE_ADMIN")%}
+
                 {# éléments a menu déroulant #}
+                {# Partie Admin #}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
@@ -105,17 +134,19 @@
 
                     {# éléments dans le menu déroulant #}
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ path('actu_new') }}">Créer une actualite</a>
                         <a class="dropdown-item" href="{{ path('activite_new') }}">Créer une activité</a>
                         <a class="dropdown-item" href="{{ path('createRef') }}">Créer un référent</a>
                         <a class="dropdown-item" href="{{ path('user_new') }}" >Créer un adhérent</a>
                         <a class="dropdown-item" href="{{ path('createP') }}">Créer un partenaire</a>
                         <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{ path('actualite') }}">Gestion des actualites</a>
                         <a class="dropdown-item" href="{{path('user_index')}}">Gestion des adhérents</a>
                         <a class="dropdown-item" href="{{ path('referent') }}">Gestion des référent</a>
                         <a class="dropdown-item" href="{{path('activite_index')}}">Gestion des activités</a>
                         <a class="dropdown-item" href="{{path('partenaire')}}">Gestion des partenaires</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{path('pdfstatus')}}">Status</a>
+                        <a class="dropdown-item" href="{{path('pdfstatus')}}">Statuts</a>
                         <a class="dropdown-item" href="{{path('chartestatus')}}">Charte</a>
                         <a class="dropdown-item" href="{{path('pdfmentionslegales')}}">Mention légales</a>
                     </div>
@@ -123,10 +154,12 @@
             {% else %}
             {% endif %}
 
+            {# Si l'Utilisateur est en session alors on affiche le bouton Déconnexion #}
             {% if is_granted ('IS_AUTHENTICATED_REMEMBERED')%}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
                 </li>
+                {# Sinon on affiche le bouton Connexion #}
             {% else %}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>

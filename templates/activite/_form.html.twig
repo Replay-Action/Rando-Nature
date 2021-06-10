@@ -7,6 +7,7 @@
         </div>
 
         {# formulaire des activités #}
+        {# Côté Gauche #}
         <div class="gauche-form-activite col-lg6">
             {{ form_start(form) }}
             <p>Nom: {{ form_widget(form.nom) }}</p>
@@ -16,6 +17,7 @@
             <p>Distance: {{ form_widget(form.distance) }}</p>
         </div>
 
+        {# Côté Droit #}
         <div class="droite-form-activite col-lg-6">
             <p>Infos: {{ form_widget(form.infos_activite) }}</p>
             <p>Denivele: {{ form_widget(form.denivele) }}</p>
@@ -25,11 +27,13 @@
 
         <div class="bas-form-activite col-12">
 
+            {# Le bouton Valider #}
             <div class="bas-form-activite1">
                 {{ form_widget(form.valider) }}
                 {{ form_end(form) }}
             </div>
 
+            {# Le bouton Retour #}
             <div class="bas-form-activite2">
                 <a class="butonPersonnalise" href="{{ path('activite_index') }}">Retour</a>
             </div>

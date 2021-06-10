@@ -28,6 +28,12 @@ class Actualite
     private $Date_actu;
 
     /**
+     * @ORM\Column(type="boolean")
+     */
+    private $affiche_actu;
+
+
+    /**
      * @return int|null
      */
     public function getId(): ?int
@@ -71,5 +77,21 @@ class Actualite
         $this->Date_actu = $Date_actu;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAfficheActu()
+    {
+        return $this->affiche_actu;
+    }
+
+    /**
+     * @param mixed $affiche_actu
+     */
+    public function setAfficheActu($affiche_actu): void
+    {
+        $this->affiche_actu = $affiche_actu;
     }
 }

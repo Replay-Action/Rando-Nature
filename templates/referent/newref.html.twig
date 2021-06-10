@@ -1,27 +1,39 @@
 {% extends 'base.html.twig' %}
 {% block title %}Création d'un Référent | {{ parent() }}{% endblock %}
-{# la page de la liste des référents #}
+{# La page de Création d'un Référent #}
 
 {% block body %}
+
+    {# Si l'utilisateur est Administrateur alors il peut avoir accès à cette page #}
     {% if is_granted("ROLE_ADMIN") %}
         <div class="container">
+
+            {# Le formulaire #}
             <div class="referent_box">
                 {{ form_start(form) }}
                 <div class="form-referent-fond-noir">
+
+                    {# Le Titre #}
                     <div class="title_form col-12">
                         <h1 >Créer un Référent</h1>
                     </div>
                     <div class="centre_form_referent">
                         <div class="col-lg-6 test-color-size3">
+
+                            {# Le nom du Référent #}
                             <div class="col-lg-4 test-color-size4">
                                 <label>Nouveau Référent : </label>
                                 <p>{{ form_widget(form.nom) }}</p>
                             </div>
+
+                            {# l'Odre pour gérer l'affichage sur le Trombinoscope et le Bureau #}
                             <div class="col-lg-2 color-size-1">
                                 <label>Ordre : </label>
                                 <p>{{ form_widget(form.ordre) }}</p>
                             </div>
                         </div>
+
+                        {# Informations #}
                         <div class="col-lg-6 test-color-size2">
                             <p>L'ordre gère l'affichage des Référents.</p>
                             <div>
@@ -32,6 +44,8 @@
                             </div>
                         </div>
                     </div>
+
+                    {# Les boutons Enregistrer et Retour #}
                     <div class="col-lg-12 button-enregistrer-new-referent">
                         <div class="d-flex justify-content-center">
                             <button class="mb-5 mt-2 btn btn-primary btn btn-lg">{{ button_label|default('Enregistrer') }}</button>

@@ -1,11 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Liste des Référents | {{ parent() }}{% endblock %}
-{# la page de la liste des référents #}
+{# La page de la liste des référents #}
 
 {% block body %}
+
+    {# Si l'Utilisateur est Administrateur alors il peut avoir accès à cette page #}
     {% if is_granted("ROLE_ADMIN") %}
 
+        {# Le Titre #}
     <div class="global-referent">
         <h1>Liste des Référents</h1>
     </div>
@@ -13,14 +16,20 @@
             <hr>
         </div>
 <div class="container color_box" >
+
+    {# On boucle sur Referent #}
     {% for referent in referents %}
         <div class="color_referent">
             <div class="row liste-referent">
+
+                {# On affiche le Nom du Référent #}
                 <div class="col-lg-12 nom-referent">
                     <p class="referent-style">
                         {{ referent.nom }}
                     </p>
                 </div>
+
+                {# Les boutons Modifier et Supprimer #}
                 <div class="col-lg-6 button-supprimer-modifier-referent">
                 <a class="button-decoration-referent" href="{{ path('updateRef', {'id':referent.id}) }}">Modifier</a>
                 <a class="espace-button-referent button-decoration-referent" href="{{ path('deleteRef', {'id':referent.id}) }}" onclick="return confirm('Voulez-vous vraiment supprimer ce référent ?')">Supprimer</a>

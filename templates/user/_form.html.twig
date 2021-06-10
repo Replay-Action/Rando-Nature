@@ -1,9 +1,15 @@
+{# Le formulaire pour créer un Adhérent #}
+
 {{ form_start(form) }}
 <div class="form_adhérent">
     <div class="centre_form_adhérent">
+
+                {# Le titre #}
                 <div class="title_form">
                     <h1>Créer un nouvel adhérent</h1>
                 </div>
+
+                {# Le formulaire #}
                 <div class="adhérent_widget">
                     <p>Role :</p>
                     <p>{{ form_widget(form.roles) }}</p>
@@ -45,11 +51,15 @@
                     <p>{{ form_widget(form.photos) }}</p>
                 </div>
     </div>
+
+    {# Le bouton Enregistrer #}
     <div class="bas_form_adhérent col-12">
         <div class="bas_form_adhérent1">
             {{ form_widget(form.enregistrer) }}
             {{ form_end(form) }}
         </div>
+
+        {# Le bouton Retour #}
         <div class="bas_form_adhérent2">
             <a href="{{ path('user_index') }}" class="butonPersonnalise">Retour</a>
         </div>

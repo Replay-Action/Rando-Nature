@@ -1,15 +1,24 @@
 {% extends 'base.html.twig' %}
+
+{# La page Album Photo#}
 {% block body %}
     <div class="container">
         <div class="album_photo_main col-12">
+
+            {# On boucle sur Activite #}
             {% for activites in activite %}
+
+                {# Si l'activite est annulée ou finie on affiche les activites #}
                 {% if activites.etat.getLibelle() == 'annulée' or activites.etat.getLibelle() == 'finie' %}
                 <div class="container_album_photo">
                     <div class="album_photo">
+                        {# On affiche le nom de l'activité et renseigne l'id de ce dernier #}
                         <div class="title_album_photo col-12">
                             <a href="{{ path('show_album', {"id":activites.id}) }}">{{ activites.nom }}</a>
                         </div>
                         <div class="album_photo_date_user col-12">
+
+                            {# On affiche le logo Calendrier et la date #}
                             <div class="album_photo_date">
                                 <div>
                                     <img  src="{{ asset('tools/calendrier.png') }}" alt="icon de calendrier">
@@ -18,6 +27,8 @@
                                     <p>{{ activites.getDateActivite()| date('j F Y h:i')}}</p>
                                 </div>
                             </div>
+
+                            {# On affiche le logo User et le Nom et Prenom de l'Organisateur #}
                             <div class="album_photo_user">
                                 <div>
                                     <img src="{{ asset('tools/user.png') }}" alt="icon d'utilisateur">
@@ -28,17 +39,21 @@
                                 </div>
                             </div>
                         </div>
+                        {# On affiche les informations de l'activite #}
                         <div class="album_photo_resume col-12">
                             <p>{{ activites.getInfosActivite() }}</p>
                         </div>
                         <div class="container__etiquette col-12 ">
                             <div class="album_photo_etiquette">
+                                {# On affiche le logo Etiquette et la Catégorie de l'Activite #}
                                 <div class="album_photo_etiquette">
                                     <img src="{{ asset('tools/etiquette.png') }}" alt="icon d'étiquette">
                                     <p>{{ activites.categorie}}</p>
                                 </div>
                             </div>
                         </div>
+
+                        {# Si l'Utilisateur est Administrateur alors il peut Modifier et Supprimer l'Album Photo#}
                         {% if is_granted(["ROLE_ADMIN"]) %}
                             <div class="bas_album_photo col-12">
                                 <a href="{{ path('activite_edit', {'id':activites.id}) }}">modifier</a>

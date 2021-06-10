@@ -28,6 +28,9 @@
     display: block;
     text-align: center;
     padding: 20px;
+    font: bold 20px Arial;
+    max-width: 500px;
+    margin-bottom: 75px;
 }
 
 .actu-home{
@@ -36,24 +39,31 @@
     text-align: center;
     padding: 20px;
     align-items: center;
+    font: bold 20px Arial;
 
 }
+
 .div-home-actu-popup{
-    box-shadow: 5px 2px 10px black;
     display: flex;
     justify-content: center;
     flex-direction: column;
-    border: black solid 1px;
     background-repeat: no-repeat;
+    background-position: bottom;
+    padding: 20px;
+    background-image: url("../../background/border-nature.png");
+    align-items: center;
+    box-shadow: 5px 2px 10px black;
     border-radius: 15px;
-    background-position: center;
-
+    background-color: lightyellow;
 }
 .global-div-home-actu-popup{
     display: flex;
     justify-content: center;
 }
-
+.decoration-button-voir{
+    text-decoration: none;
+    color: black;
+}
 
 .paragraphe2{
     display: flex;
