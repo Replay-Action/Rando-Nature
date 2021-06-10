@@ -10,17 +10,21 @@
 .bureau_main{
     display: flex;
     flex-direction: row;
+    justify-content: center;
     flex-wrap: wrap;
     width: max-content;
 }
 .partie1{
     margin: 50px;
+    width: max-content;
 }
 .partie2{
     margin: 20px;
+    width: max-content;
+
 }
 #img-bureau{
-    width: 600px;
+    width: 800px;
     height: 600px;
 }
 .president{

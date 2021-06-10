@@ -94,6 +94,8 @@
 }
 .taille{
     padding: 20px;
+    width: 600px ;
+    height: 400px;
 }
 
 /**       Caroussel     **/
