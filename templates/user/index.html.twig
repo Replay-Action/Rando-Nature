@@ -17,20 +17,6 @@
                         <hr class="hr25-pourcent center">
                     </div>
                 </div>
-
-                {# Paragraphe Informatif #}
-                <div class="bg-light border m-5"><p class="font-weight-bold pt-2">NOTA BENE</p>
-                    <div>
-                        <p class="text-center small">Pour effacer un adhérent, allez sur le bouton 'modifier et cliquez sur
-                            le bouton 'Effacer l'adhérent'</p>
-                    </div>
-                    <div>
-                        <p class="text-center small">Pour modifier le profil d'un adhérent (pour le changer en
-                            administrateur ou en adhérent simple par exemple) vous avez besoin de son accord et de son mot
-                            de passe</p>
-                        <p class="small">par contre vous pouvez effacer sa photo si elle ne convient pas aux valeurs du site</p>
-                    </div>
-                </div>
             </div>
             <div class="container-fluid global-div-adherents col-lg-12 col-sm-12 row ">
 
@@ -65,9 +51,12 @@
                             <p>Date de Naissance: {{ user.dateNaissance ? user.dateNaissance|date('d-m-Y') : '' }}</p>
                         </div>
 
-                        {# Le bouton Modifier #}
-                            <div class="button-div-modifier-profil-admin">
-                                 <a href="{{ path('user_edit', {'id': user.id}) }}" class="button-modifier-profil-admin btn btn-warning">modifier</a>
+                        {# Le bouton Supprimer et Modifier#}
+
+                        <div class="button-div-modifier-profil-admin">
+                                <a href="{{ path('user_delete', {'id': user.id}) }}" class="button-modifier-profil-admin btn btn-warning">Supprimer</a>
+
+                                 <a href="{{ path('user_edit', {'id': user.id}) }}" class="button-modifier-profil-admin btn btn-warning">Modifier</a>
                             </div>
 
                      </div>

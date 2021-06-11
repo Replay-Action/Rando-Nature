@@ -39,6 +39,7 @@
 @import "actualite/gestion_actualite.css";
 @import "actualite/actualite_create-edit.css";
 
+@import "pdf/pdf.css";
 *{
     margin: 0;
     padding: 0;

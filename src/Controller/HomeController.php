@@ -247,7 +247,7 @@ class HomeController extends AbstractController
     public function editpdfcharte(Request $request): Response
     {
         # cette fonction sert à uploader le pdf de la charte.
-        # il aura toujours le meme nom car on lui donne ce nom quand on l'uploade
+        # il aura toujours le meme nom car on lui donne ce nom quand on l'upload
 
         $this->denyAccessUnlessGranted("ROLE_ADMIN");
 
@@ -291,7 +291,7 @@ class HomeController extends AbstractController
     public function editpdfmentions(Request $request): Response
     {
         # cette fonction sert à uploader le pdf des mentions légales.
-        # il aura toujours le meme nom car on lui donne ce nom quand on l'uploade
+        # il aura toujours le meme nom car on lui donne ce nom quand on l'upload
 
         //On refuse l'accès a cette méthode si l'utilisateur n'a pas le rôle Admin.
         $this->denyAccessUnlessGranted("ROLE_ADMIN");

@@ -31,8 +31,8 @@ class AdhesionType extends AbstractType
                 'required'=>true
             ])
             ->add('date_de_naissance', BirthdayType::class, [
-                'format' => 'ddMMyyyy',
                 'required'=>true,
+                'widget' =>'single_text'
             ])
             ->add('telephone',IntegerType::class,[
                 'required'=>true

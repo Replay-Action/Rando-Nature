@@ -22,15 +22,7 @@ class ActiviteType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom', TextType::class/**ChoiceType::class, [
-                'choices' => [
-                    'Rando Vélo' => 'Rando Vélo',
-                    'Escapade Séjour Vélo' => 'Escapade Séjour Vélo',
-                    'Réunion' => 'Réunion',
-                    'Spectacle' => 'Spectacle',
-                    'Formation' => 'Formation',
-                    'Autre évènement' => 'Autre évènement',
-                ],]**/)
+            ->add('nom', TextType::class)
             ->add('categorie', EntityType::class,[
                 'class' => Categorie::class,
             ])

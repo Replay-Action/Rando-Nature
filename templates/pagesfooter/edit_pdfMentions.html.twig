@@ -4,13 +4,18 @@
 
 {% block body %}
     {% if is_granted("ROLE_ADMIN") %}
-    <div class=" row d-flex text-center justify-content-center">
+        <div class="container pdf-global">
 
-        <div class="col-auto">
+            <div class=pdf-sous-global"">
             <h1 class="mb-5 mt-3">Charger le nouveau pdf des mentions légales</h1>
             <h5 class="text-danger">Attention !<br> seul un fichier <strong>pdf</strong> peut-être enregistré ici !<br>
                 il effacera le précédent</h5><h5 class="bg-info text-white p-2 mb-5">Le pdf est visible dans le menu du bas</h5>
-            {{ form(form) }}
+                <div class="pdf-form">
+                    {{ form_start(form) }}
+                    {{ form_widget(form.field_name) }}<br>
+                    {{ form_widget(form.Enregistrer) }}
+                    {{ form_end(form) }}
+                </div>
         </div>
     </div>
 

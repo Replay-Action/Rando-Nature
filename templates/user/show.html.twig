@@ -34,7 +34,7 @@
                     <td>{{ user.username }}</td>
                 </tr>
                 <tr>
-                    <th>Roles</th>
+                    <th>Role</th>
                     <td> {% if (user.roles|json_encode) =='["ROLE_USER"]' %}
                             Adhérent
                         {% elseif (user.roles|json_encode) =='["ROLE_ADMIN","ROLE_USER"]' %} Administrateur

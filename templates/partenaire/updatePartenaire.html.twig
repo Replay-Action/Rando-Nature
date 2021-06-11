@@ -15,9 +15,21 @@
         {# Le formulaire #}
             <div class="main__partenaire">
                 <div class="form__partenaire">
+
                 {{ form_start(form) }}
-                {{ form_widget(form) }}
-                {{ form_end(form) }}
+
+                <label>Nom du partenaire : </label>
+                {{ form_widget(form.nom) }}
+                <label>Logo du Partenaire : </label>
+                {{ form_widget(form.logo) }}
+                <label>Url du site partenaire : </label>
+                {{ form_widget(form.url) }}
+
+                    <div class="div-button-partenaire">
+                        {{ form_widget(form.Valider) }}
+                        <a href="{{ path('partenaire') }}" class="btn partenaire-button-retour">Retour</a>
+                    </div>
+                    {{ form_end(form) }}
             </div>
         </div>
     </div>

@@ -1,18 +1,10 @@
-.bureau{
-    display: flex;
-    justify-content: center;
-    padding-top: 100px;
-    text-align: center;
-}
-.bureau hr{
-    width: 25%;
-}
 .bureau_main{
     display: flex;
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
     width: max-content;
+    margin-top: 100px;
 }
 .partie1{
     margin: 50px;
