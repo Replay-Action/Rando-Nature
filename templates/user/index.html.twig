@@ -54,7 +54,7 @@
                         {# Le bouton Supprimer et Modifier#}
 
                         <div class="button-div-modifier-profil-admin">
-                                <a href="{{ path('user_delete', {'id': user.id}) }}" class="button-modifier-profil-admin btn btn-warning">Supprimer</a>
+                                <a href="{{ path('supprimer_user', {'id': user.id}) }}" class="button-supprimer-profil-admin btn" onclick="return confirm('Voulez-vous vraiment supprimer cet adhérent ?')">Supprimer</a>
 
                                  <a href="{{ path('user_edit', {'id': user.id}) }}" class="button-modifier-profil-admin btn btn-warning">Modifier</a>
                             </div>

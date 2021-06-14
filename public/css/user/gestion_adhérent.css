@@ -25,6 +25,10 @@
 .interieur-div-un-adherent{
 
 }
+.button-supprimer-profil-admin{
+    background-color: red;
+    border-radius: 15px;
+}
 .button-modifier-profil-admin{
     border-radius: 15px;
 

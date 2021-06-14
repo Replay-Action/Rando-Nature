@@ -1,6 +1,0 @@
-<form method="post" action="{{ path('user_delete', {'id': user.id}) }}" onsubmit="return confirm('Etes-vous sûr de vouloir effacer ?');">
-    <input type="hidden" name="_method" value="DELETE">
-    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
-   <div class="mb-5 d-flex justify-content-center">
-    <button class=" m-1 btn btn-danger btn btn-lg btn-block" onclick="return confirm('Voulez-vous vraiment supprimer cet adhérent ?')">Effacer l'adhérent</button>
-   </div></form>

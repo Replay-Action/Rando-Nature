@@ -250,53 +250,46 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="user_delete", methods={"DELETE"})
+     * @Route("delete_adherent/{id}", name="supprimer_user")
      * @param Request $request
      * @param User $user
      * @param PhotoRepository $photoRepository
      * @return Response
      *
-     *
-     * Cette methode est en charge de supprimer un Utilisateur
-     *
+     * Cette méthode est en charge de supprimer un Utilisateur
      */
-    public function delete(Request $request, User $user, PhotoRepository $photoRepository): Response
+
+    public  function supprimerAdherent(Request $request, User $user, PhotoRepository $photoRepository):Response
     {
         //On laisse l'accès à cette fonction seulement aux Administrateur.
         $this->denyAccessUnlessGranted("ROLE_ADMIN");
+        $photo = $photoRepository->findOneBy(['adhherent' => $user]);
 
-        //Protection contre les attaques csrf
-        if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
+        $entityManager = $this->getDoctrine()->getManager();
 
-            //On recupere l'id du user
-            $user1 = $user->getId();
+        while($photo != null)
+        {
+            $nomphoto = $photo->getName();
+            $photoexist = $this->getParameter('photo_directory'). '/'. $nomphoto;
 
-            //on recupere la photo qui appartie au user dont on vient de recuperer l'id
-            $photo = $photoRepository->findOneBy(['adhherent' => $user1]);
-
-            //S'il y a une photo on recupere son nom et aussi son nom en bdd
-            if ($photo != null) {
-                $nomphoto = $photo->getName();
-                $photoexist = $this->getParameter('photo_directory') . '/' . $nomphoto;
-
-                //Si la photo existe dans le dossier public alors on l'efface
-                if ($photoexist) {
-                    unlink($photoexist);
-                }
+            if($photoexist)
+            {
+                unlink($photoexist);
             }
+            $entityManager -> remove($photo);
+            $entityManager -> flush();
+            $photo = $photoRepository->findOneBy(['adhherent' => $user]);
 
-            //Dans la bdd on efface le user
-            $entityManager->remove($user);
-            $entityManager->flush();
-
-            //On renvoie un message de succes à l'utilisateur pour prévenir de la réussite de la suppresion.
-            $this->addFlash('success', 'Votre profil a bien été effacé !!');
         }
-        //On redirige l'utilisateur sur la page user/index.html.twig.
-        return $this->redirectToRoute('user_index');
 
+        $entityManager -> remove($user);
+        $entityManager -> flush();
+        //On renvoie un message de succes à l'utilisateur pour prévenir de la réussite de la suppresion.
+        $this->addFlash('success', 'Le profil a bien été effacé !!');
+        //On redirige l'utilisateur sur la page user/index.html.twig.
+        return $this->redirectToRoute('home1');
     }
+
 
 
     /**
