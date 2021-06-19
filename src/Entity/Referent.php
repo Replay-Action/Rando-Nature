@@ -22,7 +22,6 @@ class Referent
         $this->user = new ArrayCollection();
     }
 
-
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -44,8 +43,6 @@ class Referent
      * @ORM\OneToMany (targetEntity=User::class, mappedBy="referents", cascade={"persist","remove"})
      */
     private $user;
-
-
 
     public function getId(): ?int
     {
@@ -87,5 +84,4 @@ class Referent
         $this->user = $user;
     }
 }
-
 
