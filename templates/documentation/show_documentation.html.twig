@@ -57,6 +57,12 @@
                 </div>
                 {% endif %}
 
+                {% if(documentations.pdf != null) %}
+                    <div class="documentation__pdf col-12">
+                        <embed  src="{{ asset('pdf-documentation/'~ documentations.pdf) }}" type='application/pdf'/>
+                    </div>
+                {% endif %}
+
                 {# On affiche le paragraphe 1 #}
                 <div class="documentation__paragraphe1 col-12">
                     <p>{{ documentations.paragraphe1 }}</p>

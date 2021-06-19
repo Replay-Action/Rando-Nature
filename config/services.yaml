@@ -10,6 +10,7 @@ parameters:
     upload_recap_directory: '%kernel.project_dir%/public/recap'
     documentation_directory: '%kernel.project_dir%/public/documentation-image'
     album_directory: '%kernel.project_dir%/public/album-photo'
+    pdf_directory: '%kernel.project_dir%/public/pdf-documentation'
 
 services:
     # default configuration for services in *this* file

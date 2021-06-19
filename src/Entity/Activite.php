@@ -176,7 +176,6 @@ class Activite
     public function setDenivele(?int $denivele): self
     {
         $this->denivele = $denivele;
-
         return $this;
     }
 
@@ -188,7 +187,6 @@ class Activite
     public function setDifficulte(?int $difficulte): self
     {
         $this->difficulte = $difficulte;
-
         return $this;
     }
 
@@ -210,7 +208,6 @@ class Activite
     public function setEtat(?Etat $etat): self
     {
         $this->etat = $etat;
-
         return $this;
     }
 

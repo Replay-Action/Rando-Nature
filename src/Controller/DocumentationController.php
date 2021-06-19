@@ -145,6 +145,15 @@ class DocumentationController extends AbstractController
                 $documentation->setImage2($fileName);
                 $documentation->setImageModification2($fileName);
             }
+            //On applique la même logique ici que la condition au_dessus.
+            if($documentation->getPdf() != null){
+                $file = $documentation->getPdf();
+                $fileName = md5(uniqid()).'.'.$file->guessExtension();
+                $file->move($this->getParameter('pdf_directory'),$fileName);
+                $documentation->setPdf($fileName);
+                $documentation->setPdfModification($fileName);
+            }
+
             //On envoie les informations a la base de donnée.
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($documentation);
@@ -154,6 +163,8 @@ class DocumentationController extends AbstractController
             //On redirige l'utilisateur sur la page documentation.html.twig
             return $this->redirectToRoute('documentation');
         }
+
+
         //On envoie les données et l'affichage du formulaire sur la page new_documentation.html.twig.
         return $this->render('documentation/new_documentation.html.twig',[
             'documentation'=> $documentation,
@@ -178,12 +189,16 @@ class DocumentationController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         //On récupère le nom de l'image stocké en base de donnée et on le stock dans la variable $image.
         $image = $documentation->getImage();
-        //On récupère le nom de l'image2 stocké en base de donnée et on le stock dans la variable $image.
+        //On récupère le nom de l'image2 stocké en base de donnée et on le stock dans la variable $image2.
         $image2 = $documentation->getImage2();
-        //On récupère le nom de l'image stocké en base de donnée et on le stock dans la variable $image.
+        //On récupère le nom de l'image stocké en base de donnée et on le stock dans la variable $imageModification.
         $imageModification =  $documentation->getImageModification();
-        //On récupère le nom de l'image stocké en base de donnée et on le stock dans la variable $image.
+        //On récupère le nom de l'image stocké en base de donnée et on le stock dans la variable $imageModification2.
         $imageModification2 = $documentation->getImageModification2();
+        //On récupère le nom du pdf stocké en base de donnée et on le stock dans la variable $nompdf.
+        $nomPdf = $documentation->getPdf();
+        //On récupère le nom du pdf stocké en base de donnée et on le stock dans la variable $nomPdfModification.
+        $nomPdfModification = $documentation->getPdfModification();
 
         //On créer notre formulaire.
         $form = $this->createForm(DocumentationType::class, $documentation);
@@ -192,16 +207,21 @@ class DocumentationController extends AbstractController
         //Si le formulaire a bien été envoyer et qu'il est valide ...
         if($form->isSubmitted() && $form->isValid())
         {
-            //On récupère le nom de l'image stocké en base de donnée et on le stock dans la variable $image.
+            //On récupère le nom de l'image stocké en base de donnée et on le stock dans la variable $imageActuel.
             $imageActuel = $documentation->getImage();
-            //On récupère le nom de l'image stocké en base de donnée et on le stock dans la variable $image.
+            //On récupère le nom de l'image stocké en base de donnée et on le stock dans la variable $imageActuel2.
             $imageActuel2= $documentation->getImage2();
+            //On récupère le nom du pdf stocké en base de donnée et on le stock dans la variable $pdfActuel.
+            $pdfActuel= $documentation->getPdf();
+
             //On hydrate la propriété dateModificatiion avec la date et l'heure ou les formulaire est envoyé.
             $documentation->setDateModifier(new DateTime('now'));
+
+
                 //Si la valeur contenue dans la variable $imageActuel est diffèrent de la valeur contenue
                 // dans la variable $imageModification ET que la valeur contenue dans la variable $imageActuel
-                // est différente de null(rien)...
-                if($imageActuel !== $imageModification && $imageActuel != null )
+                // est différente de null(rien) ET que la variable $image est différente de null(rien)...
+                if($imageActuel !== $imageModification && $imageActuel != null && $image != null )
                 {
                     //On supprime le fichier stocké dans le repository documentation-image.
                     unlink($this->getParameter('documentation_directory') . '/' . $image);
@@ -216,14 +236,32 @@ class DocumentationController extends AbstractController
                     $documentation->setImage($fileName);
                     //On injecte égale le nouveau dans la propriété imageModification.
                     $documentation->setImageModification($fileName);
-                } else {
+                }
+                //Sinon, Si la valeur contenue dans la variable $image est égale a null(rien) ET
+                // que la  valeur contenue dans la variable $imageActuel est diffèrente de null(rien)...
+                elseif ($image == null && $imageActuel != null) {
+                    //On stock le nom du fichier dans la variable $file.
+                    $file = $documentation->getImage();
+                    //On renomme le fichier avec un nom unique et on lui ajoute l'extension contenue
+                    //dans la variable $file, on stock le tout dans la variable $fileName.
+                    $fileName = md5(uniqid()).'.'.$file->guessExtension();
+                    //On déplace le fichier dans le repository documentation-image.
+                    $file->move($this->getParameter('documentation_directory'),$fileName);
+                    //On hydrate le nouveau nom du fichier dans les propriétés image et imageModification.
+                    $documentation->setImage($fileName);
+                    $documentation->setImageModification($fileName);
+                }
+                else {
                     //Si l'utilisateur ne modifie pas le champs image, on hydrate la propriété  image  avec la valeur
                     // contenue dans imageModification qui a conserver le nom du fichier actuel en base de donnée.
                     // On éviter une perte d'image lors de l'affichage après modification.
                     $documentation->setImage($imageModification);
                 }
+
+
+
                 //On applique la même logique ici que la condition au_dessus.
-                 if($imageActuel2 !== $imageModification2 && $imageActuel2 != null)
+                 if($imageActuel2 !== $imageModification2 && $imageActuel2 != null && $image2 != null)
                  {
                      unlink($this->getParameter('documentation_directory') . '/' . $image2);
 
@@ -232,9 +270,45 @@ class DocumentationController extends AbstractController
                      $file->move($this->getParameter('documentation_directory'),$fileName);
                      $documentation->setImage2($fileName);
                      $documentation->setImageModification2($fileName);
-                 } else {
+                 }
+                 elseif ($image2 == null && $imageActuel2 != null)
+                 {
+                     $file = $documentation->getImage2();
+                     $fileName = md5(uniqid()).'.'.$file->guessExtension();
+                     $file->move($this->getParameter('documentation_directory'),$fileName);
+                     $documentation->setImage2($fileName);
+                     $documentation->setImageModification2($fileName);
+
+                 }
+                 else {
                      $documentation->setImage2($imageModification2);
                  }
+
+
+
+                //On applique la même logique ici que la condition au_dessus.
+                 if ($pdfActuel !== $nomPdfModification && $pdfActuel != null && $nomPdf != null){
+
+                     unlink($this->getParameter('pdf_directory') . '/' . $nomPdf);
+
+                     $file = $documentation->getPdf();
+                     $fileName = md5(uniqid()). '.' .$file->guessExtension();
+                     $file->move($this->getParameter('pdf_directory'),$fileName);
+                     $documentation->setPdf($fileName);
+                     $documentation->setPdfModification($fileName);
+                 }
+                 elseif ($nomPdf == null && $pdfActuel != null)
+                 {
+                     $file = $documentation->getPdf();
+                     $fileName = md5(uniqid()).'.'.$file->guessExtension();
+                     $file->move($this->getParameter('pdf_directory'),$fileName);
+                     $documentation->setPdf($fileName);
+                     $documentation->setPdfModification($fileName);
+                 }
+                 else {
+                     $documentation->setPdf($nomPdfModification);
+                 }
+
             //On envoie les informations a la base de donnée.
             $entityManager->persist($documentation);
             $entityManager->flush();
@@ -271,6 +345,20 @@ class DocumentationController extends AbstractController
             $nom = $documentation->getImage();
             //On supprime le fichier stocker dans le repository documentation-image.
             unlink($this->getParameter('documentation_directory') . '/' . $nom);
+
+        }
+        //On applique la même logique ici que la condition au_dessus.
+        if( $documentation->getImage2() != null)
+        {
+            $nom = $documentation->getImage2();
+            unlink($this->getParameter('documentation_directory') . '/' . $nom);
+
+        }
+        //On applique la même logique ici que la condition au_dessus.
+        if( $documentation->getPdf() != null)
+        {
+            $nom = $documentation->getPdf();
+            unlink($this->getParameter('pdf_directory') . '/' . $nom);
 
         }
         //On supprime les valeur stockées dans la base de donnée.

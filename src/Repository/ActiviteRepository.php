@@ -44,7 +44,6 @@ class ActiviteRepository extends ServiceEntityRepository
 # pour recuperer les activités dont la date est dépassée et pour changer leur 'etat' en 'finie'
     public function miseajouretat()
     {
-
         $em = $this->getEntityManager();
         $datejour = new DateTime();
         $query = $em->createQuery(

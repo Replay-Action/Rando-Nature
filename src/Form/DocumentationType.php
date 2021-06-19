@@ -34,7 +34,7 @@ class DocumentationType extends AbstractType
             ->add('url',TextType::class,[
                 'required' => false,
             ])
-            ->add('image', FileType::class, [
+            ->add('pdf', FileType::class, [
                 'label' => 'Choisissez votre fichier',
                 'required' => false,
                 'data_class' => null,
@@ -44,11 +44,24 @@ class DocumentationType extends AbstractType
                         'mimeTypes' => [
                             'application/pdf',
                             'application/x-pdf',
+                        ],
+                        'mimeTypesMessage' => 'Le logo doit être de type .pdf',
+                    ])
+                ]
+            ])
+            ->add('image', FileType::class, [
+                'label' => 'Choisissez votre fichier',
+                'required' => false,
+                'data_class' => null,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1200k',
+                        'mimeTypes' => [
                             'image/jpeg',
                             'image/png',
                             'image/svg+xml',
                         ],
-                        'mimeTypesMessage' => 'Le logo doit être de type .png, .svg ou .pdf',
+                        'mimeTypesMessage' => 'Le logo doit être de type .png, .svg',
                     ])
                 ]
             ])
@@ -63,13 +76,11 @@ class DocumentationType extends AbstractType
                     new File([
                         'maxSize' => '1200k',
                         'mimeTypes' => [
-                            'application/pdf',
-                            'application/x-pdf',
                             'image/jpeg',
                             'image/png',
                             'image/svg+xml',
                         ],
-                        'mimeTypesMessage' => 'Le logo doit être de type .png, .svg ou .pdf',
+                        'mimeTypesMessage' => 'Le logo doit être de type .png, .svg',
                     ])
                 ]
             ])

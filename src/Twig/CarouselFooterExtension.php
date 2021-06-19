@@ -38,4 +38,12 @@ class CarouselFooterExtension extends AbstractExtension
              'partenaires' => $partenaire
          ]);
     }
+
+    public function variable(){
+        $exemple=0;
+
+        return $this->render('exemple/exemple.html.twig',[
+            'exemple' => $exemple
+        ]);
+    }
 }

@@ -12,11 +12,11 @@
             {# Le logo et le nom du site sous png #}
             <div class="en-tete-accueil row col-lg-12 col-sm-12">
                     <div class="logo col-lg-12">
-                    <img src="{{ asset('logos/Logo_VRNB.png') }}" alt="">
+                    <img src="{{ asset('logos/Logo_VRNB.png') }}" alt="logo de l'association">
                     </div>
 
                     <div class="title col-lg-12 col-sm-12">
-                    <img src="{{ asset('logos/velorandonaturebruz-maj2.png') }}" alt="">
+                    <img src="{{ asset('logos/velorandonaturebruz-maj2.png') }}" alt="Nom de l'association">
                     </div>
 
             </div>
@@ -45,24 +45,28 @@
             <div class="carousel-container col-lg-12">
                 <div class="description-accueil row">
                     <div class="col-lg-12">
-
                     {# Paragraphe avant Carrousel #}
                     <p class="lead text-accueil">
                             Vous aimez les balades à vélo, la nature et avez besoin de vous évader ?
                     </p>
                     </div>
+                        <div class="slider">
+                            <div class="slide-track" style="--nbImages:{{ photos|length }}">
 
-                    {# Carrousel #}
-                    <div class="pic-ctn container col-lg-12 col-sm-12">
-                        {% for photo in photos %}
-                            {% if photo.getImage() is empty %}
-                            {% else %}
-                                <img class="pic col-lg-12" src="{{ asset('album-photo/'~ photo.image)  }}"
-                                     alt="Oups un soucis est survenus">
-                            {% endif %}
-                        {% endfor %}
+                                {% for photo in photos %}
+                                    {% if photo.getImage() is empty %}
+                                    {% else %}
+                                        <div class="slide">
+                                            <img src="{{ asset('album-photo/'~ photo.image)  }}"
+                                                 alt="photo de randonné">
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+
+                            </div>
+                        </div>
+
                     </div>
-                    <div class="col-12">
 
                     {# Paragraphe après Carrousel #}
                     <p class="lead text-accueil">

@@ -96,6 +96,16 @@ class Documentation
     private $url;
 
     /**
+     * @ORM\Column (type="string", nullable=true)
+     */
+    private $pdf;
+
+    /**
+     * @ORM\Column (type="string", nullable=true)
+     */
+    private $pdfModification;
+
+    /**
      * @ORM\OneToMany ( targetEntity=Commentaire::class, mappedBy="documentation",
      *     cascade={"persist","remove"})
      */
@@ -261,6 +271,26 @@ class Documentation
         $this->url = $url;
     }
 
+    public function getPdf()
+    {
+        return $this->pdf;
+    }
+
+    public function setPdf($pdf): void
+    {
+        $this->pdf = $pdf;
+    }
+
+    public function getPdfModification()
+    {
+        return $this->pdfModification;
+    }
+
+    public function setPdfModification($pdfModification): void
+    {
+        $this->pdfModification = $pdfModification;
+    }
+    
     public function getCommentaire()
     {
         return $this->commentaire;

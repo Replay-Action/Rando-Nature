@@ -69,11 +69,16 @@ DOCUMENTATION SHOW
     font-size: small;
     color: lightslategrey;
 }
-.documentation__image1, .documentation__image2{
+.documentation__image1, .documentation__image2 {
     margin: 20px 80px 40px 80px;
     width: 500px;
     height: 500px;
     object-fit: contain;
+}
+.documentation__pdf{
+    width: 750px;
+
+    height: max-content;
 }
 .documentation_date_modifier{
     color: lightslategray;

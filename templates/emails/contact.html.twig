@@ -3,3 +3,22 @@
 <p>Votre email : {{ contact.email }}</p>
 <p>Message : {{ contact.message| raw }}</p>
 <p>mdp  {{ nouveaumdp }}</p>
+
+{{ exemple.nom }}
+{{ exemple.age }}
+{{ exemple.couleur }}
+
+{{ form_start(form) }}
+
+{{ form_widget(form.nom) }}
+{{ form_widget(form.age) }}
+{{ form_widget(form.couleur) }}
+
+{{ form_start(form) }}
+
+{% for exp in exemple %}
+    {{ exp.nom }}
+    {{ exp.age }}
+    {{ exp.couleur }}
+{% endfor %}
+

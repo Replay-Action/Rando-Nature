@@ -4,6 +4,7 @@
             {# Le titre #}
             <h2 class="">Activité a venir</h2>
 
-        <a class="decoration-button-voir" href="{{ path('activite_index') }}">Il y a {{ actidispo| length }} activité a venir.</a>
+        <a class="decoration-button-voir"
+           href="{{ path('activite_index') }}">Il y a {{ actidispo| length }} activité a venir.</a>
     {% else %}
     {% endif %}
