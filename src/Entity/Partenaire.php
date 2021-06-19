@@ -27,6 +27,25 @@ class Partenaire
      */
     private $logo;
 
+    private $jevaisfaireuntestdemoncote;
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
     /**
      * @ORM\Column(type="text")
      */
